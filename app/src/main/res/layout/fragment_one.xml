@@ -12,11 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <Button
+            android:id="@+id/btn_push"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fragment One!!"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="Push Alarm"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
 

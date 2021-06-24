@@ -1,16 +1,20 @@
 package com.example.practices.home
 
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.example.practices.R
 import com.example.practices.databinding.ActivityHomeBinding
-import android.view.MenuItem
 import com.example.practices.home.fragments.one.OneFragment
 import com.example.practices.home.fragments.three.ThreeFragment
 import com.example.practices.home.fragments.two.TwoFragment
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.messaging.FirebaseMessaging
+
 
 class HomeActivity :AppCompatActivity(),BottomNavigationView.OnNavigationItemSelectedListener{
     private var _binding: ActivityHomeBinding? = null
@@ -27,7 +31,38 @@ class HomeActivity :AppCompatActivity(),BottomNavigationView.OnNavigationItemSel
         setContentView(binding.root)
 
         initNavController()
+
+        firebasePushalarmCallback()
+        firebaseGetToken()
     }
+
+    private fun firebasePushalarmCallback(){
+        var intent = getIntent()
+        if (intent != null) { //푸시알림을 선택해서 실행한것이 아닌경우 예외처리
+            val notificationData = intent.getStringExtra("test")
+            if (notificationData != null) {
+                changeFragment(fragmentTwo)//fragment 전환
+                binding.bnvMain.selectedItemId = R.id.locationFragment //bottom navigation 선택 바꾸기
+            }
+        }
+    }
+    private fun firebaseGetToken(){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(
+                    "FirebasePractice.TAG",
+                    "Fetching FCM registration token failed",
+                    task.exception
+                )
+                return@OnCompleteListener
+            } else {
+                val token = task.result
+                val msg = getString(R.string.msg_token_fmt, token)
+                Log.d("fbPractice.Success", msg)
+            }
+        })
+    }
+
 
     private fun initNavController(){
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_home) as NavHostFragment
@@ -36,6 +71,7 @@ class HomeActivity :AppCompatActivity(),BottomNavigationView.OnNavigationItemSel
     }
 
     private fun changeFragment(fragment: Fragment) {
+        Log.d("fragmentChangd", fragment.toString())
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.nav_host_home, fragment)
