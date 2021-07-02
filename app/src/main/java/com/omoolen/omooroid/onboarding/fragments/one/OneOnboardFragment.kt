@@ -2,6 +2,7 @@ package com.omoolen.omooroid.onboarding.fragments.one
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,24 @@ class OneOnboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        buttonClickEvent()
+    }
 
+    private fun buttonClickEvent(){
+        var stateArr = arrayOf(false,false,false,false,false,false)
+        binding.clFemale.setOnClickListener {
+            Log.d("ONEONBOARD","female clicked")
+            stateArr[0] = !stateArr[0]
+            binding.tv10.isSelected = stateArr[2]
+        }
+        binding.clMale.setOnClickListener {
+            stateArr[1] = !stateArr[1]
+            binding.tv10.isSelected = stateArr[2]
+        }
+        binding.tv10.setOnClickListener {
+            stateArr[2] = !stateArr[2]
+            binding.tv10.isSelected = stateArr[2]
+        }
     }
 
 }

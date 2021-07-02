@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="orange">#F78F39</color>
-    <color name="gray">#cacaca</color>
+    <color name="orange">#ff9a24</color>
+    <color name="text_gray">#cacaca</color>
+    <color name="progressbar_grey">#e5e5e5</color>
+    <color name="bold_black">#3e3e3e</color>
 </resources>
