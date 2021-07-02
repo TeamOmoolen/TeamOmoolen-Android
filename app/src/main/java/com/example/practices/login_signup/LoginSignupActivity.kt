@@ -9,6 +9,7 @@ import com.example.practices.R
 class LoginSignupActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_VirtualReality_SNS)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loginsignup)
         initNavController()

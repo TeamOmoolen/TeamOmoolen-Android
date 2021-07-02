@@ -13,4 +13,16 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <!-- Splash theme. -->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.DarkActionBar"> <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item> <!-- No Title Bar-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item> <!-- white status bar -->
+<!--        <item name="android:statusBarColor">@color/colorPrimary</item>-->
+<!--        <item name="android:windowLightStatusBar">true</item> &lt;!&ndash; background &ndash;&gt;-->
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
 </resources>

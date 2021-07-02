@@ -1,5 +1,6 @@
 package com.example.practices.home
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -11,10 +12,10 @@ import com.example.practices.databinding.ActivityHomeBinding
 import com.example.practices.home.fragments.one.OneFragment
 import com.example.practices.home.fragments.three.ThreeFragment
 import com.example.practices.home.fragments.two.TwoFragment
+import com.example.practices.util.HashKey
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.messaging.FirebaseMessaging
-
 
 class HomeActivity :AppCompatActivity(),BottomNavigationView.OnNavigationItemSelectedListener{
     private var _binding: ActivityHomeBinding? = null
@@ -29,11 +30,18 @@ class HomeActivity :AppCompatActivity(),BottomNavigationView.OnNavigationItemSel
         super.onCreate(savedInstanceState)
         _binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initNavController()
 
         firebasePushalarmCallback()
         firebaseGetToken()
+
+        //앱 해시키 가져오기
+        getHashKey()
+    }
+
+    private fun getHashKey(){
+        val hashKey = HashKey()
+        hashKey.getHashKey(this)
     }
 
     private fun firebasePushalarmCallback(){
