@@ -20,8 +20,8 @@
         <item name="colorOnPrimary">@color/white</item> <!-- No Title Bar-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item> <!-- white status bar -->
-<!--        <item name="android:statusBarColor">@color/colorPrimary</item>-->
-<!--        <item name="android:windowLightStatusBar">true</item> &lt;!&ndash; background &ndash;&gt;-->
+        <!--        <item name="android:statusBarColor">@color/colorPrimary</item>-->
+        <!--        <item name="android:windowLightStatusBar">true</item> &lt;!&ndash; background &ndash;&gt;-->
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
 

@@ -14,17 +14,17 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.practice"
+        applicationId "com.omoolen.omooroid"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [kakaoLoginKey:kakaoLoginKey]
+        manifestPlaceholders = [kakaoLoginKey: kakaoLoginKey]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        debug{
+        debug {
             resValue "string", "kakaoLoginKey", kakaoLoginKey
         }
         release {
@@ -40,7 +40,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    dataBinding{
+    dataBinding {
         enabled = true
     }
 }

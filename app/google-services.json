@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:450660609616:android:107ebb29c290b39a2b6b55",
         "android_client_info": {
-          "package_name": "com.example.practice"
+          "package_name": "com.omoolen.omooroid"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "450660609616-f81ahsj9nuj6ghka3coob2tg46dqivgf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.practice",
+            "package_name": "com.omoolen.omooroid",
             "certificate_hash": "149964df5f0330604ffdd98b4d3d78a62e5c5b67"
           }
         },

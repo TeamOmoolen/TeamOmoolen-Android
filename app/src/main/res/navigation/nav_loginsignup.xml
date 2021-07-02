@@ -7,20 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_login"
-        android:name="com.example.practices.login_signup.login.LoginFragment"
+        android:name="com.omoolen.omooroid.login_signup.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_fragment_login_to_fragment_signup"
-            app:destination="@id/fragment_signup" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragment_signup"
-        android:name="com.example.practices.login_signup.signup.SignupFragment"
-        android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
-        <action
-            android:id="@+id/action_fragment_signup_to_fragment_login"
-            app:destination="@id/fragment_login" />
-    </fragment>
+        tools:layout="@layout/fragment_login"/>
 </navigation>

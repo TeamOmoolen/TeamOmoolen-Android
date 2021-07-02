@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="100dp"
         android:layout_height="74dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"
         android:background="@drawable/test_style"
         android:elevation="10dp"
-        android:layout_margin="10dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/iv_lens"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_olens_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="15dp"
-            />
+            android:src="@drawable/img_olens_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="오렌즈"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="오렌즈"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_lens"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_lens" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_onboard"
+    app:startDestination="@id/fragment_onboard_one">
+
+    <fragment
+        android:id="@+id/fragment_onboard_one"
+        android:name="com.omoolen.omooroid.onboarding.fragments.one.OneOnboardFragment"
+        android:label="fragment_onboard_one"
+        tools:layout="@layout/fragment_onboard_one" >
+        <action
+            android:id="@+id/action_fragment_onboard_one_to_fragment_onboard_two"
+            app:destination="@id/fragment_onboard_two" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_onboard_two"
+        android:name="com.omoolen.omooroid.onboarding.fragments.two.TwoOnboardFragment"
+        android:label="fragment_onboard_two"
+        tools:layout="@layout/fragment_onboard_two" >
+        <action
+            android:id="@+id/action_fragment_onboard_two_to_fragment_onboard_three"
+            app:destination="@id/fragment_onboard_three" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_onboard_three"
+        android:name="com.omoolen.omooroid.onboarding.fragments.three.ThreeOnboardFragment"
+        android:label="fragment_onboard_three"
+        tools:layout="@layout/fragment_onboard_three" >
+        <action
+            android:id="@+id/action_fragment_onboard_three_to_fragment_onboard_four"
+            app:destination="@id/fragment_onboard_four" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_onboard_four"
+        android:name="com.omoolen.omooroid.onboarding.fragments.four.FourOnboardFragment"
+        android:label="fragment_onboard_four"
+        tools:layout="@layout/fragment_onboard_four" />
+</navigation>

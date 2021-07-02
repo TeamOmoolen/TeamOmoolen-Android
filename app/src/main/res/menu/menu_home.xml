@@ -12,4 +12,12 @@
         android:id="@+id/settingFragment"
         android:icon="@drawable/setting_menu_icon"
         android:title="환경설정" />
+    <item
+        android:id="@+id/fourFragment"
+        android:icon="@drawable/location_menu_icon"
+        android:title="넷" />
+    <item
+        android:id="@+id/fiveFragment"
+        android:icon="@drawable/setting_menu_icon"
+        android:title="다섯" />
 </menu>
