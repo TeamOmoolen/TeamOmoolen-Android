@@ -1,6 +1,7 @@
 # AndroidPractices
 
 ## Firebase PushAlarm
+https://user-images.githubusercontent.com/49470328/123212077-44be4000-d4ff-11eb-8a7c-bd60d953d440.mp4
 
 ```
 MyFirebaseMessagingService에서 기기의 token을 받아온 후 이를 기기의 sharedPreferences 혹은 서버의 user정보에 저장한다. (미구현) 
@@ -160,7 +161,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 * Postman Sending
 ```
 {
-	"to":"fpBC-7ICRVukhWDyTmKu3L:APA91bEH5PGdEx1em9-ALZ0-QhIhZF6RlPTVGPUNj0zDheGLU_ckMqMFyNQ-DlheF7wXora1Ju7-DLOwUbtOYbdxzD21hzX-Q4n6-aCuhIaD8o-PoIHe5dkvMe63RBs6qDDGm0BTc-CZ",
+	"to":"기기 토큰아이디",
 	"priority":"high",
 	"data":{
 		"title":"first Notification",
