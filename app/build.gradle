@@ -94,4 +94,7 @@ dependencies {
     implementation "com.kakao.sdk:v2-story:2.0.5" // 카카오스토리
     implementation "com.kakao.sdk:v2-link:2.0.5" // 메시지(카카오링크)
     implementation "com.kakao.sdk:v2-navi:2.0.5" // 카카오내비
+
+    //viewPager2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
 }
