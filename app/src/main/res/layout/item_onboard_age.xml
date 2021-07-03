@@ -4,7 +4,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/onboard_back">
+    android:background="@color/om_almostwhite">
 
     <TextView
         android:id="@+id/tv_age"
@@ -14,10 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="155dp"
         android:layout_height="50dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_margin="1dp"
         android:background="@drawable/onboard_selector"
         android:elevation="2dp"
         android:gravity="center"

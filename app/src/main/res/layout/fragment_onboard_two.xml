@@ -8,16 +8,137 @@
             type="com.omoolen.omooroid.onboarding.fragments.two.TwoOnboardViewModel" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdgeLength="0dp"
+        >
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/tv_what"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="어떤 렌즈가 필요하세요?"
+            android:textColor="@color/om_main_black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_what2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="필요한 렌즈를 모두 선택하시면 렌즈를 추천해드릴게요!"
+            android:textSize="14sp"
+            android:textColor="@color/om_fourth_gray"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_what"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_what"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Onboarding fragment !!two!!" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_what2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_what"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:listitem="@layout/item_onboard_picture"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                android:fadingEdgeLength="0dp"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tv_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="좋아하는 렌즈 색상은 무엇인가요?"
+            android:textColor="@color/om_main_black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintTop_toBottomOf="@id/cl_what"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tv_color2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="중복선택이 가능해요!"
+            android:textSize="14sp"
+            android:textColor="@color/om_fourth_gray"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_color"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_color2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/om_almostwhite"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_color"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center_horizontal"
+                android:numColumns="2"
+                tools:listitem="@layout/item_onboard_age"
+                android:listSelector="@drawable/onboard_selector"
+                android:background="@color/om_almostwhite"
+                android:fadingEdgeLength="0dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_button"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="다음"
+            android:textColor="@color/om_white"
+            android:gravity="center"
+            android:layout_marginTop="46dp"
+            app:layout_constraintTop_toBottomOf="@id/cl_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/onboard_button_selector"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </ScrollView>
 
 </layout>

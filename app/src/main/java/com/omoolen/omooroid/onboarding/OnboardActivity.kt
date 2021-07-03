@@ -28,7 +28,7 @@ class OnboardActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboard)
         initNavController()
-        changeFragment(fragmentOnboardOne)
+        changeFragment(fragmentOnboardTwo)
         startAnimation(0,25)
     }
 
@@ -39,7 +39,7 @@ class OnboardActivity : AppCompatActivity(){
     }
 
     private fun changeFragment(fragment: Fragment) {
-        Log.d("fragmentChangd", fragment.toString())
+        Log.d("fragmentChanged", fragment.toString())
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.host_nav_fragment_onboard, fragment)

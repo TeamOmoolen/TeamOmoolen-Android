@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="성별을 알려주세요!"
-        android:textColor="@color/bold_black"
+        android:textColor="@color/om_main_black"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginLeft="20dp"
@@ -30,37 +30,49 @@
         android:layout_height="wrap_content"
         android:text="연령과 성별에 따라 많이 찾는 렌즈를 추천해드릴게요!"
         android:textSize="14sp"
-        android:textColor="@color/text_gray"
+        android:textColor="@color/om_fourth_gray"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="6dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_gender"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_gender"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_gender2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
-        tools:listitem="@layout/item_onboard_gender"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tv_gender2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center_horizontal"
+            tools:listitem="@layout/item_onboard_picture"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/tv_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="나이를 알려주세요!"
-        android:textColor="@color/bold_black"
+        android:textColor="@color/om_main_black"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/rv_gender"
+        app:layout_constraintTop_toBottomOf="@id/cl_gender"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_age"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/onboard_back"
+        android:background="@color/om_almostwhite"
         >
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_age"
@@ -87,21 +99,24 @@
             android:numColumns="2"
             tools:listitem="@layout/item_onboard_age"
             android:listSelector="@drawable/onboard_selector"
-            android:background="@color/onboard_back"
+            android:background="@color/om_almostwhite"
+
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/tv_button"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:text="다음"
+        android:textColor="@color/om_white"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="24dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@color/orange"
+        android:background="@drawable/onboard_button_selector"
         />
 
 

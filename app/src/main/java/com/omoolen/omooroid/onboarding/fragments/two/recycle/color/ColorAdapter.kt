@@ -1,19 +1,19 @@
-package com.omoolen.omooroid.onboarding.fragments.one
+package com.omoolen.omooroid.onboarding.fragments.two.recycle.color
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.databinding.ItemOnboardAgeBinding
+import com.omoolen.omooroid.databinding.ItemOnboardColorBinding
 
-class AgeAdapter : RecyclerView.Adapter<AgeAdapter.MyViewHolder>() {
-    val ageList = mutableListOf<AgeInfo>()
+class ColorAdapter : RecyclerView.Adapter<ColorAdapter.MyViewHolder>() {
+    val colorList = mutableListOf<ColorInfo>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): MyViewHolder {
-        val binding = ItemOnboardAgeBinding.inflate(
+        val binding = ItemOnboardColorBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -21,10 +21,10 @@ class AgeAdapter : RecyclerView.Adapter<AgeAdapter.MyViewHolder>() {
         return MyViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = ageList.size
+    override fun getItemCount(): Int = colorList.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.onBind(ageList[position])
+        holder.onBind(colorList[position])
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
         }
@@ -41,10 +41,12 @@ class AgeAdapter : RecyclerView.Adapter<AgeAdapter.MyViewHolder>() {
     private lateinit var itemClickListener : OnItemClickListener
 
     class MyViewHolder(
-        private val binding: ItemOnboardAgeBinding
+        private val binding: ItemOnboardColorBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(ageInfo: AgeInfo) {
-            binding.tvAge.text = ageInfo.age
+        fun onBind(colorInfo: ColorInfo) {
+            binding.clColorItem.setBackgroundResource(colorInfo.resourceId)
+            binding.tvColorItem.text = colorInfo.name
+            binding.tvColorItem.setTextColor(colorInfo.colorId)
         }
     }
 }

@@ -109,7 +109,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@color/orange"
+                    android:background="@color/om_main_orange"
                     android:gravity="center"
                     android:text="선택완료"
                     android:textAlignment="center"
