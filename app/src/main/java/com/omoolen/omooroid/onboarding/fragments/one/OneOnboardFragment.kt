@@ -5,17 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.Toast
-import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentOnboardOneBinding
-import com.omoolen.omooroid.onboarding.fragments.four.BrandAdapter
-import com.omoolen.omooroid.onboarding.fragments.four.BrandInfo
 
 
 class OneOnboardFragment : Fragment() {
@@ -25,7 +19,6 @@ class OneOnboardFragment : Fragment() {
     private lateinit var mContext: Context
     private lateinit var ageAdapter: AgeAdapter
 
-    private lateinit var rAgeAdapter: RAgeAdapter
     private lateinit var ageLayoutManager: RecyclerView.LayoutManager
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,73 +34,35 @@ class OneOnboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //buttonClickEvent()
-        //setAdapter()
         ageInit()
     }
 
     fun ageInit() {
-        rAgeAdapter = RAgeAdapter()
-        binding.rvAge.adapter = rAgeAdapter
+        ageAdapter = AgeAdapter()
+        binding.rvAge.adapter = ageAdapter
         ageLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvAge.layoutManager = ageLayoutManager
 
-        rAgeAdapter.ageList.addAll(
+        ageAdapter.ageList.addAll(
             listOf<AgeInfo>(
-                AgeInfo(
-                    age = "10대"
-                ),
-                AgeInfo(
-                    age = "20대"
-                ),
-                AgeInfo(
-                    age = "30대"
-                ),
-                AgeInfo(
-                    age = "40대 이상"
-                )
+                AgeInfo(age = "10대"),
+                AgeInfo(age = "20대"),
+                AgeInfo(age = "30대"),
+                AgeInfo(age = "40대 이상")
             )
         )
-
-        rAgeAdapter.setItemClickListener(object: RAgeAdapter.OnItemClickListener{
+        var ageArr = arrayOf(false,false,false,false)
+        ageAdapter.setItemClickListener(object: AgeAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
                 // 클릭 시 이벤트 작성
                 //Toast.makeText(view?.context, position.toString(), Toast.LENGTH_SHORT).show()
-                v.isSelected = true
+                //다중 선택 시 -> 어떻게 막을지 생각하기
+                //단일 선택 시 -> position 저장하기
+                ageArr[position] = !ageArr[position]
+                v.isSelected = ageArr[position]
             }
         })
     }
 
-//    private fun setAdapter(){
-//        ageAdapter.addItem(AgeInfo("10대"))
-//        ageAdapter.addItem(AgeInfo("20대"))
-//        ageAdapter.addItem(AgeInfo("30대"))
-//        ageAdapter.addItem(AgeInfo("40대 이상"))
-//        binding.gvAge.adapter = ageAdapter
-//    }
-//
-//    private fun buttonClickEvent(){
-//        var stateArr = arrayOf(false,false,false,false)
-//        binding.gvAge.onItemClickListener = OnItemClickListener { parent, view, position, id ->
-//            val item: AgeInfo = ageAdapter.getItem(position) as AgeInfo
-//            //Toast.makeText(requireContext(), "선택 :" + item.getName(), Toast.LENGTH_SHORT).show()
-//            if(position==0)
-//            view.isSelected = true
-//        }
-////        var stateArr = arrayOf(false,false,false,false,false,false)
-////        binding.clFemale.setOnClickListener {
-////            Log.d("ONEONBOARD","female clicked")
-////            stateArr[0] = !stateArr[0]
-////            binding.tv10.isSelected = stateArr[2]
-////        }
-////        binding.clMale.setOnClickListener {
-////            stateArr[1] = !stateArr[1]
-////            binding.tv10.isSelected = stateArr[2]
-////        }
-////        binding.tv10.setOnClickListener {
-////            stateArr[2] = !stateArr[2]
-////            binding.tv10.isSelected = stateArr[2]
-////        }
-//    }
 
 }
