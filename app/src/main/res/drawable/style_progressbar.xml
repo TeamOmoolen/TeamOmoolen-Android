@@ -1,22 +1,5 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape>
-            <padding android:top="1dp" />
-            <solid android:color="#10444444" />
-        </shape>
-    </item>
-    <item>
-        <shape>
-            <padding android:top="1dp" />
-            <solid android:color="#20444444" />
-        </shape>
-    </item>
-    <item>
-        <shape>
-            <padding android:top="1dp" />
-            <solid android:color="#30444444" />
-        </shape>
-    </item>
+
     <item android:id="@android:id/background">
         <shape>
             <solid android:color="@color/progressbar_grey" />

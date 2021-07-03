@@ -24,6 +24,8 @@ class BrandAdapter : RecyclerView.Adapter<BrandAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.onBind(brandList[position])
+
+
     }
 
     class MyViewHolder(
