@@ -7,7 +7,7 @@
         android:layout_width="100dp"
         android:layout_height="74dp"
         android:layout_margin="10dp"
-        android:background="@drawable/test_style"
+        android:background="@drawable/style_test"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

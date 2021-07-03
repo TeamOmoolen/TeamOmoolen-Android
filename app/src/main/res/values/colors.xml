@@ -8,5 +8,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="orange">#F78F39</color>
+    <color name="om_main_orange">#ff9a24</color>
+    <color name="om_third_gray">#898989</color>
+    <color name="om_second_gray">#636363</color>
+    <color name="om_main_green">#6ad255</color>
+    <color name="om_fifth_gray">#f0f0f0</color>
+    <color name="om_main_red">#d7260d</color>
+    <color name="om_main_black">#3e3e3e</color>
+    <color name="om_almostwhite">#fbfbfb</color>
+    <color name="om_fourth_gray">#cacaca</color>
+    <color name="om_white">#ffffff</color>
+    <color name="progressbar_grey">#e5e5e5</color>
+
+
 </resources>

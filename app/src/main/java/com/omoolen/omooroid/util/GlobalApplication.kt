@@ -4,6 +4,7 @@ package com.omoolen.omooroid.util
 import android.app.Application
 import android.util.Log
 import com.kakao.sdk.common.KakaoSdk
+import com.omoolen.omooroid.BuildConfig
 import com.omoolen.omooroid.R
 
 
@@ -14,7 +15,7 @@ class GlobalApplication : Application() {
         super.onCreate()
         Log.d("GLOBAL", "들어옴")
         // Kakao Sdk 초기화
-        KakaoSdk.init(this, getString(R.string.kakao_api_key))
+        KakaoSdk.init(this, BuildConfig.KAKAO_LOGIN_KEY)
     }
 
 //    override fun onTerminate() {
