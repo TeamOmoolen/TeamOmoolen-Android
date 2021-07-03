@@ -21,6 +21,7 @@ android {
         versionName "1.0"
         manifestPlaceholders = [kakaoLoginKey: kakaoLoginKey]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "KAKAO_LOGIN_KEY", properties['kakao.login.key']
     }
 
     buildTypes {
