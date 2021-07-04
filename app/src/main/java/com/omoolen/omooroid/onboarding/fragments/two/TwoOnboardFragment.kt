@@ -92,21 +92,20 @@ class TwoOnboardFragment : Fragment() {
         binding.rvColor.addItemDecoration(HorizontalItemDecorator(10))
         binding.rvColor.addItemDecoration(VerticalItemDecorator(10))
 
-        //TODO : 이미지로 달라고 부탁함
         colorAdapter.colorList.addAll(
             listOf<ColorInfo>(
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_second_gray, name = "투명"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_white, name = "블랙"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_white, name = "그레이"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_white, name = "초코"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_white, name = "그린"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_white, name = "브라운"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_white, name = "퍼플"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_white, name = "블루"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_white, name = "골드"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_white, name = "핑크"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_second_gray, name = "글리터"),
-                ColorInfo(resourceId = R.drawable.ic_btn_transparent,colorId = R.color.om_third_gray, name = "기타")
+                ColorInfo(resourceId = R.drawable.ic_btn_noncolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_blackcolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_greycolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_chococolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_greencolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_browncolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_purplecolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_bluecolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_goldcolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_pinkcolor_selector),
+                ColorInfo(resourceId = R.drawable.ic_btn_goldcolor_selector), //TODO : 글리터 받아야함
+                ColorInfo(resourceId = R.drawable.ic_btn_etccolor_selector)
                 )
         )
         var colorArr = arrayOf(false,false,false,false,false,false,false,false,false,false,false,false)
