@@ -62,6 +62,14 @@ class ThreeOnboardFragment : Fragment() {
                 EffectInfo(effect = "근시"),
                 EffectInfo(effect = "난시"),
                 EffectInfo(effect = "다초점"),
+                EffectInfo(effect = "없음"),
+                EffectInfo(effect = "근시"),
+                EffectInfo(effect = "난시"),
+                EffectInfo(effect = "다초점"),
+                EffectInfo(effect = "없음"),
+                EffectInfo(effect = "근시"),
+                EffectInfo(effect = "난시"),
+                EffectInfo(effect = "다초점"),
                 EffectInfo(effect = "없음")
                 )
         )

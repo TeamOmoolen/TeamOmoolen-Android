@@ -28,7 +28,7 @@ class OnboardActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboard)
         initNavController()
-        changeFragment(fragmentOnboardThree)
+        changeFragment(fragmentOnboardFour)
         startAnimation(0,25)
     }
 

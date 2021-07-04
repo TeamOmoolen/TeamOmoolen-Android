@@ -7,10 +7,18 @@
             name="viewModel"
             type="com.omoolen.omooroid.onboarding.fragments.four.FourOnboardViewModel" />
     </data>
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ScrollView
+        android:id="@+id/sv_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:overScrollMode="never">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,8 +31,9 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:text="가장 잘 맞았던 렌즈를 입력해주세요!"
-                android:textSize="18sp"
                 android:textStyle="bold"
+                android:textColor="@color/om_main_black"
+                android:textSize="18sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -34,6 +43,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="눈에 딱 맞는 렌즈를 추천해 드릴 거예요!"
+                android:textColor="@color/om_fourth_gray"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@id/tv_most"
                 app:layout_constraintTop_toBottomOf="@id/tv_most" />
@@ -45,8 +55,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="70dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/style_toggle"
-                android:elevation="10dp"
+                android:background="@drawable/onboard_selector"
+                android:elevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_most_hint">
@@ -58,6 +68,7 @@
                     android:layout_marginStart="40dp"
                     android:gravity="center_horizontal"
                     android:text="브랜드를 선택해주세요!"
+                    android:textColor="@color/om_third_gray"
                     app:layout_constraintBottom_toBottomOf="@id/cl_toggle1"
                     app:layout_constraintStart_toStartOf="@id/cl_toggle1"
                     app:layout_constraintTop_toTopOf="@id/cl_toggle1"
@@ -82,8 +93,8 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/style_toggle"
-                android:elevation="10dp"
+                android:background="@drawable/style_onboard_brand"
+                android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="@id/cl_toggle1"
                 app:layout_constraintStart_toStartOf="@id/cl_toggle1"
                 app:layout_constraintTop_toBottomOf="@id/cl_toggle1">
@@ -99,8 +110,12 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     app:layout_constraintVertical_bias="0.0"
-                    tools:listitem="@layout/item_brand" />
+                    tools:listitem="@layout/item_brand"
+                    android:overScrollMode="never"/>
 
                 <TextView
                     android:id="@+id/tv_ok"
@@ -109,24 +124,27 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@color/om_main_orange"
+                    android:background="@drawable/onboard_button_selector"
                     android:gravity="center"
                     android:text="선택완료"
+                    android:textColor="@color/om_white"
                     android:textAlignment="center"
-                    android:textSize="10sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_personnal"
                 android:layout_width="0dp"
                 android:layout_height="54dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/style_toggle"
-                android:elevation="10dp"
+                android:background="@drawable/onboard_selector"
+                android:elevation="4dp"
                 android:hint="렌즈명을 입력해주세요"
+                android:text="@={viewModel.lensName}"
+                android:textColor="@color/om_third_gray"
                 android:paddingLeft="35dp"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@id/cl_toggle1"
@@ -140,19 +158,55 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:text="렌즈를 주로 언제 착용하시나요?"
+                android:textColor="@color/om_main_black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/et_personnal" />
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_when"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/when_lens_test"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_when"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_when" />
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_when"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:listitem="@layout/item_onboard_text"
+                    android:overScrollMode="never"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_button"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:text="오무렌 시작하기"
+                android:textColor="@color/om_white"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/cl_when"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/onboard_button_selector"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
