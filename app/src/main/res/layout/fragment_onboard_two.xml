@@ -114,7 +114,7 @@
                 android:layout_marginRight="20dp"
                 android:gravity="center_horizontal"
                 android:numColumns="2"
-                tools:listitem="@layout/item_onboard_age"
+                tools:listitem="@layout/item_onboard_text"
                 android:listSelector="@drawable/onboard_selector"
                 android:background="@color/om_almostwhite"
                 android:fadingEdgeLength="0dp"

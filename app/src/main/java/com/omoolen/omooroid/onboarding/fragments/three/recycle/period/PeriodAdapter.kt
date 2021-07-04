@@ -1,19 +1,20 @@
-package com.omoolen.omooroid.onboarding.fragments.two.recycle.what
+package com.omoolen.omooroid.onboarding.fragments.three.recycle.period
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.databinding.ItemOnboardPictureBinding
+import com.omoolen.omooroid.databinding.ItemOnboardText3Binding
 
-class WhatAdapter : RecyclerView.Adapter<WhatAdapter.MyViewHolder>() {
-    val whatList = mutableListOf<WhatInfo>()
+
+class PeriodAdapter : RecyclerView.Adapter<PeriodAdapter.MyViewHolder>() {
+    val periodList = mutableListOf<PeriodInfo>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): MyViewHolder {
-        val binding = ItemOnboardPictureBinding.inflate(
+        val binding = ItemOnboardText3Binding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -21,10 +22,10 @@ class WhatAdapter : RecyclerView.Adapter<WhatAdapter.MyViewHolder>() {
         return MyViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = whatList.size
+    override fun getItemCount(): Int = periodList.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.onBind(whatList[position])
+        holder.onBind(periodList[position])
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
         }
@@ -41,11 +42,16 @@ class WhatAdapter : RecyclerView.Adapter<WhatAdapter.MyViewHolder>() {
     private lateinit var itemClickListener : OnItemClickListener
 
     class MyViewHolder(
-        private val binding: ItemOnboardPictureBinding
+        private val binding: ItemOnboardText3Binding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(whatInfo: WhatInfo) {
-            binding.ivPic.setImageResource(whatInfo.resourceId)
-            binding.tvText.text = whatInfo.name
+        fun onBind(periodInfo: PeriodInfo) {
+//            val params: ConstraintLayout.LayoutParams = ConstraintLayout.LayoutParams(periodInfo.width, periodInfo.height)
+//            params.setMargins(1)
+//            binding.tvText.layoutParams = params
+
+            binding.tvText.text = periodInfo.period
         }
     }
+
+
 }

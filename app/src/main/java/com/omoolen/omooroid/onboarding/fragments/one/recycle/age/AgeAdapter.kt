@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.databinding.ItemOnboardAgeBinding
+import com.omoolen.omooroid.databinding.ItemOnboardTextBinding
 
 class AgeAdapter : RecyclerView.Adapter<AgeAdapter.MyViewHolder>() {
     val ageList = mutableListOf<AgeInfo>()
@@ -13,7 +13,7 @@ class AgeAdapter : RecyclerView.Adapter<AgeAdapter.MyViewHolder>() {
         parent: ViewGroup,
         viewType: Int
     ): MyViewHolder {
-        val binding = ItemOnboardAgeBinding.inflate(
+        val binding = ItemOnboardTextBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -41,10 +41,10 @@ class AgeAdapter : RecyclerView.Adapter<AgeAdapter.MyViewHolder>() {
     private lateinit var itemClickListener : OnItemClickListener
 
     class MyViewHolder(
-        private val binding: ItemOnboardAgeBinding
+        private val binding: ItemOnboardTextBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(ageInfo: AgeInfo) {
-            binding.tvAge.text = ageInfo.age
+            binding.tvText.text = ageInfo.age
         }
     }
 }

@@ -1,19 +1,19 @@
-package com.omoolen.omooroid.onboarding.fragments.two.recycle.what
+package com.omoolen.omooroid.onboarding.fragments.three.recycle.effect
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.databinding.ItemOnboardPictureBinding
+import com.omoolen.omooroid.databinding.ItemOnboardTextBinding
 
-class WhatAdapter : RecyclerView.Adapter<WhatAdapter.MyViewHolder>() {
-    val whatList = mutableListOf<WhatInfo>()
+class EffectAdapter : RecyclerView.Adapter<EffectAdapter.MyViewHolder>() {
+    val effectList = mutableListOf<EffectInfo>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): MyViewHolder {
-        val binding = ItemOnboardPictureBinding.inflate(
+        val binding = ItemOnboardTextBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -21,10 +21,10 @@ class WhatAdapter : RecyclerView.Adapter<WhatAdapter.MyViewHolder>() {
         return MyViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = whatList.size
+    override fun getItemCount(): Int = effectList.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.onBind(whatList[position])
+        holder.onBind(effectList[position])
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
         }
@@ -41,11 +41,10 @@ class WhatAdapter : RecyclerView.Adapter<WhatAdapter.MyViewHolder>() {
     private lateinit var itemClickListener : OnItemClickListener
 
     class MyViewHolder(
-        private val binding: ItemOnboardPictureBinding
+        private val binding: ItemOnboardTextBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(whatInfo: WhatInfo) {
-            binding.ivPic.setImageResource(whatInfo.resourceId)
-            binding.tvText.text = whatInfo.name
+        fun onBind(effectInfo: EffectInfo) {
+            binding.tvText.text = effectInfo.effect
         }
     }
 }
