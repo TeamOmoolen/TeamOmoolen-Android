@@ -75,6 +75,7 @@ class FourOnboardFragment : Fragment() {
         binding.clToggle1.setOnClickListener {
             whenClick = !whenClick
             binding.clToggle1.isSelected = whenClick
+            if(whenClick) binding.clToggleContent.visibility = View.VISIBLE
             startAnimation()
         }
 //        binding.etPersonnal.setOnClickListener {
@@ -102,7 +103,7 @@ class FourOnboardFragment : Fragment() {
         // ValueAnimator.ofInt(int... values)는 View가 변할 값을 지정, 인자는 int 배열
         Log.d("ONEFRAGMENT_CLICK", whenClick.toString())
         Log.d("ONEFRAGMENT_CLICK", height.toString())
-        val va = if (whenClick) ValueAnimator.ofInt(0, 1300) else ValueAnimator.ofInt(1300, 0)
+        val va = if (whenClick) ValueAnimator.ofInt(0, 1100) else ValueAnimator.ofInt(1100, 0)
         // Animation이 실행되는 시간, n/1000초
         va.duration = 1000
         val toggleBinding = binding.clToggleContent

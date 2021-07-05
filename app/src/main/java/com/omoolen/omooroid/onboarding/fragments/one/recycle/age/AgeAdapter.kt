@@ -1,10 +1,12 @@
 package com.omoolen.omooroid.onboarding.fragments.one.recycle.age
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.ItemOnboardTextBinding
+import com.omoolen.omooroid.util.ListLiveData
 
 class AgeAdapter : RecyclerView.Adapter<AgeAdapter.MyViewHolder>() {
     val ageList = mutableListOf<AgeInfo>()
@@ -18,6 +20,7 @@ class AgeAdapter : RecyclerView.Adapter<AgeAdapter.MyViewHolder>() {
             parent,
             false
         )
+
         return MyViewHolder(binding)
     }
 

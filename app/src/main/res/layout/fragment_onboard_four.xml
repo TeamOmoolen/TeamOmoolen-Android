@@ -90,14 +90,15 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_toggleContent"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="420dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/style_onboard_brand"
                 android:elevation="2dp"
                 app:layout_constraintEnd_toEndOf="@id/cl_toggle1"
                 app:layout_constraintStart_toStartOf="@id/cl_toggle1"
-                app:layout_constraintTop_toBottomOf="@id/cl_toggle1">
+                app:layout_constraintTop_toBottomOf="@id/cl_toggle1"
+                android:visibility="gone">
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -121,6 +122,7 @@
                     android:id="@+id/tv_ok"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="20dp"
