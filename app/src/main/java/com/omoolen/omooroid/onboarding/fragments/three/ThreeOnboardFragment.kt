@@ -1,23 +1,20 @@
 package com.omoolen.omooroid.onboarding.fragments.three
 
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentOnboardThreeBinding
-import com.omoolen.omooroid.onboarding.fragments.three.recycle.effect.EffectAdapter
-import com.omoolen.omooroid.onboarding.fragments.three.recycle.effect.EffectInfo
-import com.omoolen.omooroid.onboarding.fragments.three.recycle.period.PeriodAdapter
-import com.omoolen.omooroid.onboarding.fragments.three.recycle.period.PeriodInfo
+import com.omoolen.omooroid.onboarding.OnboardDatabase
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 
@@ -27,10 +24,12 @@ class ThreeOnboardFragment : Fragment() {
     private val viewModel: ThreeOnboardViewModel by viewModels() //위임초기화
     private lateinit var mContext: Context
 
-    private lateinit var effectAdapter: EffectAdapter
     private lateinit var effectLayoutManager: RecyclerView.LayoutManager
-    private lateinit var periodAdapter: PeriodAdapter
     private lateinit var periodLayoutManager: RecyclerView.LayoutManager
+
+    private var nextArr = arrayOf(-1,-1)
+    private var onboardDatabase = OnboardDatabase()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,87 +38,93 @@ class ThreeOnboardFragment : Fragment() {
         _binding = FragmentOnboardThreeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         mContext = requireContext()
-        effectAdapter = EffectAdapter()
-        periodAdapter = PeriodAdapter()
+        onboardDatabase.initOnboard()
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         effectInit()
         periodInit()
+        singleChoice()
+        observeValue()
+        nextBtn()
+    }
+
+    private fun observeValue(){
+        viewModel.effect.observe(viewLifecycleOwner){ effect ->
+            nextArr[0] = effect
+            Toast.makeText(requireContext(),nextArr[0].toString()+"@"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
+            binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0) //다음 버튼 활성화 판단
+        }
+        viewModel.period.observe(viewLifecycleOwner){ period ->
+            nextArr[1] = period
+            Toast.makeText(requireContext(),nextArr[0].toString()+"@"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
+            binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0)
+        }
     }
 
     private fun effectInit() {
-        binding.rvEffect.adapter = effectAdapter
+        binding.rvEffect.adapter = viewModel.setEffectAdapter()
         effectLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvEffect.layoutManager = effectLayoutManager
         binding.rvEffect.addItemDecoration(VerticalItemDecorator(10))
-
-        effectAdapter.effectList.addAll(
-            listOf<EffectInfo>(
-                EffectInfo(effect = "근시"),
-                EffectInfo(effect = "난시"),
-                EffectInfo(effect = "다초점"),
-                EffectInfo(effect = "없음"),
-                EffectInfo(effect = "근시"),
-                EffectInfo(effect = "난시"),
-                EffectInfo(effect = "다초점"),
-                EffectInfo(effect = "없음"),
-                EffectInfo(effect = "근시"),
-                EffectInfo(effect = "난시"),
-                EffectInfo(effect = "다초점"),
-                EffectInfo(effect = "없음")
-                )
-        )
-        var effectArr = arrayOf(false,false,false,false)
-        effectAdapter.setItemClickListener(object: EffectAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
-                // TODO : 클릭 시 이벤트 작성
-                //Toast.makeText(view?.context, position.toString(), Toast.LENGTH_SHORT).show()
-                //다중 선택 시 -> 어떻게 막을지 생각하기
-                //단일 선택 시 -> position 저장하기
-                effectArr[position] = !effectArr[position]
-                v.isSelected = effectArr[position]
-            }
-        })
     }
 
     private fun periodInit() {
-        binding.rvPeriod.adapter = periodAdapter
+        binding.rvPeriod.adapter = viewModel.setPeriodAdapter()
         periodLayoutManager = GridLayoutManager(requireContext(), 3)
         binding.rvPeriod.layoutManager = periodLayoutManager
         binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10))
+    }
 
-//        val width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100f, resources.displayMetrics).toInt()
-//        val height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 54f, resources.displayMetrics).toInt()
+    private fun singleChoice() {
+        binding.rvEffect.addOnItemTouchListener(object :
+            RecyclerView.OnItemTouchListener {
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                if (e.action == MotionEvent.ACTION_MOVE) { }
+                else viewModel.effectSingleChoice(rv,e)
+                return false
+            }
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
 
-        periodAdapter.periodList.addAll(
-            listOf<PeriodInfo>(
-                PeriodInfo(period = "원데이"),
-                PeriodInfo(period = "1주"),
-                PeriodInfo(period = "2주"),
-                PeriodInfo(period = "1개월"),
-                PeriodInfo(period = "2~3개월"),
-                PeriodInfo(period = "3~6개월"),
-                PeriodInfo(period = "6개월 이상"),
-                PeriodInfo(period = "없음")
-                )
-        )
-        var periodArr = arrayOf(false,false,false,false,false,false,false,false)
-        periodAdapter.setItemClickListener(object: PeriodAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
-                // TODO : 클릭 시 이벤트 작성
-                //Toast.makeText(view?.context, position.toString(), Toast.LENGTH_SHORT).show()
-                //다중 선택 시 -> 어떻게 막을지 생각하기
-                //단일 선택 시 -> position 저장하기
-
-                periodArr[position] = !periodArr[position]
-                v.isSelected = periodArr[position]
+        binding.rvPeriod.addOnItemTouchListener(object :
+            RecyclerView.OnItemTouchListener {
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                if (e.action == MotionEvent.ACTION_MOVE) { }
+                else viewModel.periodSingleChoice(rv,e)
+                return false
+            }
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
     }
 
-
+    private fun nextBtn() {
+        binding.tvButton.setOnClickListener {
+            if (binding.tvButton.isSelected) {
+                //onboardDatabase에 정보 저장
+                viewModel.effect.value?.let { effect ->
+                    viewModel.period.value?.let { period ->
+                        onboardDatabase.setOne(
+                            effect,
+                            period
+                        )
+                    }
+                }
+//              //온보딩2로 화면 전환
+                Navigation.findNavController(binding.root).navigate(R.id.action_fragment_onboard_three_to_fragment_onboard_four)
+            }
+        }
+    }
 }

@@ -24,6 +24,13 @@ class ListLiveData<T> : MutableLiveData<MutableList<T>>() {
         value = temp
     }
 
+    fun removeAll(){
+        for (i in 0 until temp.size){
+            temp.removeAt(i)
+        }
+        value = temp
+    }
+
     fun clear() {
         temp.clear()
         value = temp
