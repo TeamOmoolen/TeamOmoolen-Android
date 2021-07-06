@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentOnboardOneBinding
-import com.omoolen.omooroid.onboarding.fragments.one.recycle.age.AgeAdapter
-import com.omoolen.omooroid.onboarding.fragments.one.recycle.age.AgeInfo
-import com.omoolen.omooroid.onboarding.fragments.one.recycle.gender.GenderAdapter
-import com.omoolen.omooroid.onboarding.fragments.three.recycle.effect.EffectAdapter
+import com.omoolen.omooroid.onboarding.OnboardDatabase
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
@@ -28,6 +31,9 @@ class OneOnboardFragment : Fragment() {
     private lateinit var ageLayoutManager: RecyclerView.LayoutManager
     private lateinit var genderLayoutManager: RecyclerView.LayoutManager
 
+    private var nextArr = arrayOf(-1,-1)
+    private var onboardDatabase = OnboardDatabase()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +42,7 @@ class OneOnboardFragment : Fragment() {
         _binding = FragmentOnboardOneBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         mContext = requireContext()
+        onboardDatabase.initOnboard()
         return binding.root
     }
 
@@ -44,6 +51,20 @@ class OneOnboardFragment : Fragment() {
         ageInit()
         genderInit()
         singleChoice()
+        observeValue()
+        nextBtn()
+        Toast.makeText(requireContext(),viewModel.gender.value.toString()+" , "+viewModel.age.value.toString(),Toast.LENGTH_SHORT).show()
+
+    }
+    private fun observeValue(){
+        viewModel.gender.observe(viewLifecycleOwner){ gender ->
+            nextArr[0] = gender
+            binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0) //다음 버튼 활성화 판단
+        }
+        viewModel.age.observe(viewLifecycleOwner){ age ->
+            nextArr[1] = age
+            binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0)
+        }
     }
 
     private fun genderInit() {
@@ -68,7 +89,7 @@ class OneOnboardFragment : Fragment() {
             }
             override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
                 if (e.action == MotionEvent.ACTION_MOVE) { }
-                else viewModel.singleChoice(rv,e)
+                else viewModel.genderSingleChoice(rv,e)
                 return false
             }
             override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
@@ -83,7 +104,7 @@ class OneOnboardFragment : Fragment() {
             }
             override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
                 if (e.action == MotionEvent.ACTION_MOVE) { }
-                else viewModel.singleChoice(rv,e)
+                else viewModel.ageSingleChoice(rv,e)
                 return false
             }
             override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
@@ -92,5 +113,24 @@ class OneOnboardFragment : Fragment() {
         })
     }
 
+    private fun nextBtn() {
+        binding.tvButton.setOnClickListener {
+            //test
+            Toast.makeText(requireContext(),viewModel.gender.value.toString()+" , "+viewModel.age.value.toString(),Toast.LENGTH_SHORT).show()
+            if (binding.tvButton.isSelected) {
+                //onboardDatabase에 정보 저장
+                viewModel.gender.value?.let { gender ->
+                    viewModel.age.value?.let { age ->
+                        onboardDatabase.setOne(
+                            gender,
+                            age
+                        )
+                    }
+                }
+//              //온보딩2로 화면 전환
+                Navigation.findNavController(binding.root).navigate(R.id.action_fragment_onboard_one_to_fragment_onboard_two)
+            }
+        }
+    }
 
 }

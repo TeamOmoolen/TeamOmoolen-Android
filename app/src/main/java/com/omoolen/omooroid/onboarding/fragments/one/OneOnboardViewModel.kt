@@ -2,10 +2,13 @@ package com.omoolen.omooroid.onboarding.fragments.one
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.onboarding.fragments.one.recycle.age.AgeAdapter
@@ -20,10 +23,17 @@ class OneOnboardViewModel(application: Application) : AndroidViewModel(applicati
     private lateinit var genderAdapter: GenderAdapter
     private lateinit var ageAdapter: AgeAdapter
 
-    //var genderArr = ListLiveData <Boolean>()
-    //var ageArr = ListLiveData <Boolean>()
+    //Observe위해 livedata선언
+    private val _gender = MutableLiveData<Int>()
+    val gender: LiveData<Int>
+        get() = _gender
+    private val _age = MutableLiveData<Int>()
+    val age: LiveData<Int>
+        get() = _age
+
 
     fun setGenderAdapter() :GenderAdapter{
+        _gender.value = -1
         genderAdapter = GenderAdapter()
         genderAdapter.genderList.addAll(
             listOf<GenderInfo>(
@@ -39,6 +49,7 @@ class OneOnboardViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun setAgeAdapter() :AgeAdapter{
+        _age.value = -1
         ageAdapter = AgeAdapter()
         ageAdapter.ageList.addAll(
             listOf<AgeInfo>(
@@ -55,14 +66,29 @@ class OneOnboardViewModel(application: Application) : AndroidViewModel(applicati
         return ageAdapter
     }
 
-    fun singleChoice(rv: RecyclerView, e: MotionEvent){
+    fun genderSingleChoice(rv: RecyclerView, e: MotionEvent){
         var child = rv.findChildViewUnder(e.x, e.y)
         if (child != null) {
-            //TODO : array 값 바꾸기
             var position = rv.getChildAdapterPosition(child)
             var view = rv.layoutManager?.findViewByPosition(position)
             view?.isSelected = true
-            //arr값 변경
+            _gender.value = position
+            for (i in 0..rv.adapter!!.itemCount) {
+                var otherView = rv.layoutManager?.findViewByPosition(i)
+                if (otherView != view) {
+                    otherView?.isSelected = false
+                } else {
+                }
+            }
+        }
+    }
+    fun ageSingleChoice(rv: RecyclerView, e: MotionEvent){
+        var child = rv.findChildViewUnder(e.x, e.y)
+        if (child != null) {
+            var position = rv.getChildAdapterPosition(child)
+            var view = rv.layoutManager?.findViewByPosition(position)
+            view?.isSelected = true
+            _age.value = position
             for (i in 0..rv.adapter!!.itemCount) {
                 var otherView = rv.layoutManager?.findViewByPosition(i)
                 if (otherView != view) {

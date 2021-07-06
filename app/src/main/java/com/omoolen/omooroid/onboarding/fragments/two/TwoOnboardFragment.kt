@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentOnboardTwoBinding
+import com.omoolen.omooroid.onboarding.OnboardData
+import com.omoolen.omooroid.onboarding.OnboardDatabase
 import com.omoolen.omooroid.onboarding.fragments.one.recycle.age.AgeAdapter
 import com.omoolen.omooroid.onboarding.fragments.one.recycle.gender.GenderAdapter
 import com.omoolen.omooroid.onboarding.fragments.one.recycle.gender.GenderInfo
@@ -34,6 +37,7 @@ class TwoOnboardFragment : Fragment() {
     private lateinit var whatAdapter: WhatAdapter
     private lateinit var whatLayoutManager: RecyclerView.LayoutManager
 
+    private var onboardDatabase = OnboardDatabase()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,7 +58,9 @@ class TwoOnboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         whatInit()
         colorInit()
+
     }
+
 
     fun whatInit() {
         binding.rvWhat.adapter = whatAdapter

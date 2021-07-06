@@ -33,12 +33,16 @@ class ListLiveData<T> : MutableLiveData<MutableList<T>>() {
         return temp[position]
     }
 
-    fun set(position :Int, bool:T){
+    fun setBool(position :Int, bool:T){
         temp[position] = bool
     }
 
     fun size():Int{
         return temp.size
+    }
+
+    fun setPosition(position :T){
+        temp[0] = position
     }
 
 }
