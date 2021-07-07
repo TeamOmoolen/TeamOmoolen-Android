@@ -1,23 +1,21 @@
 package com.omoolen.omooroid.home.fragments.one
 
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.R
+import androidx.fragment.app.activityViewModels
+import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.databinding.FragmentHomeOneBinding
-import com.omoolen.omooroid.onboarding.fragments.four.BrandAdapter
-import com.omoolen.omooroid.onboarding.fragments.four.BrandInfo
+import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
+import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
+import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+import com.omoolen.omooroid.home.fragments.one.tip.TipListAdapter
+import com.omoolen.omooroid.util.HorizontalItemDecorator
+import com.omoolen.omooroid.util.VerticalItemDecorator
 
 
 class OneHomeFragment : Fragment() {
@@ -25,6 +23,9 @@ class OneHomeFragment : Fragment() {
     private var _binding: FragmentHomeOneBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
+    private lateinit var viewPagerAdapter: EventViewPagerAdapter
+
+    private val oneHomeViewModel: OneHomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,15 +34,129 @@ class OneHomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeOneBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+
+        oneHomeViewModel.setCuratingList()
+        setCuratingAdapter()
+        setCuratingObserve()
+
+        oneHomeViewModel.setRecommend1List()
+        setRecommend1Adapter()
+        setRecommend1Observe()
+
+        oneHomeViewModel.setRecommend2List()
+        setRecommend2Adapter()
+        setRecommend2Observe()
+
+        oneHomeViewModel.setEventList()
+        setEventAdapter()
+        setEventObserve()
+        setEventIndicator()
+
+        oneHomeViewModel.setAdList()
+        setAdAdapter()
+        setAdObserve()
+        setAdIndicator()
+
+        oneHomeViewModel.setTipList()
+        setTipAdapter()
+        setTipObserve()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12))
+        binding.rvHomeRecommend.addItemDecoration(VerticalItemDecorator(40))
+
+        binding.rvHomeTemp.addItemDecoration(HorizontalItemDecorator(12))
+        binding.rvHomeTemp.addItemDecoration(VerticalItemDecorator(40))
+
     }
 
 
+    private fun setCuratingAdapter(){
+        binding.rvHomeCurating.adapter = CuratingListAdapter()
+    }
+    private fun setCuratingObserve(){
+        oneHomeViewModel.curatingList.observe(viewLifecycleOwner){
+            curatingList -> with(binding.rvHomeCurating.adapter as CuratingListAdapter){
+                setCurating(curatingList)
+            }
+        }
+    }
+
+
+    private fun setRecommend1Adapter(){
+        binding.rvHomeRecommend.adapter = RecommendListAdapter()
+    }
+
+    private fun setRecommend1Observe() {
+        oneHomeViewModel.recommendList1.observe(viewLifecycleOwner) { recommendList ->
+            with(binding.rvHomeRecommend.adapter as RecommendListAdapter) {
+                setRecommend(recommendList)
+            }
+        }
+    }
+
+    private fun setRecommend2Adapter(){
+        binding.rvHomeTemp.adapter = RecommendListAdapter()
+    }
+
+    private fun setRecommend2Observe() {
+        oneHomeViewModel.recommendList2.observe(viewLifecycleOwner) { tempList ->
+            with(binding.rvHomeTemp.adapter as RecommendListAdapter) {
+                setRecommend(tempList)
+            }
+        }
+    }
+
+    private fun setTipAdapter(){
+        binding.rvHomeTip.adapter = TipListAdapter()
+    }
+
+    private fun setTipObserve() {
+        oneHomeViewModel.tipList.observe(viewLifecycleOwner) { tipList ->
+            with(binding.rvHomeTip.adapter as TipListAdapter) {
+                setTip(tipList)
+            }
+        }
+    }
+
+
+
+    private fun setEventAdapter(){
+        binding.vpHomeEvent.adapter = EventViewPagerAdapter()
+    }
+
+    private fun setEventObserve(){
+        oneHomeViewModel.eventList.observe(viewLifecycleOwner){ eventList ->
+            with(binding.vpHomeEvent.adapter as EventViewPagerAdapter){
+                setEvent(eventList)
+            }
+        }
+    }
+
+    private fun setEventIndicator() {
+        TabLayoutMediator(binding.tabHomeEvent, binding.vpHomeEvent) { tab, position -> }.attach()
+    }
+
+    private fun setAdAdapter(){
+        binding.vpHomeAd.adapter = EventViewPagerAdapter()
+    }
+
+    private fun setAdObserve(){
+        oneHomeViewModel.adList.observe(viewLifecycleOwner){ adList ->
+            with(binding.vpHomeAd.adapter as EventViewPagerAdapter){
+                setEvent(adList)
+            }
+        }
+    }
+
+    private fun setAdIndicator() {
+        TabLayoutMediator(binding.tabHomeAd, binding.vpHomeAd) { tab, position -> }.attach()
+    }
 
 
 }

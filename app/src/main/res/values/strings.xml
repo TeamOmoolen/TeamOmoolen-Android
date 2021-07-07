@@ -3,4 +3,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="msg_token_fmt" translatable="false">토큰: %s</string>
+
+    <!-- fragment_home_one -->
+    <string name="home_search_hint">오늘 무슨 렌즈끼지?</string>
+    <string name="home_cate_color">컬러</string>
+    <string name="home_cate_transparent">투명</string>
+    <string name="home_cate_cosplay">코스프레</string>
+    <string name="home_cate_new">신제품</string>
+    <string name="home_more"> 더보기</string>
+    <string name="home_tip_main"> 오무렌과 함께하는 1분 렌즈 상식</string>
+    <string name="home_tip_sub">오무렌1분 렌즈 상식</string>
+    <string name="home_new_main"> 요즘 뜨는 신상 렌즈</string>
+
 </resources>
