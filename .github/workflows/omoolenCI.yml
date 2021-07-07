@@ -64,7 +64,7 @@ jobs:
         file_path: 'app/build/outputs/apk/release/app-release-unsigned.apk'
         file_name: 'Omoolen.apk'
         file_type: 'apk'
-        initial_comment: '${{ github.ref }} Success Deploy Capin Release APK'
+        initial_comment: '${{ github.ref }} Success Deploy Omoolen Release APK'
         
     - name: upload apk artifact 
       uses: actions/upload-artifact@v2
