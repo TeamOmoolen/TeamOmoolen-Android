@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="eventInfo"
-            type="com.omoolen.omooroid.home.fragments.one.event.EventInfo" />
+            name="detailInfo"
+            type="com.omoolen.omooroid.detail.DetailInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,8 +15,8 @@
 
 
         <ImageView
-            android:id="@+id/iv_one_event"
-            setSrc="@{eventInfo.imgId}"
+            android:id="@+id/iv_one_detail"
+            setSrc="@{detailInfo.imgId}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
