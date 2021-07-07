@@ -8,8 +8,7 @@
     <fragment
         android:id="@+id/fragment_onboard_one"
         android:name="com.omoolen.omooroid.onboarding.fragments.one.OneOnboardFragment"
-        android:label="fragment_onboard_one"
-        tools:layout="@layout/fragment_onboard_one" >
+        android:label="fragment_onboard_one">
         <action
             android:id="@+id/action_fragment_onboard_one_to_fragment_onboard_two"
             app:destination="@id/fragment_onboard_two" />

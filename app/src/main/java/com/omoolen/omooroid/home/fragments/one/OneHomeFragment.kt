@@ -1,23 +1,13 @@
 package com.omoolen.omooroid.home.fragments.one
 
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeOneBinding
-import com.omoolen.omooroid.onboarding.fragments.four.BrandAdapter
-import com.omoolen.omooroid.onboarding.fragments.four.BrandInfo
 
 
 class OneHomeFragment : Fragment() {

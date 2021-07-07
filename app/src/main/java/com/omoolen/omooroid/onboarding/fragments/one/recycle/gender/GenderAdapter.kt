@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.ItemOnboardPictureBinding
+import com.omoolen.omooroid.onboarding.fragments.three.recycle.effect.EffectAdapter
+import com.omoolen.omooroid.util.ListLiveData
 
 class GenderAdapter : RecyclerView.Adapter<GenderAdapter.MyViewHolder>() {
     val genderList = mutableListOf<GenderInfo>()
@@ -21,7 +22,6 @@ class GenderAdapter : RecyclerView.Adapter<GenderAdapter.MyViewHolder>() {
         )
         return MyViewHolder(binding)
     }
-
     override fun getItemCount(): Int = genderList.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -35,8 +35,9 @@ class GenderAdapter : RecyclerView.Adapter<GenderAdapter.MyViewHolder>() {
         fun onClick(v: View, position: Int)
     }
     // (3) 외부에서 클릭 시 이벤트 설정
-    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+    fun setItemClickListener(onItemClickListener: GenderAdapter.OnItemClickListener) {
         this.itemClickListener = onItemClickListener
+        notifyDataSetChanged()
     }
     // (4) setItemClickListener로 설정한 함수 실행
     private lateinit var itemClickListener : OnItemClickListener
@@ -47,7 +48,6 @@ class GenderAdapter : RecyclerView.Adapter<GenderAdapter.MyViewHolder>() {
         fun onBind(genderInfo: GenderInfo) {
             binding.ivPic.setImageResource(genderInfo.resourceId)
             binding.tvText.text = genderInfo.name
-
         }
     }
 }
