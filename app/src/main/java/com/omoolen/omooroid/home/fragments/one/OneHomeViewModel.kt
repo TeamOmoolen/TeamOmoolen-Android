@@ -192,6 +192,49 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
         )
     }
 
+    fun setNewList(){
+        _newList.value = mutableListOf(
+            NewInfo(
+               R.drawable.img_group_7409,
+               R.drawable.img_lensme_logo,
+                "오렌즈",
+                "브라운 컬러 익스 렌즈",
+                18000,
+                R.drawable.img_color_a,
+                "브라운 컬러 익스 렌즈",
+                18000,
+                R.drawable.img_color_a,
+                "브라운 컬러 익스 렌즈",
+                18000,
+                R.drawable.img_color_a ),
+            NewInfo(
+                R.drawable.img_group_7409,
+                R.drawable.img_lensme_logo,
+                "오렌즈",
+                "브라운 컬러 익스 렌즈",
+                18000,
+                R.drawable.img_color_a,
+                "브라운 컬러 익스 렌즈",
+                18000,
+                R.drawable.img_color_a,
+                "브라운 컬러 익스 렌즈",
+                18000,
+                R.drawable.img_color_a ),
+            NewInfo(
+                R.drawable.img_group_7409,
+                R.drawable.img_lensme_logo,
+                "오렌즈",
+                "브라운 컬러 익스 렌즈",
+                18000,
+                R.drawable.img_color_a,
+                "브라운 컬러 익스 렌즈",
+                18000,
+                R.drawable.img_color_a,
+                "브라운 컬러 익스 렌즈",
+                18000,
+                R.drawable.img_color_a ),
+        )
+    }
     fun setTipList(){
         _tipList.value = mutableListOf(
             TipInfo(
