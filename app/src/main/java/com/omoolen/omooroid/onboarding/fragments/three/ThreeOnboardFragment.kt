@@ -121,7 +121,7 @@ class ThreeOnboardFragment : Fragment() {
                 //onboardDatabase에 정보 저장
                 viewModel.effect.value?.let { effect ->
                     viewModel.period.value?.let { period ->
-                        onboardDatabase.setOne(
+                        onboardDatabase.setThree(
                             effect,
                             period
                         )
