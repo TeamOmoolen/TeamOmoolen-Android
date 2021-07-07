@@ -1,11 +1,13 @@
 package com.omoolen.omooroid.onboarding.fragments.one
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -48,6 +50,7 @@ class OneOnboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressBar(0,25)
         ageInit()
         genderInit()
         singleChoice()
@@ -56,6 +59,16 @@ class OneOnboardFragment : Fragment() {
         Toast.makeText(requireContext(),viewModel.gender.value.toString()+" , "+viewModel.age.value.toString(),Toast.LENGTH_SHORT).show()
 
     }
+
+    private fun progressBar(start:Int,end:Int) {
+        val mProgressBar = binding.pbLoading
+        mProgressBar.progress = 25
+//        val progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", start, end)
+//        progressAnimator.duration = 300
+//        progressAnimator.interpolator = LinearInterpolator()
+//        progressAnimator.start()
+    }
+
     private fun observeValue(){
         viewModel.gender.observe(viewLifecycleOwner){ gender ->
             nextArr[0] = gender

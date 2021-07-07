@@ -43,11 +43,17 @@ class ThreeOnboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressBar()
         effectInit()
         periodInit()
         singleChoice()
         observeValue()
         nextBtn()
+    }
+
+    private fun progressBar() {
+        val mProgressBar = binding.pbLoading
+        mProgressBar.progress = 75
     }
 
     private fun observeValue(){

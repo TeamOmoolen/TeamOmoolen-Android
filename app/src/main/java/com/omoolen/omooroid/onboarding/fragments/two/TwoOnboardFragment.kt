@@ -51,10 +51,15 @@ class TwoOnboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         nextArr = arrayOf(-1,-1)
+        progressBar()
         whatInit()
         colorInit()
         observeWhat()
         nextBtn()
+    }
+    private fun progressBar() {
+        val mProgressBar = binding.pbLoading
+        mProgressBar.progress = 50
     }
 
     private fun observeWhat(){

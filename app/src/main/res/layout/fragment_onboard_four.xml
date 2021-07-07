@@ -23,6 +23,44 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_loading"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/om_almostwhite"
+                >
+                <ProgressBar
+                    android:id="@+id/pb_loading"
+                    android:layout_width="0dp"
+                    android:layout_height="10dp"
+                    android:indeterminate="false"
+                    android:layout_centerInParent="true"
+                    android:progress="0"
+                    android:max="100"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_loading"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:progressDrawable="@drawable/style_progressbar"
+                    android:layout_marginLeft="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1/4"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/pb_loading"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tv_most"
@@ -34,7 +72,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/om_main_black"
                 android:textSize="18sp"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/cl_loading" />
 
             <TextView
                 android:id="@+id/tv_most_hint"

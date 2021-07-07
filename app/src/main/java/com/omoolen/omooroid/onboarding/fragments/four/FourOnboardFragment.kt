@@ -56,6 +56,7 @@ class FourOnboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //함수
+        progressBar()
         brandInit()
         whenInit()
         brandAnimation()
@@ -65,6 +66,10 @@ class FourOnboardFragment : Fragment() {
         nextBtn()
     }
 
+    private fun progressBar() {
+        val mProgressBar = binding.pbLoading
+        mProgressBar.progress = 100
+    }
     private fun observeValue(){
         viewModel.brand.observe(viewLifecycleOwner){ brand ->
             nextArr[0] = brand
@@ -111,25 +116,7 @@ class FourOnboardFragment : Fragment() {
             if(whenClick) binding.clToggleContent.visibility = View.VISIBLE
             startAnimation(whenClick)
         }
-//        binding.etPersonnal.setOnClickListener {
-//            //TODO : 정보채워졌을 때만 색 바꾸기 -> 디자인이랑 얘기해보고 수정
-//            // Observe 하기
-//            nameClick = !nameClick
-//
-//        }
     }
-
-//    private fun observe(){
-//        viewModel.lensName.observe(viewLifecycleOwner) { name ->
-//            Log.d("FOUR",name)
-//            with(binding){
-//                if(name !="" || name != null){
-//                    nameClick = !nameClick
-//                    binding.etPersonnal.isSelected = nameClick
-//                }
-//            }
-//        }
-//    }
 
     @SuppressLint("ObjectAnimatorBinding")
     private fun startAnimation(bool:Boolean){
@@ -213,7 +200,7 @@ class FourOnboardFragment : Fragment() {
                 }
                 //TODO : 서버로 온보딩 정보 다 전달하기
 
-//              //홈화면으로 전환
+                //홈화면으로 전환
                 val intent = Intent(requireContext(), HomeActivity::class.java)
                 startActivity(intent) //액티비티 띄우기
             }

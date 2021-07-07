@@ -29,7 +29,7 @@ class OnboardActivity : AppCompatActivity(){
         setContentView(R.layout.activity_onboard)
         initNavController()
         //changeFragment(fragmentOnboardOne)
-        startAnimation(0,25)
+
     }
 
     private fun initNavController() {
@@ -46,11 +46,5 @@ class OnboardActivity : AppCompatActivity(){
             .commit()
     }
 
-    private fun startAnimation(start:Int,end:Int) {
-        val mProgressBar = findViewById<View>(R.id.pb_loading) as ProgressBar
-        val progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", start, end)
-        progressAnimator.duration = 300
-        progressAnimator.interpolator = LinearInterpolator()
-        progressAnimator.start()
-    }
+
 }
