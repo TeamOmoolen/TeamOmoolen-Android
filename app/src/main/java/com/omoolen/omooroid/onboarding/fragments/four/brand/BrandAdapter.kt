@@ -47,6 +47,7 @@ class BrandAdapter : RecyclerView.Adapter<BrandAdapter.MyViewHolder>() {
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(brandInfo: BrandInfo) {
             binding.tvName.text = brandInfo.name
+            binding.ivLens.setImageResource(brandInfo.resourceId)
         }
     }
 }

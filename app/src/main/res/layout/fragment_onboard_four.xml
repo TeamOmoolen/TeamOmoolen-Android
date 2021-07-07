@@ -10,7 +10,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/sv_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -137,21 +137,64 @@
                     app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_personnal"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_personnal"
                 android:layout_width="0dp"
                 android:layout_height="54dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/onboard_selector"
                 android:elevation="4dp"
-                android:hint="렌즈명을 입력해주세요"
-                android:text="@={viewModel.lensName}"
-                android:textColor="@color/om_third_gray"
-                android:paddingLeft="35dp"
-                android:textSize="15sp"
+                android:background="@drawable/onboard_selector"
                 app:layout_constraintEnd_toEndOf="@id/cl_toggle1"
                 app:layout_constraintStart_toStartOf="@id/cl_toggle1"
-                app:layout_constraintTop_toBottomOf="@+id/cl_toggleContent" />
+                app:layout_constraintTop_toBottomOf="@+id/cl_toggleContent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_search"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_personnal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="렌즈명을 입력해주세요"
+                android:text="@={viewModel.lensName}"
+                android:background="@null"
+                android:textColor="@color/om_third_gray"
+                android:layout_marginEnd="60dp"
+                android:paddingLeft="35dp"
+                android:textSize="15sp" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_search_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="22dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_guide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="* 브랜드 정보를 입력하지 않았습니다."
+                android:textSize="10sp"
+                android:textColor="#fa6550"
+                app:layout_constraintTop_toBottomOf="@id/cl_personnal"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="47dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                />
 
             <TextView
                 android:id="@+id/tv_when"
@@ -163,7 +206,7 @@
                 android:textColor="@color/om_main_black"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/et_personnal" />
+                app:layout_constraintTop_toBottomOf="@id/cl_personnal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_when"
@@ -209,6 +252,6 @@
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

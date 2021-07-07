@@ -98,8 +98,9 @@ class TwoOnboardFragment : Fragment() {
                 onboardDatabase.setTwo(viewModel.whatChoice,viewModel.colorChoice)
                 //온보딩3로 화면 전환
                 Navigation.findNavController(binding.root).navigate(R.id.action_fragment_onboard_two_to_fragment_onboard_three)
-                viewModel.whatChoice.removeAll()
-                viewModel.colorChoice.removeAll()
+                //TODO : 온보딩1으로 넘어가는데 왜 이상해
+                //viewModel.whatChoice.removeAll()
+                //viewModel.colorChoice.removeAll()
             }
         }
     }
