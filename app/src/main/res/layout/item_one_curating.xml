@@ -37,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
+        android:letterSpacing="-0.05"
         tools:text="오렌즈"
         android:text="@{curatingInfo.brand}"
         android:textColor="@color/om_third_gray"
@@ -54,6 +55,7 @@
         android:textColor="@color/om_main_black"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:letterSpacing="-0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_brand" />
 
@@ -63,6 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@{curatingInfo.info}"
+        android:letterSpacing="-0.05"
         tools:text="11.9mm / 1Day(10p)"
         android:textColor="@color/om_third_gray"
         android:textSize="12sp"
@@ -76,6 +79,7 @@
         android:layout_marginTop="8dp"
         tools:text="18,000원"
         setPrice="@{curatingInfo.price}"
+        android:letterSpacing="-0.05"
         android:textColor="@color/om_main_black"
         android:textSize="16sp"
         android:textStyle="bold"
