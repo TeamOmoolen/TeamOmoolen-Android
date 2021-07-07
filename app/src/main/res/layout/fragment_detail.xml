@@ -13,7 +13,6 @@
         android:id="@+id/cl_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl_home_recommend"
         android:layout_width="match_parent"
         android:layout_height="172dp"
         android:layout_marginStart="0dp"

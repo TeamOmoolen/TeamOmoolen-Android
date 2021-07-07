@@ -21,7 +21,7 @@ class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.Detai
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding : ItemOneDetailBinding = DataBindingUtil.inflate(
-            layoutInflater, R.layout.item_detail_main_image, parent, false )
+            layoutInflater, R.layout.item_one_detail, parent, false )
         return DetailViewHolder(binding)
     }
 

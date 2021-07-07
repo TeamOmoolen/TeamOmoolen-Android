@@ -13,7 +13,7 @@ class DetailActivity : AppCompatActivity() {
     private var _binding: ActivityDetailBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
-//    private val detailViewModel: DetailViewModel by viewModels() //위임초기화
+    private val detailViewModel: DetailViewModel by viewModels() //위임초기화
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
