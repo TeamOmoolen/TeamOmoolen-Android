@@ -12,6 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.databinding.FragmentHomeOneBinding
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
 import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
+import com.omoolen.omooroid.home.fragments.one.newItem.NewListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
 import com.omoolen.omooroid.home.fragments.one.tip.TipListAdapter
 import com.omoolen.omooroid.util.HorizontalItemDecorator
@@ -62,6 +63,10 @@ class OneHomeFragment : Fragment() {
         setTipAdapter()
         setTipObserve()
 
+        oneHomeViewModel.setNewList()
+        setNewAdapter()
+        setNewObserve()
+        
         return binding.root
     }
 
@@ -121,6 +126,18 @@ class OneHomeFragment : Fragment() {
         oneHomeViewModel.tipList.observe(viewLifecycleOwner) { tipList ->
             with(binding.rvHomeTip.adapter as TipListAdapter) {
                 setTip(tipList)
+            }
+        }
+    }
+
+    private fun setNewAdapter(){
+        binding.rvHomeNew.adapter = NewListAdapter()
+    }
+
+    private fun setNewObserve() {
+        oneHomeViewModel.newList.observe(viewLifecycleOwner) { newList ->
+            with(binding.rvHomeNew.adapter as NewListAdapter) {
+                setNewItem(newList)
             }
         }
     }
