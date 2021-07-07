@@ -1,20 +1,25 @@
 package com.omoolen.omooroid.onboarding.fragments.one
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentOnboardOneBinding
-import com.omoolen.omooroid.onboarding.fragments.one.recycle.age.AgeAdapter
-import com.omoolen.omooroid.onboarding.fragments.one.recycle.age.AgeInfo
-import com.omoolen.omooroid.onboarding.fragments.one.recycle.gender.GenderAdapter
-import com.omoolen.omooroid.onboarding.fragments.one.recycle.gender.GenderInfo
+import com.omoolen.omooroid.onboarding.OnboardDatabase
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
@@ -25,10 +30,11 @@ class OneOnboardFragment : Fragment() {
     private val viewModel: OneOnboardViewModel by viewModels() //위임초기화
     private lateinit var mContext: Context
 
-    private lateinit var ageAdapter: AgeAdapter
     private lateinit var ageLayoutManager: RecyclerView.LayoutManager
-    private lateinit var genderAdapter: GenderAdapter
     private lateinit var genderLayoutManager: RecyclerView.LayoutManager
+
+    private var nextArr = arrayOf(-1,-1)
+    private var onboardDatabase = OnboardDatabase()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,78 +44,106 @@ class OneOnboardFragment : Fragment() {
         _binding = FragmentOnboardOneBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         mContext = requireContext()
-        ageAdapter = AgeAdapter()
-        genderAdapter = GenderAdapter()
+        onboardDatabase.initOnboard()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressBar(0,25)
         ageInit()
         genderInit()
-        allSelected()
+        singleChoice()
+        observeValue()
+        nextBtn()
+        Toast.makeText(requireContext(),viewModel.gender.value.toString()+" , "+viewModel.age.value.toString(),Toast.LENGTH_SHORT).show()
+
     }
 
-    fun genderInit() {
-        binding.rvGender.adapter = genderAdapter
+    private fun progressBar(start:Int,end:Int) {
+        val mProgressBar = binding.pbLoading
+        mProgressBar.progress = 25
+//        val progressAnimator = ObjectAnimator.ofInt(mProgressBar, "progress", start, end)
+//        progressAnimator.duration = 300
+//        progressAnimator.interpolator = LinearInterpolator()
+//        progressAnimator.start()
+    }
+
+    private fun observeValue(){
+        viewModel.gender.observe(viewLifecycleOwner){ gender ->
+            nextArr[0] = gender
+            binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0) //다음 버튼 활성화 판단
+        }
+        viewModel.age.observe(viewLifecycleOwner){ age ->
+            nextArr[1] = age
+            binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0)
+        }
+    }
+
+    private fun genderInit() {
+        binding.rvGender.adapter = viewModel.setGenderAdapter()
         genderLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvGender.layoutManager = genderLayoutManager
-
         binding.rvGender.addItemDecoration(HorizontalItemDecorator(20))
-
-
-        genderAdapter.genderList.addAll(
-            listOf<GenderInfo>(
-                GenderInfo(resourceId = R.drawable.ic_colorlens,name = "여성"),
-                GenderInfo(resourceId = R.drawable.onboard_female_selector,name = "남성")
-            )
-        )
-        var genderArr = arrayOf(false,false)
-        genderAdapter.setItemClickListener(object: GenderAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
-                // TODO : 클릭 시 이벤트 작성
-                //Toast.makeText(view?.context, position.toString(), Toast.LENGTH_SHORT).show()
-                //다중 선택 시 -> 어떻게 막을지 생각하기
-                //단일 선택 시 -> position 저장하기
-                genderArr[position] = !genderArr[position]
-                v.isSelected = genderArr[position]
-
-            }
-        })
     }
 
     private fun ageInit() {
-        binding.rvAge.adapter = ageAdapter
+        binding.rvAge.adapter = viewModel.setAgeAdapter()
         ageLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvAge.layoutManager = ageLayoutManager
         binding.rvAge.addItemDecoration(VerticalItemDecorator(10))
+    }
 
-        ageAdapter.ageList.addAll(
-            listOf<AgeInfo>(
-                AgeInfo(age = "10대"),
-                AgeInfo(age = "20대"),
-                AgeInfo(age = "30대"),
-                AgeInfo(age = "40대 이상")
-            )
-        )
-        var ageArr = arrayOf(false,false,false,false)
-        ageAdapter.setItemClickListener(object: AgeAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
-                // TODO : 클릭 시 이벤트 작성
-                //Toast.makeText(view?.context, position.toString(), Toast.LENGTH_SHORT).show()
-                //다중 선택 시 -> 어떻게 막을지 생각하기
-                //단일 선택 시 -> position 저장하기
-                ageArr[position] = !ageArr[position]
-                v.isSelected = ageArr[position]
+    private fun singleChoice() {
+        binding.rvGender.addOnItemTouchListener(object :
+            RecyclerView.OnItemTouchListener {
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                if (e.action == MotionEvent.ACTION_MOVE) { }
+                else viewModel.genderSingleChoice(rv,e)
+                return false
+            }
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
+
+        binding.rvAge.addOnItemTouchListener(object :
+            RecyclerView.OnItemTouchListener {
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                if (e.action == MotionEvent.ACTION_MOVE) { }
+                else viewModel.ageSingleChoice(rv,e)
+                return false
+            }
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
     }
 
-    private fun allSelected(){
-        //TODO : 다 선택되면 true로 바꾸기
-        //binding.tvButton.isSelected = true
+    private fun nextBtn() {
+        binding.tvButton.setOnClickListener {
+            //test
+            Toast.makeText(requireContext(),viewModel.gender.value.toString()+" , "+viewModel.age.value.toString(),Toast.LENGTH_SHORT).show()
+            if (binding.tvButton.isSelected) {
+                //onboardDatabase에 정보 저장
+                viewModel.gender.value?.let { gender ->
+                    viewModel.age.value?.let { age ->
+                        onboardDatabase.setOne(
+                            gender,
+                            age
+                        )
+                    }
+                }
+//              //온보딩2로 화면 전환
+                Navigation.findNavController(binding.root).navigate(R.id.action_fragment_onboard_one_to_fragment_onboard_two)
+            }
+        }
     }
-
-
 
 }

@@ -18,6 +18,7 @@ import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 
+
 class OneHomeFragment : Fragment() {
     private val handler: Handler = Handler(Looper.getMainLooper())
     private var _binding: FragmentHomeOneBinding? = null
