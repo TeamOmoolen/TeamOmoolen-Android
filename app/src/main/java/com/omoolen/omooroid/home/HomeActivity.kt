@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -36,41 +37,57 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         _binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.viewPagerHome.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+        initNavController()
+        /*binding.viewPagerHome.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
         binding.viewPagerHome.registerOnPageChangeCallback(ViewPagerPageChangeCallback())
 
+        binding.bnvMain.setOnNavigationItemSelectedListener(this)*/
+    }
+
+    private fun initNavController() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_home) as NavHostFragment
+        changeFragment(fragmentHomeOne)
         binding.bnvMain.setOnNavigationItemSelectedListener(this)
+    }
+    private fun changeFragment(fragment: Fragment) {
+        Log.d("fragmentChangd", fragment.toString())
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.nav_host_home, fragment)
+            .commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val checked = item.setChecked(true)
-        when (checked.itemId) {
+        when (item.itemId) {
             R.id.homeFragment -> {
-                binding.viewPagerHome.currentItem = 0
+                changeFragment(fragmentHomeOne)
                 return true
             }
             R.id.locationFragment -> {
-                binding.viewPagerHome.currentItem = 1
+                changeFragment(fragmentHomeTwo)
                 return true
             }
             R.id.settingFragment -> {
-                binding.viewPagerHome.currentItem = 2
+                changeFragment(fragmentHomeThree)
                 return true
             }
             R.id.fourFragment -> {
-                binding.viewPagerHome.currentItem = 3
+                changeFragment(fragmentHomeFour)
                 return true
             }
             R.id.fiveFragment -> {
-                binding.viewPagerHome.currentItem = 4
+                changeFragment(fragmentHomeFive)
                 return true
             }
+            else -> {
+                return false
+            }
         }
-        return false
     }
 
 
-    private inner class ViewPagerAdapter(fm: FragmentManager, lc: Lifecycle): FragmentStateAdapter(fm, lc) {
+   /* private inner class ViewPagerAdapter(fm: FragmentManager, lc: Lifecycle): FragmentStateAdapter(fm, lc) {
         override fun getItemCount(): Int = 5
 
         override fun createFragment(position: Int): Fragment {
@@ -98,6 +115,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
         }
     }
-
+*/
 
 }
