@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.home.fragments.one
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -24,8 +25,6 @@ class OneHomeFragment : Fragment() {
     private val handler: Handler = Handler(Looper.getMainLooper())
     private var _binding: FragmentHomeOneBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
-
-    private lateinit var viewPagerAdapter: EventViewPagerAdapter
 
     private val oneHomeViewModel: OneHomeViewModel by activityViewModels()
 
@@ -73,11 +72,11 @@ class OneHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12))
-        binding.rvHomeRecommend.addItemDecoration(VerticalItemDecorator(40))
+        binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12, requireContext()))
+        binding.rvHomeRecommend.addItemDecoration(VerticalItemDecorator(40, requireContext()))
 
-        binding.rvHomeTemp.addItemDecoration(HorizontalItemDecorator(12))
-        binding.rvHomeTemp.addItemDecoration(VerticalItemDecorator(40))
+        binding.rvHomeTemp.addItemDecoration(HorizontalItemDecorator(12, requireContext()))
+        binding.rvHomeTemp.addItemDecoration(VerticalItemDecorator(40, requireContext()))
 
     }
 
