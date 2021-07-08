@@ -20,6 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
+            android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,6 +39,7 @@
             android:background="@drawable/style_search">
 
         <EditText
+            android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="원하는 렌즈를 검색해보세요"
@@ -49,6 +51,7 @@
             android:background="@null"
             />
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_search_touch"
                 android:layout_width="55dp"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"

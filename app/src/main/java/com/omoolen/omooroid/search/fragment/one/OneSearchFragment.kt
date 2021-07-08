@@ -41,17 +41,26 @@ class OneSearchFragment : Fragment() {
         popularInit()
     }
 
+    private fun clickEvents(){
+        //전체삭제
+        binding.tvDeleteAll.setOnClickListener {
+            //
+        }
+
+    }
+    //init recent recycler
     private fun recentInit() {
         binding.rvRecent.adapter = viewModel.setRecentAdapter()
         recentLayoutManager = LinearLayoutManager(mContext)
         binding.rvRecent.layoutManager = recentLayoutManager
     }
+    //init popular recycler
     private fun popularInit() {
         binding.rvPopular.adapter = viewModel.setPopularAdapter()
         popularLayoutManager = LinearLayoutManager(mContext)
         binding.rvPopular.layoutManager = popularLayoutManager
     }
-
+    //swipe view
     fun newInstant() : OneSearchFragment {
         val args = Bundle()
         val frag = OneSearchFragment()
