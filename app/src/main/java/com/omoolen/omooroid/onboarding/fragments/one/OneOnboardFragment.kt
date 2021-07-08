@@ -137,6 +137,7 @@ class OneOnboardFragment : Fragment() {
                 viewModel.gender.value?.let { gender ->
                     viewModel.age.value?.let { age ->
                         onboardDatabase.setOne(
+
                             gender,
                             age
                         )

@@ -116,7 +116,7 @@
                     android:id="@+id/iv_toggleBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="24dp"
                     android:elevation="11dp"
                     android:src="@drawable/ic_toggle"
                     app:layout_constraintBottom_toBottomOf="@id/cl_toggle1"
