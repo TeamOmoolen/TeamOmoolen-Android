@@ -146,7 +146,7 @@ class FourOnboardFragment : Fragment() {
         binding.rvWhen.adapter = viewModel.setWhenAdapter()
         whenLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvWhen.layoutManager = whenLayoutManager
-        binding.rvWhen.addItemDecoration(VerticalItemDecorator(10))
+        binding.rvWhen.addItemDecoration(VerticalItemDecorator(10,requireContext()))
 
     }
 
