@@ -57,7 +57,6 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/host_nav_fragment_onboard"
         android:name="androidx.navigation.fragment.NavHostFragment"

@@ -199,7 +199,7 @@ class FourOnboardFragment : Fragment() {
                     }
                 }
                 //TODO : 서버로 온보딩 정보 다 전달하기
-
+                onboardDatabase.show()
                 //홈화면으로 전환
                 val intent = Intent(requireContext(), HomeActivity::class.java)
                 startActivity(intent) //액티비티 띄우기

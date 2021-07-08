@@ -1,5 +1,7 @@
 package com.omoolen.omooroid.onboarding
 
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.omoolen.omooroid.util.ListLiveData
 
@@ -28,7 +30,17 @@ class OnboardDatabase {
         onboardData._name = name
         onboardData._when = _when
     }
-    fun getOne():Int{
-        return onboardData._gender
+    fun show(){
+        Log.d("ONBOARD",
+            onboardData._gender.toString()+","+
+                onboardData._age.toString()+","+
+                onboardData._what.toString()+","+
+                onboardData._color.toString()+","+
+                onboardData._effect.toString()+","+
+                onboardData._period.toString()+","+
+                onboardData._brand.toString()+","+
+                onboardData._name.toString()+","+
+                onboardData._when.toString()+","
+        )
     }
 }
