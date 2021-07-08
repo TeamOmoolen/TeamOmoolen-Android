@@ -37,8 +37,8 @@
 
     <TextView
         android:id="@+id/tv_one_tip_sub"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="310dp"
+        android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="26dp"
         android:letterSpacing="-0.05"
@@ -55,6 +55,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
         android:letterSpacing="-0.05"
+        android:text="@{tipInfo.message}"
         tools:text="이런이런 정보가 들어가요!"
         android:textColor="@color/om_white"
         android:textSize="18sp"

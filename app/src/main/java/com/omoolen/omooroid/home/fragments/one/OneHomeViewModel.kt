@@ -240,6 +240,7 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
             TipInfo(
                 R.drawable.ic_btn_translens_normal,
                 "랜즈 눈치 안보고 패션을 꾸밀 수 있다?",
+                "이런이런 정보가 들어가요!",
                 "1분 렌즈 상식에 대한 간단 설명",
                 "랜즈 눈치 안보고 패션을 꾸밀 수 있다?",
                 "1분 렌즈 상식에 대한 간단 설명",
@@ -249,6 +250,7 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
             TipInfo(
                 R.drawable.ic_btn_translens_normal,
                 "랜즈 눈치 안보고 패션을 꾸밀 수 있다?",
+                "이런이런 정보가 들어가요!",
                 "1분 렌즈 상식에 대한 간단 설명",
                 "랜즈 눈치 안보고 패션을 꾸밀 수 있다?",
                 "1분 렌즈 상식에 대한 간단 설명",
@@ -258,6 +260,7 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
             TipInfo(
                 R.drawable.ic_btn_translens_normal,
                 "랜즈 눈치 안보고 패션을 꾸밀 수 있다?",
+                "이런이런 정보가 들어가요!",
                 "1분 렌즈 상식에 대한 간단 설명",
                 "랜즈 눈치 안보고 패션을 꾸밀 수 있다?",
                 "1분 렌즈 상식에 대한 간단 설명",

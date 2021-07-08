@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/iv_one_recommend1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="138dp"
+            android:layout_height="138dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             setSrc="@{curatingInfo.imgId1}"
@@ -25,8 +25,8 @@
 
         <ImageView
             android:id="@+id/iv_one_recommend2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_one_recommend1"
             app:layout_constraintEnd_toEndOf="@+id/iv_one_recommend1"
             setSrc="@{curatingInfo.imgId2}"
@@ -37,11 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:letterSpacing="-0.05"
             tools:text="오렌즈"
             android:text="@{curatingInfo.brand}"
-            android:textColor="@color/om_third_gray"
-            android:textSize="11sp"
+            android:theme="@style/TextStyle15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_one_recommend1" />
 
@@ -50,14 +48,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            tools:text="브라운 컬러렌즈"
             android:text="@{curatingInfo.name}"
-            android:textColor="@color/om_main_black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:letterSpacing="-0.05"
+            android:theme="@style/TextStyle16"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_brand" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_brand"
+            tools:text="브라운 컬러렌즈" />
 
         <TextView
             android:id="@+id/tv_one_recommend_info"
@@ -65,26 +60,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{curatingInfo.info}"
-            android:letterSpacing="-0.05"
-            tools:text="11.9mm / 1Day(10p)"
-            android:textColor="@color/om_third_gray"
-            android:textSize="12sp"
+            android:theme="@style/TextStyle17"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_name"
+            tools:text="11.9mm / 1Day(10p)" />
 
         <TextView
             android:id="@+id/tv_one_recommend_price"
+            setPrice="@{curatingInfo.price}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            tools:text="18,000원"
-            setPrice="@{curatingInfo.price}"
-            android:letterSpacing="-0.05"
-            android:textColor="@color/om_main_black"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:theme="@style/TextStyle18"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_info" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_info"
+            tools:text="18,000원" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_one_curating_color"
