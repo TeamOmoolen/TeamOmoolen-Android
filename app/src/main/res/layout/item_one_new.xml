@@ -78,9 +78,7 @@
                 android:layout_marginStart="13dp"
                 android:layout_marginBottom="20dp"
                 android:text="@{newInfo.name1}"
-                android:textColor="@color/om_almostwhite"
-                android:textSize="14sp"
-                android:letterSpacing="-0.05"
+                android:theme="@style/TextStyle23"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_one_new"
                 app:layout_constraintStart_toEndOf="@+id/iv_one_new_circle"
                 tools:text="제품 상세 정보 이름" />
@@ -120,9 +118,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="5dp"
                         android:text="@{newInfo.name1}"
-                        android:letterSpacing="-0.05"
-                        android:textColor="@color/om_second_gray"
-                        android:textSize="14sp"
+                        android:theme="@style/TextStyle24"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len1"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_brand_name1"
                         tools:text="브라운 컬러 익스 렌즈" />
@@ -134,10 +130,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:text="@{newInfo.brand}"
-                        android:textColor="@color/om_main_black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="-0.05"
+                        android:theme="@style/TextStyle21"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len1"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="오렌즈" />
@@ -150,9 +143,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
                         android:textColor="@color/om_main_black"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="-0.05"
+                        android:theme="@style/TextStyle25"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len1"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_name1"
                         tools:text="18,000원" />
@@ -197,12 +188,10 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="5dp"
                         android:text="@{newInfo.name2}"
-                        android:textColor="@color/om_second_gray"
-                        android:textSize="14sp"
+                        android:theme="@style/TextStyle24"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len2"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_brand_name2"
-                        tools:text="브라운 컬러 익스 렌즈"
-                        android:letterSpacing="-0.05" />
+                        tools:text="브라운 컬러 익스 렌즈" />
 
                     <TextView
                         android:id="@+id/tv_one_new_brand_name2"
@@ -212,9 +201,7 @@
                         android:layout_marginTop="12dp"
                         android:text="@{newInfo.brand}"
                         android:textColor="@color/om_main_black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="-0.05"
+                        android:theme="@style/TextStyle21"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len2"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="오렌즈" />
@@ -227,9 +214,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
                         android:textColor="@color/om_main_black"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="-0.05"
+                        android:theme="@style/TextStyle25"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len2"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_name2"
                         tools:text="18,000원" />
@@ -272,10 +257,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="5dp"
-                        android:letterSpacing="-0.05"
                         android:text="@{newInfo.name3}"
-                        android:textColor="@color/om_second_gray"
-                        android:textSize="14sp"
+                        android:theme="@style/TextStyle24"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len3"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_brand_name3"
                         tools:text="브라운 컬러 익스 렌즈" />
@@ -286,11 +269,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
-                        android:letterSpacing="-0.05"
                         android:text="@{newInfo.brand}"
                         android:textColor="@color/om_main_black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
+                        android:theme="@style/TextStyle21"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len3"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="오렌즈" />
@@ -302,10 +283,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
-                        android:letterSpacing="-0.05"
                         android:textColor="@color/om_main_black"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
+                        android:theme="@style/TextStyle25"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len3"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_name3"
                         tools:text="18,000원" />

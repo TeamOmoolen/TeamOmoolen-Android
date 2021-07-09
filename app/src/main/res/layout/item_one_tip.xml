@@ -37,14 +37,12 @@
 
     <TextView
         android:id="@+id/tv_one_tip_sub"
-        android:layout_width="310dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="26dp"
-        android:letterSpacing="-0.05"
         android:text="@string/home_tip_sub"
-        android:textColor="@color/om_almostwhite"
-        android:textSize="14sp"
+        android:theme="@style/TextStyle53"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_header"
         app:layout_constraintTop_toTopOf="@+id/iv_one_tip_header" />
 
@@ -54,14 +52,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
-        android:letterSpacing="-0.05"
+        android:letterSpacing="-0.9"
         android:text="@{tipInfo.message}"
-        tools:text="이런이런 정보가 들어가요!"
         android:textColor="@color/om_white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_header"
-        app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_sub" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_sub"
+        tools:text="이런이런 정보가 들어가요!" />
 
 
     <TextView
@@ -71,10 +69,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="26dp"
         android:text="@{tipInfo.title1}"
-        android:letterSpacing="-0.05"
         tools:text="랜즈 눈치 안보고 패션을 꾸밀 수 있다?"
-        android:textColor="@color/om_main_black"
-        android:textSize="14sp"
+        android:theme="@style/TextStyle19"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/iv_one_tip_header" />
 
@@ -85,9 +81,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:text="@{tipInfo.sub1}"
-        android:letterSpacing="-0.05"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
-        android:textSize="11sp"
+        android:theme="@style/TextStyle20"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title1" />
 
@@ -108,10 +103,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="26dp"
         android:text="@{tipInfo.title2}"
-        android:letterSpacing="-0.05"
         tools:text="랜즈 눈치 안보고 패션을 꾸밀 수 있다?"
-        android:textColor="@color/om_main_black"
-        android:textSize="14sp"
+        android:theme="@style/TextStyle19"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/iv_line1" />
 
@@ -122,9 +115,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:text="@{tipInfo.sub2}"
-        android:letterSpacing="-0.05"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
-        android:textSize="11sp"
+        android:theme="@style/TextStyle20"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title2" />
 
@@ -145,10 +137,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="26dp"
         android:text="@{tipInfo.title3}"
-        android:letterSpacing="-0.05"
         tools:text="랜즈 눈치 안보고 패션을 꾸밀 수 있다?"
-        android:textColor="@color/om_main_black"
-        android:textSize="14sp"
+        android:theme="@style/TextStyle19"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/iv_line2" />
 
@@ -159,9 +149,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:text="@{tipInfo.sub3}"
-        android:letterSpacing="-0.05"
+        android:theme="@style/TextStyle20"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
-        android:textSize="11sp"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title3" />
 

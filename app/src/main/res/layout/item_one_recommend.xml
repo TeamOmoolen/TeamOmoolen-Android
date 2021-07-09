@@ -49,6 +49,7 @@
                 android:text="@{recommendInfo.brand}"
                 android:textColor="@color/om_third_gray"
                 android:textSize="11sp"
+                android:theme="@style/TextStyle15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_one_recommend1"
                 tools:text="오렌즈" />
@@ -63,6 +64,7 @@
                 android:textColor="@color/om_main_black"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:theme="@style/TextStyle16"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_brand"
                 tools:text="브라운 컬러렌즈" />
@@ -76,6 +78,7 @@
                 android:text="@{recommendInfo.info}"
                 android:textColor="@color/om_third_gray"
                 android:textSize="12sp"
+                android:theme="@style/TextStyle17"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_name"
                 tools:text="11.9mm / 1Day(10p)" />

@@ -23,5 +23,4 @@
     android:fontStyle="normal"
     android:fontWeight="400"
     android:font="@font/noto_sans_cjkkr_regular" />
-
 </font-family>
