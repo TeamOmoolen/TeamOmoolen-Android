@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -39,15 +40,31 @@ class OneSearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recentInit()
         popularInit()
+        observe()
     }
 
     private fun clickEvents(){
         //전체삭제
         binding.tvDeleteAll.setOnClickListener {
-            //
+            viewModel.deleteRecentAll()
         }
 
     }
+    private fun observe(){
+        //TODO : recentList fragment에서도 sharedpreference로 관리해야 함.
+        //sharedpreference값으로도 사이즈 검사해서 처음에 visible invisible 처리하기
+        viewModel.recentSearch.observe(viewLifecycleOwner, { recentList ->
+            if(recentList.size == 0){
+                binding.tvNorecent.visibility = View.GONE
+                binding.rvRecent.visibility = View.VISIBLE
+            }
+            else{
+                binding.tvNorecent.visibility = View.VISIBLE
+                binding.rvRecent.visibility = View.GONE
+            }
+        })
+    }
+
     //init recent recycler
     private fun recentInit() {
         binding.rvRecent.adapter = viewModel.setRecentAdapter()
