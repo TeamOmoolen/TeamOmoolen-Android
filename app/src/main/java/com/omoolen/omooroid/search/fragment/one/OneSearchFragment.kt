@@ -2,20 +2,15 @@ package com.omoolen.omooroid.search.fragment.one
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.R
-import com.omoolen.omooroid.databinding.FragmentOnboardOneBinding
 import com.omoolen.omooroid.databinding.FragmentSearchOneBinding
-import com.omoolen.omooroid.onboarding.fragments.one.OneOnboardViewModel
-import com.omoolen.omooroid.util.HorizontalItemDecorator
 
 class OneSearchFragment : Fragment() {
     private var _binding: FragmentSearchOneBinding? = null
@@ -41,27 +36,35 @@ class OneSearchFragment : Fragment() {
         recentInit()
         popularInit()
         observe()
+        clickEvents()
     }
-
     private fun clickEvents(){
         //전체삭제
         binding.tvDeleteAll.setOnClickListener {
             viewModel.deleteRecentAll()
         }
-
     }
     private fun observe(){
         //TODO : recentList fragment에서도 sharedpreference로 관리해야 함.
         //sharedpreference값으로도 사이즈 검사해서 처음에 visible invisible 처리하기
-        viewModel.recentSearch.observe(viewLifecycleOwner, { recentList ->
-            if(recentList.size == 0){
-                binding.tvNorecent.visibility = View.GONE
-                binding.rvRecent.visibility = View.VISIBLE
-            }
-            else{
+        viewModel.recentSearch.observe(viewLifecycleOwner, { recentSearch ->
+            Log.d("ONESEARCHFRAGMENt","observe1 / "+recentSearch.size.toString())
+            viewModel.updateRecent(recentSearch)
+            Log.d("ONESEARCHFRAGMENt","observe2 / "+recentSearch.size.toString())
+
+            if(recentSearch.size == 0){
+                Log.d("ONESEARCHFRAGMENT","사이즈0")
                 binding.tvNorecent.visibility = View.VISIBLE
                 binding.rvRecent.visibility = View.GONE
             }
+            else if(recentSearch.size > 0){
+                Log.d("ONESEARCHFRAGMENT","사이즈1이상")
+                binding.tvNorecent.visibility = View.GONE
+                binding.rvRecent.visibility = View.VISIBLE
+            }
+            //초기상태
+            binding.tvNorecent.visibility = View.GONE
+            binding.rvRecent.visibility = View.VISIBLE
         })
     }
 

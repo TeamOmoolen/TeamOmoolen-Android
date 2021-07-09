@@ -40,13 +40,15 @@
 
         <EditText
             android:id="@+id/et_search"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:hint="원하는 렌즈를 검색해보세요"
             android:textColorHint="@color/om_fourth_gray"
             android:textSize="14sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cl_search_touch"
             android:paddingStart="14dp"
             android:background="@null"
             />
