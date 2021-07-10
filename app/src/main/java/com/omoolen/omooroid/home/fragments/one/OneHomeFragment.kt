@@ -72,10 +72,10 @@ class OneHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12, requireContext()))
+        binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
         binding.rvHomeRecommend.addItemDecoration(VerticalItemDecorator(40, requireContext()))
 
-        binding.rvHomeTemp.addItemDecoration(HorizontalItemDecorator(12, requireContext()))
+        binding.rvHomeTemp.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
         binding.rvHomeTemp.addItemDecoration(VerticalItemDecorator(40, requireContext()))
 
     }

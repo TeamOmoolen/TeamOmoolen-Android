@@ -85,7 +85,7 @@ class OneOnboardFragment : Fragment() {
         binding.rvGender.adapter = viewModel.setGenderAdapter()
         genderLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvGender.layoutManager = genderLayoutManager
-        binding.rvGender.addItemDecoration(HorizontalItemDecorator(10, requireContext()))
+        binding.rvGender.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
     }
 
     private fun ageInit() {
@@ -93,7 +93,7 @@ class OneOnboardFragment : Fragment() {
         ageLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvAge.layoutManager = ageLayoutManager
         binding.rvAge.addItemDecoration(VerticalItemDecorator(10, requireContext()))
-        binding.rvAge.addItemDecoration(HorizontalItemDecorator(10, requireContext()))
+        binding.rvAge.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
     }
 
     private fun singleChoice() {

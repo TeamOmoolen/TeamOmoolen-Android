@@ -75,7 +75,7 @@ class ThreeOnboardFragment : Fragment() {
         effectLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvEffect.layoutManager = effectLayoutManager
         binding.rvEffect.addItemDecoration(VerticalItemDecorator(10, requireContext()))
-        binding.rvEffect.addItemDecoration(HorizontalItemDecorator(10, requireContext()))
+        binding.rvEffect.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
     }
 
     private fun periodInit() {
@@ -83,7 +83,7 @@ class ThreeOnboardFragment : Fragment() {
         periodLayoutManager = GridLayoutManager(requireContext(), 3)
         binding.rvPeriod.layoutManager = periodLayoutManager
         binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10, requireContext()))
-        binding.rvPeriod.addItemDecoration(HorizontalItemDecorator(10, requireContext()))
+        binding.rvPeriod.addItemDecoration(HorizontalItemDecorator(10, 3, requireContext()))
     }
 
     private fun singleChoice() {
