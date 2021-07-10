@@ -80,6 +80,8 @@ class OneHomeFragment : Fragment() {
 
     }
 
+    //adapter()도 안에 있는거, 서버용 data class로 바꾸기.
+    //adapter랑 observe 바꾸기 전에 먼저 각 ltem~.xml에 가서 dataBinding 객체 명 부터 바꾸기.
 
     private fun setCuratingAdapter(){
         binding.rvHomeCurating.adapter = CuratingListAdapter()
