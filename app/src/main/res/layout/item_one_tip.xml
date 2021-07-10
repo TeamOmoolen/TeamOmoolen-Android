@@ -53,13 +53,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
         android:letterSpacing="-0.9"
-        android:text="@{tipInfo.message}"
+        android:text="이런이런 정보가 들어가요!"
         android:textColor="@color/om_white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_header"
-        app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_sub"
-        tools:text="이런이런 정보가 들어가요!" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_sub" />
 
 
     <TextView
