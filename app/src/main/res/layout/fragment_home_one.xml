@@ -61,13 +61,13 @@
                             android:ems="10"
                             android:hint="@string/home_search_hint"
                             android:inputType="textPersonName"
-                            android:letterSpacing="-0.05"
+                            android:theme="@style/TextStyle12"
+                            android:includeFontPadding="false"
                             android:paddingStart="12dp"
                             android:paddingTop="10dp"
                             android:paddingEnd="144dp"
                             android:paddingBottom="11dp"
                             android:textAlignment="textStart"
-                            android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -115,7 +115,10 @@
                         android:layout_marginEnd="13dp"
                         android:letterSpacing="-0.05"
                         android:text="@string/home_cate_color"
-                        android:textSize="12dp"
+                        android:textColor="@color/om_second_gray"
+                        android:fontFamily="@font/noto_sans_cjkkr_regular"
+                        android:includeFontPadding="false"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_color"
                         app:layout_constraintStart_toStartOf="@+id/iv_home_cate_color"
@@ -139,8 +142,11 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="13dp"
                         android:letterSpacing="-0.05"
+                        android:textSize="12sp"
+                        android:textColor="@color/om_second_gray"
+                        android:fontFamily="@font/noto_sans_cjkkr_regular"
+                        android:includeFontPadding="false"
                         android:text="@string/home_cate_transparent"
-                        android:textSize="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_transparent"
                         app:layout_constraintStart_toStartOf="@+id/iv_home_cate_transparent"
@@ -164,8 +170,11 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="13dp"
                         android:letterSpacing="-0.05"
+                        android:textSize="12sp"
+                        android:textColor="@color/om_second_gray"
+                        android:fontFamily="@font/noto_sans_cjkkr_regular"
+                        android:includeFontPadding="false"
                         android:text="@string/home_cate_cosplay"
-                        android:textSize="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_cosplay"
                         app:layout_constraintStart_toStartOf="@+id/iv_home_cate_cosplay"
@@ -189,8 +198,11 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="13dp"
                         android:letterSpacing="-0.05"
+                        android:textSize="12sp"
+                        android:textColor="@color/om_second_gray"
+                        android:fontFamily="@font/noto_sans_cjkkr_regular"
+                        android:includeFontPadding="false"
                         android:text="@string/home_cate_new"
-                        android:textSize="12dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_new"
                         app:layout_constraintStart_toStartOf="@+id/iv_home_cate_new"
@@ -224,17 +236,16 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
+                        <!-- TODO: 오무렌님 이 부분 setUserMessage로 대체-->
                         <TextView
                             android:id="@+id/tv_home_curating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="40dp"
-                            android:letterSpacing="-0.05"
                             android:text="오무렌2님! 이 렌즈는 어때요?"
-                            android:textColor="@color/om_main_black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
+                            android:theme="@style/TextStyle13"
+                            android:includeFontPadding="false"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -257,6 +268,8 @@
                                 android:text="@string/home_more"
                                 android:textColor="@color/om_fourth_gray"
                                 android:textSize="12sp"
+                                android:fontFamily="@font/noto_sans_cjkkr_regular"
+                                android:includeFontPadding="false"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/iv_home_curating_more"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -299,11 +312,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="70dp"
-                            android:letterSpacing="-0.05"
                             android:text="@string/home_tip_main"
-                            android:textColor="@color/om_main_black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
+                            android:theme="@style/TextStyle13"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -326,6 +336,8 @@
                                 android:text="@string/home_more"
                                 android:textColor="@color/om_fourth_gray"
                                 android:textSize="12sp"
+                                android:fontFamily="@font/noto_sans_cjkkr_regular"
+                                android:includeFontPadding="false"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -366,17 +378,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cl_home_tip">
 
+                        <!-- TODO: 상황별로 util에 메세지 넘겨서 setting하기 -->
                         <TextView
                             android:id="@+id/tv_home_recommend"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="50dp"
-                            android:letterSpacing="-0.05"
                             android:text="여름에 끼기 좋은 렌즈"
-                            android:textColor="@color/om_main_black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
+                            android:theme="@style/TextStyle2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/iv_one_line1" />
 
@@ -438,12 +448,14 @@
 
                         <com.google.android.material.tabs.TabLayout
                             android:id="@+id/tab_home_event"
-                            android:layout_width="80dp"
-                            android:layout_height="4dp"
-                            android:layout_marginBottom="8dp"
+                            android:layout_width="64dp"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="1dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
+                            app:tabPaddingStart="13dp"
+                            app:tabPaddingEnd="13dp"
                             app:tabBackground="@drawable/home_indicator_selector"
                             app:tabGravity="center"
                             app:tabIndicatorHeight="0dp" />
@@ -465,9 +477,7 @@
                             android:layout_marginStart="20dp"
                             android:letterSpacing="-0.05"
                             android:text="@string/home_new_main"
-                            android:textColor="@color/om_main_black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
+                            android:theme="@style/TextStyle2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -508,6 +518,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cl_home_new">
 
+                        <!-- TODO : 계절별 끼기 좋은 렌즈 메세지 설정하기-->
                         <TextView
                             android:id="@+id/tv_home_temp"
                             android:layout_width="wrap_content"
@@ -516,9 +527,7 @@
                             android:layout_marginTop="50dp"
                             android:letterSpacing="-0.05"
                             android:text="여름에 끼기 좋은 렌즈2"
-                            android:textColor="@color/om_main_black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
+                            android:theme="@style/TextStyle2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -567,12 +576,14 @@
 
                         <com.google.android.material.tabs.TabLayout
                             android:id="@+id/tab_home_ad"
-                            android:layout_width="80dp"
-                            android:layout_height="4dp"
-                            android:layout_marginBottom="8dp"
+                            android:layout_width="64dp"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="1dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
+                            app:tabPaddingStart="13dp"
+                            app:tabPaddingEnd="13dp"
                             app:tabBackground="@drawable/home_indicator_selector"
                             app:tabGravity="center"
                             app:tabIndicatorHeight="0dp" />

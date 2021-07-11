@@ -27,7 +27,7 @@
                 android:layout_height="154dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/rectangle_3410" />
+                tools:src="@drawable/rectangle_3474" />
 
             <ImageView
                 android:id="@+id/iv_one_recommend2"
@@ -46,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@{recommendInfo.brand}"
+                android:includeFontPadding="false"
                 android:theme="@style/TextStyle15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_one_recommend1"
@@ -57,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:letterSpacing="-0.05"
+                android:includeFontPadding="false"
                 android:text="@{recommendInfo.name}"
                 android:textColor="@color/om_main_black"
                 android:textSize="14sp"
@@ -72,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:letterSpacing="-0.05"
+                android:includeFontPadding="false"
                 android:text="@{recommendInfo.info}"
                 android:textColor="@color/om_third_gray"
                 android:textSize="12sp"
@@ -87,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:letterSpacing="-0.05"
+                android:includeFontPadding="false"
                 android:textColor="@color/om_main_black"
                 android:textSize="16sp"
                 android:textStyle="bold"

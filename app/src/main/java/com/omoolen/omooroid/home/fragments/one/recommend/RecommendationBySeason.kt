@@ -1,6 +1,6 @@
-package com.omoolen.omooroid.home.fragments.one.networkApi
+package com.omoolen.omooroid.home.fragments.one.recommend
 
-data class RecommendationBySituation(
+data class RecommendationBySeason(
     val brand: String,
     val category: String,
     val changeCycle: Int,

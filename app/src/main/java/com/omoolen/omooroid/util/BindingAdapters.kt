@@ -37,4 +37,11 @@ object BindingAdapters {
         val txt = "$size / $type"
         textView.text = txt
     }
+
+    @BindingAdapter("setUserMessage")
+    @JvmStatic
+    fun setUserMessage(textView: TextView, userName : String){
+        val txt = userName + "님! 이 렌즈는 어때요?"
+        textView.text = txt
+    }
 }

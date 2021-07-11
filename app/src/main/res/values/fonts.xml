@@ -42,6 +42,14 @@
     <item name="android:textColor">@color/om_main_black</item>
   </style>
 
+  <style name="TextStyle73">
+    <item name="android:fontFamily">@font/noto_sans_kr</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:letterSpacing">-0.05</item>
+    <item name="android:textColor">@color/om_white</item>
+  </style>
+
   <style name="TextStyle56">
     <item name="android:gravity">center_horizontal</item>
     <item name="android:fontFamily">@font/noto_sans_kr</item>
@@ -71,7 +79,7 @@
 
   <style name="TextStyle39">
     <item name="android:gravity">center_horizontal</item>
-    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium1</item>
     <item name="android:textStyle">normal</item>
     <item name="android:textSize">18sp</item>
     <item name="android:letterSpacing">-0.03</item>
@@ -79,7 +87,7 @@
   </style>
 
   <style name="TextStyle32">
-    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium1</item>
     <item name="android:textStyle">normal</item>
     <item name="android:textSize">18sp</item>
     <item name="android:letterSpacing">-0.05</item>
@@ -122,6 +130,15 @@
     <item name="android:textColor">@color/om_main_black</item>
   </style>
 
+  <style name="TextStyle74">
+    <item name="android:fontFamily">@font/noto_sans_kr</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textSize">16sp</item>
+    <item name="android:letterSpacing">-0.03</item>
+    <item name="android:lineSpacingMultiplier">1.32</item>
+    <item name="android:textColor">@color/om_main_black</item>
+  </style>
+
   <style name="TextStyle70">
     <item name="android:fontFamily">@font/noto_sans_kr</item>
     <item name="android:textStyle">bold</item>
@@ -152,7 +169,7 @@
 
   <style name="TextStyle71">
     <item name="android:gravity">center_horizontal</item>
-    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium1</item>
     <item name="android:textStyle">normal</item>
     <item name="android:textSize">16sp</item>
     <item name="android:letterSpacing">-0.05</item>
@@ -160,7 +177,7 @@
   </style>
 
   <style name="TextStyle6">
-    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium1</item>
     <item name="android:textStyle">normal</item>
     <item name="android:textSize">16sp</item>
     <item name="android:letterSpacing">-0.05</item>
@@ -217,7 +234,7 @@
   </style>
 
   <style name="TextStyle38">
-    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium1</item>
     <item name="android:textStyle">normal</item>
     <item name="android:textSize">15sp</item>
     <item name="android:letterSpacing">-0.05</item>
@@ -286,7 +303,7 @@
 
   <style name="TextStyle54">
     <item name="android:gravity">center_horizontal</item>
-    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium1</item>
     <item name="android:textStyle">normal</item>
     <item name="android:textSize">14sp</item>
     <item name="android:letterSpacing">-0.05</item>
@@ -295,7 +312,7 @@
   </style>
 
   <style name="TextStyle50">
-    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium1</item>
     <item name="android:textStyle">normal</item>
     <item name="android:textSize">14sp</item>
     <item name="android:letterSpacing">-0.05</item>
@@ -531,6 +548,15 @@
     <item name="android:textColor">@color/om_fourth_gray</item>
   </style>
 
+  <style name="TextStyle72">
+    <item name="android:fontFamily">@font/noto_sans_kr</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:textSize">12sp</item>
+    <item name="android:letterSpacing">-0.02</item>
+    <item name="android:lineSpacingMultiplier">1.32</item>
+    <item name="android:textColor">@color/om_fourth_gray</item>
+  </style>
+
   <style name="TextStyle17">
     <item name="android:fontFamily">@font/noto_sans_kr</item>
     <item name="android:textStyle">normal</item>
@@ -588,7 +614,7 @@
   </style>
 
   <style name="TextStyle49">
-    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+    <item name="android:fontFamily">@font/noto_sans_cjkkr_medium1</item>
     <item name="android:textStyle">normal</item>
     <item name="android:textSize">10sp</item>
     <item name="android:letterSpacing">-0.03</item>
