@@ -91,7 +91,7 @@
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_price" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_price"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

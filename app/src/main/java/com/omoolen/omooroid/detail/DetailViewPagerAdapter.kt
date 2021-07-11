@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
-import com.omoolen.omooroid.databinding.ItemOneDetailBinding
+import com.omoolen.omooroid.databinding.ItemDetailMainImageBinding
 
 class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.DetailViewHolder>() {
 
     private var detailImageList = emptyList<DetailInfo>()
 
-    class DetailViewHolder( private val binding : ItemOneDetailBinding) :
+    class DetailViewHolder( private val binding : ItemDetailMainImageBinding) :
         RecyclerView.ViewHolder(binding.root){
         fun bind(detailInfo: DetailInfo){
             binding.detailInfo = detailInfo
@@ -20,8 +20,8 @@ class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.Detai
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding : ItemOneDetailBinding = DataBindingUtil.inflate(
-            layoutInflater, R.layout.item_one_detail, parent, false )
+        val binding : ItemDetailMainImageBinding = DataBindingUtil.inflate(
+            layoutInflater, R.layout.item_detail_main_image, parent, false )
         return DetailViewHolder(binding)
     }
 

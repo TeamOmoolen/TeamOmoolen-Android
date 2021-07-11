@@ -10,43 +10,425 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_detail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="172dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="80dp"
-        android:background="@color/om_main_orange">
+        android:layout_height="match_parent">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_detail_review_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
-        <com.omoolen.omooroid.util.NestedScrollableHost
-            android:id="@+id/nestedScrollableHost"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_detail_topTab"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vp_detail_main_image"
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="6dp"/>
+
+            <TextView
+                android:id="@+id/tv_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="제품 상세 정보"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/om_white"
+            android:clipToPadding="false"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintTop_toBottomOf="@id/cl_detail_topTab"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:overScrollMode="never" />
+                app:layout_constraintTop_toBottomOf="@id/cl_detail_topTab">
 
-        </com.omoolen.omooroid.util.NestedScrollableHost>
+                <!--                상세 이미지-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_detail_image"
+                    android:layout_width="0dp"
+                    android:layout_height="384dp"
+                    android:layout_marginStart="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_detail_main_image"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tabBackground="@drawable/home_indicator_selector"
-            app:tabGravity="center"
-            app:tabIndicatorHeight="0dp"
-            android:layout_width="80dp"
-            android:layout_height="4dp"
-            android:layout_marginBottom="8dp" />
+                    <com.omoolen.omooroid.util.NestedScrollableHost
+                        android:id="@+id/nestedScrollableHost"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/vp_detail_main_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:overScrollMode="never"/>
+
+                    </com.omoolen.omooroid.util.NestedScrollableHost>
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_detail_main_image"
+                        android:layout_width="80dp"
+                        android:layout_height="4dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:tabBackground="@drawable/home_indicator_selector"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--                렌즈 텍스트 정보1 (브랜드, 이름, 가격)-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_detail_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_detail_image">
+
+                    <TextView
+                        android:id="@+id/tv_detail_brand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="오렌즈"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="12dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_detail_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:text="브라운 컬러렌즈"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_brand"
+                        android:textSize="20dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_detail_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="18,000원"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_name"
+                        android:textSize="16dp"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_boarder"
+                    style="@style/Divider"
+                    android:layout_marginTop="27dp"
+                    android:layout_marginHorizontal="70dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_detail_name"/>
+
+                <!--                렌즈 텍스트 정보 (직경, 주기, 재질, 기능, 컬러)-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_detail_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="27dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_boarder">
+
+                    <TextView
+                        android:id="@+id/tv_detail_diameter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="직경"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="13dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_detail_diameter_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="76dp"
+                        android:text="13.5mm"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_period"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="주기"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_diameter"
+                        android:textSize="13dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_detail_period_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="76dp"
+                        android:text="1 Month"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_diameter_value"/>
+
+                    <TextView
+                        android:id="@+id/tv_detail_material"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="재질"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_period"
+                        android:textSize="13dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_detail_material_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="76dp"
+                        android:text="실리콘 하이드로겔"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_period_value" />
+
+                    <TextView
+                        android:id="@+id/tv_detail_function"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="기능"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_material"
+                        android:textSize="13dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_detail_function_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="76dp"
+                        android:text="난시"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_material_value"/>
+
+                    <TextView
+                        android:id="@+id/tv_detail_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="컬러"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_function"
+                        android:textSize="13dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_detail_lens_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:overScrollMode="never"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_detail_function_value"
+                        tools:listitem="@layout/item_detail_lens_color"
+                        android:layout_marginStart="76dp"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--                즐겨찾기 / 보관함 비교 버튼-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_detail_btns"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_detail_info">
+
+                    <Button
+                        android:id="@+id/btn_detail_bookmark"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="33dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/detail_button_bookmark"
+                        android:text="찜하기"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/btn_detail_compare"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <Button
+                        android:id="@+id/btn_detail_compare"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="33dp"
+                        android:background="@drawable/detail_button_bookmark"
+                        android:text="보관함 비교"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btn_detail_bookmark"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_boarder2"
+                    style="@style/Divider"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="26dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_detail_btns"/>
+
+                <ImageView
+                    android:id="@+id/iv_detail_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/view_boarder2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:src="@drawable/img_review"/>
+
+                <View
+                    android:id="@+id/view_boarder3"
+                    style="@style/Divider"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="26dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_detail_review"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_detail_recommend"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_boarder3">
+
+                    <TextView
+                        android:id="@+id/tv_detail_recommend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="108dp"
+                        android:text="위 상품과 비슷한 추천상품을 준비했어요."
+                        android:textColor="@color/om_main_black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_detail_recommend"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="25dp"
+                        android:orientation="vertical"
+                        android:overScrollMode="never"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_detail_recommend"
+                        app:spanCount="2"
+                        tools:listitem="@layout/item_detail_recommend" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_boarder4"
+                    style="@style/Divider"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="26dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_detail_recommend"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_detail_new"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_boarder4">
+
+                    <TextView
+                        android:id="@+id/tv_detail_new"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="40dp"
+                        android:text="인기 신제품을 \n 추천해드릴게요."
+                        android:textColor="@color/om_main_black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_detail_new"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="30dp"
+                        android:orientation="horizontal"
+                        android:overScrollMode="never"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_detail_new"
+                        tools:listitem="@layout/item_detail_new" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
