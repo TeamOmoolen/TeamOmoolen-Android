@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentOnboardThreeBinding
 import com.omoolen.omooroid.onboarding.OnboardDatabase
+import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 
@@ -73,14 +74,16 @@ class ThreeOnboardFragment : Fragment() {
         binding.rvEffect.adapter = viewModel.setEffectAdapter()
         effectLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvEffect.layoutManager = effectLayoutManager
-        binding.rvEffect.addItemDecoration(VerticalItemDecorator(10))
+        binding.rvEffect.addItemDecoration(VerticalItemDecorator(10, requireContext()))
+        binding.rvEffect.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
     }
 
     private fun periodInit() {
         binding.rvPeriod.adapter = viewModel.setPeriodAdapter()
         periodLayoutManager = GridLayoutManager(requireContext(), 3)
         binding.rvPeriod.layoutManager = periodLayoutManager
-        binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10))
+        binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10, requireContext()))
+        binding.rvPeriod.addItemDecoration(HorizontalItemDecorator(10, 3, requireContext()))
     }
 
     private fun singleChoice() {
@@ -121,7 +124,7 @@ class ThreeOnboardFragment : Fragment() {
                 //onboardDatabase에 정보 저장
                 viewModel.effect.value?.let { effect ->
                     viewModel.period.value?.let { period ->
-                        onboardDatabase.setOne(
+                        onboardDatabase.setThree(
                             effect,
                             period
                         )

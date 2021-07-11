@@ -13,30 +13,41 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VirtualReality_SNS">
 
-        <activity android:name=".detail.DetailActivity">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="${kakaoLoginKey}" />
+
+        <activity android:name=".detail.DetailActivity">
+
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+
+        </activity>
 
         <activity
             android:name=".login_signup.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/SplashTheme">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
+
         <activity
             android:name=".onboarding.OnboardActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
+            android:configChanges="orientation|screenSize|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -50,9 +61,22 @@
                     android:scheme="kakao${kakaoLoginKey}" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.HomeActivity">
 
-        </activity> <!-- 푸시알림 -->
+        <activity android:name=".home.HomeActivity">
+            <!-- <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>-->
+        </activity>
+        <activity android:name=".search.SearchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--        푸시알림-->
         <service android:name=".util.firebase.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

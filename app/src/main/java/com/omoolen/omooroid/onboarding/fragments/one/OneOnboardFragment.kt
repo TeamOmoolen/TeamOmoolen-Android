@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
+import androidx.compose.ui.Alignment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -84,14 +85,15 @@ class OneOnboardFragment : Fragment() {
         binding.rvGender.adapter = viewModel.setGenderAdapter()
         genderLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvGender.layoutManager = genderLayoutManager
-        binding.rvGender.addItemDecoration(HorizontalItemDecorator(20))
+        binding.rvGender.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
     }
 
     private fun ageInit() {
         binding.rvAge.adapter = viewModel.setAgeAdapter()
         ageLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvAge.layoutManager = ageLayoutManager
-        binding.rvAge.addItemDecoration(VerticalItemDecorator(10))
+        binding.rvAge.addItemDecoration(VerticalItemDecorator(10, requireContext()))
+        binding.rvAge.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
     }
 
     private fun singleChoice() {
@@ -135,6 +137,7 @@ class OneOnboardFragment : Fragment() {
                 viewModel.gender.value?.let { gender ->
                     viewModel.age.value?.let { age ->
                         onboardDatabase.setOne(
+
                             gender,
                             age
                         )
