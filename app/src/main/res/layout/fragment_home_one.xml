@@ -31,12 +31,12 @@
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
                     app:contentScrim="@color/om_white"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                    app:layout_scrollFlags="scroll|enterAlways">
 
                     <!-- parallax: 스크롤 시 접힘 -->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <ImageView
                             android:id="@+id/iv_home_logo"
@@ -44,7 +44,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="21dp"
                             android:layout_marginTop="25dp"
-                            android:layout_marginBottom="39dp"
+                            android:layout_marginBottom="20dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -52,164 +52,40 @@
 
                         <EditText
                             android:id="@+id/editTextTextPersonName"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="87dp"
+                            android:layout_marginStart="18dp"
                             android:layout_marginTop="20dp"
                             android:layout_marginEnd="20dp"
                             android:background="@drawable/ic_home_search_rect"
                             android:ems="10"
                             android:hint="@string/home_search_hint"
                             android:inputType="textPersonName"
-                            android:theme="@style/TextStyle12"
-                            android:includeFontPadding="false"
                             android:paddingStart="12dp"
                             android:paddingTop="10dp"
-                            android:paddingEnd="144dp"
                             android:paddingBottom="11dp"
                             android:textAlignment="textStart"
+                            android:textSize="13sp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iv_home_logo"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView
                             android:id="@+id/iv_home_search_small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingStart="15dp"
+                            android:paddingStart="14dp"
                             android:paddingTop="12dp"
-                            android:paddingRight="14dp"
+                            android:paddingEnd="14dp"
                             android:paddingBottom="12dp"
                             app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
                             app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
                             app:srcCompat="@drawable/ic_search_small" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                     <!-- pin: 스크롤 시 고정 app:layout_collapseMode="pin"-->
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_home_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp">
-
-                    <ImageView
-                        android:id="@+id/iv_home_cate_color"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_transparent"
-                        app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_location_selected" />
-
-                    <TextView
-                        android:id="@+id/tv_home_cate_color"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="13dp"
-                        android:letterSpacing="-0.05"
-                        android:text="@string/home_cate_color"
-                        android:textColor="@color/om_second_gray"
-                        android:fontFamily="@font/noto_sans_cjkkr_regular"
-                        android:includeFontPadding="false"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_color"
-                        app:layout_constraintStart_toStartOf="@+id/iv_home_cate_color"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_color" />
-
-                    <ImageView
-                        android:id="@+id/iv_home_cate_transparent"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_cosplay"
-                        app:layout_constraintStart_toEndOf="@+id/iv_home_cate_color"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_location_selected" />
-
-                    <TextView
-                        android:id="@+id/tv_home_cate_transparent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="13dp"
-                        android:letterSpacing="-0.05"
-                        android:textSize="12sp"
-                        android:textColor="@color/om_second_gray"
-                        android:fontFamily="@font/noto_sans_cjkkr_regular"
-                        android:includeFontPadding="false"
-                        android:text="@string/home_cate_transparent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_transparent"
-                        app:layout_constraintStart_toStartOf="@+id/iv_home_cate_transparent"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_transparent" />
-
-                    <ImageView
-                        android:id="@+id/iv_home_cate_cosplay"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_new"
-                        app:layout_constraintStart_toEndOf="@+id/iv_home_cate_transparent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_location_selected" />
-
-                    <TextView
-                        android:id="@+id/tv_home_cate_cosplay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="13dp"
-                        android:letterSpacing="-0.05"
-                        android:textSize="12sp"
-                        android:textColor="@color/om_second_gray"
-                        android:fontFamily="@font/noto_sans_cjkkr_regular"
-                        android:includeFontPadding="false"
-                        android:text="@string/home_cate_cosplay"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_cosplay"
-                        app:layout_constraintStart_toStartOf="@+id/iv_home_cate_cosplay"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_cosplay" />
-
-                    <ImageView
-                        android:id="@+id/iv_home_cate_new"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/iv_home_cate_cosplay"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_location_selected" />
-
-                    <TextView
-                        android:id="@+id/tv_home_cate_new"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="13dp"
-                        android:letterSpacing="-0.05"
-                        android:textSize="12sp"
-                        android:textColor="@color/om_second_gray"
-                        android:fontFamily="@font/noto_sans_cjkkr_regular"
-                        android:includeFontPadding="false"
-                        android:text="@string/home_cate_new"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_new"
-                        app:layout_constraintStart_toStartOf="@+id/iv_home_cate_new"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_new" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -229,12 +105,137 @@
                     android:layout_height="match_parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_home_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/iv_home_cate_color"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="34dp"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_transparent"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_selected" />
+
+                        <TextView
+                            android:id="@+id/tv_home_cate_color"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="13dp"
+                            android:text="@string/home_cate_color"
+                            android:letterSpacing="-0.05"
+                            android:textSize="12sp"
+                            android:textColor="@color/om_second_gray"
+                            android:fontFamily="@font/noto_sans_cjkkr_regular"
+                            android:includeFontPadding="false"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_color"
+                            app:layout_constraintStart_toStartOf="@+id/iv_home_cate_color"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_color" />
+
+                        <ImageView
+                            android:id="@+id/iv_home_cate_transparent"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="34dp"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_cosplay"
+                            app:layout_constraintStart_toEndOf="@+id/iv_home_cate_color"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_selected" />
+
+                        <TextView
+                            android:id="@+id/tv_home_cate_transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="13dp"
+                            android:text="@string/home_cate_transparent"
+                            android:letterSpacing="-0.05"
+                            android:textSize="12sp"
+                            android:textColor="@color/om_second_gray"
+                            android:fontFamily="@font/noto_sans_cjkkr_regular"
+                            android:includeFontPadding="false"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_transparent"
+                            app:layout_constraintStart_toStartOf="@+id/iv_home_cate_transparent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_transparent" />
+
+                        <ImageView
+                            android:id="@+id/iv_home_cate_cosplay"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="34dp"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_new"
+                            app:layout_constraintStart_toEndOf="@+id/iv_home_cate_transparent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_selected" />
+
+                        <TextView
+                            android:id="@+id/tv_home_cate_cosplay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="13dp"
+                            android:letterSpacing="-0.05"
+                            android:textSize="12sp"
+                            android:textColor="@color/om_second_gray"
+                            android:fontFamily="@font/noto_sans_cjkkr_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/home_cate_cosplay"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_cosplay"
+                            app:layout_constraintStart_toStartOf="@+id/iv_home_cate_cosplay"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_cosplay" />
+
+                        <ImageView
+                            android:id="@+id/iv_home_cate_new"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="34dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iv_home_cate_cosplay"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_selected" />
+
+                        <TextView
+                            android:id="@+id/tv_home_cate_new"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="13dp"
+                            android:letterSpacing="-0.05"
+                            android:textSize="12sp"
+                            android:textColor="@color/om_second_gray"
+                            android:fontFamily="@font/noto_sans_cjkkr_regular"
+                            android:includeFontPadding="false"
+                            android:text="@string/home_cate_new"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_new"
+                            app:layout_constraintStart_toStartOf="@+id/iv_home_cate_new"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_new" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_home_curating"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toBottomOf="@+id/cl_home_category">
 
                         <!-- TODO: 오무렌님 이 부분 setUserMessage로 대체-->
                         <TextView
@@ -364,9 +365,7 @@
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_home_tip"
-                            tools:listitem="@layout/item_one_tip" >
-
-                        </androidx.recyclerview.widget.RecyclerView>
+                            tools:listitem="@layout/item_one_tip" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -385,7 +384,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="50dp"
-                            android:text="여름에 끼기 좋은 렌즈"
+                            android:text="운동할때 끼기 좋은 렌즈"
                             android:theme="@style/TextStyle2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/iv_one_line1" />
@@ -495,7 +494,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_home_new"
-                            tools:listitem="@layout/item_one_new" />
+                            tools:listitem="@layout/item_one_new"/>
 
                         <ImageView
                             android:id="@+id/iv_one_line2"
@@ -526,7 +525,7 @@
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="50dp"
                             android:letterSpacing="-0.05"
-                            android:text="여름에 끼기 좋은 렌즈2"
+                            android:text="여름에 끼기 좋은 렌즈"
                             android:theme="@style/TextStyle2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
