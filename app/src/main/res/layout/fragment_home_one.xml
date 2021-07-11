@@ -31,13 +31,12 @@
                     android:layout_height="wrap_content"
                     android:overScrollMode="never"
                     app:contentScrim="@color/om_white"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                    app:layout_scrollFlags="scroll|enterAlways">
 
                     <!-- parallax: 스크롤 시 접힘 -->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-
                         <ImageView
                             android:id="@+id/iv_home_logo"
                             android:layout_width="wrap_content"
@@ -85,112 +84,6 @@
 
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_home_category"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/iv_home_cate_color"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_transparent"
-                        app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_location_selected" />
-
-                    <TextView
-                        android:id="@+id/tv_home_cate_color"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="13dp"
-                        android:text="@string/home_cate_color"
-                        android:textSize="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_color"
-                        app:layout_constraintStart_toStartOf="@+id/iv_home_cate_color"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_color" />
-
-                    <ImageView
-                        android:id="@+id/iv_home_cate_transparent"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_cosplay"
-                        app:layout_constraintStart_toEndOf="@+id/iv_home_cate_color"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_location_selected" />
-
-                    <TextView
-                        android:id="@+id/tv_home_cate_transparent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="13dp"
-                        android:text="@string/home_cate_transparent"
-                        android:textSize="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_transparent"
-                        app:layout_constraintStart_toStartOf="@+id/iv_home_cate_transparent"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_transparent" />
-
-                    <ImageView
-                        android:id="@+id/iv_home_cate_cosplay"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_new"
-                        app:layout_constraintStart_toEndOf="@+id/iv_home_cate_transparent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_location_selected" />
-
-                    <TextView
-                        android:id="@+id/tv_home_cate_cosplay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="13dp"
-                        android:text="@string/home_cate_cosplay"
-                        android:textSize="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_cosplay"
-                        app:layout_constraintStart_toStartOf="@+id/iv_home_cate_cosplay"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_cosplay" />
-
-                    <ImageView
-                        android:id="@+id/iv_home_cate_new"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="24dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/iv_home_cate_cosplay"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_location_selected" />
-
-                    <TextView
-                        android:id="@+id/tv_home_cate_new"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="13dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginEnd="13dp"
-                        android:text="@string/home_cate_new"
-                        android:textSize="12dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_new"
-                        app:layout_constraintStart_toStartOf="@+id/iv_home_cate_new"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_new" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.core.widget.NestedScrollView
@@ -209,12 +102,120 @@
                     android:layout_height="match_parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_home_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/iv_home_cate_color"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_transparent"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_selected" />
+
+                        <TextView
+                            android:id="@+id/tv_home_cate_color"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="13dp"
+                            android:text="@string/home_cate_color"
+                            android:textSize="12dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_color"
+                            app:layout_constraintStart_toStartOf="@+id/iv_home_cate_color"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_color" />
+
+                        <ImageView
+                            android:id="@+id/iv_home_cate_transparent"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_cosplay"
+                            app:layout_constraintStart_toEndOf="@+id/iv_home_cate_color"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_selected" />
+
+                        <TextView
+                            android:id="@+id/tv_home_cate_transparent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="13dp"
+                            android:text="@string/home_cate_transparent"
+                            android:textSize="12dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_transparent"
+                            app:layout_constraintStart_toStartOf="@+id/iv_home_cate_transparent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_transparent" />
+
+                        <ImageView
+                            android:id="@+id/iv_home_cate_cosplay"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_new"
+                            app:layout_constraintStart_toEndOf="@+id/iv_home_cate_transparent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_selected" />
+
+                        <TextView
+                            android:id="@+id/tv_home_cate_cosplay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="13dp"
+                            android:text="@string/home_cate_cosplay"
+                            android:textSize="12dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_cosplay"
+                            app:layout_constraintStart_toStartOf="@+id/iv_home_cate_cosplay"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_cosplay" />
+
+                        <ImageView
+                            android:id="@+id/iv_home_cate_new"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="24dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/iv_home_cate_cosplay"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_location_selected" />
+
+                        <TextView
+                            android:id="@+id/tv_home_cate_new"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="13dp"
+                            android:text="@string/home_cate_new"
+                            android:textSize="12dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/iv_home_cate_new"
+                            app:layout_constraintStart_toStartOf="@+id/iv_home_cate_new"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_home_cate_new" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_home_curating"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toBottomOf="@+id/cl_home_category">
 
                         <TextView
                             android:id="@+id/tv_home_curating"
