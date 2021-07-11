@@ -17,6 +17,20 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="${kakaoLoginKey}" />
 
+        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao${kakaoLoginKey}" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".login_signup.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -38,26 +52,14 @@
             </intent-filter>-->
         </activity>
 
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
-                <data
-                    android:host="oauth"
-                    android:scheme="kakao${kakaoLoginKey}" />
-            </intent-filter>
-        </activity>
 
         <activity android:name=".home.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".search.SearchActivity">
             <intent-filter>

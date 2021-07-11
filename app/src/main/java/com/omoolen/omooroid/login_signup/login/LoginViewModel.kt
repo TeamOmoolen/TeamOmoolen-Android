@@ -23,13 +23,14 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     lateinit var kakaoUser: KakaoUser
 
-
     fun newKakao(context:Context){
-        if (AuthApiClient.instance.hasToken()) {
-            UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+        if (AuthApiClient.instance.hasToken()) { //로그인이 된 상태인지 확인
+            UserApiClient.instance.accessTokenInfo { tokenInfo, error -> //서버에 유효한 access토큰이 있는지 가져옴
+                //현재 유효한 access토큰이 없음
+                //access토큰이 만료된 것이라면 sdk내부에서 accesstoken을 갱신한다.
                 if (error != null) {
                     if (error is KakaoSdkError && error.isInvalidTokenError()) {
-                        //로그인 필요
+                        //access토큰 갱신까지 실패한 것이기 때문에 refresh토큰이 유효하지 않음, 로그인 필요
                         Log.e(LOGINVIEWMODEL, "로그인 필요111 / "+error.toString(), error)
                         //kakaoLogin(context)
                         newKakaoLogin(context)
@@ -39,18 +40,15 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         Log.e(LOGINVIEWMODEL, "로그인 실패222 / "+error.toString(), error)
                     }
                 }
-                else if (tokenInfo != null) {
-                    //토큰 유효성 체크 성공(필요 시 토큰 갱신됨)
+                else{
+                    //토큰 유효성 체크 성공(필요 시 sdk내부에서 토큰 갱신됨)
                     Log.e(LOGINVIEWMODEL, tokenInfo.toString()+" / 로그인 성공333", error)
                     //TODO : 홈 activity로 이동
-                }
-                else{
-                    Log.e(LOGINVIEWMODEL, "뭔가 잘못됨 444 / "+error.toString(), error)
                 }
             }
         }
         else {
-            //로그인 필요
+            //단말에 토큰이 없으니 로그인 필요
             Log.d(LOGINVIEWMODEL, "로그인필요4444")
             //kakaoLogin(context)
             newKakaoLogin(context)
@@ -98,20 +96,25 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
+            Log.e(LOGINVIEWMODEL, "카카오톡으로")
             UserApiClient.instance.loginWithKakaoTalk(context, callback = callback)
         } else {
+            Log.e(LOGINVIEWMODEL, "홈페이지로")
             UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
         }
+        getKakaoInfo()
     }
 
     fun kakaoLogin(context: Context) {
         // 로그인 공통 callback 구성
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+            Log.e(LOGINVIEWMODEL, "callback 들옴어옴 / " + error.toString(), error)
             if (error != null) {
                 //TODO : 카톡 깔려있고 계정 연결 안돼있는 경우 에러 해결 필요
                 Log.e(LOGINVIEWMODEL, "로그인 실패555 / " + error.toString(), error)
                 //_loginSuccess.value = false
             } else if (token != null) {
+                getKakaoInfo()
                 Log.i(LOGINVIEWMODEL, "로그인 성공666 / ${token.accessToken}")
                 //_loginSuccess.value = true
             }
@@ -122,12 +125,14 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
         // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
+            Log.e(LOGINVIEWMODEL, "카카오톡으로")
             UserApiClient.instance.loginWithKakaoTalk(context, callback = callback)
         } else {
+            Log.e(LOGINVIEWMODEL, "홈페이지로")
             UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
         }
         //updateKakaoLogin()
-        //getKakaoInfo()
+        getKakaoInfo()
     }
 
     fun getKakaoInfo(){
@@ -139,7 +144,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             else if (user != null) {
                 Log.i("LOGINVIEWMODEL", "사용자 정보 요청 성공888" +
                         "\n회원번호: ${user.id}" +
-                        "\n이메일: ${user.kakaoAccount?.email}" +
                         "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
                         "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
             }

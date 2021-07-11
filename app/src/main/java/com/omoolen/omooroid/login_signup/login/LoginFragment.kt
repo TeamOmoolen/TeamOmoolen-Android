@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //함수
-        //getHash()
+        getHash()
         observeKakaoUser()
         kakaologin_logout()
         //sessionLogin()
