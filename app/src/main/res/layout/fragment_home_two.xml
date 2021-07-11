@@ -15,12 +15,60 @@
         android:layout_height="match_parent"
         tools:context=".home.fragments.two.fragment_two">
 
-        <TextView
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/et_two_searchbar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fragment Two!!"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/om_main_orange"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="원하는 렌즈를 검색해보세요"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_two_searchbar"
+            app:tabIndicatorColor="@color/om_main_orange">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/two_tab_foryou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="for you" /> <!--나중에 서버에서 값 받기-->
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/two_tab_situation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="운동" /> <!--나중에 서버에서 값 받기-->
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/two_tab_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="신제품" /> <!--나중에 서버에서 값 받기-->
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/two_tab_season"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="여름에 예쁨" /> <!--나중에 서버에서 값 받기-->
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_home_two"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
