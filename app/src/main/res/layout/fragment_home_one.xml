@@ -322,7 +322,7 @@
                             android:id="@+id/cl_home_tip_more"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="70dp"
+                            android:layout_marginTop="75dp"
                             android:layout_marginEnd="13dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
