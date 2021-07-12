@@ -11,12 +11,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.reflect.TypeToken
 import com.omoolen.omooroid.databinding.FragmentSearchOneBinding
 import com.omoolen.omooroid.search.SearchViewModel
 import com.omoolen.omooroid.search.fragment.one.recycle.popular.PopularAdapter
 import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentAdapter
-import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentInfo
 
 class OneSearchFragment : Fragment() {
     private var _binding: FragmentSearchOneBinding? = null
