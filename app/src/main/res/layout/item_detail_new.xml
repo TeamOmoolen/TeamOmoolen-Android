@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="detailNewInfo"
+            type="com.omoolen.omooroid.detail.popular.DetailNewInfo"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp">
+
+        <ImageView
+            android:id="@+id/iv_detail_new1"
+            setSrc="@{detailNewInfo.imgId1}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/img_ellipse_1842" />
+
+        <ImageView
+            android:id="@+id/iv_detail_new2"
+            setSrc="@{detailNewInfo.imgId2}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_detail_new1"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_new1"
+            tools:src="@drawable/img_color_a" />
+
+        <TextView
+            android:id="@+id/tv_detail_new_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="@{detailNewInfo.brand}"
+            android:textColor="@color/om_third_gray"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_detail_new1"
+            tools:text="오렌즈" />
+
+        <TextView
+            android:id="@+id/tv_detail_new_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{detailNewInfo.name}"
+            android:textColor="@color/om_main_black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_new_brand"
+            tools:text="브라운 컬러렌즈" />
+
+        <TextView
+            android:id="@+id/tv_detail_new_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{detailNewInfo.info}"
+            android:textColor="@color/om_third_gray"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_new_name"
+            tools:text="11.9mm / 1Day(10p)" />
+
+        <TextView
+            android:id="@+id/tv_detail_new_price"
+            setPrice="@{detailNewInfo.price}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/om_main_black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_new_info"
+            tools:text="18,000원" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_detail_new_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_new_price"
+            tools:listitem="@layout/item_one_lens_color" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
