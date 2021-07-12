@@ -62,7 +62,6 @@ class TwoOnboardViewModel(application: Application) : AndroidViewModel(applicati
                 ColorInfo(resourceId = R.drawable.ic_btn_bluecolor_selector),
                 ColorInfo(resourceId = R.drawable.ic_btn_goldcolor_selector),
                 ColorInfo(resourceId = R.drawable.ic_btn_pinkcolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_goldcolor_selector), //TODO : 글리터 받아야함
                 ColorInfo(resourceId = R.drawable.ic_btn_etccolor_selector)
             )
         )
