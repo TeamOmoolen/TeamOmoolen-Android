@@ -22,6 +22,7 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="${kakaoLoginKey}" />
 
+<<<<<<< HEAD
         <activity android:name=".detail.DetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +30,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+=======
+>>>>>>> 4d46f19d6b64d35775ba616415e1cfca683dfbce
         </activity>
 
         <activity
@@ -44,23 +47,15 @@
 
         </activity>
 
-        <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth“ -->
-                <data
-                    android:host="oauth"
-                    android:scheme="kakao${kakaoLoginKey}" />
-            </intent-filter>
-        </activity>
 
         <activity android:name=".home.HomeActivity">
+<<<<<<< HEAD
 
 
+=======
+
+>>>>>>> 4d46f19d6b64d35775ba616415e1cfca683dfbce
         </activity>
         <activity android:name=".search.SearchActivity">
 
