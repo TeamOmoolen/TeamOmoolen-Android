@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="eventInfo"
             type="com.omoolen.omooroid.home.fragments.one.event.EventInfo" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

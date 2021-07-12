@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentOnboardThreeBinding
 import com.omoolen.omooroid.onboarding.OnboardDatabase
-import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 
@@ -74,16 +73,14 @@ class ThreeOnboardFragment : Fragment() {
         binding.rvEffect.adapter = viewModel.setEffectAdapter()
         effectLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvEffect.layoutManager = effectLayoutManager
-        binding.rvEffect.addItemDecoration(VerticalItemDecorator(10, requireContext()))
-        binding.rvEffect.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
+        binding.rvEffect.addItemDecoration(VerticalItemDecorator(10))
     }
 
     private fun periodInit() {
         binding.rvPeriod.adapter = viewModel.setPeriodAdapter()
         periodLayoutManager = GridLayoutManager(requireContext(), 3)
         binding.rvPeriod.layoutManager = periodLayoutManager
-        binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10, requireContext()))
-        binding.rvPeriod.addItemDecoration(HorizontalItemDecorator(10, 3, requireContext()))
+        binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10))
     }
 
     private fun singleChoice() {

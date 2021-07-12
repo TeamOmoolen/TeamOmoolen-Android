@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.FragmentOnboardFourBinding
 import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.onboarding.OnboardDatabase
-import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 
@@ -147,8 +146,7 @@ class FourOnboardFragment : Fragment() {
         binding.rvWhen.adapter = viewModel.setWhenAdapter()
         whenLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvWhen.layoutManager = whenLayoutManager
-        binding.rvWhen.addItemDecoration(VerticalItemDecorator(10,requireContext()))
-        binding.rvWhen.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
+        binding.rvWhen.addItemDecoration(VerticalItemDecorator(10))
 
     }
 
