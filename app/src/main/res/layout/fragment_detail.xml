@@ -78,21 +78,19 @@
                     <!--                상세 이미지-->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_detail_image"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="384dp"
                         android:layout_marginStart="0dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:background="@color/om_main_orange">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <com.omoolen.omooroid.util.NestedScrollableHost
                             android:id="@+id/nestedScrollableHost"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="parent">
+                            app:layout_constraintStart_toStartOf="parent">
 
                             <androidx.viewpager2.widget.ViewPager2
                                 android:id="@+id/vp_detail_main_image"
@@ -103,16 +101,19 @@
                         </com.omoolen.omooroid.util.NestedScrollableHost>
 
                         <com.google.android.material.tabs.TabLayout
-                            android:id="@+id/tab_detail_main_image"
-                            android:layout_width="80dp"
-                            android:layout_height="4dp"
+                            android:id="@+id/tl_detail_main_image"
+                            android:layout_width="42dp"
+                            android:layout_height="6dp"
                             android:layout_marginBottom="12dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:tabBackground="@drawable/home_indicator_selector"
+                            app:tabBackground="@drawable/detail_indicator_selector"
+                            app:tabPaddingStart="13dp"
+                            app:tabPaddingEnd="13dp"
                             app:tabGravity="center"
                             app:tabIndicatorHeight="0dp"/>
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <!--                렌즈 텍스트 정보1 (브랜드, 이름, 가격)-->
@@ -297,10 +298,10 @@
                             android:overScrollMode="never"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_detail_function_value"
+                            app:layout_constraintTop_toTopOf="@id/tv_detail_color"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_detail_color"
                             tools:listitem="@layout/item_detail_lens_color"
-                            android:layout_marginStart="76dp"
-                            android:layout_marginTop="16dp"/>
+                            android:layout_marginStart="76dp"/>
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

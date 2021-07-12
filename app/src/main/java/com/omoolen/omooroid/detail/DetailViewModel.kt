@@ -29,13 +29,13 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     fun setDetailImageList() {
         _detailImageList.value = mutableListOf(
             DetailInfo(
-                R.drawable.e3
+                R.drawable.rectangle_3607
             ),
             DetailInfo(
-                R.drawable.e3
+                R.drawable.rectangle_3607
             ),
             DetailInfo(
-                R.drawable.e3
+                R.drawable.rectangle_3607
             )
         )
     }

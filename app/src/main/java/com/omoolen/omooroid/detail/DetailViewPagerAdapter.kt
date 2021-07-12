@@ -11,17 +11,18 @@ class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.Detai
 
     private var detailImageList = emptyList<DetailInfo>()
 
-    class DetailViewHolder( private val binding : ItemDetailMainImageBinding) :
-        RecyclerView.ViewHolder(binding.root){
-        fun bind(detailInfo: DetailInfo){
+    class DetailViewHolder(private val binding: ItemDetailMainImageBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(detailInfo: DetailInfo) {
             binding.detailInfo = detailInfo
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding : ItemDetailMainImageBinding = DataBindingUtil.inflate(
-            layoutInflater, R.layout.item_detail_main_image, parent, false )
+        val binding: ItemDetailMainImageBinding = DataBindingUtil.inflate(
+            layoutInflater, R.layout.item_detail_main_image, parent, false
+        )
         return DetailViewHolder(binding)
     }
 
@@ -31,7 +32,7 @@ class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.Detai
 
     override fun getItemCount(): Int = detailImageList.size
 
-    fun setDetailImage(detailImageList : List<DetailInfo>){
+    fun setDetailImage(detailImageList: List<DetailInfo>) {
         this.detailImageList = detailImageList
         notifyDataSetChanged()
     }

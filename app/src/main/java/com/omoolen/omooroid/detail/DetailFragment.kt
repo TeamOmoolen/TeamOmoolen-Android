@@ -69,7 +69,7 @@ class DetailFragment : Fragment() {
 
     private fun setDetailIndicator() {
         TabLayoutMediator(
-            binding.tabDetailMainImage,
+            binding.tlDetailMainImage,
             binding.vpDetailMainImage
         ) { tab, position -> }.attach()
     }
