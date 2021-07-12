@@ -1,6 +1,5 @@
 package com.omoolen.omooroid.home.fragments.one
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -25,6 +24,8 @@ class OneHomeFragment : Fragment() {
     private val handler: Handler = Handler(Looper.getMainLooper())
     private var _binding: FragmentHomeOneBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
+
+    private lateinit var viewPagerAdapter: EventViewPagerAdapter
 
     private val oneHomeViewModel: OneHomeViewModel by activityViewModels()
 
@@ -72,16 +73,14 @@ class OneHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
-        binding.rvHomeRecommend.addItemDecoration(VerticalItemDecorator(40, requireContext()))
+        binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12))
+        binding.rvHomeRecommend.addItemDecoration(VerticalItemDecorator(40))
 
-        binding.rvHomeTemp.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
-        binding.rvHomeTemp.addItemDecoration(VerticalItemDecorator(40, requireContext()))
+        binding.rvHomeTemp.addItemDecoration(HorizontalItemDecorator(12))
+        binding.rvHomeTemp.addItemDecoration(VerticalItemDecorator(40))
 
     }
 
-    //adapter()도 안에 있는거, 서버용 data class로 바꾸기.
-    //adapter랑 observe 바꾸기 전에 먼저 각 ltem~.xml에 가서 dataBinding 객체 명 부터 바꾸기.
 
     private fun setCuratingAdapter(){
         binding.rvHomeCurating.adapter = CuratingListAdapter()
