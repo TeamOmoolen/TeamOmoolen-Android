@@ -22,12 +22,12 @@
             <ImageView
                 android:id="@+id/iv_one_new"
                 setSrc="@{newInfo.mainImageId}"
-                android:layout_width="320dp"
-                android:layout_height="318dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/group_7409" />
+                tools:src="@drawable/img_group_7409" />
 
             <ImageView
                 android:id="@+id/iv_one_new_gradient"
@@ -51,8 +51,8 @@
             <ImageView
                 android:id="@+id/iv_one_new_logo"
                 setSrc="@{newInfo.logoImgId}"
-                android:layout_width="42dp"
-                android:layout_height="26dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:layout_marginBottom="14dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_one_new_circle"
@@ -66,7 +66,8 @@
                 android:layout_marginStart="13dp"
                 android:layout_marginBottom="2dp"
                 android:text="@{newInfo.brand}"
-                android:theme="@style/TextStyle22"
+                android:textColor="@color/om_white"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_one_new_name"
                 app:layout_constraintStart_toEndOf="@+id/iv_one_new_circle"
                 tools:text="브랜드명" />
@@ -78,7 +79,8 @@
                 android:layout_marginStart="13dp"
                 android:layout_marginBottom="20dp"
                 android:text="@{newInfo.name1}"
-                android:theme="@style/TextStyle23"
+                android:textColor="@color/om_almostwhite"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_one_new"
                 app:layout_constraintStart_toEndOf="@+id/iv_one_new_circle"
                 tools:text="제품 상세 정보 이름" />
@@ -101,11 +103,11 @@
                     <ImageView
                         android:id="@+id/iv_one_new_len1"
                         setSrc="@{newInfo.item1ImgId}"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:paddingStart="18dp"
                         android:paddingTop="18dp"
-                        android:paddingEnd="17dp"
+                        android:paddingRight="17dp"
                         android:paddingBottom="17dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -118,7 +120,8 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="5dp"
                         android:text="@{newInfo.name1}"
-                        android:theme="@style/TextStyle24"
+                        android:textColor="@color/om_second_gray"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len1"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_brand_name1"
                         tools:text="브라운 컬러 익스 렌즈" />
@@ -130,7 +133,9 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:text="@{newInfo.brand}"
-                        android:theme="@style/TextStyle21"
+                        android:textColor="@color/om_main_black"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len1"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="오렌즈" />
@@ -143,7 +148,8 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
                         android:textColor="@color/om_main_black"
-                        android:theme="@style/TextStyle25"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len1"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_name1"
                         tools:text="18,000원" />
@@ -157,7 +163,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_home_selected" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -171,11 +176,11 @@
                     <ImageView
                         android:id="@+id/iv_one_new_len2"
                         setSrc="@{newInfo.item2ImgId}"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:paddingStart="18dp"
                         android:paddingTop="18dp"
-                        android:paddingEnd="17dp"
+                        android:paddingRight="17dp"
                         android:paddingBottom="17dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -188,7 +193,8 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="5dp"
                         android:text="@{newInfo.name2}"
-                        android:theme="@style/TextStyle24"
+                        android:textColor="@color/om_second_gray"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len2"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_brand_name2"
                         tools:text="브라운 컬러 익스 렌즈" />
@@ -201,7 +207,8 @@
                         android:layout_marginTop="12dp"
                         android:text="@{newInfo.brand}"
                         android:textColor="@color/om_main_black"
-                        android:theme="@style/TextStyle21"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len2"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="오렌즈" />
@@ -214,7 +221,8 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
                         android:textColor="@color/om_main_black"
-                        android:theme="@style/TextStyle25"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len2"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_name2"
                         tools:text="18,000원" />
@@ -240,15 +248,15 @@
 
                     <ImageView
                         android:id="@+id/iv_one_new_len3"
-                        setSrc="@{newInfo.item3ImgId}"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:paddingStart="18dp"
                         android:paddingTop="18dp"
-                        android:paddingEnd="17dp"
+                        android:paddingRight="17dp"
                         android:paddingBottom="17dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        setSrc="@{newInfo.item3ImgId}"
                         app:srcCompat="@drawable/img_color_a" />
 
                     <TextView
@@ -257,10 +265,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="5dp"
-                        android:text="@{newInfo.name3}"
-                        android:theme="@style/TextStyle24"
+                        android:textColor="@color/om_second_gray"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len3"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_brand_name3"
+                        android:text="@{newInfo.name3}"
                         tools:text="브라운 컬러 익스 렌즈" />
 
                     <TextView
@@ -269,24 +278,26 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
-                        android:text="@{newInfo.brand}"
                         android:textColor="@color/om_main_black"
-                        android:theme="@style/TextStyle21"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len3"
                         app:layout_constraintTop_toTopOf="parent"
+                        android:text="@{newInfo.brand}"
                         tools:text="오렌즈" />
 
                     <TextView
                         android:id="@+id/tv_one_new_price3"
-                        setPrice="@{newInfo.price3}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="6dp"
                         android:textColor="@color/om_main_black"
-                        android:theme="@style/TextStyle25"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len3"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_name3"
+                        setPrice="@{newInfo.price3}"
                         tools:text="18,000원" />
 
                     <ImageView
@@ -298,7 +309,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_home_selected" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

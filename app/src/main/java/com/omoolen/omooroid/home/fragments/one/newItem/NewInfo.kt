@@ -1,7 +1,6 @@
 package com.omoolen.omooroid.home.fragments.one.newItem
 
 data class NewInfo(
-    val id : Int,
     val mainImageId : Int,
     val logoImgId : Int,
     val brand : String,

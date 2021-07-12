@@ -1,7 +1,6 @@
 package com.omoolen.omooroid.home.fragments.one.tip
 
 data class TipInfo(
-    val id : Int,
     val imgId : Int,
     val title1 : String,
     val sub1 : String,
