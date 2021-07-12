@@ -47,11 +47,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@{detailRecommendInfo.brand}"
-                android:textColor="@color/om_third_gray"
-                android:textSize="11sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_one_recommend1"
-                tools:text="오렌즈" />
+                tools:text="오렌즈"
+                style="@style/TextStyle15"
+                android:includeFontPadding="false"/>
 
             <TextView
                 android:id="@+id/tv_one_recommend_name"
@@ -59,12 +59,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@{detailRecommendInfo.name}"
-                android:textColor="@color/om_main_black"
-                android:textSize="14sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_brand"
-                tools:text="브라운 컬러렌즈" />
+                tools:text="브라운 컬러렌즈"
+                style="@style/TextStyle16"
+                android:includeFontPadding="false"
+                />
 
             <TextView
                 android:id="@+id/tv_one_recommend_info"
@@ -72,11 +72,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@{detailRecommendInfo.info}"
-                android:textColor="@color/om_third_gray"
-                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_name"
-                tools:text="11.9mm / 1Day(10p)" />
+                tools:text="11.9mm / 1Day(10p)"
+                style="@style/TextStyle17"
+                android:includeFontPadding="false"/>
 
             <TextView
                 android:id="@+id/tv_one_recommend_price"
@@ -84,12 +84,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textColor="@color/om_main_black"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_info"
-                tools:text="18,000원" />
+                tools:text="18,000원"
+                style="@style/TextStyle18"
+                android:includeFontPadding="false"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_one_recommend_color"
@@ -101,7 +100,10 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_price"
-                tools:listitem="@layout/item_one_lens_color" />
+                tools:listitem="@layout/item_one_lens_color"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="40dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

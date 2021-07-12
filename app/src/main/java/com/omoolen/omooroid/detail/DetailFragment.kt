@@ -12,8 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.databinding.FragmentDetailBinding
 import com.omoolen.omooroid.detail.popular.DetailNewListAdapter
 import com.omoolen.omooroid.detail.recommend.DetailRecommendListAdapter
-import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
-import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
 
 class DetailFragment : Fragment() {
     private val handler: Handler = Handler(Looper.getMainLooper())
@@ -45,29 +44,39 @@ class DetailFragment : Fragment() {
         setDetailNewAdapter()
         setDetailNewObserve()
 
+        detailViewModel.setDetailLensColorList()
+        setDetailLensColorAdapter()
+        setDetailLensColorObserve()
+
+
+
+
         return binding.root
     }
 
     // 디테일뷰 메인 이미지 탭
-    private fun setDetailAdapter(){
+    private fun setDetailAdapter() {
         binding.vpDetailMainImage.adapter = DetailViewPagerAdapter()
     }
 
-    private fun setDetailObserve(){
-        detailViewModel.detailImageList.observe(viewLifecycleOwner){ detailImageList ->
-            with(binding.vpDetailMainImage.adapter as DetailViewPagerAdapter){
+    private fun setDetailObserve() {
+        detailViewModel.detailImageList.observe(viewLifecycleOwner) { detailImageList ->
+            with(binding.vpDetailMainImage.adapter as DetailViewPagerAdapter) {
                 setDetailImage(detailImageList)
             }
         }
     }
 
     private fun setDetailIndicator() {
-        TabLayoutMediator(binding.tabDetailMainImage, binding.vpDetailMainImage) { tab, position -> }.attach()
+        TabLayoutMediator(
+            binding.tabDetailMainImage,
+            binding.vpDetailMainImage
+        ) { tab, position -> }.attach()
     }
 
 
     // 디테일뷰 추천 리사이클러뷰
-    private fun setDetailRecommendAdapter(){
+    private fun setDetailRecommendAdapter() {
         binding.rvDetailRecommend.adapter = DetailRecommendListAdapter()
     }
 
@@ -80,15 +89,30 @@ class DetailFragment : Fragment() {
     }
 
 
-    // 디테일뷰 새로운 리사이클러뷰
-    private fun setDetailNewAdapter(){
+    // 디테일뷰 인기있는 신제품 리사이클러뷰
+    private fun setDetailNewAdapter() {
         binding.rvDetailNew.adapter = DetailNewListAdapter()
     }
-    private fun setDetailNewObserve(){
-        detailViewModel.detailNewList.observe(viewLifecycleOwner){
-                detailNewList -> with(binding.rvDetailNew.adapter as DetailNewListAdapter){
-            setDetailNew(detailNewList)
+
+    private fun setDetailNewObserve() {
+        detailViewModel.detailNewList.observe(viewLifecycleOwner) { detailNewList ->
+            with(binding.rvDetailNew.adapter as DetailNewListAdapter) {
+                setDetailNew(detailNewList)
+            }
         }
+    }
+
+    // 디테일뷰 메인 렌즈 컬러 리사이클러뷰
+    private fun setDetailLensColorAdapter() {
+        binding.rvDetailLensColor.adapter = DetailLensColorListAdapter()
+    }
+
+    private fun setDetailLensColorObserve(){
+        detailViewModel.detailLensColorList.observe(viewLifecycleOwner) { detailLensColorList ->
+            with(binding.rvDetailLensColor.adapter as DetailLensColorListAdapter) {
+                setColoring(detailLensColorList)
+            }
+
         }
     }
 

@@ -11,7 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.VirtualReality_SNS">
+        android:theme="@style/Theme.VirtualReality_SNS"
+
+        android:hardwareAccelerated="false"
+        android:largeHeap="true">
+
+<!--        java.lang.OutOfMemoryError 해결-->
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -19,11 +24,7 @@
 
         <activity android:name=".detail.DetailActivity">
 
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
 
         </activity>
 
@@ -31,21 +32,13 @@
             android:name=".login_signup.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/SplashTheme">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
         </activity>
 
         <activity
             android:name=".onboarding.OnboardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
@@ -63,17 +56,15 @@
         </activity>
 
         <activity android:name=".home.HomeActivity">
-            <!-- <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>-->
-        </activity>
-        <activity android:name=".search.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".search.SearchActivity">
+
         </activity>
 
         <!--        푸시알림-->

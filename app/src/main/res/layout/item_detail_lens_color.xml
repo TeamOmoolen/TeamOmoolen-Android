@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             setColor="@{colorData}"
-            app:srcCompat="@drawable/ic_ellipse_1848" />
+            app:srcCompat="@drawable/ic_rectangle_3659" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
