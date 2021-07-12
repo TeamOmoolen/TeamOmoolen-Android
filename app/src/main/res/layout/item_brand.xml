@@ -24,7 +24,7 @@
                 android:id="@+id/iv_lens"
                 android:layout_width="84dp"
                 android:layout_height="0dp"
-                android:src="@drawable/img_olens_logo_onboarding_normal"
+                android:src="@drawable/image_42"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

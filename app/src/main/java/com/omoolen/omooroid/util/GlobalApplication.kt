@@ -5,24 +5,17 @@ import android.app.Application
 import android.util.Log
 import com.kakao.sdk.common.KakaoSdk
 import com.omoolen.omooroid.BuildConfig
+import com.omoolen.omooroid.R
 
 
 class GlobalApplication : Application() {
     var instance: GlobalApplication? = null
 
-    companion object {
-        lateinit var tokenPrefs : SharedPreferenceToken
-        lateinit var recentPrefs : SharedPreferenceRecent
-
-    }
     override fun onCreate() {
         super.onCreate()
         Log.d("GLOBAL", "들어옴")
         // Kakao Sdk 초기화
         KakaoSdk.init(this, BuildConfig.KAKAO_LOGIN_KEY)
-        //sharedpreference - 싱글톤
-        tokenPrefs = SharedPreferenceToken(applicationContext)
-        recentPrefs = SharedPreferenceRecent(applicationContext)
     }
 
 //    override fun onTerminate() {

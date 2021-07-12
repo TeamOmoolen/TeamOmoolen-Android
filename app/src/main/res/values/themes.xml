@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.VirtualReality_SNS" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.VirtualReality_SNS" parent="Theme.AppCompat.Light">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -39,12 +39,5 @@
     </style>
     <style name="SearchText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/chip_text_color</item>
-        <item name="android:textStyle">bold</item>
-        <item name="chipBackgroundColor">@color/chip_background_color</item>
     </style>
 </resources>
