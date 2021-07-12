@@ -123,15 +123,9 @@ dependencies {
     //viewPager2
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
-<<<<<<< HEAD
-    // tab indicator
-    implementation 'me.relex:circleindicator:2.1.6'
-
-=======
     //gson
     implementation 'com.google.code.gson:gson:2.8.5'
 
     //material Design
     implementation 'com.google.android.material:material:1.4.0'
->>>>>>> 4d46f19d6b64d35775ba616415e1cfca683dfbce
 }
