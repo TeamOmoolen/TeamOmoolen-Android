@@ -148,8 +148,8 @@ class TwoSearchFragment : Fragment() {
         colorLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvColor.layoutManager = colorLayoutManager
 
-        binding.rvColor.addItemDecoration(HorizontalItemDecorator(10))
-        binding.rvColor.addItemDecoration(VerticalItemDecorator(10))
+        //binding.rvColor.addItemDecoration(HorizontalItemDecorator(10))
+        //binding.rvColor.addItemDecoration(VerticalItemDecorator(10))
     }
 
     private fun diameterInit() {
@@ -179,8 +179,8 @@ class TwoSearchFragment : Fragment() {
         diameterLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvDiameter.layoutManager = diameterLayoutManager
 
-        binding.rvDiameter.addItemDecoration(HorizontalItemDecorator(20))
-        binding.rvDiameter.addItemDecoration(VerticalItemDecorator(10))
+        //binding.rvDiameter.addItemDecoration(HorizontalItemDecorator(20))
+        //binding.rvDiameter.addItemDecoration(VerticalItemDecorator(10))
     }
 
     private fun periodInit() {
@@ -211,8 +211,8 @@ class TwoSearchFragment : Fragment() {
         periodLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvPeriod.layoutManager = periodLayoutManager
 
-        binding.rvPeriod.addItemDecoration(HorizontalItemDecorator(20))
-        binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10))
+        //binding.rvPeriod.addItemDecoration(HorizontalItemDecorator(20))
+        //binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10))
     }
 
     private fun clickEvent() {
