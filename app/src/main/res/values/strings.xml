@@ -14,5 +14,10 @@
     <string name="home_tip_main"> 오무렌과 함께하는 1분 렌즈 상식</string>
     <string name="home_tip_sub">오무렌1분 렌즈 상식</string>
     <string name="home_new_main"> 요즘 뜨는 신상 렌즈</string>
-
+    <string name="find_search_hint">원하는 렌즈를 검색해보세요</string>
+    <string name="find_recommend_message1">나에게 딱 맞는 오무렌의 추천렌즈를 소개합니다</string>
+    <string name="find_recommend_message2">선택한 상황에 적절한 렌즈를 모아봤어요</string>
+    <string name="sort">정렬</string>
+    <string name="sort_price_high">가격 높은 순</string>
+    <string name="sort_price_low">가격 낮은 순</string>
 </resources>

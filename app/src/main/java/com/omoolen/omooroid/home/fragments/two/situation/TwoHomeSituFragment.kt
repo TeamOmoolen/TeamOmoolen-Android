@@ -6,7 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.omoolen.omooroid.R
+import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
+import com.omoolen.omooroid.databinding.FragmentHomeTwoSituBinding
+import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouViewModel
 
 class TwoHomeSituFragment : Fragment() {
 
@@ -14,19 +19,35 @@ class TwoHomeSituFragment : Fragment() {
         fun newInstance() = TwoHomeSituFragment()
     }
 
-    private lateinit var viewModel: TwoHomeSituViewModel
+    private var _binding: FragmentHomeTwoSituBinding? = null
+    private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
+
+    private val viewModel: TwoHomeSituViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home_two_situ, container, false)
+        _binding = FragmentHomeTwoSituBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.setSituList()
+        setSituAdapter()
+        setSituObserve()
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(TwoHomeSituViewModel::class.java)
-        // TODO: Use the ViewModel
+    private fun setSituAdapter(){
+        binding.rvFindSituation.adapter = RecommendListAdapter()
+    }
+
+    private fun setSituObserve() {
+        viewModel.situList.observe(viewLifecycleOwner) { situList ->
+            with(binding.rvFindSituation.adapter as RecommendListAdapter) {
+                setRecommend(situList)
+            }
+        }
     }
 
 }

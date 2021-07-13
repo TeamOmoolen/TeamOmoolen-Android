@@ -56,7 +56,13 @@ class TwoHomeFragment : Fragment() {
 
         binding.vpHomeTwo.adapter = pagerAdapter
 
-        TabLayoutMediator(binding.tabLayout, binding.vpHomeTwo) { tab, position ->
+        binding.vpHomeTwo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+            }
+        })
+
+        TabLayoutMediator(binding.findTabLayout, binding.vpHomeTwo) { tab, position ->
                 when (position) {
                     0 -> { tab.text = homeViewModel.tabItem1}
                     1 -> { tab.text = homeViewModel.tabItem2}

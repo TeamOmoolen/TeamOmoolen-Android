@@ -6,7 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.omoolen.omooroid.R
+import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
+import com.omoolen.omooroid.databinding.FragmentHomeTwoSeasonBinding
+import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouViewModel
 
 class TwoHomeSeasonFragment : Fragment() {
 
@@ -14,19 +19,34 @@ class TwoHomeSeasonFragment : Fragment() {
         fun newInstance() = TwoHomeSeasonFragment()
     }
 
-    private lateinit var viewModel: TwoHomeSeasonViewModel
+    private var _binding: FragmentHomeTwoSeasonBinding? = null
+    private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
+
+    private val viewModel: TwoHomeSeasonViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home_two_season, container, false)
+        _binding = FragmentHomeTwoSeasonBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.setSeasonList()
+        setSeasonAdapter()
+        setSeasonObserve()
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(TwoHomeSeasonViewModel::class.java)
-        // TODO: Use the ViewModel
+    private fun setSeasonAdapter(){
+        binding.rvFindSeason.adapter = RecommendListAdapter()
     }
 
+    private fun setSeasonObserve() {
+        viewModel.seasonList.observe(viewLifecycleOwner) { seasonList ->
+            with(binding.rvFindSeason.adapter as RecommendListAdapter) {
+                setRecommend(seasonList)
+            }
+        }
+    }
 }

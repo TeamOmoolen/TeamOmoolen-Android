@@ -15,49 +15,100 @@
         android:layout_height="match_parent"
         tools:context=".home.fragments.two.fragment_two">
 
-        <EditText
-            android:id="@+id/et_two_searchbar"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_two_search_main"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/om_main_orange"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="원하는 렌즈를 검색해보세요"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/find_tabLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_find_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="-6dp"
+                app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-6dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_btn_searchlens_normal"
+                android:ems="10"
+                android:hint="@string/find_search_hint"
+                android:inputType="textPersonName"
+                android:paddingStart="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="11dp"
+                android:textAlignment="textStart"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_find_back"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_home_search_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="11dp"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
+                app:srcCompat="@drawable/ic_search_small" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+            android:id="@+id/find_tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="51dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_two_searchbar"
+            app:layout_constraintTop_toBottomOf="@+id/cl_two_search_main"
             app:tabIndicatorColor="@color/om_main_orange">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/two_tab_foryou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="for you" /> <!--나중에 서버에서 값 받기-->
+                android:text="for you"
+                app:tabSelectedTextColor="@color/om_main_orange"
+                app:tabTextColor="@color/om_fourth_gray" /> <!--나중에 서버에서 값 받기-->
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/two_tab_situation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="운동" /> <!--나중에 서버에서 값 받기-->
+                android:text="운동"
+                app:tabSelectedTextColor="@color/om_main_orange"
+                app:tabTextColor="@color/om_fourth_gray" /> <!--나중에 서버에서 값 받기-->
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/two_tab_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="신제품" /> <!--나중에 서버에서 값 받기-->
+                android:text="신제품"
+                app:tabSelectedTextColor="@color/om_main_orange"
+                app:tabTextColor="@color/om_fourth_gray" /> <!--나중에 서버에서 값 받기-->
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/two_tab_season"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="여름에 예쁨" /> <!--나중에 서버에서 값 받기-->
+                android:text="여름에 예쁨"
+                app:tabSelectedTextColor="@color/om_main_orange" /> <!--나중에 서버에서 값 받기-->
 
         </com.google.android.material.tabs.TabLayout>
 
@@ -69,6 +120,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/find_tabLayout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

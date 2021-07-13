@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="sortData"
+            type="com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/find_dialog_sort_bg"
+    tools:context=".home.fragments.two.FindSortPriceFragment">
+
+    <TextView
+        android:id="@+id/tv_dialog_find_sort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="133dp"
+        android:text="@string/sort"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_dialog_find_sort_line1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@color/om_fifth_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_find_sort"
+        app:srcCompat="@drawable/ic_rectangle_3614" />
+
+    <TextView
+        android:id="@+id/tv_dialog_find_sort_low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="113dp"
+        android:text="@string/sort_price_low"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_dialog_find_sort_line1" />
+
+    <ImageView
+        android:id="@+id/iv_dialog_find_sort_line2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/om_fifth_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_find_sort_low"
+        app:srcCompat="@drawable/ic_rectangle_3614" />
+
+    <TextView
+        android:id="@+id/tv_dialog_find_sort_high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="113dp"
+        android:layout_marginBottom="25dp"
+        android:text="@string/sort_price_high"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_dialog_find_sort_line2" />
+
+    <ImageView
+        android:id="@+id/iv_dialog_find_sort_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_close2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

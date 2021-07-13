@@ -10,3 +10,5 @@ data class RecommendInfo(
     val price : Int,
     val colors : MutableList<String>
 )
+
+
