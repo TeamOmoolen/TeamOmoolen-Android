@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.login_signup.login
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.util.Log
@@ -12,10 +13,13 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
+import com.omoolen.omooroid.login_signup.login.loginApi.UserClient
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
-    val id = MutableLiveData<String>()
-    val password = MutableLiveData<String>()
+    lateinit var oauthKey : String
+    lateinit var name : String
 
     private var _loginSuccess = MutableLiveData<Boolean>()
     val loginSuccess: LiveData<Boolean>
@@ -43,6 +47,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 else{
                     //토큰 유효성 체크 성공(필요 시 sdk내부에서 토큰 갱신됨)
                     Log.e(LOGINVIEWMODEL, tokenInfo.toString()+" / 로그인 성공333", error)
+                    getKakaoInfo()
                     //TODO : 홈 activity로 이동
                 }
             }
@@ -92,6 +97,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 Toast.makeText(context, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                 //onboarding으로 보내고
                 Log.d("LOGINVIEWMODEL",token.toString())
+                oauthKey = token.toString()
             }
         }
 
@@ -146,9 +152,26 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         "\n회원번호: ${user.id}" +
                         "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
                         "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+                name = user.kakaoAccount?.profile?.nickname.toString()
             }
         }
+        //getUserApi()
     }
+
+//    @SuppressLint("CheckResult")
+//    fun getUserApi(){
+//        UserClient.getApi.saveUser()
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({items ->
+//                newsList.clear()
+//                items.data.forEach {
+//                    newsList.add(NewsInformation(it.version,it.id,it.event,it.image,it.info,it.place,it.title,it.title_idx))
+//                }
+//            },{e ->
+//                println(e.toString())
+//            })
+//    }
 
 
     fun updateKakaoLogin() {
