@@ -47,23 +47,6 @@ class LoginFragment : Fragment() {
         hashkey.getHashKey(requireContext())
     }
 
-//    fun sessionLogin() {
-//        session = Session.getCurrentSession()
-//        session?.addCallback(sessionCallback)
-//
-//        binding.btnKakaoLogin.setOnClickListener { v ->
-//            if (Session.getCurrentSession().checkAndImplicitOpen()) {
-//                Log.d(TAG, "onClick: 로그인 세션살아있음")
-//                // 카카오 로그인 시도 (창이 안뜬다.)
-//                sessionCallback.requestMe()
-//            } else {
-//                Log.d(TAG, "onClick: 로그인 세션끝남")
-//                // 카카오 로그인 시도 (창이 뜬다.)
-//                session?.open(AuthType.KAKAO_LOGIN_ALL, this@LoginFragment)
-//            }
-//        }
-//    }
-
     fun kakaologin_logout() {
         binding.btnKakaoLogin.setOnClickListener {
             Log.d("LOGINFRAGMENT_login", "버튼클릭")
