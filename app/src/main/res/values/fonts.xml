@@ -42,6 +42,14 @@
         <item name="android:textColor">@color/om_main_black</item>
     </style>
 
+    <style name="TextStyle73">
+        <item name="android:fontFamily">@font/noto_sans_kr</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:textColor">@color/om_white</item>
+    </style>
+
     <style name="TextStyle56">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:fontFamily">@font/noto_sans_kr</item>
