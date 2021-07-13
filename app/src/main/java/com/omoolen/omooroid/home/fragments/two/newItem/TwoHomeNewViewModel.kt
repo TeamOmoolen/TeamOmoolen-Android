@@ -13,40 +13,40 @@ class TwoHomeNewViewModel : ViewModel() {
 
     fun setNewList() {
         _newList.value = mutableListOf(
-            RecommendInfo(
+            RecommendInfo(1,
                 R.drawable.rectangle_3410, R.drawable.img_color_a,
                 "오렌즈", "브라운 컬러렌즈1", "11.9mm / 1Day(10p)",
                 18000, mutableListOf("#c4c4c4", "#ffca6c",
                     "#597838", "#9249f6")
             ),
-            RecommendInfo(
+            RecommendInfo(2,
                 R.drawable.rectangle_3410, R.drawable.img_color_a,
                 "오렌즈", "브라운 컬러렌즈2", "11.9mm / 1Day(10p)",
-                18000, mutableListOf("#c4c4c4", "#ffca6c",
+                17000, mutableListOf("#c4c4c4", "#ffca6c",
                     "#597838", "#9249f6")
             ),
-            RecommendInfo(
+            RecommendInfo(3,
                 R.drawable.rectangle_3410, R.drawable.img_color_a,
                 "오렌즈", "브라운 컬러렌즈3", "11.9mm / 1Day(10p)",
-                18000, mutableListOf("#c4c4c4", "#ffca6c",
+                16000, mutableListOf("#c4c4c4", "#ffca6c",
                     "#597838", "#9249f6")
             ),
-            RecommendInfo(
+            RecommendInfo(4,
                 R.drawable.rectangle_3410, R.drawable.img_color_a,
                 "오렌즈", "브라운 컬러렌즈4", "11.9mm / 1Day(10p)",
-                18000, mutableListOf("#c4c4c4", "#ffca6c",
+                19000, mutableListOf("#c4c4c4", "#ffca6c",
                     "#597838", "#9249f6")
             ),
-            RecommendInfo(
+            RecommendInfo(5,
                 R.drawable.rectangle_3410, R.drawable.img_color_a,
                 "오렌즈", "브라운 컬러렌즈3", "11.9mm / 1Day(10p)",
-                18000, mutableListOf("#c4c4c4", "#ffca6c",
+                14000, mutableListOf("#c4c4c4", "#ffca6c",
                     "#597838", "#9249f6")
             ),
-            RecommendInfo(
+            RecommendInfo(6,
                 R.drawable.rectangle_3410, R.drawable.img_color_a,
                 "오렌즈", "브라운 컬러렌즈4", "11.9mm / 1Day(10p)",
-                18000, mutableListOf("#c4c4c4", "#ffca6c",
+                12000, mutableListOf("#c4c4c4", "#ffca6c",
                     "#597838", "#9249f6")
             )
         )
