@@ -1,4 +1,4 @@
-package com.omoolen.omooroid.home.fragments.one.networkApi
+package com.omoolen.omooroid.home.fragments.one.tip
 
 data class Guide(
     val answer: String,

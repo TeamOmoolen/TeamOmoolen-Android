@@ -1,6 +1,6 @@
-package com.omoolen.omooroid.home.fragments.one.networkApi
+package com.omoolen.omooroid.home.fragments.one.event
 
-data class DeadlineEvent(
+data class LastestEvent(
     val content: String,
     val id: Int,
     val image: String,
