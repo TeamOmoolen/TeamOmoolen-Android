@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.omoolen.omooroid.R
+import com.omoolen.omooroid.util.HashKey
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var navController: NavController
@@ -20,4 +21,6 @@ class LoginActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.host_nav_fragment) as NavHostFragment
         navController = navHostFragment.navController
     }
+
+
 }

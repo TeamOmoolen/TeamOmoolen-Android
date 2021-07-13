@@ -20,7 +20,7 @@
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/bnv_main"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/nav_home" />
+            app:navGraph="@navigation/nav_home"/>
 
         <!--<androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager_home"
@@ -39,7 +39,7 @@
             app:itemIconTint="@color/nav_button_selector"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/menu_home" />
+            app:menu="@menu/menu_home"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,8 +82,8 @@ class TwoOnboardFragment : Fragment() {
         whatLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvWhat.layoutManager = whatLayoutManager
 
-        binding.rvWhat.addItemDecoration(HorizontalItemDecorator(20))
-        binding.rvWhat.addItemDecoration(VerticalItemDecorator(10))
+        binding.rvWhat.addItemDecoration(HorizontalItemDecorator(20, 2, requireContext()))
+        binding.rvWhat.addItemDecoration(VerticalItemDecorator(10, requireContext()))
     }
 
     private fun colorInit() {
@@ -91,8 +91,8 @@ class TwoOnboardFragment : Fragment() {
         colorLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvColor.layoutManager = colorLayoutManager
 
-        binding.rvColor.addItemDecoration(HorizontalItemDecorator(10))
-        binding.rvColor.addItemDecoration(VerticalItemDecorator(10))
+        binding.rvColor.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
+        binding.rvColor.addItemDecoration(VerticalItemDecorator(10, requireContext()))
     }
 
     private fun nextBtn() {

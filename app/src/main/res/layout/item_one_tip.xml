@@ -12,7 +12,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="16dp">
+    android:layout_marginStart="20dp">
 
     <ImageView
         android:id="@+id/iv_one_tip_bg"
@@ -29,10 +29,9 @@
         android:id="@+id/iv_one_tip_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_btn_translens_normal" />
 
@@ -43,8 +42,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="26dp"
         android:text="@string/home_tip_sub"
-        android:textColor="@color/om_almostwhite"
-        android:textSize="14sp"
+        android:theme="@style/TextStyle53"
+        android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_header"
         app:layout_constraintTop_toTopOf="@+id/iv_one_tip_header" />
 
@@ -54,10 +53,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
-        tools:text="이런이런 정보가 들어가요!"
-        android:textColor="@color/om_white"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:text="이런이런 정보가 들어가요!"
+        android:includeFontPadding="false"
+        android:theme="@style/TextStyle73"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_header"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_sub" />
 
@@ -70,8 +68,8 @@
         android:layout_marginTop="26dp"
         android:text="@{tipInfo.title1}"
         tools:text="랜즈 눈치 안보고 패션을 꾸밀 수 있다?"
-        android:textColor="@color/om_main_black"
-        android:textSize="14sp"
+        android:theme="@style/TextStyle19"
+        android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/iv_one_tip_header" />
 
@@ -83,7 +81,8 @@
         android:layout_marginTop="4dp"
         android:text="@{tipInfo.sub1}"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
-        android:textSize="11sp"
+        android:theme="@style/TextStyle20"
+        android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title1" />
 
@@ -105,8 +104,8 @@
         android:layout_marginTop="26dp"
         android:text="@{tipInfo.title2}"
         tools:text="랜즈 눈치 안보고 패션을 꾸밀 수 있다?"
-        android:textColor="@color/om_main_black"
-        android:textSize="14sp"
+        android:theme="@style/TextStyle19"
+        android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/iv_line1" />
 
@@ -118,7 +117,8 @@
         android:layout_marginTop="4dp"
         android:text="@{tipInfo.sub2}"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
-        android:textSize="11sp"
+        android:theme="@style/TextStyle20"
+        android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title2" />
 
@@ -140,8 +140,8 @@
         android:layout_marginTop="26dp"
         android:text="@{tipInfo.title3}"
         tools:text="랜즈 눈치 안보고 패션을 꾸밀 수 있다?"
-        android:textColor="@color/om_main_black"
-        android:textSize="14sp"
+        android:theme="@style/TextStyle19"
+        android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/iv_line2" />
 
@@ -152,8 +152,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:text="@{tipInfo.sub3}"
+        android:theme="@style/TextStyle20"
+        android:includeFontPadding="false"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
-        android:textSize="11sp"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title3" />
 
