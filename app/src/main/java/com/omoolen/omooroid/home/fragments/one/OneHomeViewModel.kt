@@ -19,108 +19,54 @@ import retrofit2.HttpException
 
 class OneHomeViewModel(application: Application) : AndroidViewModel(application) {
 
-    //서버 연결용
-    private val _recommendListByUser = MutableLiveData<List<FindRecomendationByUser>>()
-    val recommendListByUser: LiveData<List<FindRecomendationByUser>>
-        get() = _recommendListByUser
+    //서버 연결용 음... 어캐 할지 모르겠다! 다 갈아엎자!!!!
+    private val _responesOneData = MutableLiveData<ResponseOneData>()
+    val responseOneData : LiveData<ResponseOneData>
+        get() = _responesOneData
 
-    fun requestRecommendListByUser() = viewModelScope.launch(Dispatchers.IO) {
+    //전체 데이터 :
+    fun requestOneHomeDataList() = viewModelScope.launch(Dispatchers.IO) {
         try {
-            _recommendListByUser.postValue(RetrofitBuilder_One.oneService.getOne().data.findRecomendationByUser)
+            _responesOneData.postValue(RetrofitBuilder_One.oneService.getOne().data)
+
         } catch (e: HttpException) {
 
         }
     }
+/*
+    private val _recommendListByUser = MutableLiveData<List<FindRecomendationByUser>>()
+    val recommendListByUser: LiveData<List<FindRecomendationByUser>>
+        get() = _recommendListByUser
 
     private val _recommendListBySeason = MutableLiveData<List<RecommendationBySeason>>()
     val recommendListBySeason: LiveData<List<RecommendationBySeason>>
         get() = _recommendListBySeason
 
-    fun requestRecomendationBySeasonr() = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            _recommendListBySeason.postValue(RetrofitBuilder_One.oneService.getOne().data.recommendationBySeason)
-        } catch (e: HttpException) {
-
-        }
-    }
-
     private val _recommendListBySituation = MutableLiveData<List<RecommendationBySituation>>()
     val recommendListBySituation: LiveData<List<RecommendationBySituation>>
         get() = _recommendListBySituation
-
-    fun requestRecomendationBySituation() = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            _recommendListBySituation.postValue(RetrofitBuilder_One.oneService.getOne().data.recommendationBySituation)
-        } catch (e: HttpException) {
-
-        }
-    }
 
     private val _newLensList = MutableLiveData<NewLens>()
     val newLensList : LiveData<NewLens>
         get() = _newLensList
 
-    fun requestNewLens() = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            _newLensList.postValue(RetrofitBuilder_One.oneService.getOne().data.newLens)
-        } catch (e: HttpException) {
-
-        }
-    }
-
-
     private val _userName = MutableLiveData<String>()
     val userName : LiveData<String>
         get() = _userName
-
-    fun requestUserName() = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            _userName.postValue(RetrofitBuilder_One.oneService.getOne().data.username)
-        } catch (e: HttpException) {
-
-        }
-    }
 
     private val _deadlineEventList = MutableLiveData<List<DeadlineEvent>>()
     val deadlineEventList: LiveData<List<DeadlineEvent>>
         get() = _deadlineEventList
 
-    fun requestDeadlineEvent() = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            _deadlineEventList.postValue(RetrofitBuilder_One.oneService.getOne().data.deadlineEvent)
-        } catch (e: HttpException) {
-
-        }
-    }
-
-   private val _lastestEventList = MutableLiveData<List<LastestEvent>>()
+    private val _lastestEventList = MutableLiveData<List<LastestEvent>>()
     val lastestEventList: LiveData<List<LastestEvent>>
         get() = _lastestEventList
-
-    fun requestLastestEvent() = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            _lastestEventList.postValue(RetrofitBuilder_One.oneService.getOne().data.lastestEvent)
-        } catch (e: HttpException) {
-
-        }
-    }
 
     private val _guideList = MutableLiveData<List<Guide>>()
     val guideList: LiveData<List<Guide>>
         get() = _guideList
 
-    fun requestGuideList() = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            _guideList.postValue(RetrofitBuilder_One.oneService.getOne().data.guides)
-        } catch (e: HttpException) {
-
-        }
-    }
-
-
-
-
-
+*/
 
     //아래는 더미데이터
 
