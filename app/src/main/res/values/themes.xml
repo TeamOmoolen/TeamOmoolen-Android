@@ -41,7 +41,11 @@
         <item name="android:background">?android:attr/listDivider</item>
     </style>
     <style name="SearchText" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:textColor">@color/om_main_orange</item>
     </style>
 
     <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Choice">

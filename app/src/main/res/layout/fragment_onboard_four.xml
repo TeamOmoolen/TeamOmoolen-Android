@@ -52,7 +52,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1/4"
-                    android:textSize="12sp"
+                    android:includeFontPadding="false"
+                    style="@style/TextStyle5"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/pb_loading"
@@ -69,9 +70,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:text="가장 잘 맞았던 렌즈를 입력해주세요!"
-                android:textStyle="bold"
-                android:textColor="@color/om_main_black"
-                android:textSize="18sp"
+                android:includeFontPadding="false"
+                style="@style/TextStyle2"
                 app:layout_constraintTop_toBottomOf="@id/cl_loading" />
 
             <TextView
@@ -81,8 +81,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:text="눈에 딱 맞는 렌즈를 추천해 드릴 거예요!"
-                android:textColor="@color/om_fourth_gray"
-                android:textSize="13sp"
+                android:includeFontPadding="false"
+                style="@style/TextStyle3"
                 app:layout_constraintStart_toStartOf="@id/tv_most"
                 app:layout_constraintTop_toBottomOf="@id/tv_most" />
 
@@ -106,7 +106,8 @@
                     android:layout_marginStart="40dp"
                     android:gravity="center_horizontal"
                     android:text="브랜드를 선택해주세요!"
-                    android:textColor="@color/om_third_gray"
+                    android:includeFontPadding="false"
+                    style="@style/TextStyle4"
                     app:layout_constraintBottom_toBottomOf="@id/cl_toggle1"
                     app:layout_constraintStart_toStartOf="@id/cl_toggle1"
                     app:layout_constraintTop_toTopOf="@id/cl_toggle1"
@@ -136,7 +137,8 @@
                 app:layout_constraintEnd_toEndOf="@id/cl_toggle1"
                 app:layout_constraintStart_toStartOf="@id/cl_toggle1"
                 app:layout_constraintTop_toBottomOf="@id/cl_toggle1"
-                android:visibility="gone">
+                android:visibility="gone"
+                >
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -152,9 +154,11 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintVertical_bias="0.0"
                     tools:listitem="@layout/item_brand"
-                    android:overScrollMode="never"/>
+                    android:overScrollMode="never"
+                    />
 
                 <TextView
                     android:id="@+id/tv_ok"
@@ -167,9 +171,8 @@
                     android:background="@drawable/onboard_button_selector"
                     android:gravity="center"
                     android:text="선택완료"
-                    android:textColor="@color/om_white"
-                    android:textAlignment="center"
-                    android:textSize="18sp"
+                    android:includeFontPadding="false"
+                    style="@style/TextStyle7"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -201,6 +204,8 @@
                 android:layout_height="match_parent"
                 android:hint="렌즈명을 입력해주세요"
                 android:text="@={viewModel.lensName}"
+                android:includeFontPadding="false"
+                style="@style/TextStyle4"
                 android:background="@null"
                 android:textColor="@color/om_third_gray"
                 android:layout_marginEnd="60dp"
@@ -241,9 +246,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:text="렌즈를 주로 언제 착용하시나요?"
-                android:textColor="@color/om_main_black"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:includeFontPadding="false"
+                style="@style/TextStyle2"
                 app:layout_constraintTop_toBottomOf="@id/cl_personnal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -278,7 +282,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:text="오무렌 시작하기"
-                android:textColor="@color/om_white"
+                android:includeFontPadding="false"
+                style="@style/TextStyle7"
                 android:gravity="center"
                 app:layout_constraintTop_toBottomOf="@id/cl_when"
                 app:layout_constraintBottom_toBottomOf="parent"

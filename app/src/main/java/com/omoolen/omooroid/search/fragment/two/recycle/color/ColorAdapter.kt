@@ -45,7 +45,8 @@ class ColorAdapter : RecyclerView.Adapter<ColorAdapter.MyViewHolder>() {
         private val binding: ItemOnboardColorBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(colorInfo: ColorInfo) {
-            binding.ivColor.setBackgroundResource(colorInfo.resourceId)
+            binding.ivColor.setImageResource(colorInfo.resourceId)
+            binding.ivColor.setBackgroundResource(colorInfo.backId)
         }
     }
 }

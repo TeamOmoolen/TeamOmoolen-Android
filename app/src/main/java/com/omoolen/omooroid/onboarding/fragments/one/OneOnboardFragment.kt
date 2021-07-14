@@ -79,13 +79,13 @@ class OneOnboardFragment : Fragment() {
     private fun genderInit() {
         binding.rvGender.adapter = viewModel.setGenderAdapter()
         genderLayoutManager = GridLayoutManager(requireContext(), 2)
-        binding.rvGender.layoutManager = genderLayoutManager
+        //binding.rvGender.layoutManager = genderLayoutManager
 
         genderLayoutManager = object : GridLayoutManager(requireContext(), 2) {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
                 // force size of viewHolder here, this will override layout_height and layout_width from xml
                 lp.width = ((width - 50) / spanCount)
-                lp.height = lp.width
+                //lp.height = lp.width + 1000
                 return true
             }
         }
@@ -104,9 +104,21 @@ class OneOnboardFragment : Fragment() {
     private fun ageInit() {
         binding.rvAge.adapter = viewModel.setAgeAdapter()
         ageLayoutManager = GridLayoutManager(requireContext(), 2)
-        binding.rvAge.layoutManager = ageLayoutManager
+
+        ageLayoutManager = object : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width - 50) / spanCount)
+                //lp.height = 50
+                return true
+            }
+        }
+
+        binding.rvGender.setHasFixedSize(true)
         binding.rvAge.addItemDecoration(VerticalItemDecorator(10, requireContext()))
-        binding.rvAge.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
+        binding.rvAge.layoutManager = ageLayoutManager
+
+        //binding.rvAge.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
     }
 
     private fun singleChoice() {

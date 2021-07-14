@@ -4,14 +4,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="1dp"
+        android:layout_height="160dp"
+
         android:clipToPadding="false"
-        android:background="@color/om_main_red">
+        android:background="@color/om_white"
+        android:elevation="2dp"
+        android:layout_margin="1dp"
+        >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_frame"
             android:layout_width="0dp"
-            android:layout_height="155dp"
+            android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +41,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_pic"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="남성"/>
+                android:text="남성"
+                style="@style/TextStyle43"
+                android:includeFontPadding="false"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,8 @@
         android:id="@+id/sv_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        android:background="@color/om_almostwhite">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -49,7 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1/4"
-                    android:textSize="12sp"
+                    style="@style/TextStyle5"
+                    android:includeFontPadding="false"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/pb_loading"
@@ -65,9 +67,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="어떤 렌즈가 필요하세요?"
-                android:textColor="@color/om_main_black"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                style="@style/TextStyle2"
+                android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cl_loading" />
 
@@ -78,8 +79,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="6dp"
                 android:text="필요한 렌즈를 모두 선택하시면 렌즈를 추천해드릴게요!"
-                android:textColor="@color/om_fourth_gray"
-                android:textSize="14sp"
+                style="@style/TextStyle3"
+                android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_what" />
 
@@ -116,9 +117,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:text="좋아하는 렌즈 색상은 무엇인가요?"
-                android:textColor="@color/om_main_black"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                style="@style/TextStyle2"
+                android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cl_what" />
 
@@ -129,8 +129,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="6dp"
                 android:text="중복선택이 가능해요!"
-                android:textColor="@color/om_fourth_gray"
-                android:textSize="14sp"
+                style="@style/TextStyle3"
+                android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_color" />
 
@@ -178,7 +178,8 @@
                 android:background="@drawable/onboard_button_selector"
                 android:gravity="center"
                 android:text="다음"
-                android:textColor="@color/om_white"
+                style="@style/TextStyle7"
+                android:includeFontPadding="false"
                 app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
