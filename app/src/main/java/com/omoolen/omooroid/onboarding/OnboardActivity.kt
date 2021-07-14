@@ -29,7 +29,6 @@ class OnboardActivity : AppCompatActivity(){
         setContentView(R.layout.activity_onboard)
         initNavController()
         //changeFragment(fragmentOnboardOne)
-
     }
 
     private fun initNavController() {

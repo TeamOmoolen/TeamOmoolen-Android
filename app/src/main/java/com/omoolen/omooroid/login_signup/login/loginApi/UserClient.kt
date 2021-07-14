@@ -6,7 +6,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object UserClient {
-    private const val BASE_URL = "https://good-quail-18.loca.lt/auth/kakao"
+    private const val BASE_URL = "https://omoolen.loca.lt/auth/kakao/"
 
     val getApi = Retrofit.Builder()
         .baseUrl(BASE_URL)

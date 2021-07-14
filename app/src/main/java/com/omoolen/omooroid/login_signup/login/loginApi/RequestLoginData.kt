@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.login_signup.login.loginApi
 
-data class User(
+data class RequestLoginData(
     val oauthKey: String,
-    val name: String
+    val name: String,
 )
