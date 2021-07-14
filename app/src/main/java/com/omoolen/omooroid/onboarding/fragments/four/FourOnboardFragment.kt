@@ -19,6 +19,7 @@ import com.omoolen.omooroid.databinding.FragmentOnboardFourBinding
 import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.onboarding.OnboardDatabase
 import com.omoolen.omooroid.util.HorizontalItemDecorator
+import com.omoolen.omooroid.util.VerticalItemDecoration
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 
@@ -88,7 +89,7 @@ class FourOnboardFragment : Fragment() {
 
             //Toast.makeText(requireContext(),nextArr[0].toString()+"@"+nextArr[1].toString(), Toast.LENGTH_SHORT).show()
             binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0 || nextString == "") //다음 버튼 활성화 판단
-
+            binding.tvToggle1.text = viewModel.brandName.value
             //edittext 활성화
             binding.etPersonnal.isEnabled = true
         }
@@ -100,6 +101,7 @@ class FourOnboardFragment : Fragment() {
                 binding.tvGuide.isVisible = false
                 nextString = binding.etPersonnal.text.toString()
                 binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0 || nextString == "") //다음 버튼 활성화 판단
+
             }
             else{
                 binding.tvGuide.isVisible = true
@@ -140,16 +142,34 @@ class FourOnboardFragment : Fragment() {
     fun brandInit() {
         binding.rvBrand.adapter = viewModel.setBrandAdapter()
         brandLayoutManager = GridLayoutManager(requireContext(), 3)
+        brandLayoutManager = object : GridLayoutManager(requireContext(), 3) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width-40) / spanCount)
+                //lp.height = lp.width
+                return true
+            }
+        }
+        binding.rvBrand.setHasFixedSize(true)
+        binding.rvBrand.addItemDecoration(VerticalItemDecoration(10))
         binding.rvBrand.layoutManager = brandLayoutManager
     }
 
     private fun whenInit() {
         binding.rvWhen.adapter = viewModel.setWhenAdapter()
         whenLayoutManager = GridLayoutManager(requireContext(), 2)
+        whenLayoutManager = object : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width - 50) / spanCount)
+                //lp.height = lp.width
+                return true
+            }
+        }
+        binding.rvWhen.setHasFixedSize(true)
         binding.rvWhen.layoutManager = whenLayoutManager
-        binding.rvWhen.addItemDecoration(VerticalItemDecorator(10,requireContext()))
-        binding.rvWhen.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
-
+        binding.rvWhen.addItemDecoration(VerticalItemDecoration(10))
+        //binding.rvWhen.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
     }
 
     private fun singleChoice() {
