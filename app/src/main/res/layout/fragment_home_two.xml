@@ -25,47 +25,47 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/iv_find_back"
+                android:id="@+id/iv_two_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="-6dp"
-                app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_back" />
+                app:srcCompat="@drawable/ic_home_omoolen_logo" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/et_two_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="-6dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/ic_btn_searchlens_normal"
+                android:background="@drawable/ic_home_search_rect"
                 android:ems="10"
-                android:hint="@string/find_search_hint"
+                android:hint="@string/home_search_hint"
                 android:inputType="textPersonName"
-                android:paddingStart="13dp"
+                android:paddingStart="12dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="11dp"
                 android:textAlignment="textStart"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_find_back"
+                app:layout_constraintStart_toEndOf="@+id/iv_two_logo"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_home_search_small"
+                android:id="@+id/iv_two_search_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="12dp"
+                android:paddingStart="14dp"
                 android:paddingTop="12dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="11dp"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
+                android:paddingEnd="14dp"
+                android:paddingBottom="12dp"
+                app:layout_constraintEnd_toEndOf="@+id/et_two_search"
+                app:layout_constraintTop_toTopOf="@+id/et_two_search"
                 app:srcCompat="@drawable/ic_search_small" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

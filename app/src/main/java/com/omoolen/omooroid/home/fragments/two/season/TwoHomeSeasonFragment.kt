@@ -40,7 +40,7 @@ class TwoHomeSeasonFragment : Fragment() {
         setSeasonAdapter()
         setSeasonObserve()
 
-        binding.ivFindQuestion4.setOnClickListener {
+        binding.ivSeasonSort.setOnClickListener {
             val findSortPriceFragment = FindSortPriceFragment()
 
             findSortPriceFragment.setButtonClickListener(object: FindSortPriceFragment.OnButtonClickListener {
@@ -55,6 +55,7 @@ class TwoHomeSeasonFragment : Fragment() {
                 }
             })
             findSortPriceFragment.show(childFragmentManager, "CustomDialog")
+
         }
 
         binding.ivFindQuestion4.setOnClickListener {

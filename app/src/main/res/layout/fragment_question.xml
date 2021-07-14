@@ -10,43 +10,61 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/find_dialog_sort_bg"
         tools:context=".home.fragments.two.QuestionFragment">
 
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_foryou_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/find_dialog_sort_bg" />
+
         <TextView
             android:id="@+id/tv_foryou_q_main"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="26dp"
             android:fontFamily="@font/noto_sans_cjkkr_bold"
+            android:includeFontPadding="false"
+            android:gravity="left"
             android:letterSpacing="-0.05"
+            android:maxLines="1"
             android:text="@string/forYou_question_main"
             android:textColor="@color/om_main_black"
-            android:textSize="19sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_foryou_q_content"
-            android:layout_width="258dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="23dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="23dp"
+            android:fontFamily="@font/noto_sans_cjkkr_regular"
+            android:includeFontPadding="false"
+            android:letterSpacing="-0.03"
+            android:minHeight="126dp"
             android:text="@string/forYou_question_content"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_foryou_q_main" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_foryou_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -56,8 +74,10 @@
 
             <ImageView
                 android:id="@+id/iv_foryou_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

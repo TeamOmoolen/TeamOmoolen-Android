@@ -59,7 +59,7 @@ class TwoHomeSituFragment : Fragment() {
 
         }
         binding.ivFindQuestion2.setOnClickListener {
-            val findQuestionFragment = FindQuestionFragment(1)
+            val findQuestionFragment = FindQuestionFragment(2)
             findQuestionFragment.show(childFragmentManager, "CustomDialog2")
         }
 

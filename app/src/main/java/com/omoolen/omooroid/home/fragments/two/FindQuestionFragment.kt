@@ -1,6 +1,10 @@
 package com.omoolen.omooroid.home.fragments.two
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,17 +23,17 @@ class FindQuestionFragment(val where : Int) : DialogFragment() {
         )
 
         if(where == 1){
-            binding.tvForyouQMain.text = R.string.forYou_question_main.toString()
-            binding.tvForyouQContent.text = R.string.forYou_question_content.toString()
+            binding.tvForyouQMain.text = getString(R.string.forYou_question_main)
+            binding.tvForyouQContent.text = getString(R.string.forYou_question_content)
         } else if(where == 2){
-            binding.tvForyouQMain.text = R.string.situ_question_main.toString()
-            binding.tvForyouQContent.text = R.string.situ_question_content.toString()
+            binding.tvForyouQMain.text = getString(R.string.situ_question_main)
+            binding.tvForyouQContent.text = getString(R.string.situ_question_content)
         } else if(where == 3){
-            binding.tvForyouQMain.text = R.string.forYou_question_main.toString()
-            binding.tvForyouQContent.text = R.string.forYou_question_content.toString()
+            binding.tvForyouQMain.text = getString(R.string.new_question_main)
+            binding.tvForyouQContent.text = getString(R.string.new_question_content)
         } else if(where == 4){
-            binding.tvForyouQMain.text = R.string.forYou_question_main.toString()
-            binding.tvForyouQContent.text = R.string.forYou_question_content.toString()
+            binding.tvForyouQMain.text = getString(R.string.season_question_main)
+            binding.tvForyouQContent.text = getString(R.string.season_question_content)
         }
 
         binding.clForyouBtn.setOnClickListener {
@@ -37,6 +41,13 @@ class FindQuestionFragment(val where : Int) : DialogFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        return dialog
     }
     override fun onDestroyView() {
         super.onDestroyView()
