@@ -22,12 +22,21 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="${kakaoLoginKey}" />
 
-        <activity android:name=".detail.DetailActivity">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity
+            android:name=".splash.SplashActivity"
+            android:theme="@style/SplashTheme">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+        <activity android:name=".detail.DetailActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
@@ -47,32 +56,39 @@
         <activity
             android:name=".login_signup.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@style/SplashTheme">
+            >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity
             android:name=".onboarding.OnboardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
 
 
         <activity android:name=".home.HomeActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".search.SearchActivity">
-<!--            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <!--        푸시알림-->

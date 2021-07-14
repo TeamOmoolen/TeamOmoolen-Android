@@ -16,15 +16,18 @@
         <item name="windowNoTitle">true</item>
     </style>
     <!-- Splash theme. -->
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.DarkActionBar"> <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item> <!-- No Title Bar-->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item> <!-- white status bar -->
-        <!--        <item name="android:statusBarColor">@color/colorPrimary</item>-->
-        <!--        <item name="android:windowLightStatusBar">true</item> &lt;!&ndash; background &ndash;&gt;-->
-        <item name="android:windowBackground">@drawable/background_splash</item>
+<!--    <style name="SplashTheme" parent="Theme.AppCompat.Light.DarkActionBar"> &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/purple_500</item>-->
+<!--        <item name="colorPrimaryVariant">@color/purple_700</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item> &lt;!&ndash; No Title Bar&ndash;&gt;-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item> &lt;!&ndash; white status bar &ndash;&gt;-->
+<!--        &lt;!&ndash;        <item name="android:statusBarColor">@color/colorPrimary</item>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <item name="android:windowLightStatusBar">true</item> &lt;!&ndash; background &ndash;&gt;&ndash;&gt;-->
+<!--        <item name="android:windowBackground">@drawable/background_splash</item>-->
+<!--    </style>-->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/ic_group_7985</item>
     </style>
 
     <style name="Divider">

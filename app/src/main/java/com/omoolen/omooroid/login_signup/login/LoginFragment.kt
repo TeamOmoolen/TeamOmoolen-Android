@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.login_signup.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,8 @@ import androidx.fragment.app.viewModels
 //import com.kakao.auth.AuthType
 //import com.kakao.auth.Session
 import com.omoolen.omooroid.databinding.FragmentLoginBinding
+import com.omoolen.omooroid.home.HomeActivity
+import com.omoolen.omooroid.onboarding.OnboardActivity
 import com.omoolen.omooroid.util.HashKey
 
 
@@ -37,9 +40,22 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //함수
         getHash()
-        observeKakaoUser()
-        kakaologin_logout()
-        //sessionLogin()
+        kakaologin()
+        intentActivity()
+    }
+
+    private fun intentActivity(){
+        viewModel.isNew.observe(viewLifecycleOwner) { isNew ->
+            if (isNew) {
+                val intent = Intent(activity, OnboardActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            } else {
+                val intent = Intent(activity, HomeActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
+        }
     }
 
     private fun getHash(){
@@ -47,34 +63,11 @@ class LoginFragment : Fragment() {
         hashkey.getHashKey(requireContext())
     }
 
-    fun kakaologin_logout() {
+    fun kakaologin() {
         binding.btnKakaoLogin.setOnClickListener {
-            Log.d("LOGINFRAGMENT_login", "버튼클릭")
-            //viewModel.kakaoLogin(requireContext()) //버튼 클릭시 로그인
             viewModel.newKakao(requireContext())
         }
-//        binding.btnKakaoLogout.setOnClickListener {
-//            viewModel.kakaoLogout()
-//        }
-        //viewModel.updateKakaoLogin() //로그인 유무 검사, 뷰 적용
     }
-
-    fun observeKakaoUser() {
-        viewModel.loginSuccess.observe(viewLifecycleOwner) { success ->
-            if (!success) { //로그인 X
-                binding.btnKakaoLogin.visibility = View.VISIBLE
-                //binding.btnKakaoLogout.visibility = View.GONE
-                Toast.makeText(requireContext(), "로그인에 실패했습니다", Toast.LENGTH_SHORT).show()
-            } else { //로그인 O
-                //binding.btnKakaoLogin.visibility = View.GONE
-                //binding.btnKakaoLogin.visibility = View.VISIBLE
-
-                //TODO : 온보딩으로 이동
-
-            }
-        }
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

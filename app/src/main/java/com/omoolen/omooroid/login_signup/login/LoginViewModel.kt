@@ -3,6 +3,7 @@ package com.omoolen.omooroid.login_signup.login
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
@@ -13,9 +14,11 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
+import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.login_signup.login.loginApi.RequestLoginData
 import com.omoolen.omooroid.login_signup.login.loginApi.ResponseLoginData
 import com.omoolen.omooroid.login_signup.login.loginApi.UserClient
+import com.omoolen.omooroid.util.SharedPreferenceToken
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
@@ -25,9 +28,7 @@ import retrofit2.Response
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
     var kakaoUser = KakaoUser("","")
 
-    private var _loginSuccess = MutableLiveData<Boolean>()
-    val loginSuccess: LiveData<Boolean>
-        get() = _loginSuccess
+    val isNew = MutableLiveData<Boolean>()
 
     fun newKakao(context:Context){
         if (AuthApiClient.instance.hasToken()) { //로그인이 된 상태인지 확인
@@ -140,8 +141,11 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             ){
                 Log.d("TEST_LOGINVIEWMODEL",response.isSuccessful.toString())
                 Log.d("TEST_LOGINVIEWMODEL",response.body()?.accessToken.toString())
+                Log.d("TEST_LOGINVIEWMODEL",response.body()?.isNewUser.toString())
+                //token값 저장
+                SharedPreferenceToken.putSettingItem(getApplication<Application>().applicationContext,"USER_TOKEN",response.body()?.accessToken.toString())
+                isNew.value = response.body()?.isNewUser
             }
-
             override fun onFailure(call: Call<ResponseLoginData>, t: Throwable) {
                 Log.d("NetworkTest","error:$t")
             }
@@ -156,7 +160,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             } else {
                 Log.i(LOGINVIEWMODEL, "로그아웃 성공. SDK에서 토큰 삭제됨")
             }
-            _loginSuccess.value = false
         }
     }
 

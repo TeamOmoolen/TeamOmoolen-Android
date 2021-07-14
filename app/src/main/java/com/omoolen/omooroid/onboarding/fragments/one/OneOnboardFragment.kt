@@ -1,26 +1,21 @@
 package com.omoolen.omooroid.onboarding.fragments.one
 
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.LinearInterpolator
 import android.widget.Toast
-import androidx.compose.ui.Alignment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentOnboardOneBinding
 import com.omoolen.omooroid.onboarding.OnboardDatabase
+import com.omoolen.omooroid.util.HorizontalItemDecoration
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
@@ -85,8 +80,26 @@ class OneOnboardFragment : Fragment() {
         binding.rvGender.adapter = viewModel.setGenderAdapter()
         genderLayoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvGender.layoutManager = genderLayoutManager
-        binding.rvGender.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
+
+        genderLayoutManager = object : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width - 50) / spanCount)
+                lp.height = lp.width
+                return true
+            }
+        }
+        binding.rvGender.setHasFixedSize(true)
+        binding.rvGender.layoutManager = genderLayoutManager
+
+        //binding.rvGender.addItemDecoration(HorizontalItemDecoration(10))
+        //binding.rvGender.addItemDecoration(HorizontalItemDecorator(7, 2, requireContext()))
+//        binding.rvGender.apply {
+//            addItemDecoration(HorizontalItemDecoration(5))
+//        }
     }
+
+
 
     private fun ageInit() {
         binding.rvAge.adapter = viewModel.setAgeAdapter()
