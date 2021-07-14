@@ -388,7 +388,7 @@ class TwoSearchFragment : Fragment() {
                 v.isSelected = periodArr[position]
             }
         })
-        binding.rvPeriod.adapter = periodAdapter
+        binding.rvCycle.adapter = periodAdapter
         periodLayoutManager = GridLayoutManager(requireContext(), 2)
         periodLayoutManager = object : GridLayoutManager(requireContext(), 2) {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
@@ -398,55 +398,69 @@ class TwoSearchFragment : Fragment() {
                 return true
             }
         }
-        binding.rvPeriod.setHasFixedSize(true)
-        binding.rvPeriod.addItemDecoration(VerticalItemDecoration(10))
-        binding.rvPeriod.layoutManager = periodLayoutManager
+        binding.rvCycle.setHasFixedSize(true)
+        binding.rvCycle.addItemDecoration(VerticalItemDecoration(10))
+        binding.rvCycle.layoutManager = periodLayoutManager
     }
 
     private fun clickEvent() {
         binding.tvBrand.setOnClickListener {
             setChipSelected(0)
             binding.tvBrand.isSelected = chipSelect[0]
-            binding.tvTitle.text = "브랜드"
-            binding.rvBrand.visibility = View.VISIBLE
-            binding.rvColor.visibility = View.GONE
-            binding.rvDiameter.visibility = View.GONE
-            binding.rvPeriod.visibility = View.GONE
+            binding.clBrand.visibility = View.VISIBLE
+            binding.clColor.visibility = View.GONE
+            binding.clDiameter.visibility = View.GONE
+            binding.clCycle.visibility = View.GONE
         }
         binding.tvColor.setOnClickListener {
             setChipSelected(1)
             binding.tvColor.isSelected = chipSelect[1]
-            binding.tvTitle.text = "컬러"
-            binding.rvBrand.visibility = View.GONE
-            binding.rvColor.visibility = View.VISIBLE
-            binding.rvDiameter.visibility = View.GONE
-            binding.rvPeriod.visibility = View.GONE
+            binding.clBrand.visibility = View.GONE
+            binding.clColor.visibility = View.VISIBLE
+            binding.clDiameter.visibility = View.GONE
+            binding.clCycle.visibility = View.GONE
         }
         binding.tvDiameter.setOnClickListener {
             setChipSelected(2)
             binding.tvDiameter.isSelected = chipSelect[2]
-            binding.tvTitle.text = "직경"
-            binding.rvBrand.visibility = View.GONE
-            binding.rvColor.visibility = View.GONE
-            binding.rvDiameter.visibility = View.VISIBLE
-            binding.rvPeriod.visibility = View.GONE
+            binding.clBrand.visibility = View.GONE
+            binding.clColor.visibility = View.GONE
+            binding.clDiameter.visibility = View.VISIBLE
+            binding.clCycle.visibility = View.GONE
         }
         binding.tvPeriod.setOnClickListener {
             setChipSelected(3)
             binding.tvPeriod.isSelected = chipSelect[3]
-            binding.tvTitle.text = "주기"
-            binding.rvBrand.visibility = View.GONE
-            binding.rvColor.visibility = View.GONE
-            binding.rvDiameter.visibility = View.GONE
-            binding.rvPeriod.visibility = View.VISIBLE
+            binding.clBrand.visibility = View.GONE
+            binding.clColor.visibility = View.GONE
+            binding.clDiameter.visibility = View.GONE
+            binding.clCycle.visibility = View.VISIBLE
         }
-        binding.clAllTouch.setOnClickListener {
-            for (i in chipSelect.indices) {
-                if (chipSelect[i]) { //현재 선택한 탭 index찾기
 
-                }
-            }
+        //전체선택
+        var allSelectedArr = arrayOf(false,false,false,false)
+
+        binding.clAllTouchBrand.setOnClickListener {
+            allSelectedArr[0] = !allSelectedArr[0]
+            binding.ivBrand.isSelected = allSelectedArr[0]
+            binding.tvBrandSelectAll.isSelected = allSelectedArr[0]
         }
+        binding.clAllTouchColor.setOnClickListener {
+            allSelectedArr[1] = !allSelectedArr[1]
+            binding.ivColor.isSelected = allSelectedArr[1]
+            binding.tvColorSelectAll.isSelected = allSelectedArr[1]
+        }
+        binding.clAllTouchDiameter.setOnClickListener {
+            allSelectedArr[2] = !allSelectedArr[2]
+            binding.ivDiameter.isSelected = allSelectedArr[2]
+            binding.tvDiameterSelectAll.isSelected = allSelectedArr[2]
+        }
+        binding.clAllTouchCycle.setOnClickListener {
+            allSelectedArr[3] = !allSelectedArr[3]
+            binding.ivCycle.isSelected = allSelectedArr[3]
+            binding.tvCycleSelectAll.isSelected = allSelectedArr[3]
+        }
+
         //필터 검색 버튼 클릭
         binding.tvFilter.setOnClickListener {
             //컨버팅 필요
