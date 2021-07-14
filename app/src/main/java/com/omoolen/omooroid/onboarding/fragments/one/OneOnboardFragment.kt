@@ -85,7 +85,7 @@ class OneOnboardFragment : Fragment() {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
                 // force size of viewHolder here, this will override layout_height and layout_width from xml
                 lp.width = ((width - 50) / spanCount)
-                lp.height = lp.width
+                //lp.height = lp.width + 1000
                 return true
             }
         }

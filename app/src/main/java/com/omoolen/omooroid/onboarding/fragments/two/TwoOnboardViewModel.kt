@@ -29,9 +29,9 @@ class TwoOnboardViewModel(application: Application) : AndroidViewModel(applicati
         whatAdapter = WhatAdapter()
         whatAdapter.whatList.addAll(
             listOf<WhatInfo>(
-                WhatInfo(resourceId = R.drawable.ic_colorlens,name = "컬러렌즈"),
+                WhatInfo(resourceId = R.drawable.img_colorlens,name = "컬러렌즈"),
                 WhatInfo(resourceId = R.drawable.ic_colorlens,name = "투명렌즈"),
-                WhatInfo(resourceId = R.drawable.ic_colorlens,name = "코스프레/공막 렌즈"),
+                WhatInfo(resourceId = R.drawable.group_8060,name = "코스프레/공막 렌즈"),
             )
         )
         var whatArr = arrayOf(false,false,false)

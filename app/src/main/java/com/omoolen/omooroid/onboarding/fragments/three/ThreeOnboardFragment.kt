@@ -73,17 +73,35 @@ class ThreeOnboardFragment : Fragment() {
     private fun effectInit() {
         binding.rvEffect.adapter = viewModel.setEffectAdapter()
         effectLayoutManager = GridLayoutManager(requireContext(), 2)
+        effectLayoutManager = object : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width - 50) / spanCount)
+                //lp.height = lp.width
+                return true
+            }
+        }
+        binding.rvEffect.setHasFixedSize(true)
         binding.rvEffect.layoutManager = effectLayoutManager
         binding.rvEffect.addItemDecoration(VerticalItemDecorator(10, requireContext()))
-        binding.rvEffect.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
+        //binding.rvEffect.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
     }
 
     private fun periodInit() {
         binding.rvPeriod.adapter = viewModel.setPeriodAdapter()
         periodLayoutManager = GridLayoutManager(requireContext(), 3)
+        periodLayoutManager = object : GridLayoutManager(requireContext(), 3) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width-40) / spanCount)
+                //lp.height = lp.width
+                return true
+            }
+        }
+        binding.rvEffect.setHasFixedSize(true)
         binding.rvPeriod.layoutManager = periodLayoutManager
         binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10, requireContext()))
-        binding.rvPeriod.addItemDecoration(HorizontalItemDecorator(10, 3, requireContext()))
+        //binding.rvPeriod.addItemDecoration(HorizontalItemDecorator(10, 3, requireContext()))
     }
 
     private fun singleChoice() {
