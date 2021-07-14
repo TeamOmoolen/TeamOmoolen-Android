@@ -20,6 +20,7 @@ import com.omoolen.omooroid.search.fragment.two.recycle.period.PeriodAdapter
 import com.omoolen.omooroid.search.fragment.two.recycle.period.PeriodInfo
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.ListLiveData
+import com.omoolen.omooroid.util.VerticalItemDecoration
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 class TwoSearchFragment : Fragment() {
@@ -114,25 +115,37 @@ class TwoSearchFragment : Fragment() {
         })
         binding.rvBrand.adapter = brandAdapter
         brandLayoutManager = GridLayoutManager(requireContext(), 3)
+        brandLayoutManager = object : GridLayoutManager(requireContext(), 3) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width-40) / spanCount)
+                //lp.height = lp.width
+                return true
+            }
+        }
+        binding.rvBrand.setHasFixedSize(true)
+        binding.rvBrand.addItemDecoration(VerticalItemDecoration(10))
         binding.rvBrand.layoutManager = brandLayoutManager
+
     }
 
     private fun colorInit() {
         colorAdapter = ColorAdapter()
         colorAdapter.colorList.addAll(
-                listOf<ColorInfo>(
-                    ColorInfo(backId = R.drawable.ic_btn_noncolor_back, resourceId = R.drawable.ic_btn_noncolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_blackcolor_back, resourceId = R.drawable.ic_btn_blackcolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_greycolor_back, resourceId = R.drawable.ic_btn_greycolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_chococolor_back, resourceId = R.drawable.ic_btn_chococolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_greencolor_back, resourceId = R.drawable.ic_btn_greencolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_browncolor_back, resourceId = R.drawable.ic_btn_browncolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_purplecolor_back, resourceId = R.drawable.ic_btn_purplecolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_bluecolor_back, resourceId = R.drawable.ic_btn_bluecolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_goldcolor_back, resourceId = R.drawable.ic_btn_goldcolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_pinkcolor_back, resourceId = R.drawable.ic_btn_pinkcolor_selector),
-                    ColorInfo(backId = R.drawable.ic_btn_etccolor_back, resourceId = R.drawable.ic_btn_etccolor_selector)
-                )
+            listOf<ColorInfo>(
+                ColorInfo(backId = R.drawable.ic_btn_noncolor_back, resourceId = R.drawable.ic_btn_noncolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_blackcolor_back, resourceId = R.drawable.ic_btn_blackcolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_greycolor_back, resourceId = R.drawable.ic_btn_greycolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_chococolor_back, resourceId = R.drawable.ic_btn_chococolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_greencolor_back, resourceId = R.drawable.ic_btn_greencolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_browncolor_back, resourceId = R.drawable.ic_btn_browncolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_purplecolor_back, resourceId = R.drawable.ic_btn_purplecolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_bluecolor_back, resourceId = R.drawable.ic_btn_bluecolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_goldcolor_back, resourceId = R.drawable.ic_btn_goldcolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_pinkcolor_back, resourceId = R.drawable.ic_btn_pinkcolor_selector),
+                ColorInfo(backId = R.drawable.btn_glittercolor_normal, resourceId = R.drawable.ic_btn_glittercolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_etccolor_back, resourceId = R.drawable.ic_btn_etccolor_selector)
+            )
         )
         var colorArr =
             arrayOf(false, false, false, false, false, false, false, false, false, false, false)
@@ -146,10 +159,17 @@ class TwoSearchFragment : Fragment() {
         })
         binding.rvColor.adapter = colorAdapter
         colorLayoutManager = GridLayoutManager(requireContext(), 2)
+        colorLayoutManager = object : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width - 50) / spanCount)
+                //lp.height = lp.width + 1000
+                return true
+            }
+        }
+        binding.rvColor.setHasFixedSize(true)
+        binding.rvColor.addItemDecoration(VerticalItemDecoration(10))
         binding.rvColor.layoutManager = colorLayoutManager
-
-        //binding.rvColor.addItemDecoration(HorizontalItemDecorator(10))
-        //binding.rvColor.addItemDecoration(VerticalItemDecorator(10))
     }
 
     private fun diameterInit() {
@@ -177,10 +197,18 @@ class TwoSearchFragment : Fragment() {
         })
         binding.rvDiameter.adapter = diameterAdapter
         diameterLayoutManager = GridLayoutManager(requireContext(), 2)
+        diameterLayoutManager = object : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width - 50) / spanCount)
+                //lp.height = lp.width + 1000
+                return true
+            }
+        }
+        binding.rvDiameter.setHasFixedSize(true)
+        binding.rvDiameter.addItemDecoration(VerticalItemDecoration(10))
         binding.rvDiameter.layoutManager = diameterLayoutManager
 
-        //binding.rvDiameter.addItemDecoration(HorizontalItemDecorator(20))
-        //binding.rvDiameter.addItemDecoration(VerticalItemDecorator(10))
     }
 
     private fun periodInit() {
@@ -190,10 +218,11 @@ class TwoSearchFragment : Fragment() {
                 PeriodInfo(name = "1 day"),
                 PeriodInfo(name = "2 ~ 6 days"),
                 PeriodInfo(name = "1 week"),
+                PeriodInfo(name = "2 week"),
                 PeriodInfo(name = "1 month"),
                 PeriodInfo(name = "2 ~ 3 months"),
-                PeriodInfo(name = "3 ~ 6 months"),
-                PeriodInfo(name = "6 months")
+                PeriodInfo(name = "4 ~5 months"),
+                PeriodInfo(name = "6 months +")
             )
         )
         var periodArr = arrayOf(false, false, false, false, false, false, false)
@@ -209,10 +238,17 @@ class TwoSearchFragment : Fragment() {
         })
         binding.rvPeriod.adapter = periodAdapter
         periodLayoutManager = GridLayoutManager(requireContext(), 2)
+        periodLayoutManager = object : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width - 50) / spanCount)
+                //lp.height = lp.width + 1000
+                return true
+            }
+        }
+        binding.rvPeriod.setHasFixedSize(true)
+        binding.rvPeriod.addItemDecoration(VerticalItemDecoration(10))
         binding.rvPeriod.layoutManager = periodLayoutManager
-
-        //binding.rvPeriod.addItemDecoration(HorizontalItemDecorator(20))
-        //binding.rvPeriod.addItemDecoration(VerticalItemDecorator(10))
     }
 
     private fun clickEvent() {
