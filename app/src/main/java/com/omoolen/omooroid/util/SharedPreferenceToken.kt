@@ -6,10 +6,10 @@ import android.content.SharedPreferences
 import android.util.Log
 
 
-class SharedPreferenceToken (context : Context){
-    val mContext = context
+object SharedPreferenceToken {
+
     private val TOKEN = "TOKEN"
-    private fun putSettingItem(key: String, value: String) {
+    fun putSettingItem(mContext:Context, key: String, value: String) {
         Log.d("SHARED", "Put $key (value : $value ) to $TOKEN")
         val preferences: SharedPreferences = mContext.getSharedPreferences(TOKEN, MODE_PRIVATE)
         val editor = preferences.edit()
@@ -17,7 +17,8 @@ class SharedPreferenceToken (context : Context){
         editor.apply()
     }
 
-    private fun getSettingItem(key: String): String? {
+    //USER_TOKEN
+    fun getSettingItem(mContext:Context, key: String): String? {
         Log.d("SHARED", "Get $key from $TOKEN")
         return mContext.getSharedPreferences(TOKEN, 0).getString(key, null)
     }

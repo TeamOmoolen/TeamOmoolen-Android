@@ -16,7 +16,8 @@ class HorizontalItemDecorator(private val divHeight : Int, private val count : I
         super.getItemOffsets(outRect, view, parent, state)
 
         //dp _ px 변환
-        val px : Int = dpToPx(context, divHeight)
+        //val px : Int = dpToPx(context, divHeight)
+        val px : Int = divHeight
 
         var lp: GridLayoutManager.LayoutParams? =
             view.layoutParams as GridLayoutManager.LayoutParams

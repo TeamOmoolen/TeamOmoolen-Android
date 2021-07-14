@@ -21,6 +21,4 @@ class LoginActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.host_nav_fragment) as NavHostFragment
         navController = navHostFragment.navController
     }
-
-
 }

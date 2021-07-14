@@ -4,7 +4,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/ic_vec_logo_orange" />
+            android:src="@drawable/ic_group_7985"/>
     </item>
 </layer-list>
 

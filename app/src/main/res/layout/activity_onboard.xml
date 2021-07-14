@@ -14,6 +14,7 @@
         app:layout_constraintBottom_toTopOf="@+id/view_boarder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/white"
         >
         <ImageView
             android:id="@+id/iv_back"
@@ -67,8 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_boarder"
-        app:navGraph="@navigation/nav_onboard"
-        android:layout_marginTop="14dp"/>
+        app:navGraph="@navigation/nav_onboard" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
