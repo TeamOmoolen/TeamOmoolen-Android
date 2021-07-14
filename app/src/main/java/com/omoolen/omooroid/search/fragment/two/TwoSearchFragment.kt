@@ -120,19 +120,19 @@ class TwoSearchFragment : Fragment() {
     private fun colorInit() {
         colorAdapter = ColorAdapter()
         colorAdapter.colorList.addAll(
-            listOf<ColorInfo>(
-                ColorInfo(resourceId = R.drawable.ic_btn_noncolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_blackcolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_greycolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_chococolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_greencolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_browncolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_purplecolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_bluecolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_goldcolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_pinkcolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_etccolor_selector)
-            )
+                listOf<ColorInfo>(
+                    ColorInfo(backId = R.drawable.ic_btn_noncolor_back, resourceId = R.drawable.ic_btn_noncolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_blackcolor_back, resourceId = R.drawable.ic_btn_blackcolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_greycolor_back, resourceId = R.drawable.ic_btn_greycolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_chococolor_back, resourceId = R.drawable.ic_btn_chococolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_greencolor_back, resourceId = R.drawable.ic_btn_greencolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_browncolor_back, resourceId = R.drawable.ic_btn_browncolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_purplecolor_back, resourceId = R.drawable.ic_btn_purplecolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_bluecolor_back, resourceId = R.drawable.ic_btn_bluecolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_goldcolor_back, resourceId = R.drawable.ic_btn_goldcolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_pinkcolor_back, resourceId = R.drawable.ic_btn_pinkcolor_selector),
+                    ColorInfo(backId = R.drawable.ic_btn_etccolor_back, resourceId = R.drawable.ic_btn_etccolor_selector)
+                )
         )
         var colorArr =
             arrayOf(false, false, false, false, false, false, false, false, false, false, false)

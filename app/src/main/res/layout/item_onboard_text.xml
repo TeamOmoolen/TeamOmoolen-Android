@@ -19,7 +19,8 @@
         android:elevation="1dp"
         android:gravity="center"
         android:text="투명"
-        android:textSize="16sp" />
+        style="@style/TextStyle8"
+        android:includeFontPadding="false"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
