@@ -6,7 +6,7 @@
     <data>
         <variable
             name="sortData"
-            type="com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment" />
+            type="com.omoolen.omooroid.home.fragments.two.FindQuestionFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,4 +16,64 @@
         tools:context=".home.fragments.two.QuestionFragment">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout></layout>
+        <TextView
+            android:id="@+id/tv_foryou_q_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="26dp"
+            android:fontFamily="@font/noto_sans_cjkkr_bold"
+            android:letterSpacing="-0.05"
+            android:text="@string/forYou_question_main"
+            android:textColor="@color/om_main_black"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_foryou_q_content"
+            android:layout_width="258dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="23dp"
+            android:text="@string/forYou_question_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_foryou_q_main" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_foryou_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_foryou_q_content">
+
+            <ImageView
+                android:id="@+id/iv_foryou_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_btn_finish_normal" />
+
+            <TextView
+                android:id="@+id/tv_foryou_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:includeFontPadding="false"
+                android:text="@string/check"
+                android:theme="@style/TextStyle7"
+                app:layout_constraintEnd_toEndOf="@+id/iv_foryou_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout></layout>

@@ -20,4 +20,12 @@
     <string name="sort">정렬</string>
     <string name="sort_price_high">가격 높은 순</string>
     <string name="sort_price_low">가격 낮은 순</string>
+    <string name="forYou_question_main">나에게 딱 맞는 렌즈 추천, For you</string>
+    <string name="forYou_question_content">For you는 오무렌 사용자들이 나에게 딱 맞는 렌즈를 찾는 데 도움을 드리고자 만들어진 개인형 맞춤 추천 서비스 입니다.
+         &#10; &#10;
+         국내 모든 렌즈에 대한 데이터를 바탕으로 회원가입 시 입력한 1)기능 2)주기 3)컬러 등을 고려하여 &#10; 유저들에게 맞는 추천 제품을 제공합니다. </string>
+    <string name="check">확인</string>
+
+    <string name="situ_question_main">상황에 어울리는 렌즈 추천</string>
+    <string name="situ_question_content">상황에 어울리는 렌즈 추천은 실제 렌즈 사용자들의 데이터를 기반으로 상황별 맞춤 렌즈를 제공합니다.</string>
 </resources>

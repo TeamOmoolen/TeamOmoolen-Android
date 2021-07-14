@@ -71,6 +71,10 @@ class FindSortPriceFragment : DialogFragment() {
             dismiss()
         }
 
+        binding.ivDialogFindSortClose.setOnClickListener{
+            dismiss()
+        }
+
         return binding.root
     }
 

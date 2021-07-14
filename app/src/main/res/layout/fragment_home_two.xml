@@ -80,7 +80,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_two_search_main"
-            app:tabIndicatorColor="@color/om_main_orange">
+            app:tabIconTint="@null"
+            app:tabIndicatorColor="@color/om_main_orange"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="@color/om_main_orange"
+            app:tabTextAppearance="@style/TextStyle29"
+            app:tabTextColor="@color/om_fourth_gray">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/two_tab_foryou"
