@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -64,6 +65,8 @@ class TwoSearchFragment : Fragment() {
     )
     val otherColorList = arrayOf("yellow", "espressogold", "hazel", "rich brown", "white", "red")
     val cycleList = arrayOf(0, 1, 2, 3, 4, 5, 6, 7)
+
+    val firstList = arrayOf(true,true,true,true)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -133,13 +136,13 @@ class TwoSearchFragment : Fragment() {
             false, false, false, false, false, false, false, false, false, false, false,
             false, false, false, false, false, false
         )
-        var first = true
+
         brandAdapter.setItemClickListener(object : BrandAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 brandArr[position] = !brandArr[position]
-                if (first) {
+                if (firstList[0]) {
                     brandChoice.clear()
-                    first = false
+                    firstList[0] = false
                 }
                 if (brandArr[position]) brandChoice.add(brandAdapter.brandList[position].name)
                 else brandChoice.remove(brandAdapter.brandList[position].name)
@@ -147,7 +150,7 @@ class TwoSearchFragment : Fragment() {
                 if (brandChoice.size == 0) {
                     brandChoice =
                         brandList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
-                    first = true
+                    firstList[0] = true
                 }
                 v.isSelected = brandArr[position]
             }
@@ -237,13 +240,13 @@ class TwoSearchFragment : Fragment() {
                 false,
                 false
             )
-        var first = true
+
         colorAdapter.setItemClickListener(object : ColorAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 colorArr[position] = !colorArr[position]
-                if (first) {
+                if (firstList[1]) {
                     colorChoice.clear()
-                    first = false
+                    firstList[1] = false
                 }
                 if (colorArr[position]) { //선택
                     if (position == 11) { //기타 선택
@@ -266,7 +269,7 @@ class TwoSearchFragment : Fragment() {
                 if (colorChoice.size == 0) {
                     colorChoice =
                         colorList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
-                    first = true
+                    firstList[1] = true
                 }
                 v.isSelected = colorArr[position]
             }
@@ -365,15 +368,15 @@ class TwoSearchFragment : Fragment() {
                 PeriodInfo(name = "6 months +")
             )
         )
-        var first = true
+
         var periodArr = arrayOf(false, false, false, false, false, false, false, false)
         periodAdapter.setItemClickListener(object : PeriodAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 // TODO : 클릭 시 이벤트 작성
                 //다중 선택
-                if (first) {
+                if (firstList[3]) {
                     periodChoice.clear()
-                    first = false
+                    firstList[3] = false
                 }
                 periodArr[position] = !periodArr[position]
                 if (periodArr[position]) periodChoice.add(position)
@@ -382,7 +385,7 @@ class TwoSearchFragment : Fragment() {
                 if (periodChoice.size == 0) {
                     periodChoice =
                         cycleList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
-                    first = true
+                    firstList[3] = true
                 }
 
                 v.isSelected = periodArr[position]
@@ -444,21 +447,70 @@ class TwoSearchFragment : Fragment() {
             allSelectedArr[0] = !allSelectedArr[0]
             binding.ivBrand.isSelected = allSelectedArr[0]
             binding.tvBrandSelectAll.isSelected = allSelectedArr[0]
+
+            if (allSelectedArr[0]) { //전체 선택 시
+                brandChoice = brandList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[0] = true
+                for (i in 0 until brandList.size + 1)
+                    binding.rvBrand[i].isSelected = true
+            }
+            else { //전체 선택 취소
+                brandChoice = brandList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[0] = true
+                for (i in 0 until brandList.size + 1)
+                    binding.rvBrand[i].isSelected = false
+            }
         }
         binding.clAllTouchColor.setOnClickListener {
             allSelectedArr[1] = !allSelectedArr[1]
             binding.ivColor.isSelected = allSelectedArr[1]
             binding.tvColorSelectAll.isSelected = allSelectedArr[1]
+            if (allSelectedArr[1]) { //전체 선택 시
+                colorChoice = colorList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[1] = true
+                for (i in 0 until colorList.size + 1)
+                    binding.rvColor[i].isSelected = true
+            }
+            else { //전체 선택 취소
+                colorChoice = colorList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[1] = true
+                for (i in 0 until colorList.size + 1)
+                    binding.rvColor[i].isSelected = false
+            }
         }
-        binding.clAllTouchDiameter.setOnClickListener {
-            allSelectedArr[2] = !allSelectedArr[2]
-            binding.ivDiameter.isSelected = allSelectedArr[2]
-            binding.tvDiameterSelectAll.isSelected = allSelectedArr[2]
-        }
+//        binding.clAllTouchDiameter.setOnClickListener {
+//            allSelectedArr[2] = !allSelectedArr[2]
+//            binding.ivDiameter.isSelected = allSelectedArr[2]
+//            binding.tvDiameterSelectAll.isSelected = allSelectedArr[2]
+//            if (allSelectedArr[2]) { //전체 선택 시
+//                diameterChoice[0] = -1 //아무것도 선택 안했을 때 전체 선택으로
+//                firstList[2] = true
+//                for (i in 0 until 6)
+//                    binding.rvDiameter[i].isSelected = true
+//            }
+//            else { //전체 선택 취소
+//                diameterChoice[0] = -1 //아무것도 선택 안했을 때 전체 선택으로
+//                firstList[2] = true
+//                for (i in 0 until 6)
+//                    binding.rvDiameter[i].isSelected = false
+//            }
+//        }
         binding.clAllTouchCycle.setOnClickListener {
             allSelectedArr[3] = !allSelectedArr[3]
             binding.ivCycle.isSelected = allSelectedArr[3]
             binding.tvCycleSelectAll.isSelected = allSelectedArr[3]
+            if (allSelectedArr[3]) { //전체 선택 시
+                periodChoice = cycleList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[3] = true
+                for (i in 0 until cycleList.size)
+                    binding.rvCycle[i].isSelected = true
+            }
+            else { //전체 선택 취소
+                periodChoice = cycleList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[3] = true
+                for (i in 0 until cycleList.size)
+                    binding.rvCycle[i].isSelected = false
+            }
         }
 
         //필터 검색 버튼 클릭
