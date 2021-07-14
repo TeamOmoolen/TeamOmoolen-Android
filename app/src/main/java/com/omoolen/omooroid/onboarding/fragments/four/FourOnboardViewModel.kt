@@ -26,6 +26,10 @@ class FourOnboardViewModel(application: Application) : AndroidViewModel(applicat
     private val _brand = MutableLiveData<Int>()
     val brand: LiveData<Int>
         get() = _brand
+
+    private val _brandName = MutableLiveData<String>()
+    val brandName: LiveData<String>
+        get() = _brandName
     private val _when = MutableLiveData<Int>()
     val whens: LiveData<Int>
         get() = _when
@@ -87,6 +91,7 @@ class FourOnboardViewModel(application: Application) : AndroidViewModel(applicat
             var view = rv.layoutManager?.findViewByPosition(position)
             view?.isSelected = true
             _brand.value = position
+            _brandName.value = brandAdapter.brandList[position].name
             for (i in 0..rv.adapter!!.itemCount) {
                 var otherView = rv.layoutManager?.findViewByPosition(i)
                 if (otherView != view) {

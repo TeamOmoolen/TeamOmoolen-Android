@@ -53,6 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1/4"
+                    style="@style/TextStyle5"
                     android:textSize="12sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -69,9 +70,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="성별을 알려주세요!"
-                android:textColor="@color/om_main_black"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:includeFontPadding="false"
+                style="@style/TextStyle2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cl_loading" />
 
@@ -80,10 +80,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="6dp"
                 android:text="연령과 성별에 따라 많이 찾는 렌즈를 추천해드릴게요!"
-                android:textColor="@color/om_fourth_gray"
-                android:textSize="14sp"
+                style="@style/TextStyle3"
+                android:includeFontPadding="false"
+                android:layout_marginTop="6dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_gender" />
 
@@ -94,13 +94,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
-                android:foregroundGravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_gender2"
-                android:background="@color/om_third_gray"
-                android:descendantFocusability="blocksDescendants"
-                >
+                app:layout_constraintTop_toBottomOf="@id/tv_gender2">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_gender"
@@ -113,6 +109,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/item_onboard_picture"
                     android:overScrollMode="never"
+                    android:layout_margin="1dp"
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -124,9 +121,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="40dp"
                 android:text="나이를 알려주세요!"
-                android:textColor="@color/om_main_black"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                style="@style/TextStyle2"
+                android:includeFontPadding="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cl_gender" />
 
@@ -173,8 +169,9 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/onboard_button_selector"
         android:gravity="center"
+        style="@style/TextStyle7"
         android:text="다음"
-        android:textColor="@color/om_white"
+        android:includeFontPadding="false"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

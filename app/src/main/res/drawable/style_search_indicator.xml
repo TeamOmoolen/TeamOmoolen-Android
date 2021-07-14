@@ -4,7 +4,7 @@
     <item android:gravity="center">
         <shape>
             <size
-                android:height="3dp" />
+                android:height="4dp" />
             <solid android:color="@color/om_main_orange" />
         </shape>
     </item>

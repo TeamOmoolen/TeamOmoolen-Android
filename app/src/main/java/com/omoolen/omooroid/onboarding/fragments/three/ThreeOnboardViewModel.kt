@@ -51,12 +51,13 @@ class ThreeOnboardViewModel(application: Application) : AndroidViewModel(applica
         periodAdapter.periodList.addAll(
             listOf<PeriodInfo>(
                 PeriodInfo(period = "원데이"),
-                PeriodInfo(period = "1주"),
-                PeriodInfo(period = "2주"),
-                PeriodInfo(period = "1개월"),
-                PeriodInfo(period = "2~3개월"),
-                PeriodInfo(period = "3~6개월"),
-                PeriodInfo(period = "6개월 이상"),
+                PeriodInfo(period = "2~6 days"),
+                PeriodInfo(period = "1 week"),
+                PeriodInfo(period = "2 weeks"),
+                PeriodInfo(period = "1 month"),
+                PeriodInfo(period = "2~3 months"),
+                PeriodInfo(period = "4~5 months"),
+                PeriodInfo(period = "6 months +"),
                 PeriodInfo(period = "없음")
             )
         )

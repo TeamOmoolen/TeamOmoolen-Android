@@ -12,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/om_almostwhite">
 
         <ScrollView
             android:id="@+id/sv_scroll"
@@ -56,7 +57,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1/4"
-                        android:textSize="12sp"
+                        android:includeFontPadding="false"
+                        style="@style/TextStyle5"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/pb_loading"
@@ -72,9 +74,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="어떤 기능의 렌즈가 필요하세요?"
-                    android:textColor="@color/om_main_black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    style="@style/TextStyle2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cl_loading" />
 
@@ -85,8 +86,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="6dp"
                     android:text="기능을 선택하시면 필요에 맞게 렌즈를 추천해드릴게요!"
-                    android:textColor="@color/om_fourth_gray"
-                    android:textSize="14sp"
+                    android:includeFontPadding="false"
+                    style="@style/TextStyle3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_effect" />
 
@@ -123,9 +124,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="40dp"
                     android:text="어떤 주기의 렌즈를 찾으시나요?"
-                    android:textColor="@color/om_main_black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:includeFontPadding="false"
+                    style="@style/TextStyle2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cl_effect" />
 

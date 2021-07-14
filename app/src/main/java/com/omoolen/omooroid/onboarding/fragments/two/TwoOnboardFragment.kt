@@ -80,18 +80,37 @@ class TwoOnboardFragment : Fragment() {
     private fun whatInit() {
         binding.rvWhat.adapter = viewModel.setWhatAdapter()
         whatLayoutManager = GridLayoutManager(requireContext(), 2)
+
+        whatLayoutManager = object : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width - 50) / spanCount)
+                //lp.height = lp.width
+                return true
+            }
+        }
+        binding.rvWhat.setHasFixedSize(true)
         binding.rvWhat.layoutManager = whatLayoutManager
 
-        binding.rvWhat.addItemDecoration(HorizontalItemDecorator(20, 2, requireContext()))
+        //binding.rvWhat.addItemDecoration(HorizontalItemDecorator(20, 2, requireContext()))
         binding.rvWhat.addItemDecoration(VerticalItemDecorator(10, requireContext()))
     }
 
     private fun colorInit() {
         binding.rvColor.adapter = viewModel.setColorAdapter()
         colorLayoutManager = GridLayoutManager(requireContext(), 2)
+        colorLayoutManager = object : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
+                // force size of viewHolder here, this will override layout_height and layout_width from xml
+                lp.width = ((width - 50) / spanCount)
+                //lp.height = lp.width
+                return true
+            }
+        }
+        binding.rvColor.setHasFixedSize(true)
         binding.rvColor.layoutManager = colorLayoutManager
 
-        binding.rvColor.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
+        //binding.rvColor.addItemDecoration(HorizontalItemDecorator(10, 2, requireContext()))
         binding.rvColor.addItemDecoration(VerticalItemDecorator(10, requireContext()))
     }
 

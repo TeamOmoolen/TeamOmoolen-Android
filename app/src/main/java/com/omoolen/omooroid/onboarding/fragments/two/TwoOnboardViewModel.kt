@@ -29,9 +29,9 @@ class TwoOnboardViewModel(application: Application) : AndroidViewModel(applicati
         whatAdapter = WhatAdapter()
         whatAdapter.whatList.addAll(
             listOf<WhatInfo>(
-                WhatInfo(resourceId = R.drawable.ic_colorlens,name = "컬러렌즈"),
+                WhatInfo(resourceId = R.drawable.img_colorlens,name = "컬러렌즈"),
                 WhatInfo(resourceId = R.drawable.ic_colorlens,name = "투명렌즈"),
-                WhatInfo(resourceId = R.drawable.ic_colorlens,name = "코스프레/공막 렌즈"),
+                WhatInfo(resourceId = R.drawable.group_8060,name = "코스프레/공막 렌즈"),
             )
         )
         var whatArr = arrayOf(false,false,false)
@@ -52,17 +52,18 @@ class TwoOnboardViewModel(application: Application) : AndroidViewModel(applicati
         colorAdapter = ColorAdapter()
         colorAdapter.colorList.addAll(
             listOf<ColorInfo>(
-                ColorInfo(resourceId = R.drawable.ic_btn_noncolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_blackcolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_greycolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_chococolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_greencolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_browncolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_purplecolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_bluecolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_goldcolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_pinkcolor_selector),
-                ColorInfo(resourceId = R.drawable.ic_btn_etccolor_selector)
+                ColorInfo(backId = R.drawable.ic_btn_noncolor_back, resourceId = R.drawable.ic_btn_noncolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_blackcolor_back, resourceId = R.drawable.ic_btn_blackcolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_greycolor_back, resourceId = R.drawable.ic_btn_greycolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_chococolor_back, resourceId = R.drawable.ic_btn_chococolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_greencolor_back, resourceId = R.drawable.ic_btn_greencolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_browncolor_back, resourceId = R.drawable.ic_btn_browncolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_purplecolor_back, resourceId = R.drawable.ic_btn_purplecolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_bluecolor_back, resourceId = R.drawable.ic_btn_bluecolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_goldcolor_back, resourceId = R.drawable.ic_btn_goldcolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_pinkcolor_back, resourceId = R.drawable.ic_btn_pinkcolor_selector),
+                ColorInfo(backId = R.drawable.btn_glittercolor_normal, resourceId = R.drawable.ic_btn_glittercolor_selector),
+                ColorInfo(backId = R.drawable.ic_btn_etccolor_back, resourceId = R.drawable.ic_btn_etccolor_selector)
             )
         )
         var colorArr = arrayOf(false,false,false,false,false,false,false,false,false,false,false,false)
