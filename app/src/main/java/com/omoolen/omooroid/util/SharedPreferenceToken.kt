@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.util.Log
+import com.omoolen.omooroid.splash.SplashActivity
 
 
 object SharedPreferenceToken {
@@ -18,7 +19,7 @@ object SharedPreferenceToken {
     }
 
     //USER_TOKEN
-    fun getSettingItem(mContext:Context, key: String): String? {
+    fun getSettingItem(mContext: Context, key: String): String? {
         Log.d("SHARED", "Get $key from $TOKEN")
         return mContext.getSharedPreferences(TOKEN, 0).getString(key, null)
     }

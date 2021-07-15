@@ -72,8 +72,7 @@ class FourOnboardViewModel(application: Application) : AndroidViewModel(applicat
                 WhenInfo(name = "운동"),
                 WhenInfo(name = "일상생활"),
                 WhenInfo(name = "특별한 날"),
-                WhenInfo(name = "여행"),
-                WhenInfo(name = "기타")
+                WhenInfo(name = "여행")
             )
         )
 

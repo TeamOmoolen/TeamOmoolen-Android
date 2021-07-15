@@ -64,11 +64,12 @@ class ThreeOnboardFragment : Fragment() {
             Toast.makeText(requireContext(),nextArr[0].toString()+"@"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
             binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0) //다음 버튼 활성화 판단
         }
-        viewModel.period.observe(viewLifecycleOwner){ period ->
-            nextArr[1] = period
-            Toast.makeText(requireContext(),nextArr[0].toString()+"@"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
-            binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0)
-        }
+        viewModel.periodChoice.observe(viewLifecycleOwner, {
+            //다음 버튼 감지
+            nextArr[1] = it.size
+            Toast.makeText(requireContext(),nextArr[0].toString()+"/"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
+            binding.tvButton.isSelected = !(nextArr[0] < 0) && nextArr[1] > 0
+        })
     }
 
     private fun effectInit() {
@@ -120,21 +121,6 @@ class ThreeOnboardFragment : Fragment() {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
-
-        binding.rvPeriod.addOnItemTouchListener(object :
-            RecyclerView.OnItemTouchListener {
-            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-                if (e.action == MotionEvent.ACTION_MOVE) { }
-                else viewModel.periodSingleChoice(rv,e)
-                return false
-            }
-            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-        })
     }
 
     private fun nextBtn() {
@@ -145,7 +131,7 @@ class ThreeOnboardFragment : Fragment() {
                     viewModel.period.value?.let { period ->
                         onboardDatabase.setThree(
                             effect,
-                            period
+                            viewModel.periodChoice
                         )
                     }
                 }

@@ -8,7 +8,7 @@ data class OnboardData(
     var _what: ListLiveData<Int>?,
     var _color: ListLiveData<Int>?,
     var _effect: Int = -1,
-    var _period: Int = -1,
+    var _period: ListLiveData<Int>?,
     var _brand: Int = -1,
     var _name: String,
     var _when: Int = -1
