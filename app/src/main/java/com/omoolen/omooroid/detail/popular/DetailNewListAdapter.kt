@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.ItemDetailNewBinding
+import com.omoolen.omooroid.detail.recommend.DetailRecommendInfo
 import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
 
 class DetailNewListAdapter : RecyclerView.Adapter<DetailNewListAdapter.DetailNewViewHolder>() {
 
-    val  detailNewList = mutableListOf<DetailNewInfo>()
+    private var detailNewList = emptyList<DetailNewInfo>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -40,5 +41,11 @@ class DetailNewListAdapter : RecyclerView.Adapter<DetailNewListAdapter.DetailNew
     override fun onBindViewHolder(holder: DetailNewViewHolder, position: Int) {
         holder.bind(detailNewList[position])
     }
+
+    fun setDetailNew(detailNewList : List<DetailNewInfo>){
+        this.detailNewList = detailNewList
+        notifyDataSetChanged()
+    }
+
 
 }
