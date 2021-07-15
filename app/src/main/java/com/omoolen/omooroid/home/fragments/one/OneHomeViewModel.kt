@@ -1,6 +1,8 @@
 package com.omoolen.omooroid.home.fragments.one
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,6 +15,9 @@ import com.omoolen.omooroid.home.fragments.one.networkApi.*
 import com.omoolen.omooroid.home.fragments.one.newItem.NewInfo
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendInfo
 import com.omoolen.omooroid.home.fragments.one.tip.TipInfo
+import com.omoolen.omooroid.util.ListLiveData
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -28,47 +33,132 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
     fun requestOneHomeDataList() = viewModelScope.launch(Dispatchers.IO) {
         try {
             _responesOneData.postValue(RetrofitBuilder_One.oneService.getOne().data)
-
         } catch (e: HttpException) {
 
         }
     }
-/*
-    private val _recommendListByUser = MutableLiveData<List<FindRecomendationByUser>>()
-    val recommendListByUser: LiveData<List<FindRecomendationByUser>>
-        get() = _recommendListByUser
 
-    private val _recommendListBySeason = MutableLiveData<List<RecommendationBySeason>>()
-    val recommendListBySeason: LiveData<List<RecommendationBySeason>>
-        get() = _recommendListBySeason
 
-    private val _recommendListBySituation = MutableLiveData<List<RecommendationBySituation>>()
-    val recommendListBySituation: LiveData<List<RecommendationBySituation>>
-        get() = _recommendListBySituation
 
-    private val _newLensList = MutableLiveData<NewLens>()
-    val newLensList : LiveData<NewLens>
-        get() = _newLensList
+    @SuppressLint("CheckResult")
+    fun getHome() {
+//        val deadlineEvent: List<DeadlineEvent>,
+//        val guides: Guides,
+//        val lastestEvent: List<LastestEvent>,
+//        val newLens: NewLens,
+//        val recommendationBySeason: List<RecommendationBySeason>,
+//        val recommendationBySituation: List<RecommendationBySituation>,
+//        val recommendationByUser: List<RecommendationByUser>,
+//        val season: String,
+//        val situation: String,
+//        val username: String
 
-    private val _userName = MutableLiveData<String>()
-    val userName : LiveData<String>
-        get() = _userName
+        val deadlineEventList = ListLiveData<DeadlineEvent>()
 
-    private val _deadlineEventList = MutableLiveData<List<DeadlineEvent>>()
-    val deadlineEventList: LiveData<List<DeadlineEvent>>
-        get() = _deadlineEventList
+        //guide
+        var guide1 = ArrayList<Guide>() //각 GUIDE객체의 category,guides
+        var guide2 = ArrayList<Guide>()
+        var guide3 = ArrayList<Guide>()
 
-    private val _lastestEventList = MutableLiveData<List<LastestEvent>>()
-    val lastestEventList: LiveData<List<LastestEvent>>
-        get() = _lastestEventList
+        val guideLists = ListLiveData<GuideList1>() //guide1,guide2,guide3의 모임
 
-    private val _guideList = MutableLiveData<List<Guide>>()
-    val guideList: LiveData<List<Guide>>
-        get() = _guideList
+        val lastestEventList = ListLiveData<LastestEvent>()
+        //val newLensList = MutableLiveData<Newlens>()
+        val recommendationBySeasonList = ListLiveData<RecommendationBySeason>()
+        val recommendationBySituationList = ListLiveData<RecommendationBySituation>()
+        val recommendationByUserList = ListLiveData<RecommendationByUser>()
+        val season = MutableLiveData<String>()
+        val situation = MutableLiveData<String>()
+        val userName = MutableLiveData<String>()
 
-*/
+        var newlens1 = ListLiveData<NewLensBrand1>()
+        var newlens2 = ListLiveData<NewLensBrand2>()
+        var newlens3 = ListLiveData<NewLensBrand3>()
+        var newlensList = ListLiveData<ListLiveData<Any>>()
 
-    //아래는 더미데이터
+
+        Log.d("RETROFIT_HOME","시작")
+        HomeClient.getApi.getHomeData()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({home ->
+                //Log.d("RETROFIT_HOME",home.data.username)
+                deadlineEventList.clear()
+                lastestEventList.clear()
+                recommendationBySeasonList.clear()
+                recommendationBySituationList.clear()
+                recommendationByUserList.clear()
+
+                home.data.deadlineEvent.forEach{
+                    deadlineEventList.add(DeadlineEvent(it.id,it.image))
+                }
+
+//                guideList.add(GuideList1(home.data.guides.guideList1.category,home.data.guides.guideList1.guides))
+//                guideList2.add(GuideList2(home.data.guides.guideList2.category,home.data.guides.guideList2.guides))
+//                guideList3.add(GuideList3(home.data.guides.guideList3.category,home.data.guides.guideList3.guides))
+
+                home.data.guides.guideList1.guides.forEach {
+                    guide1.add(Guide(it.answer,it.id,it.question))
+                }
+                home.data.guides.guideList2.guides.forEach{
+                    guide2.add(Guide(it.answer,it.id,it.question))
+                }
+                home.data.guides.guideList3.guides.forEach{
+                    guide3.add(Guide(it.answer,it.id,it.question))
+                }
+
+                guideLists.add(GuideList1(home.data.guides.guideList1.category,guide1))
+                guideLists.add(GuideList1(home.data.guides.guideList2.category,guide2))
+                guideLists.add(GuideList1(home.data.guides.guideList3.category,guide3))
+
+
+                home.data.lastestEvent.forEach{
+                    lastestEventList.add(LastestEvent(it.id,it.image))
+                }
+
+                home.data.recommendationBySeason.forEach {
+                    recommendationBySeasonList.add(RecommendationBySeason(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,
+                    it.diameter,it.id,it.imageList,it.name,it.otherColorList,it.pieces,it.price))
+                }
+
+                home.data.recommendationBySituation.forEach{
+                    recommendationBySituationList.add(RecommendationBySituation(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,
+                        it.diameter,it.id,it.imageList,it.name,it.otherColorList,it.pieces,it.price))
+                }
+
+                home.data.recommendationByUser.forEach{
+                    recommendationByUserList.add(RecommendationByUser(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,
+                        it.diameter,it.id,it.imageList,it.name,it.otherColorList,it.pieces,it.price))
+                }
+                season.value =  home.data.season
+                situation.value = home.data.situation
+                userName.value = home.data.username
+
+                home.data.newLens.newLensBrand1.forEach{
+                    newlens1.add(NewLensBrand1(it.brand,it.id,it.imageList,it.name,it.price))
+                }
+                home.data.newLens.newLensBrand2.forEach{
+                    newlens2.add(NewLensBrand2(it.brand,it.id,it.imageList,it.name,it.price))
+                }
+                home.data.newLens.newLensBrand3.forEach{
+                    newlens3.add(NewLensBrand3(it.brand,it.id,it.imageList,it.name,it.price))
+                }
+
+
+                //Log찍기
+                for(g in guide1)
+                    Log.d("GUIDE","$g.answer")
+//                for(n in 0 until newlens1.size())
+//                    Log.d("NEW",newlens1[0])
+
+
+            },{e ->
+                println(e.toString())
+            })
+        Log.d("RETROFIT","끝")
+    }
+
+
 
     private val _curatingList = MutableLiveData<List<CuratingInfo>>()
     val curatingList: LiveData<List<CuratingInfo>>

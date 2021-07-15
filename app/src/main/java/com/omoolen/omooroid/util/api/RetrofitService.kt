@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.util.api
 
+import com.omoolen.omooroid.home.fragments.one.networkApi.HomeData
 import com.omoolen.omooroid.login_signup.login.loginApi.RequestLoginData
 import com.omoolen.omooroid.login_signup.login.loginApi.ResponseLoginData
 import com.omoolen.omooroid.onboarding.api.RequestOnboardData
@@ -22,9 +23,13 @@ interface RetrofitService {
     @GET("api/searchWindow")
     fun getPopularData() : Call<ResponsePopularInfo>
 
-
+    //온보딩 정보 전송
     @POST("api/users/saveOnBoardingData")
     fun postOnboard(
         @Body body: RequestOnboardData
     ) : Call<ResponseOnboardData>
+
+    //홈 정보
+    @GET("api/home")
+    fun getHomeData() : Single<HomeData>
 }
