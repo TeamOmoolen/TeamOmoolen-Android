@@ -36,17 +36,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_home_omoolen_logo" />
 
-            <EditText
-                android:id="@+id/et_two_search"
+            <TextView
+                android:id="@+id/tv_two_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/ic_home_search_rect"
-                android:ems="10"
                 android:hint="@string/home_search_hint"
-                android:inputType="textPersonName"
                 android:paddingStart="12dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="11dp"
@@ -64,8 +62,8 @@
                 android:paddingTop="12dp"
                 android:paddingEnd="14dp"
                 android:paddingBottom="12dp"
-                app:layout_constraintEnd_toEndOf="@+id/et_two_search"
-                app:layout_constraintTop_toTopOf="@+id/et_two_search"
+                app:layout_constraintEnd_toEndOf="@+id/tv_two_search"
+                app:layout_constraintTop_toTopOf="@+id/tv_two_search"
                 app:srcCompat="@drawable/ic_search_small" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
