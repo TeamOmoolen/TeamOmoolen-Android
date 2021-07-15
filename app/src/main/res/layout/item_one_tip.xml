@@ -35,6 +35,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_btn_translens_normal" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_one_tip_header"
+        app:layout_constraintEnd_toEndOf="@+id/iv_one_tip_header"
+        app:srcCompat="@drawable/img_1_min_home_1" />
+
     <TextView
         android:id="@+id/tv_one_tip_sub"
         android:layout_width="wrap_content"

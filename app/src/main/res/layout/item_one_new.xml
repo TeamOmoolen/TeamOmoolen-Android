@@ -153,15 +153,15 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_name1"
                         tools:text="18,000원" />
 
-                    <ImageView
-                        android:id="@+id/iv_one_new_wish1"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="14dp"
-                        android:layout_marginEnd="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_home_selected" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/iv_one_new_wish1"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_marginTop="14dp"-->
+<!--                        android:layout_marginEnd="20dp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/ic_home_selected" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -227,15 +227,15 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_name2"
                         tools:text="18,000원" />
 
-                    <ImageView
-                        android:id="@+id/iv_one_new_wish2"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="14dp"
-                        android:layout_marginEnd="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_home_selected" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/iv_one_new_wish2"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_marginTop="14dp"-->
+<!--                        android:layout_marginEnd="20dp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/ic_home_selected" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -300,15 +300,15 @@
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_name3"
                         tools:text="18,000원" />
 
-                    <ImageView
-                        android:id="@+id/iv_one_new_wish3"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="14dp"
-                        android:layout_marginEnd="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_home_selected" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/iv_one_new_wish3"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_marginTop="14dp"-->
+<!--                        android:layout_marginEnd="20dp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/ic_home_selected" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

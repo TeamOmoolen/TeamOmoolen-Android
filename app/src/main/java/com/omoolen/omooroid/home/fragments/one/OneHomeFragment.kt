@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
@@ -41,6 +44,8 @@ class OneHomeFragment : Fragment() {
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
     private val oneHomeViewModel: OneHomeViewModel by activityViewModels()
+    private lateinit var situLayoutManager : RecyclerView.LayoutManager
+    private lateinit var seasonLayoutManager : RecyclerView.LayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +55,7 @@ class OneHomeFragment : Fragment() {
         _binding = FragmentHomeOneBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
+        initLayout()
         setClickListener()
 
         oneHomeViewModel.setCuratingList()
@@ -88,16 +94,38 @@ class OneHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
+        //binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
         binding.rvHomeRecommend.addItemDecoration(VerticalItemDecorator(40, requireContext()))
 
-        binding.rvHomeSeason.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
+        //binding.rvHomeSeason.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
         binding.rvHomeSeason.addItemDecoration(VerticalItemDecorator(40, requireContext()))
 
     }
 
     //adapter()도 안에 있는거, 서버용 data class로 바꾸기.
     //adapter랑 observe 바꾸기 전에 먼저 각 ltem~.xml에 가서 dataBinding 객체 명 부터 바꾸기.
+
+    private fun initLayout() {
+        situLayoutManager = GridLayoutManager(requireContext(), 2)
+        situLayoutManager = object  : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
+                lp?.width = ((width) / spanCount)
+                return true
+            }
+        }
+        binding.rvHomeRecommend.setHasFixedSize(true)
+        binding.rvHomeRecommend.layoutManager = situLayoutManager
+
+        seasonLayoutManager = GridLayoutManager(requireContext(), 2)
+        seasonLayoutManager = object  : GridLayoutManager(requireContext(), 2) {
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
+                lp?.width = ((width) / spanCount)
+                return true
+            }
+        }
+        binding.rvHomeSeason.setHasFixedSize(true)
+        binding.rvHomeSeason.layoutManager = seasonLayoutManager
+    }
 
     private fun setCuratingAdapter(){
         binding.rvHomeCurating.adapter = CuratingListAdapter()

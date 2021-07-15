@@ -8,8 +8,8 @@
             android:width="4dp"
             android:color="@android:color/transparent" />
         <size
-            android:width="8dp"
-            android:height="8dp" />
+            android:width="5dp"
+            android:height="5dp" />
     </shape>
 </item>
 </layer-list>

@@ -45,6 +45,8 @@
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/ic_home_search_rect"
                 android:hint="@string/home_search_hint"
+                android:fontFamily="@font/noto_sans_cjkkr_medium"
+                android:includeFontPadding="false"
                 android:paddingStart="12dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="11dp"

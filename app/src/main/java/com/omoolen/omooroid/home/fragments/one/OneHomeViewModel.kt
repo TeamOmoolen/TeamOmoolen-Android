@@ -13,16 +13,19 @@ import com.omoolen.omooroid.home.fragments.one.networkApi.*
 import com.omoolen.omooroid.home.fragments.one.newItem.NewInfo
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendInfo
 import com.omoolen.omooroid.home.fragments.one.tip.TipInfo
+import com.omoolen.omooroid.home.fragments.one.tip.TipListAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class OneHomeViewModel(application: Application) : AndroidViewModel(application) {
 
+    private lateinit var tipListAdapter : TipListAdapter
     //서버 연결용 음... 어캐 할지 모르겠다! 다 갈아엎자!!!!
     private val _responesOneData = MutableLiveData<ResponseOneData>()
     val responseOneData : LiveData<ResponseOneData>
         get() = _responesOneData
+
 
     //전체 데이터 :
     fun requestOneHomeDataList() = viewModelScope.launch(Dispatchers.IO) {
@@ -33,6 +36,7 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
 
         }
     }
+
 /*
     private val _recommendListByUser = MutableLiveData<List<FindRecomendationByUser>>()
     val recommendListByUser: LiveData<List<FindRecomendationByUser>>
