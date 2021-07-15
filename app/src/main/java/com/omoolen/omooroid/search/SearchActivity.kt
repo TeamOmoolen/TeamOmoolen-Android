@@ -2,20 +2,13 @@ package com.omoolen.omooroid.search
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.ActivitySearchBinding
-import com.omoolen.omooroid.databinding.FragmentSearchOneBinding
 import com.omoolen.omooroid.search.fragment.SearchFragmentAdapter
-import com.omoolen.omooroid.search.fragment.one.OneSearchFragment
-import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentAdapter
-import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentInfo
 
 
 class SearchActivity : AppCompatActivity() {
@@ -42,7 +35,8 @@ class SearchActivity : AppCompatActivity() {
         //검색 이벤트 동작
         binding.clSearchTouch.setOnClickListener {
             //et_search에 들어온 값 서버에 get 요청하기
-            //binding.etSearch.text
+            viewModel.getSearch(binding.etSearch.text.toString())
+
             Log.d("SEARCH_ACTIVITY", "검색클릭")
             viewModel.addRecent(binding.etSearch.text.toString())
         }

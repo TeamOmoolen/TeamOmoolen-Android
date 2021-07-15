@@ -32,11 +32,11 @@ class HorizontalItemDecorator(private val divHeight : Int, private val count : I
         if(count == 2) {
             if (spanIndex == 0) {
                 //왼쪽 아이템
-                outRect.right = -(px + 1.5).toInt()
+                outRect.right = -(px + 1.8).toInt()
             }
             if (spanIndex == 1) {
                 //오른쪽 아이템
-                outRect.left = -(px + 1.5).toInt()
+                outRect.left = -(px + 1.8).toInt()
 
             }
         } else if (count == 3) {

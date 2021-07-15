@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.databinding.ItemOnboardPictureBinding
-import com.omoolen.omooroid.databinding.ItemOnboardTextBinding
+import com.omoolen.omooroid.databinding.ItemSearchTextBinding
 
 class PeriodAdapter : RecyclerView.Adapter<PeriodAdapter.MyViewHolder>() {
     val periodList = mutableListOf<PeriodInfo>()
@@ -14,7 +13,7 @@ class PeriodAdapter : RecyclerView.Adapter<PeriodAdapter.MyViewHolder>() {
         parent: ViewGroup,
         viewType: Int
     ): MyViewHolder {
-        val binding = ItemOnboardTextBinding.inflate(
+        val binding = ItemSearchTextBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -42,7 +41,7 @@ class PeriodAdapter : RecyclerView.Adapter<PeriodAdapter.MyViewHolder>() {
     private lateinit var itemClickListener : OnItemClickListener
 
     class MyViewHolder(
-        private val binding: ItemOnboardTextBinding
+        private val binding: ItemSearchTextBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(periodInfo: PeriodInfo) {
             binding.tvText.text = periodInfo.name

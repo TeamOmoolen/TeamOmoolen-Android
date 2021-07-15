@@ -38,6 +38,8 @@
             android:layout_height="wrap_content"
             app:itemIconTint="@color/nav_button_selector"
             app:labelVisibilityMode="unlabeled"
+            app:itemRippleColor="@null"
+            app:itemBackground="@null"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_home"/>
 

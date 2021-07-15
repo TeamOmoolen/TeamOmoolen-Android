@@ -41,7 +41,7 @@ class ListLiveData<T> : MutableLiveData<MutableList<T>>() {
         value = temp
     }
 
-    fun get(position :Int): T{
+    operator fun get(position :Int): T{
         return temp[position]
     }
 

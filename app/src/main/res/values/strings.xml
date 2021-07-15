@@ -21,4 +21,17 @@
     <string name="sort_price_high">가격 높은 순</string>
     <string name="sort_price_low">가격 낮은 순</string>
     <string name="search_result_search_keyword">오렌즈 시크리스</string>
-</resources>
+        <string name="forYou_question_main">나에게 딱 맞는 렌즈 추천, For you</string>
+        <string name="forYou_question_content">"For you는 오무렌 사용자들이 나에게 딱 맞는 렌즈를 찾는 데 도움을 드리고자 만들어진 개인형 맞춤 추천 서비스 입니다.
+            \n 국내 모든 렌즈에 대한 데이터를 바탕으로 회원가입 시 입력한 1)기능 2)주기 3)컬러 등을 고려하여 유저들에게 맞는 추천 제품을 제공합니다." </string>
+        <string name="check">확인</string>
+        
+    <string name="situ_question_main">"상황에 어울리는 렌즈 추천 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"</string>
+    <string name="situ_question_content">상황에 어울리는 렌즈 추천은 실제 렌즈 사용자들의
+        데이터를 기반으로 상황별 맞춤 렌즈를 제공합니다.</string>
+    <string name="new_question_main">" 신제품 추천 기준&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; "</string>
+    <string name="new_question_content">"신제품 추천은 3개월 이내에 \n 등록된 제품을 추천해드립니다."</string>
+    <string name="season_question_main">"여름과 잘 어울리는 렌즈&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; "</string>
+    <string name="season_question_content">"여름과 잘 어울리는 렌즈 추천은 계절별 많이 \n구매한 제품에 대한 데이터를 기반으로 추천해드리는 제품입니다"</string>
+    
+    <string name="base_url">"http://15.164.251.55:5000/api/main/"</string>

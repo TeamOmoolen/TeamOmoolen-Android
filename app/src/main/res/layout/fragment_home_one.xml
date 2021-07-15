@@ -21,10 +21,13 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/al_tool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:stateListAnimator="@null">
+
+
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
@@ -50,17 +53,15 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/ic_home_omoolen_logo" />
 
-                        <EditText
-                            android:id="@+id/editTextTextPersonName"
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/tv_one_search"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="18dp"
                             android:layout_marginTop="20dp"
                             android:layout_marginEnd="20dp"
                             android:background="@drawable/ic_home_search_rect"
-                            android:ems="10"
                             android:hint="@string/home_search_hint"
-                            android:inputType="textPersonName"
                             android:paddingStart="12dp"
                             android:paddingTop="10dp"
                             android:paddingBottom="11dp"
@@ -78,8 +79,8 @@
                             android:paddingTop="12dp"
                             android:paddingEnd="14dp"
                             android:paddingBottom="12dp"
-                            app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-                            app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_one_search"
+                            app:layout_constraintTop_toTopOf="@+id/tv_one_search"
                             app:srcCompat="@drawable/ic_search_small" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -88,6 +89,8 @@
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             </com.google.android.material.appbar.AppBarLayout>
+
+
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nestedScrollView"
@@ -103,6 +106,17 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view_boarder"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@drawable/style_border"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/cl_home_category"
+                        />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_home_category"
@@ -256,6 +270,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="40dp"
                             android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -292,6 +308,8 @@
                             android:layout_marginTop="30dp"
                             android:orientation="horizontal"
                             android:overScrollMode="never"
+                            android:clipToPadding="false"
+                            android:paddingEnd="24dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_home_curating"
@@ -313,6 +331,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="70dp"
+                            android:includeFontPadding="false"
                             android:text="@string/home_tip_main"
                             android:theme="@style/TextStyle13"
                             app:layout_constraintStart_toStartOf="parent"
@@ -322,8 +341,10 @@
                             android:id="@+id/cl_home_tip_more"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="75dp"
+                            android:layout_marginTop="70dp"
                             android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -362,6 +383,8 @@
                             android:layout_marginTop="20dp"
                             android:orientation="horizontal"
                             android:overScrollMode="never"
+                            android:clipToPadding="false"
+                            android:paddingEnd="24dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_home_tip"
@@ -389,6 +412,42 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/iv_one_line1" />
 
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_home_recommend_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="60dp"
+                            android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_one_line1">
+
+                            <TextView
+                                android:id="@+id/tv_home_recommend_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginBottom="3dp"
+                                android:letterSpacing="-0.05"
+                                android:text="@string/home_more"
+                                android:textColor="@color/om_fourth_gray"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/noto_sans_cjkkr_regular"
+                                android:includeFontPadding="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/iv_home_recommend_more"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/iv_home_recommend_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/ic_more" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_home_recommend"
                             android:layout_width="match_parent"
@@ -407,9 +466,10 @@
 
                         <ImageView
                             android:id="@+id/iv_one_line1"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="50dp"
+                            android:scaleType="fitXY"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -453,6 +513,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
+                            android:background="@android:color/transparent"
                             app:tabPaddingStart="13dp"
                             app:tabPaddingEnd="13dp"
                             app:tabBackground="@drawable/home_indicator_selector"
@@ -474,12 +535,47 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:letterSpacing="-0.05"
                             android:text="@string/home_new_main"
                             android:theme="@style/TextStyle2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_home_new_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_home_new_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginBottom="3dp"
+                                android:letterSpacing="-0.05"
+                                android:text="@string/home_more"
+                                android:textColor="@color/om_fourth_gray"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/noto_sans_cjkkr_regular"
+                                android:includeFontPadding="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/iv_home_new_more"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/iv_home_new_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/ic_more" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_home_new"
@@ -501,6 +597,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="50dp"
+                            android:scaleType="fitXY"
                             app:layout_constraintTop_toBottomOf="@id/rv_home_new"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -510,16 +607,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/cl_home_temp"
+                        android:id="@+id/cl_home_season"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cl_home_new">
 
-                        <!-- TODO : 계절별 끼기 좋은 렌즈 메세지 설정하기-->
                         <TextView
-                            android:id="@+id/tv_home_temp"
+                            android:id="@+id/tv_home_season"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
@@ -530,8 +626,44 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_home_season_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="60dp"
+                            android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_home_season_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:layout_marginBottom="3dp"
+                                android:letterSpacing="-0.05"
+                                android:text="@string/home_more"
+                                android:textColor="@color/om_fourth_gray"
+                                android:textSize="12sp"
+                                android:fontFamily="@font/noto_sans_cjkkr_regular"
+                                android:includeFontPadding="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toStartOf="@+id/iv_home_season_more"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/iv_home_season_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/ic_more" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rv_home_temp"
+                            android:id="@+id/rv_home_season"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
@@ -542,7 +674,7 @@
                             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_home_temp"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_home_season"
                             app:spanCount="2" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -555,7 +687,7 @@
                         android:background="@color/om_main_green"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cl_home_temp">
+                        app:layout_constraintTop_toBottomOf="@+id/cl_home_season">
 
                         <com.omoolen.omooroid.util.NestedScrollableHost
                             android:id="@+id/nestedScrollableHost2"
@@ -581,6 +713,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
+                            android:background="@android:color/transparent"
                             app:tabPaddingStart="13dp"
                             app:tabPaddingEnd="13dp"
                             app:tabBackground="@drawable/home_indicator_selector"
