@@ -6,11 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeTwoBinding
@@ -27,6 +26,7 @@ class TwoHomeFragment : Fragment() {
     private val homeViewModel: TwoHomeViewModel by viewModels() //위임초기화
     private lateinit var mContext: Context
 
+    private  var idx : Int? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,13 +36,19 @@ class TwoHomeFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         mContext = requireContext()
 
+        idx = arguments?.getInt("setIdx")
+        if(idx != null) {
+            val tabLayout = binding.findTabLayout
+            val tab = tabLayout.getTabAt(idx!!)
+            tab!!.select()
+        }
+
         return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -73,3 +79,4 @@ class TwoHomeFragment : Fragment() {
     }
 
 }
+
