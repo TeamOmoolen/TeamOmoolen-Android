@@ -240,50 +240,11 @@ class FourOnboardFragment : Fragment() {
         }
     }
 
-    //서버로 전달
+    //서버 통신
     private fun postOnboard(){
-        val requestOnboardData = setRequestOnboardData() //전송할 데이터
-
-        Log.d("SERVER_ONBOARD4","포스트 시작")
-        val call: Call<ResponseOnboardData> = OnboardClient.getApi.postOnboard(requestOnboardData)
-        call.enqueue(object : Callback<ResponseOnboardData> {
-            override fun onResponse(
-                call: Call<ResponseOnboardData>,
-                response: Response<ResponseOnboardData>
-            ){
-                Log.d("SERVER_ONBOARD44",response.isSuccessful.toString())
-                Log.d("SERVER_ONBOARD44",response.body()?.status.toString())
-                Log.d("SERVER_ONBOARD44",response.body()?.message.toString())
-            }
-            override fun onFailure(call: Call<ResponseOnboardData>, t: Throwable) {
-                TODO("Not yet implemented")
-                Log.d("SERVER_ONBOARD4","포스트 실패")
-            }
-        })
-
+        viewModel.postOnboard()
     }
 
-    private val oData = OnboardDatabase()
-    private fun setRequestOnboardData(): RequestOnboardData {
-        val suitedLens = SuitedLens(
-            oData.convertBrand(oData.getOnboardData()._brand),
-            oData.getOnboardData()._name
-        )
-        val wantedLens = WantedLens(
-            oData.convertCategory(oData.getOnboardData()._what),
-            oData.convertChange(oData.getOnboardData()._period),
-            oData.convertColor(oData.getOnboardData()._color),
-            oData.convertFunction(oData.getOnboardData()._effect)
-        )
-
-        return RequestOnboardData(
-            oData.convertAge(oData.getOnboardData()._age),
-            oData.convertGender(oData.getOnboardData()._gender),
-            suitedLens,
-            wantedLens,
-            oData.convertWhen(oData.getOnboardData()._when)
-        )
-    }
 
     override fun onDestroy() {
         _binding = null

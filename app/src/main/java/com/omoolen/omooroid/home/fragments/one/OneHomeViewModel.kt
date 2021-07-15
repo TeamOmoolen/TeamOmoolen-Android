@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.omoolen.omooroid.R
-import com.omoolen.omooroid.RetrofitBuilder_One
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingInfo
 import com.omoolen.omooroid.home.fragments.one.event.EventInfo
 import com.omoolen.omooroid.home.fragments.one.networkApi.*
@@ -16,6 +15,7 @@ import com.omoolen.omooroid.home.fragments.one.newItem.NewInfo
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendInfo
 import com.omoolen.omooroid.home.fragments.one.tip.TipInfo
 import com.omoolen.omooroid.util.ListLiveData
+import com.omoolen.omooroid.util.api.RetrofitClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
@@ -23,21 +23,6 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class OneHomeViewModel(application: Application) : AndroidViewModel(application) {
-
-    //서버 연결용 음... 어캐 할지 모르겠다! 다 갈아엎자!!!!
-    private val _responesOneData = MutableLiveData<ResponseOneData>()
-    val responseOneData : LiveData<ResponseOneData>
-        get() = _responesOneData
-
-    //전체 데이터 :
-    fun requestOneHomeDataList() = viewModelScope.launch(Dispatchers.IO) {
-        try {
-            _responesOneData.postValue(RetrofitBuilder_One.oneService.getOne().data)
-        } catch (e: HttpException) {
-
-        }
-    }
-
 
 
     @SuppressLint("CheckResult")
@@ -63,7 +48,7 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
         val guideLists = ListLiveData<GuideList1>() //guide1,guide2,guide3의 모임
 
         val lastestEventList = ListLiveData<LastestEvent>()
-        //val newLensList = MutableLiveData<Newlens>()
+
         val recommendationBySeasonList = ListLiveData<RecommendationBySeason>()
         val recommendationBySituationList = ListLiveData<RecommendationBySituation>()
         val recommendationByUserList = ListLiveData<RecommendationByUser>()
@@ -74,15 +59,14 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
         var newlens1 = ListLiveData<NewLensBrand1>()
         var newlens2 = ListLiveData<NewLensBrand2>()
         var newlens3 = ListLiveData<NewLensBrand3>()
-        var newlensList = ListLiveData<ListLiveData<Any>>()
 
 
         Log.d("RETROFIT_HOME","시작")
-        HomeClient.getApi.getHomeData()
+            RetrofitClient.getApi.getHomeData()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({home ->
-                //Log.d("RETROFIT_HOME",home.data.username)
+                Log.d("RETROFIT_HOME",home.data.username)
                 deadlineEventList.clear()
                 lastestEventList.clear()
                 recommendationBySeasonList.clear()
@@ -147,13 +131,14 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
 
                 //Log찍기
                 for(g in guide1)
-                    Log.d("GUIDE","$g.answer")
-//                for(n in 0 until newlens1.size())
-//                    Log.d("NEW",newlens1[0])
+                    Log.d("GUIDE","$g")
+                for(n in 0 until newlens1.size())
+                    Log.d("NEW",newlens1[n].name)
 
 
             },{e ->
                 println(e.toString())
+                Log.d("RETROFIT","에러")
             })
         Log.d("RETROFIT","끝")
     }
