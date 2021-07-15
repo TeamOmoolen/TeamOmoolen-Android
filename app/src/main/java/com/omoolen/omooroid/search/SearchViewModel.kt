@@ -1,11 +1,16 @@
 package com.omoolen.omooroid.search
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import com.omoolen.omooroid.search.data.Item
+import com.omoolen.omooroid.util.api.RetrofitClient
 import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentAdapter
 import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentInfo
 import com.omoolen.omooroid.util.ListLiveData
 import com.omoolen.omooroid.util.SharedPreferences
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 class SearchViewModel() : ViewModel() {
@@ -51,6 +56,32 @@ class SearchViewModel() : ViewModel() {
 
     fun getUpdateRecent(recentList: MutableList<RecentInfo>): MutableList<RecentInfo> {
         return recentList
+    }
+
+    var mTotalPages : Int = 0
+
+    @SuppressLint("CheckResult")
+    fun getSearch(){
+        val searchList = ListLiveData<Item>()
+
+        RetrofitClient.getApi.getData()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({data ->
+                searchList.clear()
+                data.items.forEach{
+                    searchList.add(Item(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,
+                    it.diameter,it.id,it.imageList,it.name,
+                    it.otherColorList,it.pieces,it.price))
+                }
+                mTotalPages = data.totalPage
+            },{e ->
+                println(e.toString())
+            })
+
+        for(s in 0 until searchList.size()){
+            searchList[s].show()
+        }
     }
 
 }

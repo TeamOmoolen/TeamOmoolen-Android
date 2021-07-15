@@ -7,7 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface UserService {
-    @POST(".")
+    @POST("api/auth/kakao")
     fun postLogin(
         @Body body: RequestLoginData
     ) : Call<ResponseLoginData>

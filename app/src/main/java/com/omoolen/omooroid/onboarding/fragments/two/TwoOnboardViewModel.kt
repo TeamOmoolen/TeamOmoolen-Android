@@ -63,7 +63,7 @@ class TwoOnboardViewModel(application: Application) : AndroidViewModel(applicati
                 ColorInfo(backId = R.drawable.ic_btn_goldcolor_back, resourceId = R.drawable.ic_btn_goldcolor_selector),
                 ColorInfo(backId = R.drawable.ic_btn_pinkcolor_back, resourceId = R.drawable.ic_btn_pinkcolor_selector),
                 ColorInfo(backId = R.drawable.btn_glittercolor_normal, resourceId = R.drawable.ic_btn_glittercolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_etccolor_back, resourceId = R.drawable.ic_btn_etccolor_selector)
+                ColorInfo(backId = R.drawable.ic_btn_etccolor_normal, resourceId = R.drawable.ic_btn_etccolor_selector)
             )
         )
         var colorArr = arrayOf(false,false,false,false,false,false,false,false,false,false,false,false)

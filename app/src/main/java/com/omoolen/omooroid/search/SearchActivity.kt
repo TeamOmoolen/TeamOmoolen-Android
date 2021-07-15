@@ -42,7 +42,8 @@ class SearchActivity : AppCompatActivity() {
         //검색 이벤트 동작
         binding.clSearchTouch.setOnClickListener {
             //et_search에 들어온 값 서버에 get 요청하기
-            //binding.etSearch.text
+            //viewModel.getSearch()
+
             Log.d("SEARCH_ACTIVITY", "검색클릭")
             viewModel.addRecent(binding.etSearch.text.toString())
         }
