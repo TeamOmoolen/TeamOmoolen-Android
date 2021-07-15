@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+import com.omoolen.omooroid.home.fragments.two.FindQuestionFragment
 import com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment
+import com.omoolen.omooroid.util.HorizontalItemDecorator
+import com.omoolen.omooroid.util.VerticalItemDecorator
 
 class TwoHomeForYouFragment : Fragment() {
 
@@ -35,6 +38,7 @@ class TwoHomeForYouFragment : Fragment() {
         setForYouObserve()
 
 
+        //정렬 클릭 시
         binding.ivForYouSort.setOnClickListener{
             val findSortPriceFragment = FindSortPriceFragment()
 
@@ -53,15 +57,20 @@ class TwoHomeForYouFragment : Fragment() {
         }
 
         binding.ivFindQuestion1.setOnClickListener{
+            val findQuestionFragment = FindQuestionFragment(1)
+            findQuestionFragment.show(childFragmentManager, "CustomDialog2")
 
         }
-
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.rvFindForyou.addItemDecoration(HorizontalItemDecorator(12,2, requireContext()))
+        binding.rvFindForyou.addItemDecoration(VerticalItemDecorator(36, requireContext()))
+
     }
 
     private fun setForYouAdapter(){
@@ -71,12 +80,7 @@ class TwoHomeForYouFragment : Fragment() {
     private fun setForYouObserve() {
         viewModel.foryouList.observe(viewLifecycleOwner) { foryouList ->
             with(binding.rvFindForyou.adapter as RecommendListAdapter) {
-                if(foryouList == null){
-                    Log.d("click", "널")
-                }
-                else {
-                    setRecommend(foryouList)
-                }
+                  setRecommend(foryouList)
             }
         }
     }

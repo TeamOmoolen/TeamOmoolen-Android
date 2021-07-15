@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -65,21 +66,49 @@ class TwoSearchFragment : Fragment() {
     val otherColorList = arrayOf("yellow", "espressogold", "hazel", "rich brown", "white", "red")
     val cycleList = arrayOf(0, 1, 2, 3, 4, 5, 6, 7)
 
+    val firstList = arrayOf(true,true,true,true)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSearchTwoBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         clickEvent()
         brandInit()
         colorInit()
         diameterInit()
         periodInit()
-        binding.tvBrand.isSelected = chipSelect[0]
+
         searchDatabase.initSearch()
+        init()
+        reset()
+        binding.tvBrand.isSelected = chipSelect[0]
         initChoice()
-        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initAfter()
+    }
+
+    private fun init() {
+        binding.clBrand.visibility = View.VISIBLE
+        binding.clColor.visibility = View.VISIBLE
+        binding.clDiameter.visibility = View.VISIBLE
+        binding.clCycle.visibility = View.VISIBLE
+    }
+    private fun initAfter(){
+        binding.clBrand.visibility = View.VISIBLE
+        binding.clColor.visibility = View.GONE
+        binding.clDiameter.visibility = View.GONE
+        binding.clCycle.visibility = View.GONE
     }
 
     //전체 선택(초기 선택)
@@ -103,6 +132,9 @@ class TwoSearchFragment : Fragment() {
         )
         diameterChoice = mutableListOf(-1)
         periodChoice = mutableListOf(0, 1, 2, 3, 4, 5, 6, 7)
+        for(i in firstList.indices){
+            firstList[i] = true
+        }
     }
 
     //TODO : 전체선택 처리해서 CHIOICE 어떻게 넘길지 로직짜기
@@ -133,13 +165,13 @@ class TwoSearchFragment : Fragment() {
             false, false, false, false, false, false, false, false, false, false, false,
             false, false, false, false, false, false
         )
-        var first = true
+
         brandAdapter.setItemClickListener(object : BrandAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 brandArr[position] = !brandArr[position]
-                if (first) {
+                if (firstList[0]) {
                     brandChoice.clear()
-                    first = false
+                    firstList[0] = false
                 }
                 if (brandArr[position]) brandChoice.add(brandAdapter.brandList[position].name)
                 else brandChoice.remove(brandAdapter.brandList[position].name)
@@ -147,7 +179,7 @@ class TwoSearchFragment : Fragment() {
                 if (brandChoice.size == 0) {
                     brandChoice =
                         brandList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
-                    first = true
+                    firstList[0] = true
                 }
                 v.isSelected = brandArr[position]
             }
@@ -237,13 +269,13 @@ class TwoSearchFragment : Fragment() {
                 false,
                 false
             )
-        var first = true
+
         colorAdapter.setItemClickListener(object : ColorAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 colorArr[position] = !colorArr[position]
-                if (first) {
+                if (firstList[1]) {
                     colorChoice.clear()
-                    first = false
+                    firstList[1] = false
                 }
                 if (colorArr[position]) { //선택
                     if (position == 11) { //기타 선택
@@ -266,7 +298,7 @@ class TwoSearchFragment : Fragment() {
                 if (colorChoice.size == 0) {
                     colorChoice =
                         colorList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
-                    first = true
+                    firstList[1] = true
                 }
                 v.isSelected = colorArr[position]
             }
@@ -284,6 +316,7 @@ class TwoSearchFragment : Fragment() {
         binding.rvColor.setHasFixedSize(true)
         binding.rvColor.addItemDecoration(VerticalItemDecoration(10))
         binding.rvColor.layoutManager = colorLayoutManager
+
     }
 
     private fun diameterInit() {
@@ -365,15 +398,15 @@ class TwoSearchFragment : Fragment() {
                 PeriodInfo(name = "6 months +")
             )
         )
-        var first = true
+
         var periodArr = arrayOf(false, false, false, false, false, false, false, false)
         periodAdapter.setItemClickListener(object : PeriodAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 // TODO : 클릭 시 이벤트 작성
                 //다중 선택
-                if (first) {
+                if (firstList[3]) {
                     periodChoice.clear()
-                    first = false
+                    firstList[3] = false
                 }
                 periodArr[position] = !periodArr[position]
                 if (periodArr[position]) periodChoice.add(position)
@@ -382,13 +415,13 @@ class TwoSearchFragment : Fragment() {
                 if (periodChoice.size == 0) {
                     periodChoice =
                         cycleList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
-                    first = true
+                    firstList[3] = true
                 }
 
                 v.isSelected = periodArr[position]
             }
         })
-        binding.rvPeriod.adapter = periodAdapter
+        binding.rvCycle.adapter = periodAdapter
         periodLayoutManager = GridLayoutManager(requireContext(), 2)
         periodLayoutManager = object : GridLayoutManager(requireContext(), 2) {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
@@ -398,55 +431,118 @@ class TwoSearchFragment : Fragment() {
                 return true
             }
         }
-        binding.rvPeriod.setHasFixedSize(true)
-        binding.rvPeriod.addItemDecoration(VerticalItemDecoration(10))
-        binding.rvPeriod.layoutManager = periodLayoutManager
+        binding.rvCycle.setHasFixedSize(true)
+        binding.rvCycle.addItemDecoration(VerticalItemDecoration(10))
+        binding.rvCycle.layoutManager = periodLayoutManager
     }
 
     private fun clickEvent() {
         binding.tvBrand.setOnClickListener {
             setChipSelected(0)
             binding.tvBrand.isSelected = chipSelect[0]
-            binding.tvTitle.text = "브랜드"
-            binding.rvBrand.visibility = View.VISIBLE
-            binding.rvColor.visibility = View.GONE
-            binding.rvDiameter.visibility = View.GONE
-            binding.rvPeriod.visibility = View.GONE
+            binding.clBrand.visibility = View.VISIBLE
+            binding.clColor.visibility = View.GONE
+            binding.clDiameter.visibility = View.GONE
+            binding.clCycle.visibility = View.GONE
         }
         binding.tvColor.setOnClickListener {
             setChipSelected(1)
             binding.tvColor.isSelected = chipSelect[1]
-            binding.tvTitle.text = "컬러"
-            binding.rvBrand.visibility = View.GONE
-            binding.rvColor.visibility = View.VISIBLE
-            binding.rvDiameter.visibility = View.GONE
-            binding.rvPeriod.visibility = View.GONE
+            binding.clBrand.visibility = View.GONE
+            binding.clColor.visibility = View.VISIBLE
+            binding.clDiameter.visibility = View.GONE
+            binding.clCycle.visibility = View.GONE
         }
         binding.tvDiameter.setOnClickListener {
             setChipSelected(2)
             binding.tvDiameter.isSelected = chipSelect[2]
-            binding.tvTitle.text = "직경"
-            binding.rvBrand.visibility = View.GONE
-            binding.rvColor.visibility = View.GONE
-            binding.rvDiameter.visibility = View.VISIBLE
-            binding.rvPeriod.visibility = View.GONE
+            binding.clBrand.visibility = View.GONE
+            binding.clColor.visibility = View.GONE
+            binding.clDiameter.visibility = View.VISIBLE
+            binding.clCycle.visibility = View.GONE
         }
         binding.tvPeriod.setOnClickListener {
             setChipSelected(3)
             binding.tvPeriod.isSelected = chipSelect[3]
-            binding.tvTitle.text = "주기"
-            binding.rvBrand.visibility = View.GONE
-            binding.rvColor.visibility = View.GONE
-            binding.rvDiameter.visibility = View.GONE
-            binding.rvPeriod.visibility = View.VISIBLE
+            binding.clBrand.visibility = View.GONE
+            binding.clColor.visibility = View.GONE
+            binding.clDiameter.visibility = View.GONE
+            binding.clCycle.visibility = View.VISIBLE
         }
-        binding.clAllTouch.setOnClickListener {
-            for (i in chipSelect.indices) {
-                if (chipSelect[i]) { //현재 선택한 탭 index찾기
 
-                }
+        //전체선택
+        var allSelectedArr = arrayOf(false,false,false,false)
+
+        binding.clAllTouchBrand.setOnClickListener {
+            allSelectedArr[0] = !allSelectedArr[0]
+            binding.ivBrand.isSelected = allSelectedArr[0]
+            binding.tvBrandSelectAll.isSelected = allSelectedArr[0]
+
+            if (allSelectedArr[0]) { //전체 선택 시
+                brandChoice = brandList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[0] = true
+                for (i in 0 until brandList.size + 1)
+                    binding.rvBrand[i].isSelected = true
+            }
+            else { //전체 선택 취소
+                brandChoice = brandList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[0] = true
+                for (i in 0 until brandList.size + 1)
+                    binding.rvBrand[i].isSelected = false
             }
         }
+        binding.clAllTouchColor.setOnClickListener {
+            allSelectedArr[1] = !allSelectedArr[1]
+            binding.ivColor.isSelected = allSelectedArr[1]
+            binding.tvColorSelectAll.isSelected = allSelectedArr[1]
+            if (allSelectedArr[1]) { //전체 선택 시
+                colorChoice = colorList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[1] = true
+                for (i in 0 until colorList.size + 1)
+                    binding.rvColor[i].isSelected = true
+            }
+            else { //전체 선택 취소
+                colorChoice = colorList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[1] = true
+                for (i in 0 until colorList.size + 1)
+                    binding.rvColor[i].isSelected = false
+            }
+        }
+//        binding.clAllTouchDiameter.setOnClickListener {
+//            allSelectedArr[2] = !allSelectedArr[2]
+//            binding.ivDiameter.isSelected = allSelectedArr[2]
+//            binding.tvDiameterSelectAll.isSelected = allSelectedArr[2]
+//            if (allSelectedArr[2]) { //전체 선택 시
+//                diameterChoice[0] = -1 //아무것도 선택 안했을 때 전체 선택으로
+//                firstList[2] = true
+//                for (i in 0 until 6)
+//                    binding.rvDiameter[i].isSelected = true
+//            }
+//            else { //전체 선택 취소
+//                diameterChoice[0] = -1 //아무것도 선택 안했을 때 전체 선택으로
+//                firstList[2] = true
+//                for (i in 0 until 6)
+//                    binding.rvDiameter[i].isSelected = false
+//            }
+//        }
+        binding.clAllTouchCycle.setOnClickListener {
+            allSelectedArr[3] = !allSelectedArr[3]
+            binding.ivCycle.isSelected = allSelectedArr[3]
+            binding.tvCycleSelectAll.isSelected = allSelectedArr[3]
+            if (allSelectedArr[3]) { //전체 선택 시
+                periodChoice = cycleList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[3] = true
+                for (i in 0 until cycleList.size)
+                    binding.rvCycle[i].isSelected = true
+            }
+            else { //전체 선택 취소
+                periodChoice = cycleList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                firstList[3] = true
+                for (i in 0 until cycleList.size)
+                    binding.rvCycle[i].isSelected = false
+            }
+        }
+
         //필터 검색 버튼 클릭
         binding.tvFilter.setOnClickListener {
             //컨버팅 필요
@@ -455,6 +551,23 @@ class TwoSearchFragment : Fragment() {
             searchDatabase.setDiameter(diameterChoice)
             searchDatabase.setCycle(periodChoice)
             searchDatabase.show()
+        }
+
+
+    }
+
+    private fun reset(){
+        //새로고침
+        binding.clRefresh.setOnClickListener {
+            initChoice()
+            for (i in 0 until brandList.size + 1)
+                binding.rvBrand[i].isSelected = false
+            for (i in 0 until colorList.size + 1)
+                binding.rvColor[i].isSelected = false
+            for (i in 0 until 6)
+                binding.rvDiameter[i].isSelected = false
+            for (i in 0 until cycleList.size)
+                binding.rvCycle[i].isSelected = false
         }
     }
 

@@ -39,6 +39,7 @@ class ThreeOnboardFragment : Fragment() {
         _binding = FragmentOnboardThreeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         mContext = requireContext()
+
         return binding.root
     }
 

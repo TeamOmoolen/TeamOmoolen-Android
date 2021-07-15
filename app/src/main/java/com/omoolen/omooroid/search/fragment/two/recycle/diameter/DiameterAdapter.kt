@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.omoolen.omooroid.databinding.ItemOnboardTextBinding
+import com.omoolen.omooroid.databinding.ItemSearchTextBinding
 
 class DiameterAdapter : RecyclerView.Adapter<DiameterAdapter.MyViewHolder>() {
     val diameterList = mutableListOf<DiameterInfo>()
@@ -13,7 +13,7 @@ class DiameterAdapter : RecyclerView.Adapter<DiameterAdapter.MyViewHolder>() {
         parent: ViewGroup,
         viewType: Int
     ): MyViewHolder {
-        val binding = ItemOnboardTextBinding.inflate(
+        val binding = ItemSearchTextBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -41,7 +41,7 @@ class DiameterAdapter : RecyclerView.Adapter<DiameterAdapter.MyViewHolder>() {
     private lateinit var itemClickListener : OnItemClickListener
 
     class MyViewHolder(
-        private val binding: ItemOnboardTextBinding
+        private val binding: ItemSearchTextBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(diameterInfo: DiameterInfo) {
             binding.tvText.text = diameterInfo.name

@@ -1,6 +1,7 @@
 package com.omoolen.omooroid.search.fragment.one.recycle.popular
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.ItemPopularBinding
 
+
 class PopularAdapter(context:Context) : RecyclerView.Adapter<PopularAdapter.MyViewHolder>() {
     val popularList = mutableListOf<PopularInfo>()
     val mContext = context
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -20,6 +23,7 @@ class PopularAdapter(context:Context) : RecyclerView.Adapter<PopularAdapter.MyVi
             parent,
             false
         )
+
         return MyViewHolder(binding,mContext)
     }
 
@@ -47,9 +51,10 @@ class PopularAdapter(context:Context) : RecyclerView.Adapter<PopularAdapter.MyVi
         private val binding: ItemPopularBinding,
         private val mContext : Context
     ) : RecyclerView.ViewHolder(binding.root) {
+
         fun onBind(popularInfo: PopularInfo) {
 
-            binding.tvRank.text = popularInfo.rank.toString()
+            //binding.tvRank.text = popularInfo.rank.toString()
             if(popularInfo.rank <4) {
                 binding.tvRank.setTextColor(mContext.resources.getColor(R.color.om_main_orange))
                 binding.tvSearchName.setTextColor(mContext.resources.getColor(R.color.om_main_black))
@@ -59,7 +64,9 @@ class PopularAdapter(context:Context) : RecyclerView.Adapter<PopularAdapter.MyVi
                 binding.tvSearchName.setTextColor(mContext.resources.getColor(R.color.om_third_gray))
             }
 
+            Log.d("POP_ADAPTER","$popularInfo.rank , $popularInfo.name")
             binding.tvSearchName.text = popularInfo.name
+            binding.tvRank.text = popularInfo.rank.toString()
         }
     }
 }

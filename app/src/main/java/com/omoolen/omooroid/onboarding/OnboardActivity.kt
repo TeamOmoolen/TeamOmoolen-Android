@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
+import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -29,6 +30,12 @@ class OnboardActivity : AppCompatActivity(){
         setContentView(R.layout.activity_onboard)
         initNavController()
         //changeFragment(fragmentOnboardOne)
+
+        //back 버튼 누를 경우
+        val back : ImageView = findViewById(R.id.iv_back)
+        back.setOnClickListener{
+            onBackPressed()
+        }
     }
 
     private fun initNavController() {

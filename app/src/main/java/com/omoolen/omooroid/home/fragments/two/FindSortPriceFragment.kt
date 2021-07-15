@@ -1,6 +1,9 @@
 package com.omoolen.omooroid.home.fragments.two
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -71,7 +74,18 @@ class FindSortPriceFragment : DialogFragment() {
             dismiss()
         }
 
+        binding.ivDialogFindSortClose.setOnClickListener{
+            dismiss()
+        }
+
         return binding.root
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        return dialog
     }
 
     override fun onDestroyView() {

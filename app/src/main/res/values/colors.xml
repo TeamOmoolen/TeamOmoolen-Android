@@ -21,4 +21,17 @@
     <color name="progressbar_grey">#e5e5e5</color>
     <color name="coral">#fa6550</color>
     <color name="om_main_orange10">#1Aff9a24</color>
+
+
+    <color name="lens_color_transparent">#e8efff</color>
+    <color name="lens_color_black">#4f4f4f</color>
+    <color name="lens_color_grey">#6a6f88</color>
+    <color name="lens_color_choco">#524836</color>
+    <color name="lens_color_green">#65bd79</color>
+    <color name="lens_color_brown">#958057</color>
+    <color name="lens_color_purple">#c76be7</color>
+    <color name="lens_color_blue">#7595e8</color>
+    <color name="lens_color_gold">#eab86e</color>
+    <color name="lens_color_pink">#f372a1</color>
+    <color name="lens_color_etc">#fbfbfb</color>
 </resources>
