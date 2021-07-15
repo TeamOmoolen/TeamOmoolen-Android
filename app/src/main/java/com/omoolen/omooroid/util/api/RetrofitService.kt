@@ -1,6 +1,7 @@
 package com.omoolen.omooroid.util.api
 
 import com.omoolen.omooroid.search.data.Data
+import com.omoolen.omooroid.search.data.KeywordSearch
 import com.omoolen.omooroid.search.fragment.one.recycle.popular.ResponsePopularInfo
 import io.reactivex.Single
 import retrofit2.Call

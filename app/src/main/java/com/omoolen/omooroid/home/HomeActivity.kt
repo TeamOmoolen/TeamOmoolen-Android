@@ -90,10 +90,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
     }
 
-    fun setBottomChecked(index:Int){
-        binding.bnvMain.menu.getItem(index).isChecked = true
-    }
-
 
    /* private inner class ViewPagerAdapter(fm: FragmentManager, lc: Lifecycle): FragmentStateAdapter(fm, lc) {
         override fun getItemCount(): Int = 5
