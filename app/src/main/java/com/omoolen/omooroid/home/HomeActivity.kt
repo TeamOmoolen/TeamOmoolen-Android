@@ -43,12 +43,16 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         binding.bnvMain.setOnNavigationItemSelectedListener(this)*/
     }
+    fun setBottomChecked(index:Int){
+        binding.bnvMain.menu.getItem(index).isChecked = true
+    }
 
     private fun initNavController() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_home) as NavHostFragment
         //changeFragment(fragmentHomeOne)
         binding.bnvMain.setOnNavigationItemSelectedListener(this)
+        //binding.bnvMain.menu.getItem(3).isChecked = true
     }
     private fun changeFragment(fragment: Fragment) {
         Log.d("fragmentChangd", fragment.toString())

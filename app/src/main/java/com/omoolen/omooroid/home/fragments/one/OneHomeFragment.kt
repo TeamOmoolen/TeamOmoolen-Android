@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeOneBinding
+import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
 import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
 import com.omoolen.omooroid.home.fragments.one.newItem.NewListAdapter
@@ -210,6 +211,7 @@ class OneHomeFragment : Fragment() {
                 ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->foryou")
                 ?.commit()
 
+            (activity as HomeActivity).setBottomChecked(1)
         }
 
         binding.clHomeRecommendMore.setOnClickListener{
@@ -221,6 +223,7 @@ class OneHomeFragment : Fragment() {
                 ?.beginTransaction()
                 ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->situ")
                 ?.commit()
+            (activity as HomeActivity).setBottomChecked(1)
         }
 
 
@@ -233,7 +236,7 @@ class OneHomeFragment : Fragment() {
                 ?.beginTransaction()
                 ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->saeson")
                 ?.commit();
-
+            (activity as HomeActivity).setBottomChecked(1)
         }
 
         binding.clHomeNewMore.setOnClickListener {
@@ -245,7 +248,7 @@ class OneHomeFragment : Fragment() {
                 ?.beginTransaction()
                 ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->saeson")
                 ?.commit();
-
+            (activity as HomeActivity).setBottomChecked(1)
         }
 
 
