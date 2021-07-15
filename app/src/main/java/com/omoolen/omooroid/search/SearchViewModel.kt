@@ -2,6 +2,7 @@ package com.omoolen.omooroid.search
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.omoolen.omooroid.search.data.Item
 import com.omoolen.omooroid.util.api.RetrofitClient
@@ -39,7 +40,10 @@ class SearchViewModel() : ViewModel() {
     //최근 검색어 추가
     fun addRecent(recent: String) {
         if(recentSearch.size() > 2){ //3개까지
-            recentSearch.removeAt(0)
+            for(i in 0 until recentSearch.size()-2){
+                recentSearch.removeAt(0)
+            }
+            //recentSearch.removeAt(0)
         }
         recentSearch.add(RecentInfo(recent))
     }
@@ -61,27 +65,31 @@ class SearchViewModel() : ViewModel() {
     var mTotalPages : Int = 0
 
     @SuppressLint("CheckResult")
-    fun getSearch(){
+    fun getSearch(keyword: String) {
         val searchList = ListLiveData<Item>()
-
-        RetrofitClient.getApi.getData()
+        Log.d("RETROFIT","시작")
+        RetrofitClient.getApi.getData(keyword = keyword)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({data ->
+            .subscribe({keyword ->
                 searchList.clear()
-                data.items.forEach{
+                Log.d("RETROFIT_ENTER", keyword.data.totalPage.toString())
+                //Log.d("RETROFIT_ENTER",keyword.data.items[0].brand)
+
+                keyword.data.items.forEach{
                     searchList.add(Item(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,
-                    it.diameter,it.id,it.imageList,it.name,
-                    it.otherColorList,it.pieces,it.price))
+                        it.diameter,it.id,it.imageList,it.name,
+                        it.otherColorList,it.pieces,it.price))
                 }
-                mTotalPages = data.totalPage
+                mTotalPages = keyword.data.totalPage
+
+                //로그
+                for(s in 0 until searchList.size()){
+                    searchList[s].show()
+                }
             },{e ->
                 println(e.toString())
             })
-
-        for(s in 0 until searchList.size()){
-            searchList[s].show()
-        }
+        Log.d("RETROFIT","끝")
     }
-
 }

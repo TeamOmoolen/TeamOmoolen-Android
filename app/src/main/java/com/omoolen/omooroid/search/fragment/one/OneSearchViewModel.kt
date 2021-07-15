@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.omoolen.omooroid.search.fragment.one.recycle.popular.PopularInfo
 import com.omoolen.omooroid.search.fragment.one.recycle.popular.ResponsePopularInfo
+import com.omoolen.omooroid.util.ListLiveData
 import com.omoolen.omooroid.util.api.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,13 +15,12 @@ import retrofit2.Response
 
 class OneSearchViewModel() : ViewModel() {
 
-
     //인기 검색어
+    private val _popularSuccess= MutableLiveData<Boolean>()
+    val popularSuccess : LiveData<Boolean>
+        get() = _popularSuccess
 
-    private val _responsePopular= MutableLiveData<List<PopularInfo>>()
-    val responsePopular : LiveData<List<PopularInfo>>
-        get() = _responsePopular
-
+    val popularList = ListLiveData<PopularInfo>()
 
     fun getPopularList() {
         val call = RetrofitClient.getApi.getPopularData()
@@ -29,24 +29,16 @@ class OneSearchViewModel() : ViewModel() {
                 call: Call<ResponsePopularInfo>, response: Response<ResponsePopularInfo>
             ) {
                 if (response.isSuccessful) {
-
-                    val list = mutableListOf<PopularInfo>()
                     val data = response.body()?.data
 
                     if (data != null) {
                         var rank : Int = 1
                         for (i in data.indices) {
                             Log.d("popular", "$rank, ${data[i].name}")
-                            list.add(
-                                PopularInfo(
-                                    rank++,
-                                    data[i].name,
-                                    data[i].id
-                                )
-                            )
+                            popularList.add( PopularInfo(rank++, data[i].name, data[i].id))
                         }
                     }
-                    _responsePopular.value = list
+                    _popularSuccess.value =  true
                 }
             }
 
