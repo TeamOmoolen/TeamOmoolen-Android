@@ -20,4 +20,6 @@
     <string name="sort">정렬</string>
     <string name="sort_price_high">가격 높은 순</string>
     <string name="sort_price_low">가격 낮은 순</string>
+
+    <string name="base_url">"http://15.164.251.55:5000/api/main/"</string>
 </resources>

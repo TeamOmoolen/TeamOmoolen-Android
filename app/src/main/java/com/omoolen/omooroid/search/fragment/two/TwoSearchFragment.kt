@@ -74,15 +74,41 @@ class TwoSearchFragment : Fragment() {
     ): View? {
         _binding = FragmentSearchTwoBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         clickEvent()
         brandInit()
         colorInit()
         diameterInit()
         periodInit()
-        binding.tvBrand.isSelected = chipSelect[0]
+
         searchDatabase.initSearch()
+        init()
+        reset()
+        binding.tvBrand.isSelected = chipSelect[0]
         initChoice()
-        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        initAfter()
+    }
+
+    private fun init() {
+        binding.clBrand.visibility = View.VISIBLE
+        binding.clColor.visibility = View.VISIBLE
+        binding.clDiameter.visibility = View.VISIBLE
+        binding.clCycle.visibility = View.VISIBLE
+    }
+    private fun initAfter(){
+        binding.clBrand.visibility = View.VISIBLE
+        binding.clColor.visibility = View.GONE
+        binding.clDiameter.visibility = View.GONE
+        binding.clCycle.visibility = View.GONE
     }
 
     //전체 선택(초기 선택)
@@ -106,6 +132,9 @@ class TwoSearchFragment : Fragment() {
         )
         diameterChoice = mutableListOf(-1)
         periodChoice = mutableListOf(0, 1, 2, 3, 4, 5, 6, 7)
+        for(i in firstList.indices){
+            firstList[i] = true
+        }
     }
 
     //TODO : 전체선택 처리해서 CHIOICE 어떻게 넘길지 로직짜기
@@ -287,6 +316,7 @@ class TwoSearchFragment : Fragment() {
         binding.rvColor.setHasFixedSize(true)
         binding.rvColor.addItemDecoration(VerticalItemDecoration(10))
         binding.rvColor.layoutManager = colorLayoutManager
+
     }
 
     private fun diameterInit() {
@@ -521,6 +551,23 @@ class TwoSearchFragment : Fragment() {
             searchDatabase.setDiameter(diameterChoice)
             searchDatabase.setCycle(periodChoice)
             searchDatabase.show()
+        }
+
+
+    }
+
+    private fun reset(){
+        //새로고침
+        binding.clRefresh.setOnClickListener {
+            initChoice()
+            for (i in 0 until brandList.size + 1)
+                binding.rvBrand[i].isSelected = false
+            for (i in 0 until colorList.size + 1)
+                binding.rvColor[i].isSelected = false
+            for (i in 0 until 6)
+                binding.rvDiameter[i].isSelected = false
+            for (i in 0 until cycleList.size)
+                binding.rvCycle[i].isSelected = false
         }
     }
 

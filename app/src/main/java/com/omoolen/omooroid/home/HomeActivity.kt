@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private fun initNavController() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_home) as NavHostFragment
-        changeFragment(fragmentHomeOne)
+        //changeFragment(fragmentHomeOne)
         binding.bnvMain.setOnNavigationItemSelectedListener(this)
     }
     private fun changeFragment(fragment: Fragment) {
@@ -64,19 +64,19 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 changeFragment(fragmentHomeOne)
                 return true
             }
-            R.id.locationFragment -> {
+            R.id.findFragment -> {
                 changeFragment(fragmentHomeTwo)
                 return true
             }
-            R.id.settingFragment -> {
+            R.id.eventFragment -> {
                 changeFragment(fragmentHomeThree)
                 return true
             }
-            R.id.fourFragment -> {
+            R.id.tipFragment -> {
                 changeFragment(fragmentHomeFour)
                 return true
             }
-            R.id.fiveFragment -> {
+            R.id.mypageFragment -> {
                 changeFragment(fragmentHomeFive)
                 return true
             }
