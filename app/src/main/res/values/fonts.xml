@@ -650,4 +650,12 @@
         <item name="android:lineSpacingMultiplier">1.32</item>
         <item name="android:textColor">@color/om_main_black</item>
     </style>
+
+    <style name="TextStyle75">
+        <item name="android:fontFamily">@font/noto_sans_cjkkr_medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:textColor">@color/om_second_gray</item>
+    </style>
 </resources>

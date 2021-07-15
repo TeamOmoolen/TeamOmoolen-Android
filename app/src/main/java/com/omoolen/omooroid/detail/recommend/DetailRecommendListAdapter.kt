@@ -10,6 +10,23 @@ class DetailRecommendListAdapter :RecyclerView.Adapter<DetailRecommendListAdapte
 
     private var detailRecommendList = emptyList<DetailRecommendInfo>()
 
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailRecommendViewHolder {
+//        val binding = ItemDetailRecommendBinding.inflate(
+//            LayoutInflater.from(parent.context),
+//            parent,
+//            false
+//        )
+//
+//        return DetailRecommendViewHolder(binding)
+//    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailRecommendViewHolder {
+        val binding = ItemDetailRecommendBinding.inflate(LayoutInflater.from(parent.context),
+        parent, false)
+
+        return DetailRecommendViewHolder(binding)
+    }
+
     class DetailRecommendViewHolder(
         private val binding : ItemDetailRecommendBinding
     ): RecyclerView.ViewHolder(binding.root){
@@ -22,24 +39,15 @@ class DetailRecommendListAdapter :RecyclerView.Adapter<DetailRecommendListAdapte
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailRecommendViewHolder {
-        val binding = ItemDetailRecommendBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-
-        return DetailRecommendViewHolder(binding)
-    }
-
     override fun onBindViewHolder(holder: DetailRecommendViewHolder, position: Int) {
         holder.bind(detailRecommendList[position])
     }
 
     override fun getItemCount(): Int  = detailRecommendList.size
 
-    fun setDetailRecommend(detailRecommendList: List<DetailRecommendInfo>){
+    fun setDetailRecommend(detailRecommendList : List<DetailRecommendInfo>){
         this.detailRecommendList = detailRecommendList
         notifyDataSetChanged()
     }
+
 }
