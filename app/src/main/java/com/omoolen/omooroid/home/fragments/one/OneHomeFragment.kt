@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.home.fragments.one
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -9,16 +9,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeOneBinding
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
 import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
 import com.omoolen.omooroid.home.fragments.one.newItem.NewListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
 import com.omoolen.omooroid.home.fragments.one.tip.TipListAdapter
+import com.omoolen.omooroid.home.fragments.two.PagerFragmentStateAdapter
+import com.omoolen.omooroid.home.fragments.two.TwoHomeFragment
+import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouFragment
+import com.omoolen.omooroid.home.fragments.two.newItem.TwoHomeNewFragment
+import com.omoolen.omooroid.home.fragments.two.season.TwoHomeSeasonFragment
+import com.omoolen.omooroid.home.fragments.two.situation.TwoHomeSituFragment
+import com.omoolen.omooroid.search.SearchActivity
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
-
 
 
 class OneHomeFragment : Fragment() {
@@ -35,6 +48,8 @@ class OneHomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeOneBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+
+        setClickListener()
 
         oneHomeViewModel.setCuratingList()
         setCuratingAdapter()
@@ -75,8 +90,8 @@ class OneHomeFragment : Fragment() {
         binding.rvHomeRecommend.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
         binding.rvHomeRecommend.addItemDecoration(VerticalItemDecorator(40, requireContext()))
 
-        binding.rvHomeTemp.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
-        binding.rvHomeTemp.addItemDecoration(VerticalItemDecorator(40, requireContext()))
+        binding.rvHomeSeason.addItemDecoration(HorizontalItemDecorator(12, 2, requireContext()))
+        binding.rvHomeSeason.addItemDecoration(VerticalItemDecorator(40, requireContext()))
 
     }
 
@@ -108,12 +123,12 @@ class OneHomeFragment : Fragment() {
     }
 
     private fun setRecommend2Adapter(){
-        binding.rvHomeTemp.adapter = RecommendListAdapter()
+        binding.rvHomeSeason.adapter = RecommendListAdapter()
     }
 
     private fun setRecommend2Observe() {
         oneHomeViewModel.recommendList2.observe(viewLifecycleOwner) { tempList ->
-            with(binding.rvHomeTemp.adapter as RecommendListAdapter) {
+            with(binding.rvHomeSeason.adapter as RecommendListAdapter) {
                 setRecommend(tempList)
             }
         }
@@ -177,5 +192,63 @@ class OneHomeFragment : Fragment() {
         TabLayoutMediator(binding.tabHomeAd, binding.vpHomeAd) { tab, position -> }.attach()
     }
 
+
+    private fun setClickListener(){
+
+        binding.tvOneSearch.setOnClickListener {
+            val intent = Intent(context, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.clHomeCuratingMore.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putInt("setIdx", 1)
+            TwoHomeFragment().arguments = bundle
+
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->foryou")
+                ?.commit()
+
+        }
+
+        binding.clHomeRecommendMore.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putInt("setIdx", 2)
+            TwoHomeFragment().arguments = bundle
+
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->situ")
+                ?.commit()
+        }
+
+
+        binding.clHomeSeasonMore.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putInt("setIdx", 4)
+            TwoHomeFragment().arguments = bundle
+
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->saeson")
+                ?.commit();
+
+        }
+
+        binding.clHomeNewMore.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("setIdx", 3)
+            TwoHomeFragment().arguments = bundle
+
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->saeson")
+                ?.commit();
+
+        }
+
+
+    }
 
 }
