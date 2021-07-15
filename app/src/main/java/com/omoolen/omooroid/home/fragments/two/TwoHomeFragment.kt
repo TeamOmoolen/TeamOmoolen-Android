@@ -1,6 +1,7 @@
 package com.omoolen.omooroid.home.fragments.two
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,14 +10,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeTwoBinding
+import com.omoolen.omooroid.home.HomeActivity
+import com.omoolen.omooroid.home.fragments.one.OneHomeFragment
 import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouFragment
 import com.omoolen.omooroid.home.fragments.two.newItem.TwoHomeNewFragment
 import com.omoolen.omooroid.home.fragments.two.season.TwoHomeSeasonFragment
 import com.omoolen.omooroid.home.fragments.two.situation.TwoHomeSituFragment
+import com.omoolen.omooroid.search.SearchActivity
 
 
 class TwoHomeFragment : Fragment() {
@@ -35,13 +38,7 @@ class TwoHomeFragment : Fragment() {
         _binding = FragmentHomeTwoBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         mContext = requireContext()
-
-        idx = arguments?.getInt("setIdx")
-        if(idx != null) {
-            val tabLayout = binding.findTabLayout
-            val tab = tabLayout.getTabAt(idx!!)
-            tab!!.select()
-        }
+        setClickListener()
 
         return binding.root
     }
@@ -76,6 +73,34 @@ class TwoHomeFragment : Fragment() {
                     3 -> { tab.text = homeViewModel.tabItem4}
                 }
         }.attach()
+
+
+        idx = arguments?.getInt("setIdx")
+        if(idx != null) {
+            val tabLayout = binding.findTabLayout
+            val tab = tabLayout.getTabAt(idx!! - 1)
+            tab!!.select()
+
+            pagerAdapter.createFragment(idx!! - 1)
+        }
+    }
+
+    private fun setClickListener() {
+
+        binding.tvTwoSearch.setOnClickListener {
+            val intent = Intent(context, SearchActivity::class.java)
+            startActivity(intent)
+        }
+        
+        binding.ivTwoLogo.setOnClickListener{
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.replace(
+                    R.id.nav_host_home, OneHomeFragment(), "home->foryou")
+                ?.commit()
+
+            (activity as HomeActivity).setBottomChecked(0)
+        }
     }
 
 }

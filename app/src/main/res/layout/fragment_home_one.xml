@@ -270,6 +270,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="40dp"
                             android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -306,6 +308,8 @@
                             android:layout_marginTop="30dp"
                             android:orientation="horizontal"
                             android:overScrollMode="never"
+                            android:clipToPadding="false"
+                            android:paddingEnd="24dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_home_curating"
@@ -327,6 +331,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="70dp"
+                            android:includeFontPadding="false"
                             android:text="@string/home_tip_main"
                             android:theme="@style/TextStyle13"
                             app:layout_constraintStart_toStartOf="parent"
@@ -336,8 +341,10 @@
                             android:id="@+id/cl_home_tip_more"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="75dp"
+                            android:layout_marginTop="70dp"
                             android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -376,6 +383,8 @@
                             android:layout_marginTop="20dp"
                             android:orientation="horizontal"
                             android:overScrollMode="never"
+                            android:clipToPadding="false"
+                            android:paddingEnd="24dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_home_tip"
@@ -409,6 +418,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="60dp"
                             android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/iv_one_line1">
 
@@ -536,6 +547,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 
@@ -619,6 +632,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="60dp"
                             android:layout_marginEnd="13dp"
+                            android:paddingStart="10dp"
+                            android:paddingBottom="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
 

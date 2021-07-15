@@ -4,6 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="popularInfo"
+            type="com.omoolen.omooroid.search.fragment.one.recycle.popular.PopularInfo" />
+
+        <variable
+            name="rank"
+            type="java.lang.String"/>
+
+    </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -34,6 +45,7 @@
             android:layout_marginStart="17dp"
             android:letterSpacing="-0.05"
             style="@style/TextStyle42"
+            android:text="@{popularInfo.name}"
             android:includeFontPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_rank"

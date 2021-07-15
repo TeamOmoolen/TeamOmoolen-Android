@@ -225,6 +225,8 @@ class FourOnboardFragment : Fragment() {
                 //홈화면으로 전환
                 val intent = Intent(requireContext(), HomeActivity::class.java)
                 startActivity(intent) //액티비티 띄우기
+
+                activity?.finish()
             }
         }
     }

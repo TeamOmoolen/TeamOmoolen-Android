@@ -1,24 +1,60 @@
 package com.omoolen.omooroid.search.fragment.one
 
-import android.annotation.SuppressLint
-import android.app.Application
-import android.content.Context
 import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import com.omoolen.omooroid.search.fragment.one.recycle.popular.PopularAdapter
+import androidx.lifecycle.*
 import com.omoolen.omooroid.search.fragment.one.recycle.popular.PopularInfo
-import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentAdapter
-import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentInfo
-import com.omoolen.omooroid.util.ListLiveData
+import com.omoolen.omooroid.search.fragment.one.recycle.popular.ResponsePopularInfo
+import com.omoolen.omooroid.util.api.RetrofitClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.HttpException
+import retrofit2.Response
 
 class OneSearchViewModel() : ViewModel() {
 
 
+    //인기 검색어
 
+    private val _responsePopular= MutableLiveData<List<PopularInfo>>()
+    val responsePopular : LiveData<List<PopularInfo>>
+        get() = _responsePopular
+
+
+    fun getPopularList() {
+        val call = RetrofitClient.getApi.getPopularData()
+        call.enqueue(object : Callback<ResponsePopularInfo> {
+            override fun onResponse(
+                call: Call<ResponsePopularInfo>, response: Response<ResponsePopularInfo>
+            ) {
+                if (response.isSuccessful) {
+
+                    val list = mutableListOf<PopularInfo>()
+                    val data = response.body()?.data
+
+                    if (data != null) {
+                        var rank : Int = 1
+                        for (i in data.indices) {
+                            Log.d("popular", "$rank, ${data[i].name}")
+                            list.add(
+                                PopularInfo(
+                                    rank++,
+                                    data[i].name,
+                                    data[i].id
+                                )
+                            )
+                        }
+                    }
+                    _responsePopular.value = list
+                }
+            }
+
+            override fun onFailure(call: Call<ResponsePopularInfo>, t: Throwable) {
+                Log.d("NetworkTest", "error:$t")
+            }
+        })
+    }
 
     //TODO : 상세페이지로 이동
     fun intentToDetail(){
@@ -26,31 +62,4 @@ class OneSearchViewModel() : ViewModel() {
     }
 
 
-
-    fun setPopularAdapter(_popularAdapter:PopularAdapter): PopularAdapter {
-        //TODO : 랭킹 매겨서 popularInfo에 넘기기
-        var popularAdapter = _popularAdapter
-        popularAdapter.popularList.addAll(
-            listOf<PopularInfo>(
-                PopularInfo(rank = 1, name = "오렌즈 시크리스 그레이"),
-                PopularInfo(rank = 1, name = "오렌즈 시크리스 그레이2"),
-                PopularInfo(rank = 1, name = "오렌즈 시크리스 그레이3"),
-                PopularInfo(rank = 1, name = "오렌즈 시크리스 그레이4"),
-                PopularInfo(rank = 1, name = "오렌즈 시크리스 그레이"),
-                PopularInfo(rank = 1, name = "오렌즈 시크리스 그레이2"),
-                PopularInfo(rank = 1, name = "오렌즈 시크리스 그레이3"),
-                PopularInfo(rank = 1, name = "오렌즈 시크리스 그레이4"),
-                PopularInfo(rank = 1, name = "오렌즈 시크리스 그레이3")
-            )
-        )
-        popularAdapter.setItemClickListener(object : PopularAdapter.OnItemClickListener {
-            override fun onClick(v: View, position: Int) {
-                // TODO : 클릭 시 이벤트 작성
-                //position에 해당하는 상세 페이지로 intent
-                //Toast.makeText(mContext,position.toString(),Toast.LENGTH_SHORT).show()
-                //popularAdapter.popularList[0].name 를 GET
-            }
-        })
-            return popularAdapter
-    }
 }
