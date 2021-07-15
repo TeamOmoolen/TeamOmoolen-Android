@@ -1,7 +1,9 @@
 package com.omoolen.omooroid.search.fragment.two
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -14,14 +16,12 @@ import com.omoolen.omooroid.onboarding.fragments.four.brand.BrandAdapter
 import com.omoolen.omooroid.onboarding.fragments.four.brand.BrandInfo
 import com.omoolen.omooroid.onboarding.fragments.two.recycle.color.ColorAdapter
 import com.omoolen.omooroid.onboarding.fragments.two.recycle.color.ColorInfo
+import com.omoolen.omooroid.search.SearchDatabase
 import com.omoolen.omooroid.search.fragment.two.recycle.diameter.DiameterAdapter
 import com.omoolen.omooroid.search.fragment.two.recycle.diameter.DiameterInfo
 import com.omoolen.omooroid.search.fragment.two.recycle.period.PeriodAdapter
 import com.omoolen.omooroid.search.fragment.two.recycle.period.PeriodInfo
-import com.omoolen.omooroid.util.HorizontalItemDecorator
-import com.omoolen.omooroid.util.ListLiveData
 import com.omoolen.omooroid.util.VerticalItemDecoration
-import com.omoolen.omooroid.util.VerticalItemDecorator
 
 class TwoSearchFragment : Fragment() {
     private var _binding: FragmentSearchTwoBinding? = null
@@ -37,12 +37,33 @@ class TwoSearchFragment : Fragment() {
     private lateinit var periodAdapter: PeriodAdapter
     private lateinit var periodLayoutManager: RecyclerView.LayoutManager
 
-    val brandChoice = ListLiveData<Int>()
-    val colorChoice = ListLiveData<Int>()
-    val diameterChoice = ListLiveData<Int>()
-    val periodChoice = ListLiveData<Int>()
+    lateinit var brandChoice: MutableList<String>
+    lateinit var colorChoice: MutableList<String>
+    lateinit var diameterChoice: MutableList<Int>
+    lateinit var periodChoice: MutableList<Int>
 
     var chipSelect = arrayOf(true, false, false, false)
+    var searchDatabase = SearchDatabase()
+
+    val brandList = arrayOf(
+        "오렌즈", "렌즈미", "렌즈베리", "앤365", "렌즈타운", "다비치", "아이돌렌즈", "렌즈나인", "렌즈디바",
+        "아큐브", "바슈롬", "클라렌", "알콘", "뉴바이오", "프레쉬콘", "쿠퍼비전"
+    )
+    val colorList = arrayOf(
+        "clear",
+        "black",
+        "gray",
+        "choco",
+        "green",
+        "brown",
+        "purple",
+        "blue",
+        "gold",
+        "pink",
+        "glitter"
+    )
+    val otherColorList = arrayOf("yellow", "espressogold", "hazel", "rich brown", "white", "red")
+    val cycleList = arrayOf(0, 1, 2, 3, 4, 5, 6, 7)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,7 +77,32 @@ class TwoSearchFragment : Fragment() {
         diameterInit()
         periodInit()
         binding.tvBrand.isSelected = chipSelect[0]
+        searchDatabase.initSearch()
+        initChoice()
         return binding.root
+    }
+
+    //전체 선택(초기 선택)
+    private fun initChoice() {
+        brandChoice = mutableListOf(
+            "오렌즈", "렌즈미", "렌즈베리", "앤365", "렌즈타운", "다비치", "아이돌렌즈", "렌즈나인", "렌즈디바",
+            "아큐브", "바슈롬", "클라렌", "알콘", "뉴바이오", "프레쉬콘", "쿠퍼비전"
+        )
+        colorChoice = mutableListOf(
+            "clear",
+            "black",
+            "gray",
+            "choco",
+            "green",
+            "brown",
+            "purple",
+            "blue",
+            "gold",
+            "pink",
+            "glitter"
+        )
+        diameterChoice = mutableListOf(-1)
+        periodChoice = mutableListOf(0, 1, 2, 3, 4, 5, 6, 7)
     }
 
     //TODO : 전체선택 처리해서 CHIOICE 어떻게 넘길지 로직짜기
@@ -66,38 +112,20 @@ class TwoSearchFragment : Fragment() {
             listOf<BrandInfo>(
                 BrandInfo(resourceId = R.drawable.img_olens_logo_onboarding_normal, name = "오렌즈"),
                 BrandInfo(resourceId = R.drawable.img_lensme_logo_onboarding_normal, name = "렌즈미"),
-                BrandInfo(
-                    resourceId = R.drawable.img_lensvery_logo_onboarding_normal,
-                    name = "렌즈베리"
-                ),
+                BrandInfo(resourceId = R.drawable.img_lensvery_logo_onboarding_normal, name = "렌즈베리"),
                 BrandInfo(resourceId = R.drawable.img_ann_logo_onboarding_normal, name = "앤365"),
-                BrandInfo(
-                    resourceId = R.drawable.img_lenstown_logo_onboarding_normal,
-                    name = "렌즈타운"
-                ),
+                BrandInfo(resourceId = R.drawable.img_lenstown_logo_onboarding_normal, name = "렌즈타운"),
                 BrandInfo(resourceId = R.drawable.img_davi_logo_onboarding_normal, name = "다비치"),
                 BrandInfo(resourceId = R.drawable.img_idol_logo_onboarding_normal, name = "아이돌렌즈"),
-                BrandInfo(
-                    resourceId = R.drawable.img_lensnine_logo_onboarding_normal,
-                    name = "렌즈나인"
-                ),
-                BrandInfo(
-                    resourceId = R.drawable.img_lensdiva_logo_onboarding_normal,
-                    name = "렌즈디바"
-                ),
+                BrandInfo(resourceId = R.drawable.img_lensnine_logo_onboarding_normal, name = "렌즈나인"),
+                BrandInfo(resourceId = R.drawable.img_lensdiva_logo_onboarding_normal, name = "렌즈디바"),
                 BrandInfo(resourceId = R.drawable.img_acuvue_logo_onboarding_normal, name = "아큐브"),
                 BrandInfo(resourceId = R.drawable.img_ba_logo_onboarding_normal, name = "바슈롬"),
                 BrandInfo(resourceId = R.drawable.img_cl_logo_onboarding_normal, name = "클라렌"),
                 BrandInfo(resourceId = R.drawable.img_ilcon_logo_onboarding_normal, name = "알콘"),
                 BrandInfo(resourceId = R.drawable.img_newbio_logo_onboarding_normal, name = "뉴바이오"),
-                BrandInfo(
-                    resourceId = R.drawable.img_freshkon_logo_onboarding_normal,
-                    name = "프레쉬콘"
-                ),
-                BrandInfo(
-                    resourceId = R.drawable.img_coupervision_logo_onboarding_normal,
-                    name = "쿠퍼비전"
-                ),
+                BrandInfo(resourceId = R.drawable.img_freshkon_logo_onboarding_normal, name = "프레쉬콘"),
+                BrandInfo(resourceId = R.drawable.img_coupervision_logo_onboarding_normal, name = "쿠퍼비전"),
                 BrandInfo(resourceId = R.drawable.img_etc_logo_onboarding_normal, name = "그외")
             )
         )
@@ -105,11 +133,22 @@ class TwoSearchFragment : Fragment() {
             false, false, false, false, false, false, false, false, false, false, false,
             false, false, false, false, false, false
         )
+        var first = true
         brandAdapter.setItemClickListener(object : BrandAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 brandArr[position] = !brandArr[position]
-                if (brandArr[position]) brandChoice.add(position)
-                else brandChoice.remove(position)
+                if (first) {
+                    brandChoice.clear()
+                    first = false
+                }
+                if (brandArr[position]) brandChoice.add(brandAdapter.brandList[position].name)
+                else brandChoice.remove(brandAdapter.brandList[position].name)
+
+                if (brandChoice.size == 0) {
+                    brandChoice =
+                        brandList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                    first = true
+                }
                 v.isSelected = brandArr[position]
             }
         })
@@ -118,7 +157,7 @@ class TwoSearchFragment : Fragment() {
         brandLayoutManager = object : GridLayoutManager(requireContext(), 3) {
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams): Boolean {
                 // force size of viewHolder here, this will override layout_height and layout_width from xml
-                lp.width = ((width-40) / spanCount)
+                lp.width = ((width - 40) / spanCount)
                 //lp.height = lp.width
                 return true
             }
@@ -133,27 +172,102 @@ class TwoSearchFragment : Fragment() {
         colorAdapter = ColorAdapter()
         colorAdapter.colorList.addAll(
             listOf<ColorInfo>(
-                ColorInfo(backId = R.drawable.ic_btn_noncolor_back, resourceId = R.drawable.ic_btn_noncolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_blackcolor_back, resourceId = R.drawable.ic_btn_blackcolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_greycolor_back, resourceId = R.drawable.ic_btn_greycolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_chococolor_back, resourceId = R.drawable.ic_btn_chococolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_greencolor_back, resourceId = R.drawable.ic_btn_greencolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_browncolor_back, resourceId = R.drawable.ic_btn_browncolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_purplecolor_back, resourceId = R.drawable.ic_btn_purplecolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_bluecolor_back, resourceId = R.drawable.ic_btn_bluecolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_goldcolor_back, resourceId = R.drawable.ic_btn_goldcolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_pinkcolor_back, resourceId = R.drawable.ic_btn_pinkcolor_selector),
-                ColorInfo(backId = R.drawable.btn_glittercolor_normal, resourceId = R.drawable.ic_btn_glittercolor_selector),
-                ColorInfo(backId = R.drawable.ic_btn_etccolor_back, resourceId = R.drawable.ic_btn_etccolor_selector)
+                ColorInfo(
+                    backId = R.drawable.ic_btn_noncolor_back,
+                    resourceId = R.drawable.ic_btn_noncolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_blackcolor_back,
+                    resourceId = R.drawable.ic_btn_blackcolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_greycolor_back,
+                    resourceId = R.drawable.ic_btn_greycolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_chococolor_back,
+                    resourceId = R.drawable.ic_btn_chococolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_greencolor_back,
+                    resourceId = R.drawable.ic_btn_greencolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_browncolor_back,
+                    resourceId = R.drawable.ic_btn_browncolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_purplecolor_back,
+                    resourceId = R.drawable.ic_btn_purplecolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_bluecolor_back,
+                    resourceId = R.drawable.ic_btn_bluecolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_goldcolor_back,
+                    resourceId = R.drawable.ic_btn_goldcolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_pinkcolor_back,
+                    resourceId = R.drawable.ic_btn_pinkcolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.btn_glittercolor_normal,
+                    resourceId = R.drawable.ic_btn_glittercolor_selector
+                ),
+                ColorInfo(
+                    backId = R.drawable.ic_btn_etccolor_back,
+                    resourceId = R.drawable.ic_btn_etccolor_selector
+                )
             )
         )
         var colorArr =
-            arrayOf(false, false, false, false, false, false, false, false, false, false, false)
+            arrayOf(
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+            )
+        var first = true
         colorAdapter.setItemClickListener(object : ColorAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 colorArr[position] = !colorArr[position]
-                if (colorArr[position]) colorChoice.add(position)
-                else colorChoice.remove(position)
+                if (first) {
+                    colorChoice.clear()
+                    first = false
+                }
+                if (colorArr[position]) { //선택
+                    if (position == 11) { //기타 선택
+                        for (i in 0 until otherColorList.size) {
+                            colorChoice.add(otherColorList[i])
+                        }
+                    } else colorChoice.add(colorList[position])
+
+                } else { //제거
+                    if (position == 11) { //기타 선택
+                        for (i in 0 until otherColorList.size) {
+                            Log.d("other없애기", otherColorList[i])
+                            colorChoice.remove(otherColorList[i])
+                        }
+                    } else {
+                        colorChoice.remove(colorList[position])
+                    }
+                }
+
+                if (colorChoice.size == 0) {
+                    colorChoice =
+                        colorList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                    first = true
+                }
                 v.isSelected = colorArr[position]
             }
         })
@@ -184,15 +298,37 @@ class TwoSearchFragment : Fragment() {
                 DiameterInfo(name = "14.0 이상"),
             )
         )
-        var diameterArr = arrayOf(false, false, false, false, false, false)
+//        var diameterArr = arrayOf(false, false, false, false, false, false)
+//        diameterAdapter.setItemClickListener(object : DiameterAdapter.OnItemClickListener {
+//            override fun onClick(v: View, position: Int) {
+//                //단일 선택
+//                diameterChoice.clear()
+//                diameterArr[position] = !diameterArr[position]
+//                if (diameterArr[position]) diameterChoice.add(position)
+//                else diameterChoice.remove(position)
+//                v.isSelected = diameterArr[position]
+//            }
+//        })
         diameterAdapter.setItemClickListener(object : DiameterAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-                // TODO : 클릭 시 이벤트 작성
-                //다중 선택
-                diameterArr[position] = !diameterArr[position]
-                if (diameterArr[position]) diameterChoice.add(position)
-                else diameterChoice.remove(position)
-                v.isSelected = diameterArr[position]
+            }
+        })
+        binding.rvDiameter.addOnItemTouchListener(object :
+            RecyclerView.OnItemTouchListener {
+            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
+                if (e.action == MotionEvent.ACTION_MOVE) {
+                } else {
+                    viewModel.diameterSingleChoice(rv, e)
+                }
+                return false
+            }
+
+            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
         binding.rvDiameter.adapter = diameterAdapter
@@ -209,6 +345,10 @@ class TwoSearchFragment : Fragment() {
         binding.rvDiameter.addItemDecoration(VerticalItemDecoration(10))
         binding.rvDiameter.layoutManager = diameterLayoutManager
 
+        viewModel._diameterChoice.observe(viewLifecycleOwner, { choice ->
+            diameterChoice.clear()
+            diameterChoice.add(choice)
+        })
     }
 
     private fun periodInit() {
@@ -225,14 +365,26 @@ class TwoSearchFragment : Fragment() {
                 PeriodInfo(name = "6 months +")
             )
         )
-        var periodArr = arrayOf(false, false, false, false, false, false, false)
+        var first = true
+        var periodArr = arrayOf(false, false, false, false, false, false, false, false)
         periodAdapter.setItemClickListener(object : PeriodAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
                 // TODO : 클릭 시 이벤트 작성
                 //다중 선택
+                if (first) {
+                    periodChoice.clear()
+                    first = false
+                }
                 periodArr[position] = !periodArr[position]
-                if (periodArr[position]) diameterChoice.add(position)
+                if (periodArr[position]) periodChoice.add(position)
                 else periodChoice.remove(position)
+
+                if (periodChoice.size == 0) {
+                    periodChoice =
+                        cycleList.toMutableList() //아무것도 선택 안했을 때 전체 선택으로
+                    first = true
+                }
+
                 v.isSelected = periodArr[position]
             }
         })
@@ -289,11 +441,20 @@ class TwoSearchFragment : Fragment() {
             binding.rvPeriod.visibility = View.VISIBLE
         }
         binding.clAllTouch.setOnClickListener {
-            for (i in chipSelect.indices){
-                if (chipSelect[i]){ //현재 선택한 탭 index찾기
+            for (i in chipSelect.indices) {
+                if (chipSelect[i]) { //현재 선택한 탭 index찾기
 
                 }
             }
+        }
+        //필터 검색 버튼 클릭
+        binding.tvFilter.setOnClickListener {
+            //컨버팅 필요
+            searchDatabase.setBrand(brandChoice)
+            searchDatabase.setColor(colorChoice)
+            searchDatabase.setDiameter(diameterChoice)
+            searchDatabase.setCycle(periodChoice)
+            searchDatabase.show()
         }
     }
 
