@@ -18,7 +18,7 @@
         android:layout_height="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        setColor2="@{colorData}"
+        setColor="@{colorData}"
         app:srcCompat="@drawable/ic_ellipse_1848" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

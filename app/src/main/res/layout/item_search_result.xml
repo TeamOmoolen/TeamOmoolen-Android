@@ -6,7 +6,7 @@
     <data>
         <variable
             name="SearchResultInfo"
-            type="com.omoolen.omooroid.search.data.Item" />
+            type="com.omoolen.omooroid.search.search_result.SearchResultInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,18 +22,16 @@
 
             <ImageView
                 android:id="@+id/iv_search_result_main"
-                setSrcFromUrl="@{SearchResultInfo.imageList[1]}"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:scaleType="fitEnd"
+                setSrc="@{SearchResultInfo.imgId1}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/backgroud_round_image"
                 tools:src="@drawable/rectangle_3410" />
 
             <ImageView
                 android:id="@+id/iv_search_result_sub"
-                setSrcFromUrl="@{SearchResultInfo.imageList[0]}"
+                setSrc="@{SearchResultInfo.imgId2}"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_marginEnd="10dp"
@@ -47,11 +45,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:maxLines="1"
                 android:text="@{SearchResultInfo.brand}"
-
+                android:includeFontPadding="false"
                 android:theme="@style/TextStyle15"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_search_result_main"
@@ -63,9 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:letterSpacing="-0.05"
-                android:ellipsize="end"
                 android:includeFontPadding="false"
-                android:maxLines="1"
                 android:text="@{SearchResultInfo.name}"
                 android:textColor="@color/om_main_black"
                 android:textSize="14sp"
@@ -82,10 +75,7 @@
                 android:layout_marginTop="4dp"
                 android:letterSpacing="-0.05"
                 android:includeFontPadding="false"
-                setDiameter="@{SearchResultInfo.diameter}"
-                setMinRange="@{SearchResultInfo.changeCycleMinimum}"
-                setMaxRange="@{SearchResultInfo.changeCycleMaximum}"
-                setPiece="@{SearchResultInfo.pieces}"
+                android:text="@{SearchResultInfo.info}"
                 android:textColor="@color/om_third_gray"
                 android:textSize="12sp"
                 android:theme="@style/TextStyle17"
@@ -95,7 +85,7 @@
 
             <TextView
                 android:id="@+id/tv_search_result_price"
-                setPrice2 ="@{SearchResultInfo.price}"
+                setPrice="@{SearchResultInfo.price}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

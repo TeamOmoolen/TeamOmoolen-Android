@@ -71,7 +71,7 @@
 
         <TextView
             android:id="@+id/tv_detail_new_price"
-            setPrice2 ="@{detailNewInfo.price}"
+            setPrice="@{detailNewInfo.price}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

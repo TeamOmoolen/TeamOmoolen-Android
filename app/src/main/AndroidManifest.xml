@@ -86,17 +86,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".search.SearchActivity"
-            android:windowSoftInputMode="adjustResize">
+        <activity android:name=".search.SearchActivity">
 <!--                        <intent-filter>-->
 <!--                            <action android:name="android.intent.action.MAIN" />-->
 
 <!--                            <category android:name="android.intent.category.LAUNCHER" />-->
 <!--                        </intent-filter>-->
         </activity>
-        <activity android:name=".search.search_result.SearchResultActivity">
 
-        </activity>
 
         <!--        푸시알림-->
         <service android:name=".util.firebase.MyFirebaseMessagingService">

@@ -141,7 +141,7 @@
 
                     <TextView
                         android:id="@+id/tv_one_neW_price1"
-                        setPrice2 ="@{newInfo.price1}"
+                        setPrice="@{newInfo.price1}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -215,7 +215,7 @@
 
                     <TextView
                         android:id="@+id/tv_one_new_price2"
-                        setPrice2 ="@{newInfo.price2}"
+                        setPrice="@{newInfo.price2}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -288,7 +288,7 @@
 
                     <TextView
                         android:id="@+id/tv_one_new_price3"
-                        setPrice2 ="@{newInfo.price3}"
+                        setPrice="@{newInfo.price3}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
