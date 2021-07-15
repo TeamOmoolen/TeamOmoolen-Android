@@ -25,9 +25,7 @@ class OneSearchFragment : Fragment() {
     private lateinit var mContext: Context
 
     lateinit var recentAdapter: RecentAdapter
-    lateinit var popularAdapter: PopularAdapter
     private lateinit var recentLayoutManager: RecyclerView.LayoutManager
-    private lateinit var popularLayoutManager: RecyclerView.LayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +42,12 @@ class OneSearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.initRecentSearch(mContext)
         recentInit()
-        popularInit()
         observe()
+
+        popularViewModel.getPopularList()
+        setPopularAdapter()
+        setPopularListObserve()
+
         clickEvents()
     }
 
@@ -102,20 +104,26 @@ class OneSearchFragment : Fragment() {
         return recentAdapter
     }
 
-    //init popular recycler
-    private fun popularInit() {
-        popularAdapter = PopularAdapter(mContext)
-        binding.rvPopular.adapter = popularViewModel.setPopularAdapter(popularAdapter)
-        popularLayoutManager = LinearLayoutManager(mContext)
-        binding.rvPopular.layoutManager = popularLayoutManager
-    }
-
     //swipe view
     fun newInstant(): OneSearchFragment {
         val args = Bundle()
         val frag = OneSearchFragment()
         frag.arguments = args
         return frag
+    }
+
+
+    //init popular recycler
+    private fun setPopularAdapter() {
+        binding.rvPopular.adapter = PopularAdapter()
+    }
+
+    private fun setPopularListObserve() {
+        popularViewModel.responsePopular.observe(viewLifecycleOwner) { popularList ->
+            with(binding.rvPopular.adapter as PopularAdapter){
+                setPopular(popularList)
+            }
+        }
     }
 
 }

@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeOneBinding
+import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
 import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
 import com.omoolen.omooroid.home.fragments.one.newItem.NewListAdapter
@@ -201,50 +202,62 @@ class OneHomeFragment : Fragment() {
         }
 
         binding.clHomeCuratingMore.setOnClickListener{
-            val bundle = Bundle()
-            bundle.putInt("setIdx", 1)
-            TwoHomeFragment().arguments = bundle
 
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->foryou")
+                ?.replace(R.id.nav_host_home, TwoHomeFragment()
+                    .apply {
+                        arguments = Bundle().apply {
+                            putInt("setIdx", 1)
+                        }
+                    }, "home->foryou")
                 ?.commit()
 
+            (activity as HomeActivity).setBottomChecked(1)
         }
 
         binding.clHomeRecommendMore.setOnClickListener{
-            val bundle = Bundle()
-            bundle.putInt("setIdx", 2)
-            TwoHomeFragment().arguments = bundle
 
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->situ")
+                ?.replace(R.id.nav_host_home, TwoHomeFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("setIdx", 2)
+                    }
+                },"home->situ")
                 ?.commit()
+
+            (activity as HomeActivity).setBottomChecked(1)
         }
 
 
         binding.clHomeSeasonMore.setOnClickListener{
-            val bundle = Bundle()
-            bundle.putInt("setIdx", 4)
-            TwoHomeFragment().arguments = bundle
 
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->saeson")
+                ?.replace(R.id.nav_host_home, TwoHomeFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("setIdx", 4)
+                    }
+                }, "home->saeson")
                 ?.commit();
+
+            (activity as HomeActivity).setBottomChecked(1)
 
         }
 
         binding.clHomeNewMore.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putInt("setIdx", 3)
-            TwoHomeFragment().arguments = bundle
 
             activity?.supportFragmentManager
                 ?.beginTransaction()
-                ?.replace(R.id.nav_host_home, TwoHomeFragment(), "home->saeson")
+                ?.replace(R.id.nav_host_home, TwoHomeFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("setIdx", 3)
+                    }
+                }, "home->saeson")
                 ?.commit();
+
+            (activity as HomeActivity).setBottomChecked(1)
 
         }
 

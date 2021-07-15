@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.ItemPopularBinding
 
+/*
 class PopularAdapter(context:Context) : RecyclerView.Adapter<PopularAdapter.MyViewHolder>() {
     val popularList = mutableListOf<PopularInfo>()
     val mContext = context
@@ -62,4 +63,57 @@ class PopularAdapter(context:Context) : RecyclerView.Adapter<PopularAdapter.MyVi
             binding.tvSearchName.text = popularInfo.name
         }
     }
+}
+*/
+
+class PopularAdapter : RecyclerView.Adapter<PopularAdapter.PopularViewHolder>() {
+    var popularList = emptyList<PopularInfo>()
+    private lateinit var itemClickListener : OnItemClickListener
+
+    class PopularViewHolder(
+        private val binding: ItemPopularBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        private var rank : Int = 1
+        fun bind(popularInfo: PopularInfo) {
+            binding.rank = rank.toString()
+            binding.popularInfo = popularInfo
+
+            rank += 1
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularViewHolder {
+        val binding = ItemPopularBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return PopularViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: PopularViewHolder, position: Int) {
+        holder.bind(popularList[position])
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
+    }
+
+    interface OnItemClickListener{
+        fun onClick(v : View, position: Int)
+    }
+
+    // (3) 외부에서 클릭 시 이벤트 설정
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+
+
+    override fun getItemCount(): Int = popularList.size
+
+    fun setPopular(popularList : List<PopularInfo>){
+        this.popularList = popularList
+        notifyDataSetChanged()
+    }
+
+
 }
