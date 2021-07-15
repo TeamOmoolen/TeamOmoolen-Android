@@ -1,15 +1,11 @@
 package com.omoolen.omooroid.splash
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.login_signup.LoginActivity
-import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentInfo
 import com.omoolen.omooroid.util.SharedPreferenceToken
-import com.omoolen.omooroid.util.SharedPreferences
 import java.util.*
 import kotlin.concurrent.schedule
 

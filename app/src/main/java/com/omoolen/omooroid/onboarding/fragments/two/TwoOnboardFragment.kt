@@ -2,6 +2,7 @@ package com.omoolen.omooroid.onboarding.fragments.two
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -120,6 +121,8 @@ class TwoOnboardFragment : Fragment() {
             if (binding.tvButton.isSelected) {
                 //onboardDatabase에 정보 저장
                 onboardDatabase.setTwo(viewModel.whatChoice,viewModel.colorChoice)
+                for(c in 0 until viewModel.colorChoice.size())
+                    Log.d("ONBOARD2_COLOR", viewModel.colorChoice[c].toString())
                 //온보딩3로 화면 전환
                 Navigation.findNavController(binding.root).navigate(R.id.action_fragment_onboard_two_to_fragment_onboard_three)
                 //TODO : 온보딩1으로 넘어가는데 왜 이상해

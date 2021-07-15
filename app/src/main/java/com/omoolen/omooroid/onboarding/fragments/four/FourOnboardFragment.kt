@@ -5,22 +5,24 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.FragmentOnboardFourBinding
 import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.onboarding.OnboardDatabase
-import com.omoolen.omooroid.util.HorizontalItemDecorator
+import com.omoolen.omooroid.onboarding.api.*
 import com.omoolen.omooroid.util.VerticalItemDecoration
-import com.omoolen.omooroid.util.VerticalItemDecorator
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class FourOnboardFragment : Fragment() {
@@ -221,7 +223,14 @@ class FourOnboardFragment : Fragment() {
                     }
                 }
                 //TODO : 서버로 온보딩 정보 다 전달하기
+                Log.d("ONBOARD","온보딩 정보 전달")
                 onboardDatabase.show()
+
+                //데이터 convert
+
+                //서버 전달
+                postOnboard()
+
                 //홈화면으로 전환
                 val intent = Intent(requireContext(), HomeActivity::class.java)
                 startActivity(intent) //액티비티 띄우기
@@ -229,6 +238,51 @@ class FourOnboardFragment : Fragment() {
                 activity?.finish()
             }
         }
+    }
+
+    //서버로 전달
+    private fun postOnboard(){
+        val requestOnboardData = setRequestOnboardData() //전송할 데이터
+
+        Log.d("SERVER_ONBOARD4","포스트 시작")
+        val call: Call<ResponseOnboardData> = OnboardClient.getApi.postOnboard(requestOnboardData)
+        call.enqueue(object : Callback<ResponseOnboardData> {
+            override fun onResponse(
+                call: Call<ResponseOnboardData>,
+                response: Response<ResponseOnboardData>
+            ){
+                Log.d("SERVER_ONBOARD44",response.isSuccessful.toString())
+                Log.d("SERVER_ONBOARD44",response.body()?.status.toString())
+                Log.d("SERVER_ONBOARD44",response.body()?.message.toString())
+            }
+            override fun onFailure(call: Call<ResponseOnboardData>, t: Throwable) {
+                TODO("Not yet implemented")
+                Log.d("SERVER_ONBOARD4","포스트 실패")
+            }
+        })
+
+    }
+
+    private val oData = OnboardDatabase()
+    private fun setRequestOnboardData(): RequestOnboardData {
+        val suitedLens = SuitedLens(
+            oData.convertBrand(oData.getOnboardData()._brand),
+            oData.getOnboardData()._name
+        )
+        val wantedLens = WantedLens(
+            oData.convertCategory(oData.getOnboardData()._what),
+            oData.convertChange(oData.getOnboardData()._period),
+            oData.convertColor(oData.getOnboardData()._color),
+            oData.convertFunction(oData.getOnboardData()._effect)
+        )
+
+        return RequestOnboardData(
+            oData.convertAge(oData.getOnboardData()._age),
+            oData.convertGender(oData.getOnboardData()._gender),
+            suitedLens,
+            wantedLens,
+            oData.convertWhen(oData.getOnboardData()._when)
+        )
     }
 
     override fun onDestroy() {

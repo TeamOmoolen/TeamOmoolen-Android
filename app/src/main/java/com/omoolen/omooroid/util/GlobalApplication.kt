@@ -2,20 +2,30 @@ package com.omoolen.omooroid.util
 
 //mport com.kakao.auth.*
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import com.kakao.sdk.common.KakaoSdk
 import com.omoolen.omooroid.BuildConfig
 
 
 class GlobalApplication : Application() {
-    var instance: GlobalApplication? = null
+    //var instance: GlobalApplication? = null
+    init{
+        instance = this
+    }
 
     override fun onCreate() {
         super.onCreate()
         Log.d("GLOBAL", "들어옴")
         // Kakao Sdk 초기화
         KakaoSdk.init(this, BuildConfig.KAKAO_LOGIN_KEY)
+    }
 
+    companion object {
+        lateinit var instance: GlobalApplication
+        fun ApplicationContext() : Context {
+            return instance.applicationContext
+        }
     }
 
 //    override fun onTerminate() {

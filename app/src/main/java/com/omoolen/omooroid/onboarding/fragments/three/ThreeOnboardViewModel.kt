@@ -12,12 +12,16 @@ import com.omoolen.omooroid.onboarding.fragments.three.recycle.effect.EffectAdap
 import com.omoolen.omooroid.onboarding.fragments.three.recycle.effect.EffectInfo
 import com.omoolen.omooroid.onboarding.fragments.three.recycle.period.PeriodAdapter
 import com.omoolen.omooroid.onboarding.fragments.three.recycle.period.PeriodInfo
+import com.omoolen.omooroid.onboarding.fragments.two.recycle.color.ColorAdapter
+import com.omoolen.omooroid.util.ListLiveData
 
 class ThreeOnboardViewModel(application: Application) : AndroidViewModel(application) {
     @SuppressLint("StaticFieldLeak")
     private val mContext = getApplication<Application>().applicationContext
     private lateinit var effectAdapter: EffectAdapter
     private lateinit var periodAdapter: PeriodAdapter
+
+    val periodChoice = ListLiveData<Int>()
 
     //Observe위해 livedata선언
     private val _effect = MutableLiveData<Int>()
@@ -61,8 +65,13 @@ class ThreeOnboardViewModel(application: Application) : AndroidViewModel(applica
                 PeriodInfo(period = "없음")
             )
         )
+        var periodArr = arrayOf(false,false,false,false,false,false,false,false,false)
         periodAdapter.setItemClickListener(object: PeriodAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
+                periodArr[position] = !periodArr[position]
+                if(periodArr[position]) periodChoice.add(position)
+                else periodChoice.remove(position)
+                v.isSelected = periodArr[position]
             }
         })
         return periodAdapter
@@ -75,23 +84,6 @@ class ThreeOnboardViewModel(application: Application) : AndroidViewModel(applica
             var view = rv.layoutManager?.findViewByPosition(position)
             view?.isSelected = true
             _effect.value = position
-            for (i in 0..rv.adapter!!.itemCount) {
-                var otherView = rv.layoutManager?.findViewByPosition(i)
-                if (otherView != view) {
-                    otherView?.isSelected = false
-                } else {
-                }
-            }
-        }
-    }
-
-    fun periodSingleChoice(rv: RecyclerView, e: MotionEvent){
-        var child = rv.findChildViewUnder(e.x, e.y)
-        if (child != null) {
-            var position = rv.getChildAdapterPosition(child)
-            var view = rv.layoutManager?.findViewByPosition(position)
-            view?.isSelected = true
-            _period.value = position
             for (i in 0..rv.adapter!!.itemCount) {
                 var otherView = rv.layoutManager?.findViewByPosition(i)
                 if (otherView != view) {
