@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.omoolen.omooroid.search.search_result.SearchResultViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".search.search_result.SearchResultActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_search_result_top"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_search_result_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="-6dp"
+                app:layout_constraintEnd_toStartOf="@+id/et_search_result"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_back" />
+
+            <EditText
+                android:id="@+id/et_search_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-6dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ic_btn_searchlens_normal"
+                android:ems="10"
+                android:hint="@string/search_result_search_keyword"
+                android:inputType="textPersonName"
+                android:paddingStart="13dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textAlignment="textStart"
+                style="@style/TextStyle44"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_search_result_back"
+                app:layout_constraintTop_toTopOf="parent"
+                android:includeFontPadding="false"/>
+
+            <ImageView
+                android:id="@+id/iv_search_result_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="11dp"
+                app:layout_constraintEnd_toEndOf="@+id/et_search_result"
+                app:layout_constraintTop_toTopOf="@+id/et_search_result"
+                app:srcCompat="@drawable/ic_search_small" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view_search_result_boarder"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/om_fifth_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_search_result_top"/>
+
+        <TextView
+            android:id="@+id/tv_search_result_total_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_search_result_boarder"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="13dp"
+            style="@style/TextStyle75"
+            android:includeFontPadding="false"
+            android:background="@drawable/ic_btn_brandfilter_pressed"
+            android:text="총 000개의 상품"
+            android:paddingStart="16dp"
+            android:paddingEnd="17dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="2dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_search_result_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/view_search_result_boarder"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="20dp">
+
+            <ImageView
+                android:id="@+id/iv_search_result_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_search_result_sort"
+                android:src="@drawable/ic_btn_sort"
+                android:layout_marginEnd="6dp"/>
+
+            <TextView
+                android:id="@+id/tv_search_result_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_search_result_sort"
+                style="@style/TextStyle35"
+                android:text="@string/sort"
+                android:includeFontPadding="false"/>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_search_result_boarder"
+            app:spanCount="3"
+            tools:listitem="@layout/item_search_result" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

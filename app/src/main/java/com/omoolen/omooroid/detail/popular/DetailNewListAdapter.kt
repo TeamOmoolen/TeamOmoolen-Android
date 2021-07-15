@@ -8,19 +8,7 @@ import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
 
 class DetailNewListAdapter : RecyclerView.Adapter<DetailNewListAdapter.DetailNewViewHolder>() {
 
-    private var detailNewList = emptyList<DetailNewInfo>()
-
-    class DetailNewViewHolder(
-        private val binding: ItemDetailNewBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(detailNewInfo: DetailNewInfo) {
-            binding.detailNewInfo = detailNewInfo
-
-            val listForColor = LensColorListAdapter()
-            listForColor.setColoring(detailNewInfo.colors)
-            binding.rvDetailNewColor.adapter = listForColor
-        }
-    }
+    val  detailNewList = mutableListOf<DetailNewInfo>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,14 +23,22 @@ class DetailNewListAdapter : RecyclerView.Adapter<DetailNewListAdapter.DetailNew
         return DetailNewViewHolder(binding)
     }
 
+    override fun getItemCount(): Int = detailNewList.size
+
+    class DetailNewViewHolder(
+        private val binding: ItemDetailNewBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(detailNewInfo: DetailNewInfo) {
+            binding.detailNewInfo = detailNewInfo
+
+            val listForColor = LensColorListAdapter()
+            listForColor.setColoring(detailNewInfo.colors)
+            binding.rvDetailNewColor.adapter = listForColor
+        }
+    }
+
     override fun onBindViewHolder(holder: DetailNewViewHolder, position: Int) {
         holder.bind(detailNewList[position])
     }
 
-    override fun getItemCount(): Int = detailNewList.size
-
-    fun setDetailNew(detailNewList: List<DetailNewInfo>) {
-        this.detailNewList = detailNewList
-        notifyDataSetChanged()
-    }
 }

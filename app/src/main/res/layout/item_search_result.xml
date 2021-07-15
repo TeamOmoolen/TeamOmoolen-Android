@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="SearchResultInfo"
+            type="com.omoolen.omooroid.search.search_result.SearchResultInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_search_result_main"
+                setSrc="@{SearchResultInfo.imgId1}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/rectangle_3410" />
+
+            <ImageView
+                android:id="@+id/iv_search_result_sub"
+                setSrc="@{SearchResultInfo.imgId2}"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_search_result_main"
+                app:layout_constraintEnd_toEndOf="@+id/iv_search_result_main"
+                tools:src="@drawable/img_color_a" />
+
+            <TextView
+                android:id="@+id/tv_search_result_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{SearchResultInfo.brand}"
+                android:includeFontPadding="false"
+                android:theme="@style/TextStyle15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_search_result_main"
+                tools:text="오렌즈" />
+
+            <TextView
+                android:id="@+id/tv_search_result_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:letterSpacing="-0.05"
+                android:includeFontPadding="false"
+                android:text="@{SearchResultInfo.name}"
+                android:textColor="@color/om_main_black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:theme="@style/TextStyle16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_search_result_brand"
+                tools:text="브라운 컬러렌즈" />
+
+            <TextView
+                android:id="@+id/tv_search_result_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:letterSpacing="-0.05"
+                android:includeFontPadding="false"
+                android:text="@{SearchResultInfo.info}"
+                android:textColor="@color/om_third_gray"
+                android:textSize="12sp"
+                android:theme="@style/TextStyle17"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_search_result_name"
+                tools:text="11.9mm / 1Day(10p)" />
+
+            <TextView
+                android:id="@+id/tv_search_result_price"
+                setPrice="@{SearchResultInfo.price}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:letterSpacing="-0.05"
+                android:includeFontPadding="false"
+                android:textColor="@color/om_main_black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_search_result_info"
+                tools:text="18,000원" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_one_recommend_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_search_result_price"
+                tools:listitem="@layout/item_one_lens_color" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

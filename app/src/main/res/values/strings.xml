@@ -20,4 +20,5 @@
     <string name="sort">정렬</string>
     <string name="sort_price_high">가격 높은 순</string>
     <string name="sort_price_low">가격 낮은 순</string>
+    <string name="search_result_search_keyword">오렌즈 시크리스</string>
 </resources>

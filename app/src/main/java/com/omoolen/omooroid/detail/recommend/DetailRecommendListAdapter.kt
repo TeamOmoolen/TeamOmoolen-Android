@@ -8,7 +8,17 @@ import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
 
 class DetailRecommendListAdapter :RecyclerView.Adapter<DetailRecommendListAdapter.DetailRecommendViewHolder>(){
 
-    private var detailRecommendList = emptyList<DetailRecommendInfo>()
+    val detailRecommendList = mutableListOf<DetailRecommendInfo>()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailRecommendViewHolder {
+        val binding = ItemDetailRecommendBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+
+        return DetailRecommendViewHolder(binding)
+    }
 
     class DetailRecommendViewHolder(
         private val binding : ItemDetailRecommendBinding
@@ -22,15 +32,7 @@ class DetailRecommendListAdapter :RecyclerView.Adapter<DetailRecommendListAdapte
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailRecommendViewHolder {
-        val binding = ItemDetailRecommendBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
 
-        return DetailRecommendViewHolder(binding)
-    }
 
     override fun onBindViewHolder(holder: DetailRecommendViewHolder, position: Int) {
         holder.bind(detailRecommendList[position])
@@ -38,8 +40,4 @@ class DetailRecommendListAdapter :RecyclerView.Adapter<DetailRecommendListAdapte
 
     override fun getItemCount(): Int  = detailRecommendList.size
 
-    fun setDetailRecommend(detailRecommendList: List<DetailRecommendInfo>){
-        this.detailRecommendList = detailRecommendList
-        notifyDataSetChanged()
-    }
 }
