@@ -3,6 +3,7 @@ package com.omoolen.omooroid.search
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.omoolen.omooroid.search.data.Item
 import com.omoolen.omooroid.util.api.RetrofitClient
@@ -16,6 +17,11 @@ import io.reactivex.schedulers.Schedulers
 
 class SearchViewModel() : ViewModel() {
     var recentSearch = ListLiveData<RecentInfo>()
+    val searchList = ListLiveData<Item>()
+    var totalPages = MutableLiveData<Int>()
+    var totalCount = MutableLiveData<Int>()
+
+
 
     fun initRecentSearch(context: Context){
         //TODO : sharedPreference에 있는 리스트 값 recentSearch에 초기화
@@ -62,11 +68,10 @@ class SearchViewModel() : ViewModel() {
         return recentList
     }
 
-    var mTotalPages : Int = 0
 
     @SuppressLint("CheckResult")
     fun getSearch(keyword: String) {
-        val searchList = ListLiveData<Item>()
+
         Log.d("RETROFIT","시작")
         RetrofitClient.getApi.getData(keyword = keyword)
             .subscribeOn(Schedulers.io())
@@ -81,7 +86,9 @@ class SearchViewModel() : ViewModel() {
                         it.diameter,it.id,it.imageList,it.name,
                         it.otherColorList,it.pieces,it.price))
                 }
-                mTotalPages = keyword.data.totalPage
+                totalPages.value = keyword.data.totalPage
+                totalCount.value = keyword.data.totalCount
+                Log.d("RETROFIT_KEYWORD","$totalPages , $totalCount")
 
                 //로그
                 for(s in 0 until searchList.size()){

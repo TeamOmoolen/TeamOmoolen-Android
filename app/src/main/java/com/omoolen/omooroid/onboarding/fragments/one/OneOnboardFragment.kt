@@ -52,7 +52,7 @@ class OneOnboardFragment : Fragment() {
         singleChoice()
         observeValue()
         nextBtn()
-        Toast.makeText(requireContext(),viewModel.gender.value.toString()+" , "+viewModel.age.value.toString(),Toast.LENGTH_SHORT).show()
+        //Toast.makeText(requireContext(),viewModel.gender.value.toString()+" , "+viewModel.age.value.toString(),Toast.LENGTH_SHORT).show()
 
     }
 
@@ -156,7 +156,7 @@ class OneOnboardFragment : Fragment() {
     private fun nextBtn() {
         binding.tvButton.setOnClickListener {
             //test
-            Toast.makeText(requireContext(),viewModel.gender.value.toString()+" , "+viewModel.age.value.toString(),Toast.LENGTH_SHORT).show()
+            //Toast.makeText(requireContext(),viewModel.gender.value.toString()+" , "+viewModel.age.value.toString(),Toast.LENGTH_SHORT).show()
             if (binding.tvButton.isSelected) {
                 //onboardDatabase에 정보 저장
                 viewModel.gender.value?.let { gender ->

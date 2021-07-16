@@ -32,6 +32,7 @@
             android:text="오렌즈"
             android:includeFontPadding="false"
             style="@style/TextStyle"
+            android:textColor="@color/onboard_selector"
             android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

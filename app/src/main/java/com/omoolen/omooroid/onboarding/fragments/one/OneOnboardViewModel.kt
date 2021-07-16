@@ -37,8 +37,8 @@ class OneOnboardViewModel(application: Application) : AndroidViewModel(applicati
         genderAdapter = GenderAdapter()
         genderAdapter.genderList.addAll(
             listOf<GenderInfo>(
-                GenderInfo(resourceId = R.drawable.ic_colorlens,name = "여성"),
-                GenderInfo(resourceId = R.drawable.onboard_female_selector,name = "남성")
+                GenderInfo(resourceId = R.drawable.onboard_female_selector,name = "여성"),
+                GenderInfo(resourceId = R.drawable.onboard_male_selector,name = "남성")
             )
         )
         genderAdapter.setItemClickListener(object : GenderAdapter.OnItemClickListener {
