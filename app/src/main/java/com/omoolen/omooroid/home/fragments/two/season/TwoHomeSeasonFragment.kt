@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
 import com.omoolen.omooroid.databinding.FragmentHomeTwoSeasonBinding
@@ -17,6 +18,7 @@ import com.omoolen.omooroid.home.fragments.two.FindQuestionFragment
 import com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment
 import com.omoolen.omooroid.home.fragments.two.TwoHomeViewModel
 import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouViewModel
+import com.omoolen.omooroid.home.fragments.two.newItem.TwoHomeNewViewModel
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
@@ -30,6 +32,8 @@ class TwoHomeSeasonFragment : Fragment() {
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
     private val viewModel: TwoHomeViewModel by activityViewModels()
+    private val fragmentViewModel: TwoHomeSeasonViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +42,6 @@ class TwoHomeSeasonFragment : Fragment() {
         _binding = FragmentHomeTwoSeasonBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.getSuggestData()
         setSeasonAdapter()
         setSeasonObserve()
 
@@ -49,11 +52,15 @@ class TwoHomeSeasonFragment : Fragment() {
                 override fun onLowPriceClicked() {
                     //여기서 정렬
                     Log.d("click", "low price")
+                    fragmentViewModel.getSeason(1,"price","asc")
+
                 }
 
                 override fun onHighPriceClicked() {
                     // 여기서 정렬
                     Log.d("click", "high price")
+                    fragmentViewModel.getSeason(1,"price","desc")
+
                 }
             })
             findSortPriceFragment.show(childFragmentManager, "CustomDialog")

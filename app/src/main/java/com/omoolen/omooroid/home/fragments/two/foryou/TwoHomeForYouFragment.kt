@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
 import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySituation
 import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
@@ -26,6 +27,7 @@ class TwoHomeForYouFragment : Fragment() {
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
     private val viewModel: TwoHomeViewModel by activityViewModels()
+    private val fragmentViewModel: TwoHomeForYouViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,11 +50,13 @@ class TwoHomeForYouFragment : Fragment() {
                 override fun onLowPriceClicked() {
                     //여기서 정렬
                     Log.d("click", "low price")
+                    fragmentViewModel.getForyou(1,"price","asc")
                 }
 
                 override fun onHighPriceClicked() {
-                  // 여기서 정렬
+                    // 여기서 정렬
                     Log.d("click", "high price")
+                    fragmentViewModel.getForyou(1,"price","desc")
                 }
             })
             findSortPriceFragment.show(childFragmentManager, "CustomDialog")

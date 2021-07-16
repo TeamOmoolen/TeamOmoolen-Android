@@ -1,15 +1,51 @@
 package com.omoolen.omooroid.home.fragments.two.situation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendInfo
+import com.omoolen.omooroid.search.data.Item
+import com.omoolen.omooroid.util.ListLiveData
+import com.omoolen.omooroid.util.api.RetrofitClient
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class TwoHomeSituViewModel : ViewModel() {
     private val _situList = MutableLiveData<List<RecommendInfo>>()
     val situList: LiveData<List<RecommendInfo>>
         get() = _situList
+
+    val itemList = ListLiveData<Item>()
+    val totalPage = MutableLiveData<Int>()
+
+    //@SuppressLint("CheckResult")
+    fun getSituation(page:Int,sort:String,order:String) {
+
+        Log.d("RETROFIT","시작")
+        RetrofitClient.getApi.getForyou(page = page,sort = sort,order = order)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({each ->
+                itemList.clear()
+                Log.d("SITUATION",each.message)
+                each.data.items.forEach{
+                    itemList.add(
+                        Item(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,it.diameter,
+                            it.id,it.imageList,it.name,it.otherColorList,it.pieces,it.price)
+                    )
+                }
+                totalPage.value = each.data.totalPage
+                for(i in 0 until itemList.size())
+                    Log.d("SITUATION",itemList[i].price.toString())
+
+            },{e ->
+                Log.d("SITUATION","에러")
+                println(e.toString())
+            })
+        Log.d("RETROFIT","끝")
+    }
 
     fun setSituList() {
         _situList.value = mutableListOf(
