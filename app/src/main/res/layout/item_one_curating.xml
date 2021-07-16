@@ -70,7 +70,7 @@
 
         <TextView
             android:id="@+id/tv_one_recommend_price"
-            setPrice="@{curatingInfo.price}"
+            setPrice2 ="@{curatingInfo.price}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.home.fragments.one
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +33,7 @@ class LensColorListAdapter : RecyclerView.Adapter<LensColorListAdapter.LensColor
 
     fun setColoring(colorList: List<String>) {
         this.colorList = colorList
+        Log.d("******************COLOR", colorList.toString())
         notifyDataSetChanged()
     }
 }

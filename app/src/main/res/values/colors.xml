@@ -34,4 +34,6 @@
     <color name="lens_color_gold">#eab86e</color>
     <color name="lens_color_pink">#f372a1</color>
     <color name="lens_color_etc">#fbfbfb</color>
+
+    <color name="trans">#00000000 </color>
 </resources>
