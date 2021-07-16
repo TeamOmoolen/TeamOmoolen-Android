@@ -1,14 +1,14 @@
 package com.omoolen.omooroid.util.api
 
 import com.omoolen.omooroid.home.fragments.one.networkApi.HomeData
-import com.omoolen.omooroid.login_signup.login.loginApi.RequestLoginData
-import com.omoolen.omooroid.login_signup.login.loginApi.ResponseLoginData
 import com.omoolen.omooroid.onboarding.api.RequestOnboardData
 import com.omoolen.omooroid.onboarding.api.ResponseOnboardData
-import com.omoolen.omooroid.search.data.Data
 import com.omoolen.omooroid.search.data.KeywordSearch
 import com.omoolen.omooroid.search.fragment.one.recycle.popular.ResponsePopularInfo
+import com.omoolen.omooroid.search.fragment.two.filterSearchApi.RequestSearchData
+import com.omoolen.omooroid.search.fragment.two.filterSearchApi.ResponseSearchData
 import io.reactivex.Single
+import okhttp3.internal.http.hasBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -32,4 +32,11 @@ interface RetrofitService {
     //홈 정보
     @GET("api/home")
     fun getHomeData() : Single<HomeData>
+
+    //필터 검색
+    @POST("api/getFilteredList")
+    fun getFilterSearch(
+        @Body body: RequestSearchData
+    ) : Call<ResponseSearchData>
+
 }
