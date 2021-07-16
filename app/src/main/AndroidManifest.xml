@@ -55,7 +55,7 @@
                 <!--                kakao${kakaoLoginKey}-->
                 <data
                     android:host="oauth"
-                    android:scheme="kakao3db962f65e96f844a099f42a8be54187" />
+                    android:scheme="kakao${kakaoLoginKey}" />
 
             </intent-filter>
         </activity>
