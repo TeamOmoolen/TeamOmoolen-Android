@@ -23,7 +23,7 @@ class LastestEventViewPagerAdapter : RecyclerView.Adapter<LastestEventViewPagerA
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastestEventViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding : ItemOneLastestEventBinding = DataBindingUtil.inflate(
-            layoutInflater, R.layout.item_one_lastest_event, parent, false )
+            layoutInflater, R.layout.item_one_event, parent, false )
         return LastestEventViewHolder(binding)
     }
 

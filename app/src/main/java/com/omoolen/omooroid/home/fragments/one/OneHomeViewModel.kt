@@ -13,7 +13,6 @@ import com.omoolen.omooroid.home.fragments.one.event.EventInfo
 import com.omoolen.omooroid.home.fragments.one.networkApi.*
 import com.omoolen.omooroid.home.fragments.one.newItem.NewInfo
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendInfo
-import com.omoolen.omooroid.home.fragments.one.tip.TipBack
 import com.omoolen.omooroid.home.fragments.one.tip.TipInfo
 import com.omoolen.omooroid.util.ListLiveData
 import com.omoolen.omooroid.util.api.RetrofitClient
@@ -47,8 +46,6 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
     val newlens3 = ArrayList<NewLensBrand1>()
 
     val newItemList = ListLiveData<NewInfo>()
-
-    val tipBackground = ListLiveData<TipBack>()
 
     @SuppressLint("CheckResult")
     fun getHome() {
@@ -117,27 +114,19 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
                     newlens2.add(NewLensBrand1(it.brand,it.id,it.imageList,it.name,it.price))
                 }
                 home.data.newLens.newLensBrand3.forEach{
-                    newlens3.add(NewLensBrand1(it.brand,it.id,it.imageList,it.name,it.price))
+                    newlens2.add(NewLensBrand1(it.brand,it.id,it.imageList,it.name,it.price))
                 }
 
-                if(newlens1.size > 0)
-                    newItemList.add(NewInfo(newlens1))
-                if(newlens2.size > 0)
-                    newItemList.add(NewInfo(newlens2))
-                if(newlens3.size > 0)
-                    newItemList.add(NewInfo(newlens3))
+                newItemList.add(NewInfo(newlens1))
+                newItemList.add(NewInfo(newlens2))
+                newItemList.add(NewInfo(newlens3))
 
 
                 //Log찍기
                 for(g in guide1)
                     Log.d("*********GUIDE","$g")
                 for(n in 0 until newlens1.size)
-                    Log.d("**********NEW1",newlens1[n].name)
-                for(n in 0 until newlens2.size)
-                    Log.d("**********NEW2",newlens2[n].name)
-                for(n in 0 until newlens3.size)
-                    Log.d("**********NEW3",newlens3[n].name)
-
+                    Log.d("**********NEW",newlens1[n].name)
 
 
             },{e ->
@@ -178,15 +167,6 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
         get() = _newList
 
 
-    fun setTipBackground() {
-        tipBackground.addAll(
-            listOf(
-                TipBack(R.drawable.ic_btn_translens_normal, R.drawable.img_1_min_home_1),
-                TipBack(R.drawable.ic_btn_normal2, R.drawable.group_8005),
-                TipBack(R.drawable.ic_btn_lens3, R.drawable.img_1_min_home_3)
-            )
-        )
-    }
     fun setCuratingList() {
         _curatingList.value = mutableListOf(
             CuratingInfo(1,
