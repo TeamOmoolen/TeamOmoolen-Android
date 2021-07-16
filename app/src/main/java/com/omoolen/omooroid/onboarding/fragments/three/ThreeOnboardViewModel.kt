@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.onboarding.fragments.three
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.view.MotionEvent
 import android.view.View
@@ -16,7 +16,7 @@ import com.omoolen.omooroid.onboarding.fragments.two.recycle.color.ColorAdapter
 import com.omoolen.omooroid.util.ListLiveData
 
 class ThreeOnboardViewModel(application: Application) : AndroidViewModel(application) {
-    @SuppressLint("StaticFieldLeak")
+    //@SuppressLint("StaticFieldLeak")
     private val mContext = getApplication<Application>().applicationContext
     private lateinit var effectAdapter: EffectAdapter
     private lateinit var periodAdapter: PeriodAdapter

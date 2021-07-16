@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.onboarding.fragments.one
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.os.Bundle
 import android.view.MotionEvent
@@ -18,7 +18,7 @@ import com.omoolen.omooroid.onboarding.fragments.one.recycle.gender.GenderInfo
 import com.omoolen.omooroid.util.ListLiveData
 
 class OneOnboardViewModel(application: Application) : AndroidViewModel(application) {
-    @SuppressLint("StaticFieldLeak")
+    //@SuppressLint("StaticFieldLeak")
     private val mContext = getApplication<Application>().applicationContext
     private lateinit var genderAdapter: GenderAdapter
     private lateinit var ageAdapter: AgeAdapter

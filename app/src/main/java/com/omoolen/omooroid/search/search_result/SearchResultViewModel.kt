@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.search.search_result
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -26,7 +26,7 @@ class SearchResultViewModel(application: Application) : AndroidViewModel(applica
     var totalItem : Int = 0
     var mTotalPages : Int = 0
 
-    @SuppressLint("CheckResult")
+    //@SuppressLint("CheckResult")
     fun getSearch(keyword: String) {
         Log.d("RETROFIT","시작")
         RetrofitClient.getApi.getData(keyword = keyword)

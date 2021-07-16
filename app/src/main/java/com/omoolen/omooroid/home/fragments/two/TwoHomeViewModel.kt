@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.home.fragments.two
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -18,7 +18,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class TwoHomeViewModel(application: Application) : AndroidViewModel(application) {
-    @SuppressLint("StaticFieldLeak")
+    //@SuppressLint("StaticFieldLeak")
     private val mContext = getApplication<Application>().applicationContext
 
     var tabItem1 : String = "for you"
@@ -32,7 +32,7 @@ class TwoHomeViewModel(application: Application) : AndroidViewModel(application)
     val forSeasonList = ListLiveData<RecommendationBySituation>()
     val forSituationList = ListLiveData<RecommendationBySituation>()
 
-    @SuppressLint("CheckResult")
+    //@SuppressLint("CheckResult")
     fun getSuggestData() {
 
         Log.d("RETROFIT","시작")

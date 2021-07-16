@@ -55,7 +55,7 @@ class OnboardDatabase {
     val changeList = arrayOf(0,1,2,3,4,5,6,7) //없음 있으면 무조건  0~7
     val brandList = arrayOf("오렌즈", "렌즈미", "렌즈베리", "앤365", "렌즈타운", "다비치", "아이돌렌즈", "렌즈나인", "렌즈디바",
         "아큐브", "바슈롬", "클라렌", "알콘", "뉴바이오", "프레쉬콘", "쿠퍼비전","기타") //기타는 쿠퍼비전
-    val whenList = arrayOf("운동","일상생활","특별한 날","여행")
+    val whenList = arrayOf("운동","일상","특별","여행")
 
     fun convertGender(index:Int):String{
         return genderList[index]

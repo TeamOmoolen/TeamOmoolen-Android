@@ -7,6 +7,7 @@
 <br>
 
 <br>
+
 ### 콘택트렌즈 사용자를 위한 맞춤 렌즈 추천 및 오프라인 픽업 예약 서비스
 
 👀 국내 모든 렌즈 정보, 리뷰 부터 의료 커뮤니티와 오프라인 픽업 예약 까지! "오늘 무슨 렌즈끼지?" 고민될 땐, 오무렌! 👀
@@ -20,6 +21,7 @@
 <br>
 
 <br>
+
 ### 👋 Specification   
 ------
 <table class="tg">
@@ -68,32 +70,180 @@
 
 <br>
 
+### 📦 Package Structure
+------
+```bash
+omoolen
+└─omooroid
+├─databinding
+├─detail
+│  ├─popular
+│  └─recommend
+├─home
+│  └─fragments
+│      ├─five
+│      ├─four
+│      ├─one
+│      │  ├─curating
+│      │  ├─event
+│      │  ├─networkApi
+│      │  ├─newItem
+│      │  ├─recommend
+│      │  └─tip
+│      ├─three
+│      └─two
+│          ├─foryou
+│          ├─newItem
+│          ├─season
+│          └─situation
+├─login_signup
+│  └─login
+│      └─loginApi
+├─onboarding
+│  └─fragments
+│      ├─four
+│      │  ├─brand
+│      │  └─when
+│      ├─one
+│      │  └─recycle
+│      │      ├─age
+│      │      └─gender
+│      ├─three
+│      │  └─recycle
+│      │      ├─effect
+│      │      └─period
+│      └─two
+│          └─recycle
+│              ├─color
+│              └─what
+├─search
+│  ├─data
+│  ├─fragment
+│  │  ├─one
+│  │  │  └─recycle
+│  │  │      ├─popular
+│  │  │      └─recent
+│  │  └─two
+│  │      ├─api
+│  │      └─recycle
+│  │          ├─brand
+│  │          ├─color
+│  │          ├─diameter
+│  │          └─period
+│  └─search_result
+├─splash
+└─util
+├─api
+└─firebase
+``` 
+
+<br>
 
 ### 🔍  Main Function
 ------
 
 1. Kakaotalk Login
   - 카카오톡을 이용하여 소셜 로그인을 합니다.
+    <details>
+    <summary>여기를 눌러주세요</summary>
+    <div markdown="1">       
+
+    😎숨겨진 내용😎
+      
+      ## 구현 방법
+      🍝 Login 
+      
+      ## 구현 코드
+      🍝 Login
+      <br>
+        ❤ UserClient.kt
+      <br>
+      
+        ```kotlin
+      
+          object UserClient {
+          private const val BASE_URL = "http://ec2-15-165-235-44.ap-northeast-2.compute.amazonaws.com/"
+
+          val getApi = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(OkHttpClient())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(UserService::class.java)}```
+      
+
+    </div>
+    </details>
   
 2. Onboarding
   - 사용자 맞춤 큐레이션을 제공하기 위해 온보딩 과정을 수행합니다.
-  
+    <details>
+    <summary>여기를 눌러주세요</summary>
+    <div markdown="1">       
+
+    😎숨겨진 내용😎
+
+    </div>
+    </details>
+    
 3. Home
   - 사용자 맞춤 큐레이션, 이벤트, 상식 등을 간략히 모아볼 수 있습니다. 
-  
+    <details>
+    <summary>여기를 눌러주세요</summary>
+    <div markdown="1">       
+
+    😎숨겨진 내용😎
+      구현한 내용 : recyclerView와 viewPager2를 이용 _ 각 정보를 데이터바인딩을 통해 표시해줌. 
+                    상단바에 검색창을 고정하기 위해 collapsingToolbarLayout 이용.
+    </div>
+    </details>
+    
 4. 검색(키워드,필터)
   - 키워드를 이용하여 검색을 수행합니다.
   - 브랜드, 컬러, 직경, 주기를 이용하여 필터 검색을 수행합니다.
-  
+    <details>
+    <summary>여기를 눌러주세요</summary>
+    <div markdown="1">       
+
+    😎숨겨진 내용😎
+
+    </div>
+    </details>
+    
 5. 발견
   - 사용자 맞춤 큐레이션을 한눈에 모아볼 수 있습니다.
-  
+    <details>
+    <summary>여기를 눌러주세요</summary>
+    <div markdown="1">       
+
+    😎숨겨진 내용😎
+         구현한 내용 : 화면 스와이프가 되는 탭 레이아웃과 각 주제의 탭 별로 리사이클러뷰로 큐레이션 아이템 정보를 보여줌.
+    </div>
+    </details>  
+    
 6. 상품 상세
   - 상품의 상세 정보를 제공합니다.
-  
+    <details>
+    <summary>여기를 눌러주세요</summary>
+    <div markdown="1">       
+
+    😎숨겨진 내용😎
+
+    </div>
+    </details>  
+    
 7. 검색 상세
   - 검색 결과를 제공합니다.
+    <details>
+    <summary>여기를 눌러주세요</summary>
+    <div markdown="1">       
 
+    😎숨겨진 내용😎
+
+    </div>
+    </details>
+    
+<br>
 
 ### 🙆🏻‍♀️ Who we are?! 🙆🏻‍♀️
 ------

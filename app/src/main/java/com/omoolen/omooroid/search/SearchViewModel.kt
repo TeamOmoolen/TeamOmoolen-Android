@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.search
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -69,7 +69,7 @@ class SearchViewModel() : ViewModel() {
     }
 
 
-    @SuppressLint("CheckResult")
+    //@SuppressLint("CheckResult")
     fun getSearch(keyword: String) {
 
         Log.d("RETROFIT","시작")

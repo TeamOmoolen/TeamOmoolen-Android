@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.onboarding.fragments.two
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
@@ -16,7 +16,7 @@ import com.omoolen.omooroid.onboarding.fragments.two.recycle.what.WhatInfo
 import com.omoolen.omooroid.util.ListLiveData
 
 class TwoOnboardViewModel(application: Application) : AndroidViewModel(application) {
-    @SuppressLint("StaticFieldLeak")
+    //@SuppressLint("StaticFieldLeak")
     private val mContext = getApplication<Application>().applicationContext
 
     private lateinit var whatAdapter: WhatAdapter
