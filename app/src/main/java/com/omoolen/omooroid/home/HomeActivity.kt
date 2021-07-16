@@ -3,6 +3,7 @@ package com.omoolen.omooroid.home
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -24,7 +25,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private var _binding: ActivityHomeBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
-//  private val viewModel: HomeViewModel by viewModels() //위임초기화
+    private val viewModel: HomeViewModel by viewModels() //위임초기화
 
     private val fragmentHomeOne by lazy { OneHomeFragment() }
     private val fragmentHomeTwo by lazy { TwoHomeFragment() }
@@ -69,6 +70,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 return true
             }
             R.id.findFragment -> {
+                viewModel.getSuggestData()
                 changeFragment(fragmentHomeTwo)
                 return true
             }

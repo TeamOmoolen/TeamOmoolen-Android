@@ -2,6 +2,7 @@ package com.omoolen.omooroid.util.api
 
 import com.omoolen.omooroid.detail.detailApi.DetailData
 import com.omoolen.omooroid.home.fragments.one.networkApi.HomeData
+import com.omoolen.omooroid.home.homeApi.SuggestData
 import com.omoolen.omooroid.onboarding.api.RequestOnboardData
 import com.omoolen.omooroid.onboarding.api.ResponseOnboardData
 import com.omoolen.omooroid.search.data.KeywordSearch
@@ -45,5 +46,17 @@ interface RetrofitService {
     fun getDetailData(
         @Path("id") id:String
     ) : Single<DetailData>
+
+    //발견 홈 하단 클릭
+    @GET("api/suggest")
+    fun getSuggestData() : Single<SuggestData>
+
+    //발견 for you 클릭
+    @GET("api/suggest/foryou")
+    fun getForyou(
+        @Query("page") page : String,
+        @Query("sort") sort : String,
+        @Query("order") order : String
+    ) : Single<KeywordSearch>
 
 }
