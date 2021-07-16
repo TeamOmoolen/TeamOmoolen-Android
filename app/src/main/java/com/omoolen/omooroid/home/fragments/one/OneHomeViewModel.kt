@@ -23,43 +23,32 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class OneHomeViewModel(application: Application) : AndroidViewModel(application) {
+    val deadlineEventList = ListLiveData<DeadlineEvent>()
 
+    //guide
+    var guide1 = ArrayList<Guide>() //각 GUIDE객체의 category,guides
+    var guide2 = ArrayList<Guide>()
+    var guide3 = ArrayList<Guide>()
+
+    val guideLists = ListLiveData<GuideList1>() //guide1,guide2,guide3의 모임
+
+    val lastestEventList = ListLiveData<LastestEvent>()
+
+    val recommendationBySeasonList = ListLiveData<RecommendationBySeason>()
+    val recommendationBySituationList = ListLiveData<RecommendationBySituation>()
+    val recommendationByUserList = ListLiveData<RecommendationByUser>()
+    val season = MutableLiveData<String>()
+    val situation = MutableLiveData<String>()
+    val userName = MutableLiveData<String>()
+
+    val newlens1 = ArrayList<NewLensBrand1>()
+    val newlens2 = ArrayList<NewLensBrand1>()
+    val newlens3 = ArrayList<NewLensBrand1>()
+
+    val newItemList = ListLiveData<NewInfo>()
 
     @SuppressLint("CheckResult")
     fun getHome() {
-//        val deadlineEvent: List<DeadlineEvent>,
-//        val guides: Guides,
-//        val lastestEvent: List<LastestEvent>,
-//        val newLens: NewLens,
-//        val recommendationBySeason: List<RecommendationBySeason>,
-//        val recommendationBySituation: List<RecommendationBySituation>,
-//        val recommendationByUser: List<RecommendationByUser>,
-//        val season: String,
-//        val situation: String,
-//        val username: String
-
-        val deadlineEventList = ListLiveData<DeadlineEvent>()
-
-        //guide
-        var guide1 = ArrayList<Guide>() //각 GUIDE객체의 category,guides
-        var guide2 = ArrayList<Guide>()
-        var guide3 = ArrayList<Guide>()
-
-        val guideLists = ListLiveData<GuideList1>() //guide1,guide2,guide3의 모임
-
-        val lastestEventList = ListLiveData<LastestEvent>()
-
-        val recommendationBySeasonList = ListLiveData<RecommendationBySeason>()
-        val recommendationBySituationList = ListLiveData<RecommendationBySituation>()
-        val recommendationByUserList = ListLiveData<RecommendationByUser>()
-        val season = MutableLiveData<String>()
-        val situation = MutableLiveData<String>()
-        val userName = MutableLiveData<String>()
-
-        var newlens1 = ListLiveData<NewLensBrand1>()
-        var newlens2 = ListLiveData<NewLensBrand2>()
-        var newlens3 = ListLiveData<NewLensBrand3>()
-
 
         Log.d("RETROFIT_HOME","시작")
             RetrofitClient.getApi.getHomeData()
@@ -122,18 +111,22 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
                     newlens1.add(NewLensBrand1(it.brand,it.id,it.imageList,it.name,it.price))
                 }
                 home.data.newLens.newLensBrand2.forEach{
-                    newlens2.add(NewLensBrand2(it.brand,it.id,it.imageList,it.name,it.price))
+                    newlens2.add(NewLensBrand1(it.brand,it.id,it.imageList,it.name,it.price))
                 }
                 home.data.newLens.newLensBrand3.forEach{
-                    newlens3.add(NewLensBrand3(it.brand,it.id,it.imageList,it.name,it.price))
+                    newlens2.add(NewLensBrand1(it.brand,it.id,it.imageList,it.name,it.price))
                 }
+
+                newItemList.add(NewInfo(newlens1))
+                newItemList.add(NewInfo(newlens2))
+                newItemList.add(NewInfo(newlens3))
 
 
                 //Log찍기
                 for(g in guide1)
-                    Log.d("GUIDE","$g")
-                for(n in 0 until newlens1.size())
-                    Log.d("NEW",newlens1[n].name)
+                    Log.d("*********GUIDE","$g")
+                for(n in 0 until newlens1.size)
+                    Log.d("**********NEW",newlens1[n].name)
 
 
             },{e ->
@@ -325,7 +318,7 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
         )
     }
 
-    fun setNewList(){
+    /*fun setNewList(){
         _newList.value = mutableListOf(
             NewInfo(1,
                R.drawable.img_group_7409,
@@ -367,7 +360,7 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
                 18000,
                 R.drawable.img_color_a ),
         )
-    }
+    }*/
     fun setTipList(){
         _tipList.value = mutableListOf(
             TipInfo(1,

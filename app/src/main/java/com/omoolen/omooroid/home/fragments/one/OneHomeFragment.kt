@@ -4,37 +4,26 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeOneBinding
 import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
 import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
+import com.omoolen.omooroid.home.fragments.one.event.LastestEventViewPagerAdapter
 import com.omoolen.omooroid.home.fragments.one.newItem.NewListAdapter
-import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+import com.omoolen.omooroid.home.fragments.one.recommend.SeasonListAdapter
+import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
 import com.omoolen.omooroid.home.fragments.one.tip.TipListAdapter
-import com.omoolen.omooroid.home.fragments.two.PagerFragmentStateAdapter
 import com.omoolen.omooroid.home.fragments.two.TwoHomeFragment
-import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouFragment
-import com.omoolen.omooroid.home.fragments.two.newItem.TwoHomeNewFragment
-import com.omoolen.omooroid.home.fragments.two.season.TwoHomeSeasonFragment
-import com.omoolen.omooroid.home.fragments.two.situation.TwoHomeSituFragment
 import com.omoolen.omooroid.search.SearchActivity
-import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 
@@ -58,37 +47,32 @@ class OneHomeFragment : Fragment() {
         initLayout()
         setClickListener()
 
-        oneHomeViewModel.setCuratingList()
+        oneHomeViewModel.getHome()
+
         setCuratingAdapter()
         setCuratingObserve()
 
-        oneHomeViewModel.setRecommend1List()
         setRecommend1Adapter()
         setRecommend1Observe()
 
-        oneHomeViewModel.setRecommend2List()
         setRecommend2Adapter()
         setRecommend2Observe()
 
-        oneHomeViewModel.setEventList()
         setEventAdapter()
         setEventObserve()
         setEventIndicator()
 
-        oneHomeViewModel.setAdList()
         setAdAdapter()
         setAdObserve()
         setAdIndicator()
 
-        oneHomeViewModel.setTipList()
         setTipAdapter()
         setTipObserve()
 
-        oneHomeViewModel.setNewList()
         setNewAdapter()
         setNewObserve()
 
-        oneHomeViewModel.getHome()
+
         return binding.root
     }
 
@@ -132,7 +116,7 @@ class OneHomeFragment : Fragment() {
         binding.rvHomeCurating.adapter = CuratingListAdapter()
     }
     private fun setCuratingObserve(){
-        oneHomeViewModel.curatingList.observe(viewLifecycleOwner){
+        oneHomeViewModel.recommendationByUserList.observe(viewLifecycleOwner){
             curatingList -> with(binding.rvHomeCurating.adapter as CuratingListAdapter){
                 setCurating(curatingList)
             }
@@ -140,36 +124,39 @@ class OneHomeFragment : Fragment() {
     }
 
 
+    //상황별
     private fun setRecommend1Adapter(){
-        binding.rvHomeRecommend.adapter = RecommendListAdapter()
+        binding.rvHomeRecommend.adapter = SituationListAdapter()
     }
 
     private fun setRecommend1Observe() {
-        oneHomeViewModel.recommendList1.observe(viewLifecycleOwner) { recommendList ->
-            with(binding.rvHomeRecommend.adapter as RecommendListAdapter) {
+        oneHomeViewModel.recommendationBySituationList.observe(viewLifecycleOwner) { recommendList ->
+            with(binding.rvHomeRecommend.adapter as SituationListAdapter) {
                 setRecommend(recommendList)
             }
         }
     }
 
+    //계절별
     private fun setRecommend2Adapter(){
-        binding.rvHomeSeason.adapter = RecommendListAdapter()
+        binding.rvHomeSeason.adapter = SeasonListAdapter()
     }
 
     private fun setRecommend2Observe() {
-        oneHomeViewModel.recommendList2.observe(viewLifecycleOwner) { tempList ->
-            with(binding.rvHomeSeason.adapter as RecommendListAdapter) {
+        oneHomeViewModel.recommendationBySeasonList.observe(viewLifecycleOwner) { tempList ->
+            with(binding.rvHomeSeason.adapter as SeasonListAdapter) {
                 setRecommend(tempList)
             }
         }
     }
 
+    //guide
     private fun setTipAdapter(){
         binding.rvHomeTip.adapter = TipListAdapter()
     }
 
     private fun setTipObserve() {
-        oneHomeViewModel.tipList.observe(viewLifecycleOwner) { tipList ->
+        oneHomeViewModel.guideLists.observe(viewLifecycleOwner) { tipList ->
             with(binding.rvHomeTip.adapter as TipListAdapter) {
                 setTip(tipList)
             }
@@ -181,7 +168,7 @@ class OneHomeFragment : Fragment() {
     }
 
     private fun setNewObserve() {
-        oneHomeViewModel.newList.observe(viewLifecycleOwner) { newList ->
+        oneHomeViewModel.newItemList.observe(viewLifecycleOwner) { newList ->
             with(binding.rvHomeNew.adapter as NewListAdapter) {
                 setNewItem(newList)
             }
@@ -195,25 +182,24 @@ class OneHomeFragment : Fragment() {
     }
 
     private fun setEventObserve(){
-        oneHomeViewModel.eventList.observe(viewLifecycleOwner){ eventList ->
+        oneHomeViewModel.deadlineEventList.observe(viewLifecycleOwner){ eventList ->
             with(binding.vpHomeEvent.adapter as EventViewPagerAdapter){
                 setEvent(eventList)
             }
         }
     }
-
     private fun setEventIndicator() {
         TabLayoutMediator(binding.tabHomeEvent, binding.vpHomeEvent) { tab, position -> }.attach()
     }
 
     private fun setAdAdapter(){
-        binding.vpHomeAd.adapter = EventViewPagerAdapter()
+        binding.vpHomeAd.adapter = LastestEventViewPagerAdapter()
     }
 
     private fun setAdObserve(){
-        oneHomeViewModel.adList.observe(viewLifecycleOwner){ adList ->
-            with(binding.vpHomeAd.adapter as EventViewPagerAdapter){
-                setEvent(adList)
+        oneHomeViewModel.lastestEventList.observe(viewLifecycleOwner){ adList ->
+            with(binding.vpHomeAd.adapter as LastestEventViewPagerAdapter){
+                setLastestEvent(adList)
             }
         }
     }

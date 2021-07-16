@@ -6,14 +6,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.ItemOneEventBinding
+import com.omoolen.omooroid.home.fragments.one.networkApi.DeadlineEvent
 
 class EventViewPagerAdapter : RecyclerView.Adapter<EventViewPagerAdapter.EventViewHolder>() {
 
-    private var eventList = emptyList<EventInfo>()
+    private var eventList = emptyList<DeadlineEvent>()
 
     class EventViewHolder( private val binding : ItemOneEventBinding) :
         RecyclerView.ViewHolder(binding.root){
-            fun bind(eventInfo: EventInfo){
+            fun bind(eventInfo: DeadlineEvent){
                 binding.eventInfo = eventInfo
             }
     }
@@ -31,7 +32,7 @@ class EventViewPagerAdapter : RecyclerView.Adapter<EventViewPagerAdapter.EventVi
 
     override fun getItemCount(): Int = eventList.size
 
-    fun setEvent(eventList : List<EventInfo>){
+    fun setEvent(eventList : List<DeadlineEvent>){
         this.eventList = eventList
         notifyDataSetChanged()
     }

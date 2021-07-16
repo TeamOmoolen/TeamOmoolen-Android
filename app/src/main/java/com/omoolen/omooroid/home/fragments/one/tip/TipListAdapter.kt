@@ -6,15 +6,16 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.ItemOneTipBinding
+import com.omoolen.omooroid.home.fragments.one.networkApi.GuideList1
 
 class TipListAdapter : RecyclerView.Adapter<TipListAdapter.TipViewHolder>() {
 
-    private var tipList = emptyList<TipInfo>()
+    private var tipList = emptyList<GuideList1>()
 
     class TipViewHolder(
         private val binding : ItemOneTipBinding
     ): RecyclerView.ViewHolder(binding.root){
-        fun bind(tipInfo: TipInfo){
+        fun bind(tipInfo: GuideList1){
             binding.tipInfo = tipInfo
 
         }
@@ -36,7 +37,7 @@ class TipListAdapter : RecyclerView.Adapter<TipListAdapter.TipViewHolder>() {
 
     override fun getItemCount():Int = tipList.size
 
-    fun setTip(tipList : List<TipInfo>){
+    fun setTip(tipList : List<GuideList1>){
         this.tipList = tipList
         notifyDataSetChanged()
     }

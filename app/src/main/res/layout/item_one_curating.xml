@@ -6,7 +6,7 @@
     <data>
         <variable
             name="curatingInfo"
-            type="com.omoolen.omooroid.home.fragments.one.curating.CuratingInfo" />
+            type="com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationByUser" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,7 @@
             android:layout_height="138dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            setSrc="@{curatingInfo.imgId1}"
+            setSrcFromUrl="@{curatingInfo.imageList[1]}"
             tools:src="@drawable/img_ellipse_1842" />
 
         <ImageView
@@ -29,7 +29,7 @@
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_one_recommend1"
             app:layout_constraintEnd_toEndOf="@+id/iv_one_recommend1"
-            setSrc="@{curatingInfo.imgId2}"
+            setSrcFromUrl="@{curatingInfo.imageList[0]}"
             tools:src="@drawable/img_color_a" />
 
         <TextView
@@ -62,7 +62,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:includeFontPadding="false"
-            android:text="@{curatingInfo.info}"
+            setMinRange="@{curatingInfo.changeCycleMinimum}"
+            setMaxRange="@{curatingInfo.changeCycleMaximum}"
+            setDiameter="@{curatingInfo.diameter}"
+            setPiece="@{curatingInfo.pieces}"
             android:theme="@style/TextStyle17"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_name"

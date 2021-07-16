@@ -468,7 +468,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:spanCount="2"
-                            tools:listitem="@layout/item_one_recommend" />
+                            tools:listitem="@layout/item_one_situation" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <ImageView

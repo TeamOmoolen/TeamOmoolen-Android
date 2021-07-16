@@ -7,7 +7,6 @@ import com.omoolen.omooroid.databinding.ItemOneRecommendBinding
 import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
 
 class RecommendListAdapter : RecyclerView.Adapter<RecommendListAdapter.RecommendViewHolder>() {
-
     private var recommendList = emptyList<RecommendInfo>()
 
     class RecommendViewHolder(
