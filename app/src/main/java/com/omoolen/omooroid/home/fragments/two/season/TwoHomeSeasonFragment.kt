@@ -42,7 +42,6 @@ class TwoHomeSeasonFragment : Fragment() {
         _binding = FragmentHomeTwoSeasonBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.getSuggestData()
         setSeasonAdapter()
         setSeasonObserve()
 

@@ -50,14 +50,12 @@ class TwoHomeForYouFragment : Fragment() {
                 override fun onLowPriceClicked() {
                     //여기서 정렬
                     Log.d("click", "low price")
-                    //페이지는 1부터 시작
                     fragmentViewModel.getForyou(1,"price","asc")
                 }
 
                 override fun onHighPriceClicked() {
-                  // 여기서 정렬
+                    // 여기서 정렬
                     Log.d("click", "high price")
-                    //페이지는 1부터 시작
                     fragmentViewModel.getForyou(1,"price","desc")
                 }
             })

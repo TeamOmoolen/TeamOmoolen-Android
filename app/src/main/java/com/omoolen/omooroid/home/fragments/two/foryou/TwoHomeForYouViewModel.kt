@@ -7,7 +7,8 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendInfo
-import com.omoolen.omooroid.search.data.Item
+import com.omoolen.omooroid.home.fragments.two.api.Item
+
 import com.omoolen.omooroid.util.ListLiveData
 import com.omoolen.omooroid.util.api.RetrofitClient
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -45,6 +46,7 @@ class TwoHomeForYouViewModel : ViewModel() {
             })
         Log.d("RETROFIT","끝")
     }
+
 
     fun setForYouList() {
         _forYouList.value = mutableListOf(

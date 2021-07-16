@@ -42,7 +42,6 @@ class TwoHomeSituFragment : Fragment() {
         _binding = FragmentHomeTwoSituBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.getSuggestData()
         setSituAdapter()
         setSituObserve()
 

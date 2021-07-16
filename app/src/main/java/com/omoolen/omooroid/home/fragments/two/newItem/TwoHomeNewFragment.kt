@@ -40,7 +40,6 @@ class TwoHomeNewFragment : Fragment() {
         _binding = FragmentHomeTwoNewBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.getSuggestData()
         setForNewAdapter()
         setForNewObserve()
 
