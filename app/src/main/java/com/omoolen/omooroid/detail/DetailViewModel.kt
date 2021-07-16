@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.detail
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -38,7 +38,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
 //    val popularList: List<Popular>,
 //    val price: Int,
 //    val suggestList: List<Suggest>
-    @SuppressLint("CheckResult")
+    //@SuppressLint("CheckResult")
     fun getDetailData(id:String){
     Log.d("SERVER_DETAIL","들어옴")
         RetrofitClient.getApi.getDetailData(id)

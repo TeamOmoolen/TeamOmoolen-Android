@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.home
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -15,7 +15,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val id = MutableLiveData<String>()
     lateinit var suggestData : Data
 
-    @SuppressLint("CheckResult")
     fun getSuggestData() {
 
         Log.d("RETROFIT","시작")

@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.home.fragments.one
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -25,7 +25,7 @@ import retrofit2.HttpException
 class OneHomeViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    @SuppressLint("CheckResult")
+    //@SuppressLint("CheckResult")
     fun getHome() {
 //        val deadlineEvent: List<DeadlineEvent>,
 //        val guides: Guides,

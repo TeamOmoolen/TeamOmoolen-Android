@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.home.fragments.two
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -10,7 +10,7 @@ import com.omoolen.omooroid.home.fragments.one.curating.CuratingInfo
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendInfo
 
 class TwoHomeViewModel(application: Application) : AndroidViewModel(application) {
-    @SuppressLint("StaticFieldLeak")
+    //@SuppressLint("StaticFieldLeak")
     private val mContext = getApplication<Application>().applicationContext
 
     val tabItem1 : String = "for you"
