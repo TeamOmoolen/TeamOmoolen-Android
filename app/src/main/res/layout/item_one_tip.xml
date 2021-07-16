@@ -7,6 +7,10 @@
         <variable
             name="tipInfo"
             type="com.omoolen.omooroid.home.fragments.one.networkApi.GuideList1" />
+
+        <variable
+            name="tipBack"
+            type="com.omoolen.omooroid.home.fragments.one.tip.TipBack" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        setSrc="@{tipBack.header}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="13dp"
+        setSrc="@{tipBack.illust}"
         app:layout_constraintBottom_toBottomOf="@+id/iv_one_tip_header"
         app:layout_constraintEnd_toEndOf="@+id/iv_one_tip_header"
         app:srcCompat="@drawable/img_1_min_home_1" />
@@ -88,12 +94,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
-        android:text="@{tipInfo.guides.get(0).answer}"
-        tools:text="1분 렌즈 상식에 대한 간단 설명"
-        android:theme="@style/TextStyle20"
+        android:ellipsize="end"
         android:includeFontPadding="false"
+        android:maxLength="25"
+        android:maxLines="1"
+        android:text="@{tipInfo.guides.get(0).answer}"
+        android:theme="@style/TextStyle20"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
-        app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title1" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title1"
+        tools:text="1분 렌즈 상식에 대한 간단 설명" />
 
     <ImageView
         android:id="@+id/iv_line1"
@@ -127,7 +136,10 @@
         android:text="@{tipInfo.guides.get(1).answer}"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
         android:theme="@style/TextStyle20"
+        android:ellipsize="end"
         android:includeFontPadding="false"
+        android:maxLength="25"
+        android:maxLines="1"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title2" />
 
@@ -162,7 +174,10 @@
         android:layout_marginTop="4dp"
         android:text="@{tipInfo.guides.get(2).answer}"
         android:theme="@style/TextStyle20"
+        android:ellipsize="end"
         android:includeFontPadding="false"
+        android:maxLength="25"
+        android:maxLines="1"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title3" />
@@ -172,7 +187,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="19dp"
         app:layout_constraintEnd_toEndOf="@+id/iv_one_tip_bg"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"

@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
 object RetrofitClient {
-    private const val BASE_URL = "https://www.omoolen.shop/"
-    //private const val BASE_URL = "http://ec2-15-165-235-44.ap-northeast-2.compute.amazonaws.com/"
+    //private const val BASE_URL = "https://www.omoolen.shop/"
+    private const val BASE_URL = "http://ec2-15-165-235-44.ap-northeast-2.compute.amazonaws.com/"
 
     val getApi = Retrofit.Builder()
         .baseUrl(BASE_URL)
