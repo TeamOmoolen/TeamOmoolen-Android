@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="hideKeyboard"
         tools:context=".search.search_result.SearchResultActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,7 +90,7 @@
             style="@style/TextStyle75"
             android:includeFontPadding="false"
             android:background="@drawable/ic_btn_brandfilter_pressed"
-            android:text="총 000개의 상품"
+            setItemCnt="@{viewModel.totalItem}"
             android:paddingStart="16dp"
             android:paddingEnd="17dp"
             android:paddingTop="3dp"
@@ -127,10 +128,6 @@
                 android:text="@string/sort"
                 android:includeFontPadding="false"/>
 
-
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -142,6 +139,8 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:orientation="vertical"
+            android:fillViewport="true"
+            android:paddingBottom="?attr/actionBarSize"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

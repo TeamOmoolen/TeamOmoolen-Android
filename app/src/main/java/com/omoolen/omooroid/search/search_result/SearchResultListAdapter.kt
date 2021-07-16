@@ -5,19 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.ItemSearchResultBinding
 import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
+import com.omoolen.omooroid.search.data.Item
 
 class SearchResultListAdapter:RecyclerView.Adapter<SearchResultListAdapter.SearchResultViewHolder>() {
 
-    val searchResultList = mutableListOf<SearchResultInfo>()
+    private var searchResultList = emptyList<Item>()
 
     class SearchResultViewHolder(
         private val binding:ItemSearchResultBinding
     ):RecyclerView.ViewHolder(binding.root){
-        fun bind(searchResultInfo: SearchResultInfo){
+        fun bind(searchResultInfo: Item){
             binding.searchResultInfo = searchResultInfo
 
             val listForColor = LensColorListAdapter()
-            listForColor.setColoring(searchResultInfo.colors)
+            listForColor.setColoring(searchResultInfo.otherColorList)
+
             binding.rvOneRecommendColor.adapter = listForColor
         }
     }
@@ -36,6 +38,11 @@ class SearchResultListAdapter:RecyclerView.Adapter<SearchResultListAdapter.Searc
         holder.bind(searchResultList[position])
     }
 
-    override fun getItemCount(): Int =searchResultList.size
+    override fun getItemCount(): Int = searchResultList.size
+
+    fun setSearchResult(resultList: MutableList<Item>){
+        this.searchResultList = resultList
+        notifyDataSetChanged()
+    }
 
 }

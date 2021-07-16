@@ -3,9 +3,13 @@ package com.omoolen.omooroid.util
 
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.omoolen.omooroid.R
 import java.text.NumberFormat
 import java.util.*
@@ -19,7 +23,14 @@ object BindingAdapters {
 
     @BindingAdapter("setPrice")
     @JvmStatic
-    fun setPrice(textView : TextView, num: Int) {
+    fun setPrice(textView : TextView, num: String) {
+        val price = "$num 원"
+        textView.text = price
+    }
+
+    @BindingAdapter("setPrice2")
+    @JvmStatic
+    fun setPrice2(textView : TextView, num: Int) {
         val price = NumberFormat.getNumberInstance(Locale.US)
             .format(num) + "원"
         textView.text = price
@@ -43,30 +54,38 @@ object BindingAdapters {
     @BindingAdapter("setColor2")
     @JvmStatic
     fun setColor2(imageView: ImageView, code: String) {
-        var color : Int
-        color = when(code){
-            "black" -> R.color.lens_color_black
-            "choco" -> R.color.lens_color_choco
-            "gray", "grey" -> R.color.lens_color_grey
-            "green" -> R.color.lens_color_green
-            "brown" -> R.color.lens_color_brown
-            "purple" -> R.color.lens_color_purple
-            "blue" -> R.color.lens_color_blue
-            "gold" -> R.color.lens_color_gold
-            "pink" -> R.color.lens_color_pink
-            "etc" -> R.color.lens_color_etc
-            else -> R.color.lens_color_etc
-        }
-        imageView.setColorFilter(color, PorterDuff.Mode.SRC_IN)
+        Log.d("********COLOR_STRING", code)
 
+        var color : String = when(code.trim()){
+            "black" -> "#4F4F4F"
+            "choco" -> "#524836"
+            "gray", "grey" -> "#6A6F88"
+            "green" -> "#65BD79"
+            "brown" -> "#958057"
+            "purple" -> "#C76BE7"
+            "blue" -> "#7595E8"
+            "gold" -> "#EAB86E"
+            "pink" -> "#F372A1"
+            "etc" -> "#FBFBFB"
+            "glitter" -> "#EAB86E"
+            else -> "#E8EFFF"
+        }
+
+        if(code == "etc"){
+            imageView.setImageResource(R.drawable.lens_home_etccolor)
+        } else if(code == "glitter"){
+            imageView.setImageResource(R.drawable.lens_home_glitter)
+        } else {
+            imageView.setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN)
+        }
     // 기타일 경우 _ 이미지 바꿔치기
     // imageView.setImageResource(R.drawable.btn_glittercolor_normal)
     }
 
 
-    @BindingAdapter("setMinRange", "setMaxRange", "setDiaMeter")
+    @BindingAdapter("setMinRange", "setMaxRange", "setDiameter", "setPiece")
     @JvmStatic
-    fun setInfo(textView: TextView, min : Int, max : Int, dia : Double) {
+    fun setPiece(textView: TextView, min : Int, max : Int, dia : Double, piece : Int) {
         val dm = "$dia" + "mm"
         var rg : String
 
@@ -88,7 +107,24 @@ object BindingAdapters {
             }
         }
 
-        val rslt = "$dm / $rg"
+        val rslt = "$dm / $rg(${piece}p)"
         textView.text = rslt
     }
+
+
+    @BindingAdapter("setSrcFromUrl")
+    @JvmStatic
+    fun setSrcFromUrl(imageView: ImageView, url: String) {
+        Glide.with(imageView.context)
+            .load(url)
+            .centerCrop()
+            .into(imageView)
+    }
+
+    @BindingAdapter("setItemCnt")
+    @JvmStatic
+    fun setItemCnt(textView: TextView, cnt : Int) {
+        textView.text = "총 ${cnt}개의 상품"
+    }
+
 }

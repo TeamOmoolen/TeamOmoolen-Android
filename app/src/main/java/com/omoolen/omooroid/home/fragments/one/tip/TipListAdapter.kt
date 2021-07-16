@@ -2,7 +2,9 @@ package com.omoolen.omooroid.home.fragments.one.tip
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.ItemOneTipBinding
 
 class TipListAdapter : RecyclerView.Adapter<TipListAdapter.TipViewHolder>() {
