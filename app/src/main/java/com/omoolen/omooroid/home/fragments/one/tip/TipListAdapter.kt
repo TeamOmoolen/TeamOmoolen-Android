@@ -12,11 +12,21 @@ class TipListAdapter : RecyclerView.Adapter<TipListAdapter.TipViewHolder>() {
 
     private var tipList = emptyList<GuideList1>()
 
+    private var backIdx : Int = 0
+
     class TipViewHolder(
-        private val binding : ItemOneTipBinding
+        private val binding : ItemOneTipBinding,
     ): RecyclerView.ViewHolder(binding.root){
+        private val tipBackList = listOf(
+            TipBack(R.drawable.ic_btn_translens_normal, R.drawable.img_1_min_home_1),
+            TipBack(R.drawable.ic_btn_normal2, R.drawable.group_8005),
+            TipBack(R.drawable.ic_btn_lens3, R.drawable.img_1_min_home_3)
+        )
+        var idx : Int = 0
         fun bind(tipInfo: GuideList1){
             binding.tipInfo = tipInfo
+            binding.tipBack =  tipBackList.get(1)
+
 
         }
     }
@@ -28,7 +38,7 @@ class TipListAdapter : RecyclerView.Adapter<TipListAdapter.TipViewHolder>() {
             false
         )
 
-        return TipViewHolder(binding)
+        return TipViewHolder(binding )
     }
 
     override fun onBindViewHolder(holder: TipViewHolder, position: Int) {
@@ -37,7 +47,7 @@ class TipListAdapter : RecyclerView.Adapter<TipListAdapter.TipViewHolder>() {
 
     override fun getItemCount():Int = tipList.size
 
-    fun setTip(tipList : List<GuideList1>){
+    fun setTip(tipList : List<GuideList1>) {
         this.tipList = tipList
         notifyDataSetChanged()
     }
