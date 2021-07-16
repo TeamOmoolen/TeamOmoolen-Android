@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" >
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/home_menu_icon"
+        android:icon="@drawable/btn_home_maintab_normal"
         android:title="홈" />
     <item
         android:id="@+id/findFragment"
-        android:icon="@drawable/location_menu_icon"
+        android:icon="@drawable/btn_discover_maintab_normal"
         android:title="발견" />
     <item
         android:id="@+id/eventFragment"
-        android:icon="@drawable/setting_menu_icon"
+        android:icon="@drawable/btn_event_maintab_normal"
         android:title="이벤트" />
     <item
         android:id="@+id/tipFragment"
-        android:icon="@drawable/location_menu_icon"
+        android:icon="@drawable/btn_event_tip_normal"
         android:title="꿀팁" />
     <item
         android:id="@+id/mypageFragment"
-        android:icon="@drawable/setting_menu_icon"
+        android:icon="@drawable/btn_mypage_maintab_normal"
         android:title="마이페이지" />
 </menu>

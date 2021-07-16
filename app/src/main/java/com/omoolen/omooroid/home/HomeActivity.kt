@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.home
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -55,7 +56,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         //binding.bnvMain.menu.getItem(3).isChecked = true
     }
     private fun changeFragment(fragment: Fragment) {
-        Log.d("fragmentChangd", fragment.toString())
+        Log.d("fragmentChanged", fragment.toString())
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.nav_host_home, fragment)
@@ -66,22 +67,47 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         when (item.itemId) {
             R.id.homeFragment -> {
                 changeFragment(fragmentHomeOne)
+                item.setIcon(R.drawable.btn_home_maintab_pressed)
+                binding.bnvMain.menu.findItem(R.id.findFragment).setIcon(R.drawable.btn_discover_maintab_normal)
+                binding.bnvMain.menu.findItem(R.id.eventFragment).setIcon(R.drawable.btn_event_maintab_normal)
+                binding.bnvMain.menu.findItem(R.id.tipFragment).setIcon(R.drawable.btn_event_tip_normal)
+                binding.bnvMain.menu.findItem(R.id.mypageFragment).setIcon(R.drawable.btn_mypage_maintab_normal)
                 return true
             }
             R.id.findFragment -> {
                 changeFragment(fragmentHomeTwo)
+                binding.bnvMain.menu.findItem(R.id.homeFragment).setIcon(R.drawable.btn_home_maintab_normal)
+                item.setIcon(R.drawable.btn_discover_maintab_pressed)
+                binding.bnvMain.menu.findItem(R.id.eventFragment).setIcon(R.drawable.btn_event_maintab_normal)
+                binding.bnvMain.menu.findItem(R.id.tipFragment).setIcon(R.drawable.btn_event_tip_normal)
+                binding.bnvMain.menu.findItem(R.id.mypageFragment).setIcon(R.drawable.btn_mypage_maintab_normal)
                 return true
             }
             R.id.eventFragment -> {
                 changeFragment(fragmentHomeThree)
+                binding.bnvMain.menu.findItem(R.id.homeFragment).setIcon(R.drawable.btn_home_maintab_normal)
+                binding.bnvMain.menu.findItem(R.id.findFragment).setIcon(R.drawable.btn_discover_maintab_normal)
+                item.setIcon(R.drawable.ic_btn_event_maintab_pressed)
+                binding.bnvMain.menu.findItem(R.id.tipFragment).setIcon(R.drawable.btn_event_tip_normal)
+                binding.bnvMain.menu.findItem(R.id.mypageFragment).setIcon(R.drawable.btn_mypage_maintab_normal)
                 return true
             }
             R.id.tipFragment -> {
                 changeFragment(fragmentHomeFour)
+                binding.bnvMain.menu.findItem(R.id.homeFragment).setIcon(R.drawable.btn_home_maintab_normal)
+                binding.bnvMain.menu.findItem(R.id.findFragment).setIcon(R.drawable.btn_discover_maintab_normal)
+                binding.bnvMain.menu.findItem(R.id.eventFragment).setIcon(R.drawable.btn_event_maintab_normal)
+                item.setIcon(R.drawable.btn_event_tip_pressed)
+                binding.bnvMain.menu.findItem(R.id.mypageFragment).setIcon(R.drawable.btn_mypage_maintab_normal)
                 return true
             }
             R.id.mypageFragment -> {
                 changeFragment(fragmentHomeFive)
+                binding.bnvMain.menu.findItem(R.id.homeFragment).setIcon(R.drawable.btn_home_maintab_normal)
+                binding.bnvMain.menu.findItem(R.id.findFragment).setIcon(R.drawable.btn_discover_maintab_normal)
+                binding.bnvMain.menu.findItem(R.id.eventFragment).setIcon(R.drawable.btn_event_maintab_normal)
+                binding.bnvMain.menu.findItem(R.id.tipFragment).setIcon(R.drawable.btn_event_tip_normal)
+                item.setIcon(R.drawable.btn_mypage_maintab_pressed)
                 return true
             }
             else -> {

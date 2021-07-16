@@ -221,7 +221,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/iv_home_cate_cosplay"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_location_selected" />
+                            app:srcCompat="@drawable/ic_home_category_new" />
 
                         <TextView
                             android:id="@+id/tv_home_cate_new"
