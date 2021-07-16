@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.home.fragments.two
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -17,7 +17,7 @@ class FindSortPriceFragment : DialogFragment() {
     private val binding get() = _binding!!
 
 
-    @SuppressLint("ClickableViewAccessibility")
+    //@SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?) : View {
         _binding = FragmentFindSortPriceBinding.inflate(

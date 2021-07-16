@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.onboarding.fragments.four
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import android.view.MotionEvent
@@ -22,7 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class FourOnboardViewModel(application: Application) : AndroidViewModel(application) {
-    @SuppressLint("StaticFieldLeak")
+    //@SuppressLint("StaticFieldLeak")
     private val mContext = getApplication<Application>().applicationContext
     private lateinit var brandAdapter: BrandAdapter
     private lateinit var whenAdapter: WhenAdapter

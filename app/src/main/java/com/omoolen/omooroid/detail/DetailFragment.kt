@@ -48,10 +48,13 @@ class DetailFragment : Fragment() {
         setDetailLensColorAdapter()
         setDetailLensColorObserve()
 
-
-        //TODO : 상품 아이디값 넣기
-        detailViewModel.getDetailData("60efdf8e3e4ecf590a92403b")
+        //TODO : 상품 아이디값 넣기 //번들로 id값 전달받기
+        getProudctDetail("60efdf8e3e4ecf590a92403b")
         return binding.root
+    }
+
+    private fun getProudctDetail(id:String){
+        detailViewModel.getDetailData(id)
     }
 
     // 디테일뷰 메인 이미지 탭

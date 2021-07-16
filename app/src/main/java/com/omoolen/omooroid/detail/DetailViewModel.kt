@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.detail
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -24,21 +24,8 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     val suggestList = ListLiveData<Suggest>()
 
     val detailList = ListLiveData<Item>()
-    val detail = MutableLiveData<Data>()
-//    var brand: String,
-//    val changeCycleMaximum: Int,
-//    val changeCycleMinimum: Int,
-//    val color: String,
-//    val diameter: Double,
-//    val function: String,
-//    val imageURL: List<String>,
-//    val material: String,
-//    val name: String,
-//    val otherColorList: List<String>,
-//    val popularList: List<Popular>,
-//    val price: Int,
-//    val suggestList: List<Suggest>
-    @SuppressLint("CheckResult")
+    val detail = MutableLiveData<Data>() //상세정보가 담긴 데이터
+
     fun getDetailData(id:String){
     Log.d("SERVER_DETAIL","들어옴")
         RetrofitClient.getApi.getDetailData(id)

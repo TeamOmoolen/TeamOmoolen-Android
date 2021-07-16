@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.onboarding.fragments.four
 
+//import android.animation.ValueAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
@@ -123,7 +124,7 @@ class FourOnboardFragment : Fragment() {
         }
     }
 
-    @SuppressLint("ObjectAnimatorBinding")
+    //@SuppressLint("ObjectAnimatorBinding")
     private fun startAnimation(bool:Boolean){
         val va = if (bool) ValueAnimator.ofInt(0, 1100) else ValueAnimator.ofInt(1100, 0)
         // Animation이 실행되는 시간, n/1000초

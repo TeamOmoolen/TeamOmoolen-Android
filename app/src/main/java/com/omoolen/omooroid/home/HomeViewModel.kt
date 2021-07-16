@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.home
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -13,7 +13,24 @@ import io.reactivex.schedulers.Schedulers
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val id = MutableLiveData<String>()
+    lateinit var suggestData :Data
+    fun getSuggestData() {
 
+        Log.d("RETROFIT","시작")
+        RetrofitClient.getApi.getSuggestData()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({suggest ->
 
+                suggestData = Data(suggest.data.season,suggest.data.situation,
+                suggest.data.suggestForNew,suggest.data.suggestForSeason,suggest.data.suggestForSituation,
+                suggest.data.suggestForYou)
+
+                Log.d("RETROFIT_","$suggestData")
+            },{e ->
+                println(e.toString())
+            })
+        Log.d("RETROFIT","끝")
+    }
 }
 

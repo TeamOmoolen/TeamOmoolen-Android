@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.home.fragments.one
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
@@ -50,7 +50,7 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
 
     val tipBackground = ListLiveData<TipBack>()
 
-    @SuppressLint("CheckResult")
+    //@SuppressLint("CheckResult")
     fun getHome() {
 
         Log.d("RETROFIT_HOME","시작")
