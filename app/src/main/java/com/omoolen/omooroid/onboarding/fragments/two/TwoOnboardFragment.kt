@@ -67,13 +67,13 @@ class TwoOnboardFragment : Fragment() {
         viewModel.whatChoice.observe(viewLifecycleOwner, {
             //다음 버튼 감지
             nextArr[0] = it.size
-            Toast.makeText(requireContext(),nextArr[0].toString()+"/"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
+            //Toast.makeText(requireContext(),nextArr[0].toString()+"/"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
             binding.tvButton.isSelected = nextArr[0] > 0 && nextArr[1] > 0
         })
         viewModel.colorChoice.observe(viewLifecycleOwner, {
             //다음 버튼 감지
             nextArr[1] = it.size
-            Toast.makeText(requireContext(),nextArr[0].toString()+"/"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
+            //Toast.makeText(requireContext(),nextArr[0].toString()+"/"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
             binding.tvButton.isSelected = nextArr[0] > 0 && nextArr[1] > 0
         })
     }

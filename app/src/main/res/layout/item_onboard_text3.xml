@@ -17,7 +17,7 @@
         android:background="@drawable/onboard_selector"
         android:gravity="center"
         android:text="투명"
-        android:textSize="16sp" />
+        style="@style/TextStyle8"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

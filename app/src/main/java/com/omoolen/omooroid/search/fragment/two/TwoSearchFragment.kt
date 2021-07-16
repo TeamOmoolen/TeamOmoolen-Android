@@ -551,6 +551,8 @@ class TwoSearchFragment : Fragment() {
             searchDatabase.setDiameter(diameterChoice)
             searchDatabase.setCycle(periodChoice)
             searchDatabase.show()
+
+            viewModel.getFilterSearch(brandChoice,colorChoice,diameterChoice,periodChoice)
         }
 
 
