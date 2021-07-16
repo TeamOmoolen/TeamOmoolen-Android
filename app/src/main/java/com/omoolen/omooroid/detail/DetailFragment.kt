@@ -89,7 +89,7 @@ class DetailFragment (private val itemId : String): Fragment() {
 
     // 디테일뷰 인기있는 신제품 리사이클러뷰
     private fun setDetailNewAdapter() {
-        binding.rvDetailNew.adapter = DetailNewListAdapter()
+        binding.rvDetailNew.adapter = DetailPopularListAdapter()
         binding.vpDetailMainImage.setCurrentItem(1, true)
         binding.detailDotsIndicator.setViewPager2(binding.vpDetailMainImage)
     }
