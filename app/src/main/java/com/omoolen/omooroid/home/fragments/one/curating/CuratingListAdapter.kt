@@ -5,19 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.ItemOneCuratingBinding
 import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
+import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationByUser
 
 class CuratingListAdapter:RecyclerView.Adapter<CuratingListAdapter.CuratingViewHolder>() {
 
-    private var curateList = emptyList<CuratingInfo>()
+    private var curateList = emptyList<RecommendationByUser>()
 
     class CuratingViewHolder(
         private val binding : ItemOneCuratingBinding
     ): RecyclerView.ViewHolder(binding.root){
-        fun bind(curatingInfo: CuratingInfo){
+        fun bind(curatingInfo: RecommendationByUser){
             binding.curatingInfo = curatingInfo
 
             val listForColor = LensColorListAdapter()
-            listForColor.setColoring(curatingInfo.colors)
+            listForColor.setColoring(curatingInfo.otherColorList as List<String>)
             binding.rvOneCuratingColor.adapter = listForColor
 
         }
@@ -39,7 +40,7 @@ class CuratingListAdapter:RecyclerView.Adapter<CuratingListAdapter.CuratingViewH
 
     override fun getItemCount(): Int = curateList.size
 
-    fun setCurating(curateList : List<CuratingInfo>){
+    fun setCurating(curateList : List<RecommendationByUser>){
         this.curateList = curateList
         notifyDataSetChanged()
     }

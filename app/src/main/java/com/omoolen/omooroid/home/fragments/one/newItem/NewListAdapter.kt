@@ -4,10 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.ItemOneNewBinding
-import com.omoolen.omooroid.databinding.ItemOneRecommendBinding
-import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
-import com.omoolen.omooroid.home.fragments.one.recommend.RecommendInfo
-import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+
 
 class NewListAdapter : RecyclerView.Adapter<NewListAdapter.NewViewHolder>(){
 

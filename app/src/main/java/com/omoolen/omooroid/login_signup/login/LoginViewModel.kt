@@ -110,6 +110,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         Toast.makeText(context, "앱이 요청 권한이 없음", Toast.LENGTH_SHORT).show()
                     }
                     else -> { // Unknown
+                        Log.d("************ERROR", error.toString())
                         Toast.makeText(context, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
                 }

@@ -13,8 +13,7 @@ import io.reactivex.schedulers.Schedulers
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val id = MutableLiveData<String>()
-    lateinit var suggestData : Data
-
+    lateinit var suggestData :Data
     fun getSuggestData() {
 
         Log.d("RETROFIT","시작")
@@ -33,6 +32,5 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             })
         Log.d("RETROFIT","끝")
     }
-
 }
 
