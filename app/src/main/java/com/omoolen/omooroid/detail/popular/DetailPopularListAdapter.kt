@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.ItemDetailNewBinding
-import com.omoolen.omooroid.detail.recommend.DetailRecommendInfo
+import com.omoolen.omooroid.detail.detailApi.Popular
 import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
 
-class DetailNewListAdapter : RecyclerView.Adapter<DetailNewListAdapter.DetailNewViewHolder>() {
+class DetailPopularListAdapter : RecyclerView.Adapter<DetailPopularListAdapter.DetailNewViewHolder>() {
 
-    private var detailNewList = emptyList<DetailNewInfo>()
+    private var detailPopularList = emptyList<Popular>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,26 +24,22 @@ class DetailNewListAdapter : RecyclerView.Adapter<DetailNewListAdapter.DetailNew
         return DetailNewViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = detailNewList.size
+    override fun getItemCount(): Int = detailPopularList.size
 
     class DetailNewViewHolder(
         private val binding: ItemDetailNewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(detailNewInfo: DetailNewInfo) {
-            binding.detailNewInfo = detailNewInfo
-
-            val listForColor = LensColorListAdapter()
-            listForColor.setColoring(detailNewInfo.colors)
-            binding.rvDetailNewColor.adapter = listForColor
+        fun bind(popular: Popular) {
+            binding.detailNewInfo = popular
         }
     }
 
     override fun onBindViewHolder(holder: DetailNewViewHolder, position: Int) {
-        holder.bind(detailNewList[position])
+        holder.bind(detailPopularList[position])
     }
 
-    fun setDetailNew(detailNewList : List<DetailNewInfo>){
-        this.detailNewList = detailNewList
+    fun setDetailNew(detailNewList : List<Popular>){
+        this.detailPopularList = detailNewList
         notifyDataSetChanged()
     }
 

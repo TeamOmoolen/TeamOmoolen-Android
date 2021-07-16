@@ -20,12 +20,14 @@ class DetailActivity : AppCompatActivity() {
         _binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setFragment()
+        var itemId : String? = intent?.getStringExtra("itemId")
+        if(itemId != null)
+            setFragment(itemId)
     }
 
-    private fun setFragment(){
+    private fun setFragment(itemId : String){
         val transaction = supportFragmentManager.beginTransaction()
-            .add(R.id.fl_detail, DetailFragment())
+            .add(R.id.fl_detail, DetailFragment(itemId))
         transaction.commit()
     }
 
