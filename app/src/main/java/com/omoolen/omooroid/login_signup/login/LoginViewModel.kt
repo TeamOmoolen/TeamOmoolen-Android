@@ -1,6 +1,6 @@
 package com.omoolen.omooroid.login_signup.login
 
-import android.annotation.SuppressLint
+//import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.Intent
@@ -29,6 +29,27 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     var kakaoUser = KakaoUser("","")
 
     val isNew = MutableLiveData<Boolean>()
+
+    fun fakeLogin(){
+        val requestLoginData = RequestLoginData(oauthKey = "000000", name = "워니") //전송할 데이터
+        val call: Call<ResponseLoginData> = UserClient.getApi.postLogin(requestLoginData)
+        call.enqueue(object : Callback<ResponseLoginData> {
+            override fun onResponse(
+                call: Call<ResponseLoginData>,
+                response: Response<ResponseLoginData>
+            ){
+                Log.d("TEST_LOGINVIEWMODEL",response.isSuccessful.toString())
+                Log.d("TEST_LOGINVIEWMODEL",response.body()?.accessToken.toString())
+                Log.d("TEST_LOGINVIEWMODEL",response.body()?.isNewUser.toString())
+                //token값 저장
+                SharedPreferenceToken.putSettingItem(getApplication<Application>().applicationContext,"USER_TOKEN",response.body()?.accessToken.toString())
+                isNew.value = response.body()?.isNewUser
+            }
+            override fun onFailure(call: Call<ResponseLoginData>, t: Throwable) {
+                Log.d("NetworkTest","error:$t")
+            }
+        })
+    }
 
     fun newKakao(context:Context){
         if (AuthApiClient.instance.hasToken()) { //로그인이 된 상태인지 확인
@@ -94,7 +115,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
             else if (token != null) {
-                Toast.makeText(context, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                 getKakaoInfo()
             }
         }

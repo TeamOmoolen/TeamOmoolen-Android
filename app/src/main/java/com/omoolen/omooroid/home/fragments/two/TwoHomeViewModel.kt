@@ -18,4 +18,5 @@ class TwoHomeViewModel(application: Application) : AndroidViewModel(application)
     val tabItem3 : String = "신제품"
     val tabItem4 : String = "여름에 예쁜"
 
+
 }
