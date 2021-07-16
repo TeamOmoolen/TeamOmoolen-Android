@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/iv_one_new"
-                setSrc="@{newInfo.mainImageId}"
+                setSrcFromUrl="@{newInfo.newItems.get(0).imageList[1]}"
                 android:layout_width="320dp"
                 android:layout_height="318dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
 
             <ImageView
                 android:id="@+id/iv_one_new_logo"
-                setSrc="@{newInfo.logoImgId}"
+                setSrcFromUrl="@{newInfo.newItems.get(0).imageList[0]}"
                 android:layout_width="42dp"
                 android:layout_height="26dp"
                 android:layout_marginStart="7dp"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
                 android:layout_marginBottom="2dp"
-                android:text="@{newInfo.brand}"
+                android:text="@{newInfo.newItems.get(0).brand}"
                 android:includeFontPadding="false"
                 android:theme="@style/TextStyle22"
                 app:layout_constraintBottom_toTopOf="@+id/tv_one_new_name"
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
                 android:layout_marginBottom="20dp"
-                android:text="@{newInfo.name1}"
+                android:text="@{newInfo.newItems.get(0).name}"
                 android:theme="@style/TextStyle23"
                 android:includeFontPadding="false"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_one_new"
@@ -102,7 +102,7 @@
 
                     <ImageView
                         android:id="@+id/iv_one_new_len1"
-                        setSrc="@{newInfo.item1ImgId}"
+                        setSrcFromUrl="@{newInfo.newItems.get(1).imageList[1]}"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:paddingStart="18dp"
@@ -119,8 +119,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="5dp"
-                        android:text="@{newInfo.name1}"
-                        android:theme="@style/TextStyle24"
+                        android:text="@{newInfo.newItems.get(1).name}"
                         android:includeFontPadding="false"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len1"
                         app:layout_constraintTop_toBottomOf="@+id/tv_one_new_brand_name1"
@@ -132,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
-                        android:text="@{newInfo.brand}"
+                        android:text="@{newInfo.newItems.get(1).brand}"
                         android:theme="@style/TextStyle21"
                         android:includeFontPadding="false"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len1"
@@ -141,7 +140,7 @@
 
                     <TextView
                         android:id="@+id/tv_one_neW_price1"
-                        setPrice2 ="@{newInfo.price1}"
+                        setPrice2 ="@{newInfo.newItems.get(1).price}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -175,7 +174,7 @@
 
                     <ImageView
                         android:id="@+id/iv_one_new_len2"
-                        setSrc="@{newInfo.item2ImgId}"
+                        setSrcFromUrl="@{newInfo.newItems.get(2).imageList[1]}"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:paddingStart="18dp"
@@ -192,7 +191,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="5dp"
-                        android:text="@{newInfo.name2}"
+                        android:text="@{newInfo.newItems.get(2).name}"
                         android:theme="@style/TextStyle24"
                         android:includeFontPadding="false"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len2"
@@ -205,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
-                        android:text="@{newInfo.brand}"
+                        android:text="@{newInfo.newItems.get(2).brand}"
                         android:textColor="@color/om_main_black"
                         android:theme="@style/TextStyle21"
                         android:includeFontPadding="false"
@@ -215,7 +214,7 @@
 
                     <TextView
                         android:id="@+id/tv_one_new_price2"
-                        setPrice2 ="@{newInfo.price2}"
+                        setPrice2 ="@{newInfo.newItems.get(2).price}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -248,7 +247,7 @@
 
                     <ImageView
                         android:id="@+id/iv_one_new_len3"
-                        setSrc="@{newInfo.item3ImgId}"
+                        setSrcFromUrl="@{newInfo.newItems.get(3).imageList[1]}"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:paddingStart="18dp"
@@ -265,7 +264,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="5dp"
-                        android:text="@{newInfo.name3}"
+                        android:text="@{newInfo.newItems.get(3).name}"
                         android:theme="@style/TextStyle24"
                         android:includeFontPadding="false"
                         app:layout_constraintStart_toEndOf="@+id/iv_one_new_len3"
@@ -278,7 +277,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
-                        android:text="@{newInfo.brand}"
+                        android:text="@{newInfo.newItems.get(3).brand}"
                         android:textColor="@color/om_main_black"
                         android:theme="@style/TextStyle21"
                         android:includeFontPadding="false"
@@ -288,7 +287,7 @@
 
                     <TextView
                         android:id="@+id/tv_one_new_price3"
-                        setPrice2 ="@{newInfo.price3}"
+                        setPrice2 ="@{newInfo.newItems.get(3).price}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"

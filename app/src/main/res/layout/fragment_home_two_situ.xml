@@ -102,7 +102,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_two_situ_main"
             app:spanCount="2"
-            tools:listitem="@layout/item_one_recommend" />
+            tools:listitem="@layout/item_one_situation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

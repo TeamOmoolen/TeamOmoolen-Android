@@ -12,8 +12,10 @@ import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
 import com.omoolen.omooroid.databinding.FragmentHomeTwoSeasonBinding
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
 import com.omoolen.omooroid.home.fragments.two.FindQuestionFragment
 import com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment
+import com.omoolen.omooroid.home.fragments.two.TwoHomeViewModel
 import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouViewModel
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
@@ -27,7 +29,7 @@ class TwoHomeSeasonFragment : Fragment() {
     private var _binding: FragmentHomeTwoSeasonBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
-    private val viewModel: TwoHomeSeasonViewModel by activityViewModels()
+    private val viewModel: TwoHomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +38,7 @@ class TwoHomeSeasonFragment : Fragment() {
         _binding = FragmentHomeTwoSeasonBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.setSeasonList()
+        viewModel.getSuggestData()
         setSeasonAdapter()
         setSeasonObserve()
 
@@ -72,13 +74,13 @@ class TwoHomeSeasonFragment : Fragment() {
 
     }
     private fun setSeasonAdapter(){
-        binding.rvFindSeason.adapter = RecommendListAdapter()
+        binding.rvFindSeason.adapter = SituationListAdapter()
     }
 
     private fun setSeasonObserve() {
-        viewModel.seasonList.observe(viewLifecycleOwner) { seasonList ->
-            with(binding.rvFindSeason.adapter as RecommendListAdapter) {
-                setRecommend(seasonList)
+        viewModel.forSeasonList.observe(viewLifecycleOwner) { recommendList ->
+            with(binding.rvFindSeason.adapter as SituationListAdapter) {
+                setRecommend(recommendList)
             }
         }
     }

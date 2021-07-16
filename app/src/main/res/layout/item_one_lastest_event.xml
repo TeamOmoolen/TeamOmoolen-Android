@@ -6,7 +6,7 @@
     <data>
         <variable
             name="eventInfo"
-            type="com.omoolen.omooroid.home.fragments.one.networkApi.DeadlineEvent" />
+            type="com.omoolen.omooroid.home.fragments.one.networkApi.LastestEvent" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -12,8 +12,10 @@ import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
 import com.omoolen.omooroid.databinding.FragmentHomeTwoSituBinding
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
 import com.omoolen.omooroid.home.fragments.two.FindQuestionFragment
 import com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment
+import com.omoolen.omooroid.home.fragments.two.TwoHomeViewModel
 import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouViewModel
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
@@ -27,7 +29,7 @@ class TwoHomeSituFragment : Fragment() {
     private var _binding: FragmentHomeTwoSituBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
-    private val viewModel: TwoHomeSituViewModel by activityViewModels()
+    private val viewModel: TwoHomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +38,7 @@ class TwoHomeSituFragment : Fragment() {
         _binding = FragmentHomeTwoSituBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.setSituList()
+        viewModel.getSuggestData()
         setSituAdapter()
         setSituObserve()
 
@@ -75,13 +77,13 @@ class TwoHomeSituFragment : Fragment() {
     }
 
     private fun setSituAdapter(){
-        binding.rvFindSituation.adapter = RecommendListAdapter()
+        binding.rvFindSituation.adapter = SituationListAdapter()
     }
 
     private fun setSituObserve() {
-        viewModel.situList.observe(viewLifecycleOwner) { situList ->
-            with(binding.rvFindSituation.adapter as RecommendListAdapter) {
-                setRecommend(situList)
+        viewModel.forSituationList.observe(viewLifecycleOwner) { recommendList ->
+            with(binding.rvFindSituation.adapter as SituationListAdapter) {
+                setRecommend(recommendList)
             }
         }
     }

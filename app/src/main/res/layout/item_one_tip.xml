@@ -6,7 +6,11 @@
     <data>
         <variable
             name="tipInfo"
-            type="com.omoolen.omooroid.home.fragments.one.tip.TipInfo" />
+            type="com.omoolen.omooroid.home.fragments.one.networkApi.GuideList1" />
+
+        <variable
+            name="tipBack"
+            type="com.omoolen.omooroid.home.fragments.one.tip.TipBack" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +26,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        setSrc="@{tipInfo.imgId}"
         app:srcCompat="@drawable/ic_btn_translens_normal_bg" />
 
     <ImageView
@@ -30,16 +33,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        setSrc="@{tipBack.header}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_btn_translens_normal" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_one_tip_header_illust"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="13dp"
+        setSrc="@{tipBack.illust}"
         app:layout_constraintBottom_toBottomOf="@+id/iv_one_tip_header"
         app:layout_constraintEnd_toEndOf="@+id/iv_one_tip_header"
         app:srcCompat="@drawable/img_1_min_home_1" />
@@ -62,7 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
-        android:text="이런이런 정보가 들어가요!"
+        android:text="@{tipInfo.category}"
+        tools:text="이런이런 정보가 들어가요!"
         android:includeFontPadding="false"
         android:theme="@style/TextStyle73"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_header"
@@ -75,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="26dp"
-        android:text="@{tipInfo.title1}"
+        android:text="@{tipInfo.guides.get(0).question}"
         tools:text="랜즈 눈치 안보고 패션을 꾸밀 수 있다?"
         android:theme="@style/TextStyle19"
         android:includeFontPadding="false"
@@ -88,12 +94,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
-        android:text="@{tipInfo.sub1}"
-        tools:text="1분 렌즈 상식에 대한 간단 설명"
-        android:theme="@style/TextStyle20"
+        android:ellipsize="end"
         android:includeFontPadding="false"
+        android:maxLength="25"
+        android:maxLines="1"
+        android:text="@{tipInfo.guides.get(0).answer}"
+        android:theme="@style/TextStyle20"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
-        app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title1" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title1"
+        tools:text="1분 렌즈 상식에 대한 간단 설명" />
 
     <ImageView
         android:id="@+id/iv_line1"
@@ -111,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="26dp"
-        android:text="@{tipInfo.title2}"
+        android:text="@{tipInfo.guides.get(1).question}"
         tools:text="랜즈 눈치 안보고 패션을 꾸밀 수 있다?"
         android:theme="@style/TextStyle19"
         android:includeFontPadding="false"
@@ -124,10 +133,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
-        android:text="@{tipInfo.sub2}"
+        android:text="@{tipInfo.guides.get(1).answer}"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
         android:theme="@style/TextStyle20"
+        android:ellipsize="end"
         android:includeFontPadding="false"
+        android:maxLength="25"
+        android:maxLines="1"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title2" />
 
@@ -147,7 +159,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="26dp"
-        android:text="@{tipInfo.title3}"
+        android:text="@{tipInfo.guides.get(2).question}"
         tools:text="랜즈 눈치 안보고 패션을 꾸밀 수 있다?"
         android:theme="@style/TextStyle19"
         android:includeFontPadding="false"
@@ -160,9 +172,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
-        android:text="@{tipInfo.sub3}"
+        android:text="@{tipInfo.guides.get(2).answer}"
         android:theme="@style/TextStyle20"
+        android:ellipsize="end"
         android:includeFontPadding="false"
+        android:maxLength="25"
+        android:maxLines="1"
         tools:text="1분 렌즈 상식에 대한 간단 설명"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
         app:layout_constraintTop_toBottomOf="@+id/tv_one_tip_title3" />
@@ -172,7 +187,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="19dp"
         app:layout_constraintEnd_toEndOf="@+id/iv_one_tip_bg"
         app:layout_constraintStart_toStartOf="@+id/iv_one_tip_bg"
