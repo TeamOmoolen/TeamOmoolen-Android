@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.util.api
 
+import com.omoolen.omooroid.detail.detailApi.DetailData
 import com.omoolen.omooroid.home.fragments.one.networkApi.HomeData
 import com.omoolen.omooroid.onboarding.api.RequestOnboardData
 import com.omoolen.omooroid.onboarding.api.ResponseOnboardData
@@ -38,5 +39,11 @@ interface RetrofitService {
     fun getFilterSearch(
         @Body body: RequestSearchData
     ) : Call<ResponseSearchData>
+
+    //제품 상세정보
+    @GET("api/products/{id}")
+    fun getDetailData(
+        @Path("id") id:String
+    ) : Single<DetailData>
 
 }
