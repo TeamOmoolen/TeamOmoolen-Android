@@ -6,7 +6,7 @@
     <data>
         <variable
             name="detailNewInfo"
-            type="com.omoolen.omooroid.detail.popular.DetailNewInfo"/>
+            type="com.omoolen.omooroid.detail.detailApi.Popular"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,18 +16,18 @@
 
         <ImageView
             android:id="@+id/iv_detail_new1"
-            setSrc="@{detailNewInfo.imgId1}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            setSrcFromUrl="@{detailNewInfo.imageList[1]}"
+            android:layout_width="138dp"
+            android:layout_height="138dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/img_ellipse_1842" />
 
         <ImageView
             android:id="@+id/iv_detail_new2"
-            setSrc="@{detailNewInfo.imgId2}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            setSrcFromUrl="@{detailNewInfo.imageList[0]}"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_detail_new1"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_new1"
             tools:src="@drawable/img_color_a" />
@@ -62,7 +62,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{detailNewInfo.info}"
+            setMinRange="@{detailNewInfo.changeCycleMinimum}"
+            setMaxRange="@{detailNewInfo.changeCycleMaximum}"
+            setDiameter="@{detailNewInfo.diameter}"
+            setPiece="@{detailNewInfo.pieces}"
             android:textColor="@color/om_third_gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +74,6 @@
 
         <TextView
             android:id="@+id/tv_detail_new_price"
-            setPrice2 ="@{detailNewInfo.price}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -80,6 +82,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_new_info"
+            android:text="18,000원"
             tools:text="18,000원" />
 
         <androidx.recyclerview.widget.RecyclerView

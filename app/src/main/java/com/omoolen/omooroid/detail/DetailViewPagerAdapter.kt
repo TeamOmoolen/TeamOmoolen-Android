@@ -9,11 +9,11 @@ import com.omoolen.omooroid.databinding.ItemDetailMainImageBinding
 
 class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.DetailViewHolder>() {
 
-    private var detailImageList = emptyList<DetailInfo>()
+    private var detailImageList = emptyList<String>()
 
     class DetailViewHolder(private val binding: ItemDetailMainImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(detailInfo: DetailInfo) {
+        fun bind(detailInfo: String) {
             binding.detailInfo = detailInfo
         }
     }
@@ -32,7 +32,7 @@ class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.Detai
 
     override fun getItemCount(): Int = detailImageList.size
 
-    fun setDetailImage(detailImageList: List<DetailInfo>) {
+    fun setDetailImage(detailImageList: List<String>) {
         this.detailImageList = detailImageList
         notifyDataSetChanged()
     }
