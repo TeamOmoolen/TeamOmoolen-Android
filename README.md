@@ -193,7 +193,8 @@ omoolen
     <div markdown="1">       
 
     😎숨겨진 내용😎
-
+      구현한 내용 : recyclerView와 viewPager2를 이용 _ 각 정보를 데이터바인딩을 통해 표시해줌. 
+                    상단바에 검색창을 고정하기 위해 collapsingToolbarLayout 이용.
     </div>
     </details>
     
@@ -216,7 +217,7 @@ omoolen
     <div markdown="1">       
 
     😎숨겨진 내용😎
-
+         구현한 내용 : 화면 스와이프가 되는 탭 레이아웃과 각 주제의 탭 별로 리사이클러뷰로 큐레이션 아이템 정보를 보여줌.
     </div>
     </details>  
     
