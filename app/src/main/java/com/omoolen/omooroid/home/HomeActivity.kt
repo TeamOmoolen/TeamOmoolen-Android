@@ -20,12 +20,13 @@ import com.omoolen.omooroid.home.fragments.four.FourHomeFragment
 import com.omoolen.omooroid.home.fragments.one.OneHomeFragment
 import com.omoolen.omooroid.home.fragments.three.ThreeHomeFragment
 import com.omoolen.omooroid.home.fragments.two.TwoHomeFragment
+import com.omoolen.omooroid.home.fragments.two.TwoHomeViewModel
 
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
     private var _binding: ActivityHomeBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
-    private val viewModel: HomeViewModel by viewModels() //위임초기화
+    private val viewModel: TwoHomeViewModel by viewModels() //위임초기화
 
     private val fragmentHomeOne by lazy { OneHomeFragment() }
     private val fragmentHomeTwo by lazy { TwoHomeFragment() }

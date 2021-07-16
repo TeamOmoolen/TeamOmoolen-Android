@@ -12,8 +12,10 @@ import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
 import com.omoolen.omooroid.databinding.FragmentHomeTwoNewBinding
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
+import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
 import com.omoolen.omooroid.home.fragments.two.FindQuestionFragment
 import com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment
+import com.omoolen.omooroid.home.fragments.two.TwoHomeViewModel
 import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouViewModel
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
@@ -27,7 +29,7 @@ class TwoHomeNewFragment : Fragment() {
     private var _binding: FragmentHomeTwoNewBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
-    private val viewModel: TwoHomeNewViewModel by activityViewModels()
+    private val viewModel: TwoHomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,9 +38,9 @@ class TwoHomeNewFragment : Fragment() {
         _binding = FragmentHomeTwoNewBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.setNewList()
-        setNewAdapter()
-        setNewObserve()
+        viewModel.getSuggestData()
+        setForNewAdapter()
+        setForNewObserve()
 
         //정렬 클릭 시
         binding.ivNewSort.setOnClickListener{
@@ -72,15 +74,15 @@ class TwoHomeNewFragment : Fragment() {
         binding.rvFindNewItem.addItemDecoration(VerticalItemDecorator(36, requireContext()))
 
     }
-    private fun setNewAdapter(){
-        binding.rvFindNewItem.adapter = RecommendListAdapter()
+    private fun setForNewAdapter(){
+        binding.rvFindNewItem.adapter = SituationListAdapter()
     }
 
-    private fun setNewObserve() {
-        viewModel.newList.observe(viewLifecycleOwner) { newList ->
-            with(binding.rvFindNewItem.adapter as RecommendListAdapter) {
-                setRecommend(newList)
-            }
+    private fun setForNewObserve(){
+        viewModel.forNewList.observe(viewLifecycleOwner){
+                recommendList -> with(binding.rvFindNewItem.adapter as SituationListAdapter) {
+            setRecommend(recommendList)
+        }
         }
     }
 }
