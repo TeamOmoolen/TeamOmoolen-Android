@@ -61,13 +61,13 @@ class ThreeOnboardFragment : Fragment() {
     private fun observeValue(){
         viewModel.effect.observe(viewLifecycleOwner){ effect ->
             nextArr[0] = effect
-            Toast.makeText(requireContext(),nextArr[0].toString()+"@"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
+            //Toast.makeText(requireContext(),nextArr[0].toString()+"@"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
             binding.tvButton.isSelected = !(nextArr[0] < 0 || nextArr[1] < 0) //다음 버튼 활성화 판단
         }
         viewModel.periodChoice.observe(viewLifecycleOwner, {
             //다음 버튼 감지
             nextArr[1] = it.size
-            Toast.makeText(requireContext(),nextArr[0].toString()+"/"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
+            //Toast.makeText(requireContext(),nextArr[0].toString()+"/"+nextArr[1].toString(),Toast.LENGTH_SHORT).show()
             binding.tvButton.isSelected = !(nextArr[0] < 0) && nextArr[1] > 0
         })
     }
