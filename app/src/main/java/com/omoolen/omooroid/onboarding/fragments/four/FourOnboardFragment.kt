@@ -5,22 +5,24 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.FragmentOnboardFourBinding
 import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.onboarding.OnboardDatabase
-import com.omoolen.omooroid.util.HorizontalItemDecorator
+import com.omoolen.omooroid.onboarding.api.*
 import com.omoolen.omooroid.util.VerticalItemDecoration
-import com.omoolen.omooroid.util.VerticalItemDecorator
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class FourOnboardFragment : Fragment() {
@@ -221,7 +223,14 @@ class FourOnboardFragment : Fragment() {
                     }
                 }
                 //TODO : 서버로 온보딩 정보 다 전달하기
+                Log.d("ONBOARD","온보딩 정보 전달")
                 onboardDatabase.show()
+
+                //데이터 convert
+
+                //서버 전달
+                postOnboard()
+
                 //홈화면으로 전환
                 val intent = Intent(requireContext(), HomeActivity::class.java)
                 startActivity(intent) //액티비티 띄우기
@@ -230,6 +239,12 @@ class FourOnboardFragment : Fragment() {
             }
         }
     }
+
+    //서버 통신
+    private fun postOnboard(){
+        viewModel.postOnboard()
+    }
+
 
     override fun onDestroy() {
         _binding = null

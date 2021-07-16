@@ -87,7 +87,8 @@ class OneHomeFragment : Fragment() {
         oneHomeViewModel.setNewList()
         setNewAdapter()
         setNewObserve()
-        
+
+        oneHomeViewModel.getHome()
         return binding.root
     }
 

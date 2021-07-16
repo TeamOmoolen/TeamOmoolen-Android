@@ -2,6 +2,7 @@ package com.omoolen.omooroid.onboarding.fragments.four
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
@@ -9,10 +10,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
+import com.omoolen.omooroid.onboarding.OnboardDatabase
+import com.omoolen.omooroid.onboarding.api.*
 import com.omoolen.omooroid.onboarding.fragments.four.`when`.WhenAdapter
 import com.omoolen.omooroid.onboarding.fragments.four.`when`.WhenInfo
 import com.omoolen.omooroid.onboarding.fragments.four.brand.BrandAdapter
 import com.omoolen.omooroid.onboarding.fragments.four.brand.BrandInfo
+import com.omoolen.omooroid.util.api.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FourOnboardViewModel(application: Application) : AndroidViewModel(application) {
     @SuppressLint("StaticFieldLeak")
@@ -72,8 +79,7 @@ class FourOnboardViewModel(application: Application) : AndroidViewModel(applicat
                 WhenInfo(name = "운동"),
                 WhenInfo(name = "일상생활"),
                 WhenInfo(name = "특별한 날"),
-                WhenInfo(name = "여행"),
-                WhenInfo(name = "기타")
+                WhenInfo(name = "여행")
             )
         )
 
@@ -117,6 +123,49 @@ class FourOnboardViewModel(application: Application) : AndroidViewModel(applicat
                 }
             }
         }
+    }
+
+    fun postOnboard(){
+        val requestOnboardData = setRequestOnboardData() //전송할 데이터
+
+        Log.d("SERVER_ONBOARD4","포스트 시작")
+        val call: Call<ResponseOnboardData> = RetrofitClient.getApi.postOnboard(requestOnboardData)
+        call.enqueue(object : Callback<ResponseOnboardData> {
+            override fun onResponse(
+                call: Call<ResponseOnboardData>,
+                response: Response<ResponseOnboardData>
+            ){
+                Log.d("SERVER_ONBOARD44",response.isSuccessful.toString())
+                Log.d("SERVER_ONBOARD44",response.body()?.status.toString())
+                Log.d("SERVER_ONBOARD44",response.body()?.message.toString())
+            }
+            override fun onFailure(call: Call<ResponseOnboardData>, t: Throwable) {
+                TODO("Not yet implemented")
+                Log.d("SERVER_ONBOARD4","포스트 실패")
+            }
+        })
+    }
+
+    private val oData = OnboardDatabase()
+    private fun setRequestOnboardData(): RequestOnboardData {
+        val suitedLens = SuitedLens(
+            oData.convertBrand(oData.getOnboardData()._brand),
+            oData.getOnboardData()._name
+        )
+        val wantedLens = WantedLens(
+            oData.convertCategory(oData.getOnboardData()._what),
+            oData.convertChange(oData.getOnboardData()._period),
+            oData.convertColor(oData.getOnboardData()._color),
+            oData.convertFunction(oData.getOnboardData()._effect)
+        )
+
+        return RequestOnboardData(
+            oData.convertAge(oData.getOnboardData()._age),
+            oData.convertGender(oData.getOnboardData()._gender),
+            suitedLens,
+            wantedLens,
+            oData.convertWhen(oData.getOnboardData()._when)
+        )
     }
 
 }
