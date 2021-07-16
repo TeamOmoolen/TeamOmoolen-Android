@@ -14,16 +14,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeOneBinding
+import com.omoolen.omooroid.detail.DetailActivity
 import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
 import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
 import com.omoolen.omooroid.home.fragments.one.event.LastestEventViewPagerAdapter
+import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationByUser
 import com.omoolen.omooroid.home.fragments.one.newItem.NewListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.SeasonListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
 import com.omoolen.omooroid.home.fragments.one.tip.TipListAdapter
 import com.omoolen.omooroid.home.fragments.two.TwoHomeFragment
+import com.omoolen.omooroid.onboarding.fragments.four.brand.BrandAdapter
 import com.omoolen.omooroid.search.SearchActivity
+import com.omoolen.omooroid.search.search_result.SearchResultActivity
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 
@@ -113,7 +117,17 @@ class OneHomeFragment : Fragment() {
     }
 
     private fun setCuratingAdapter(){
-        binding.rvHomeCurating.adapter = CuratingListAdapter()
+        val curatingListAdapter = CuratingListAdapter()
+        curatingListAdapter.setItemClickListener(object: CuratingListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val rbu :RecommendationByUser = oneHomeViewModel.recommendationByUserList.get(position)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("itemId", rbu.id)
+                startActivity(intent)
+            }
+        })
+
+        binding.rvHomeCurating.adapter = curatingListAdapter
     }
     private fun setCuratingObserve(){
         oneHomeViewModel.recommendationByUserList.observe(viewLifecycleOwner){

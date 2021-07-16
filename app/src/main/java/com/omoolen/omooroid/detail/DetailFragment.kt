@@ -3,6 +3,7 @@ package com.omoolen.omooroid.detail
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.databinding.FragmentDetailBinding
-import com.omoolen.omooroid.detail.popular.DetailNewListAdapter
+import com.omoolen.omooroid.detail.popular.DetailPopularListAdapter
 import com.omoolen.omooroid.detail.recommend.DetailRecommendListAdapter
-import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
+import com.omoolen.omooroid.util.BindingAdapters
 
-class DetailFragment : Fragment() {
+class DetailFragment (private val itemId : String): Fragment() {
     private val handler: Handler = Handler(Looper.getMainLooper())
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
@@ -30,31 +31,32 @@ class DetailFragment : Fragment() {
     ): View? {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+        //detailViewModel.getDetailData("60efdf8e3e4ecf590a92403b")
+        detailViewModel.getDetailData(itemId)
+        Log.d("******ITEM_ID", itemId)
 
-        detailViewModel.setDetailImageList()
         setDetailAdapter()
         setDetailObserve()
-        setDetailIndicator()
 
-        detailViewModel.setDetailRecommendList()
         setDetailRecommendAdapter()
         setDetailRecommendObserve()
 
-        detailViewModel.setDetailNewList()
         setDetailNewAdapter()
         setDetailNewObserve()
 
-        detailViewModel.setDetailLensColorList()
         setDetailLensColorAdapter()
         setDetailLensColorObserve()
 
-        //TODO : 상품 아이디값 넣기 //번들로 id값 전달받기
-        getProudctDetail("60efdf8e3e4ecf590a92403b")
+
+        //TODO : 상품 아이디값 넣기
+        //detailViewModel.getDetailData("60efdf8e3e4ecf590a92403b")
+        //detailViewModel.getDetailData(itemId)
+
         return binding.root
     }
 
-    private fun getProudctDetail(id:String){
-        detailViewModel.getDetailData(id)
+    private fun initDetail(){
+
     }
 
     // 디테일뷰 메인 이미지 탭
@@ -63,18 +65,11 @@ class DetailFragment : Fragment() {
     }
 
     private fun setDetailObserve() {
-        detailViewModel.detailImageList.observe(viewLifecycleOwner) { detailImageList ->
+        detailViewModel.detailImgList.observe(viewLifecycleOwner) { detailImageList ->
             with(binding.vpDetailMainImage.adapter as DetailViewPagerAdapter) {
                 setDetailImage(detailImageList)
             }
         }
-    }
-
-    private fun setDetailIndicator() {
-        TabLayoutMediator(
-            binding.tlDetailMainImage,
-            binding.vpDetailMainImage
-        ) { tab, position -> }.attach()
     }
 
 
@@ -84,7 +79,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun setDetailRecommendObserve() {
-        detailViewModel.detailRecommendList.observe(viewLifecycleOwner) { detailRecommendList ->
+        detailViewModel.suggestList.observe(viewLifecycleOwner) { detailRecommendList ->
             with(binding.rvDetailRecommend.adapter as DetailRecommendListAdapter) {
                 setDetailRecommend(detailRecommendList)
             }
@@ -95,11 +90,13 @@ class DetailFragment : Fragment() {
     // 디테일뷰 인기있는 신제품 리사이클러뷰
     private fun setDetailNewAdapter() {
         binding.rvDetailNew.adapter = DetailNewListAdapter()
+        binding.vpDetailMainImage.setCurrentItem(1, true)
+        binding.detailDotsIndicator.setViewPager2(binding.vpDetailMainImage)
     }
 
     private fun setDetailNewObserve() {
-        detailViewModel.detailNewList.observe(viewLifecycleOwner) { detailNewList ->
-            with(binding.rvDetailNew.adapter as DetailNewListAdapter) {
+        detailViewModel.popularList.observe(viewLifecycleOwner) { detailNewList ->
+            with(binding.rvDetailNew.adapter as DetailPopularListAdapter) {
                 setDetailNew(detailNewList)
             }
         }
@@ -111,7 +108,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun setDetailLensColorObserve(){
-        detailViewModel.detailLensColorList.observe(viewLifecycleOwner) { detailLensColorList ->
+        detailViewModel.colorDetailList.observe(viewLifecycleOwner) { detailLensColorList ->
             with(binding.rvDetailLensColor.adapter as DetailLensColorListAdapter) {
                 setColoring(detailLensColorList)
             }

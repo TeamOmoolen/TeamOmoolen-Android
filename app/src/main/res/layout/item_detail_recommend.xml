@@ -7,7 +7,7 @@
 
         <variable
             name="detailRecommendInfo"
-            type="com.omoolen.omooroid.detail.recommend.DetailRecommendInfo" />
+            type="com.omoolen.omooroid.detail.detailApi.Suggest" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
 
             <ImageView
                 android:id="@+id/iv_one_recommend1"
-                setSrc="@{detailRecommendInfo.imgId1}"
+                setSrcFromUrl="@{detailRecommendInfo.imageList[1]}"
                 android:layout_width="154dp"
                 android:layout_height="154dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
 
             <ImageView
                 android:id="@+id/iv_one_recommend2"
-                setSrc="@{detailRecommendInfo.imgId2}"
+                setSrcFromUrl="@{detailRecommendInfo.imageList[0]}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -71,7 +71,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@{detailRecommendInfo.info}"
+                setMinRange="@{detailRecommendInfo.changeCycleMinimum}"
+                setMaxRange="@{detailRecommendInfo.changeCycleMaximum}"
+                setDiameter="@{detailRecommendInfo.diameter}"
+                setPiece="@{detailRecommendInfo.pieces}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_name"
                 tools:text="11.9mm / 1Day(10p)"

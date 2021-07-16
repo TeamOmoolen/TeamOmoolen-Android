@@ -80,7 +80,6 @@
                         android:id="@+id/cl_detail_image"
                         android:layout_width="match_parent"
                         android:layout_height="384dp"
-                        android:layout_marginStart="0dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -95,24 +94,29 @@
                             <androidx.viewpager2.widget.ViewPager2
                                 android:id="@+id/vp_detail_main_image"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:overScrollMode="never"/>
 
                         </com.omoolen.omooroid.util.NestedScrollableHost>
 
-                        <com.google.android.material.tabs.TabLayout
-                            android:id="@+id/tl_detail_main_image"
-                            android:layout_width="42dp"
-                            android:layout_height="6dp"
-                            android:layout_marginBottom="12dp"
+                        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                            android:id="@+id/detail_dots_indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            app:dotsColor="@color/om_fifth_gray"
+                            app:dotsCornerRadius="3dp"
+                            app:dotsSize="6dp"
+                            app:dotsSpacing="3dp"
+                            app:dotsWidthFactor="5"
+                            app:selectedDotColor="@color/om_main_orange"
+                            app:progressMode="false"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:tabBackground="@drawable/detail_indicator_selector"
-                            app:tabPaddingStart="13dp"
-                            app:tabPaddingEnd="13dp"
-                            app:tabGravity="center"
-                            app:tabIndicatorHeight="0dp"/>
+                            android:layout_marginBottom="12dp"
+                            />
+
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -316,7 +320,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/cl_detail_info">
 
-                        <Button
+                        <TextView
                             android:id="@+id/btn_detail_bookmark"
                             android:layout_width="0dp"
                             android:layout_height="44dp"
@@ -331,7 +335,7 @@
                             style="@style/TextStyle58"
                             android:includeFontPadding="false"/>
 
-                        <Button
+                        <TextView
                             android:id="@+id/btn_detail_compare"
                             android:layout_width="0dp"
                             android:layout_height="44dp"
@@ -367,7 +371,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:src="@drawable/img_review"
-                        android:layout_marginTop="11dp"/>
+                        android:layout_marginTop="11dp"
+                        android:adjustViewBounds="true" />
 
                     <View
                         android:id="@+id/view_boarder3"
@@ -393,10 +398,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:text="위 상품과 비슷한 추천상품을 준비했어요."
-                            android:textColor="@color/om_main_black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
+                            android:text="위 상품과 비슷한 \n추천상품을 준비했어요."
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             style="@style/TextStyle70"
@@ -447,7 +449,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="40dp"
-                            android:text="인기 신제품을 추천해드릴게요."
+                            android:text="인기 신제품을 \n추천해드릴게요."
                             android:textColor="@color/om_main_black"
                             android:textSize="18sp"
                             android:textStyle="bold"
@@ -458,7 +460,6 @@
                             android:id="@+id/rv_detail_new"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="20dp"
                             android:layout_marginTop="30dp"
                             android:orientation="horizontal"
                             android:overScrollMode="never"
@@ -478,10 +479,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_reviewwrite_orange"
+                android:backgroundTint="@color/om_main_orange"
                 android:layout_gravity="bottom|right"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/om_main_orange"
                 app:borderWidth="0dp"
                 />
 
