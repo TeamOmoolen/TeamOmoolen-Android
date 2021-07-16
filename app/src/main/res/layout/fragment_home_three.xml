@@ -13,14 +13,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".home.fragments.three.fragment_three">
+        tools:context=".home.fragments.three.fragment_three"
+        android:background="#CDCDCD">
 
-        <TextView
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/iv_pic"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fragment Three!!"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/ic_img_announcement"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

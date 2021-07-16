@@ -25,22 +25,25 @@
 
         <activity
             android:name=".splash.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".detail.DetailActivity">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".detail.DetailActivity"
+            android:screenOrientation="portrait">
+<!--                        <intent-filter>-->
+<!--                            <action android:name="android.intent.action.MAIN" />-->
 
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                        </intent-filter>-->
         </activity>
 
-        <activity android:name=".search.search_result.SearchResultActivity">
+        <activity android:name=".search.search_result.SearchResultActivity"
+            android:screenOrientation="portrait">
 
         </activity>
 
@@ -62,7 +65,8 @@
 
         <activity
             android:name=".login_signup.LoginActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden">
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->
 
@@ -72,7 +76,8 @@
 
         <activity
             android:name=".onboarding.OnboardActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden">
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait">
             <!--                                    <intent-filter>-->
             <!--                                        <action android:name="android.intent.action.MAIN" />-->
             <!--                                        <category android:name="android.intent.category.LAUNCHER" />-->
@@ -80,7 +85,8 @@
         </activity>
 
 
-        <activity android:name=".home.HomeActivity">
+        <activity android:name=".home.HomeActivity"
+            android:screenOrientation="portrait">
 
             <!--                        <intent-filter>-->
             <!--                            <action android:name="android.intent.action.MAIN" />-->
@@ -88,7 +94,8 @@
             <!--                            <category android:name="android.intent.category.LAUNCHER" />-->
             <!--                        </intent-filter>-->
         </activity>
-        <activity android:name=".search.SearchActivity">
+        <activity android:name=".search.SearchActivity"
+            android:screenOrientation="portrait">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->
 
