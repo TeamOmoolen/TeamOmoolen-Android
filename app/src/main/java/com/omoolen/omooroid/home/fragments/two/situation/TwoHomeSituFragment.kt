@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
 import com.omoolen.omooroid.databinding.FragmentHomeTwoSituBinding
@@ -17,6 +18,7 @@ import com.omoolen.omooroid.home.fragments.two.FindQuestionFragment
 import com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment
 import com.omoolen.omooroid.home.fragments.two.TwoHomeViewModel
 import com.omoolen.omooroid.home.fragments.two.foryou.TwoHomeForYouViewModel
+import com.omoolen.omooroid.home.fragments.two.season.TwoHomeSeasonViewModel
 import com.omoolen.omooroid.util.HorizontalItemDecorator
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
@@ -30,6 +32,8 @@ class TwoHomeSituFragment : Fragment() {
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
     private val viewModel: TwoHomeViewModel by activityViewModels()
+    private val fragmentViewModel: TwoHomeSituViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,11 +54,13 @@ class TwoHomeSituFragment : Fragment() {
                 override fun onLowPriceClicked() {
                     //여기서 정렬
                     Log.d("click", "low price")
+                    fragmentViewModel.getSituation(1,"price","asc")
                 }
 
                 override fun onHighPriceClicked() {
                     // 여기서 정렬
                     Log.d("click", "high price")
+                    fragmentViewModel.getSituation(1,"price","desc")
                 }
             })
             findSortPriceFragment.show(childFragmentManager, "CustomDialog")

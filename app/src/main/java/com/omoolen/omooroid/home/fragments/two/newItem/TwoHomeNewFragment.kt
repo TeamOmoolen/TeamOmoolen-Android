@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
 import com.omoolen.omooroid.databinding.FragmentHomeTwoNewBinding
@@ -30,6 +31,7 @@ class TwoHomeNewFragment : Fragment() {
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
 
     private val viewModel: TwoHomeViewModel by activityViewModels()
+    private val fragmentViewModel: TwoHomeNewViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,11 +52,14 @@ class TwoHomeNewFragment : Fragment() {
                 override fun onLowPriceClicked() {
                     //여기서 정렬
                     Log.d("click", "low price")
+                    fragmentViewModel.getNews(1,"price","asc")
                 }
 
                 override fun onHighPriceClicked() {
                     // 여기서 정렬
                     Log.d("click", "high price")
+                    fragmentViewModel.getNews(1,"price","desc")
+
                 }
             })
             findSortPriceFragment.show(childFragmentManager, "CustomDialog")
