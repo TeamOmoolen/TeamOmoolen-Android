@@ -6,7 +6,7 @@
     <data>
         <variable
             name="detailInfo"
-            type="com.omoolen.omooroid.detail.DetailInfo" />
+            type="java.lang.String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/iv_one_detail"
-            setSrc="@{detailInfo.imgId}"
+            setSrcFromUrl ="@{detailInfo}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 

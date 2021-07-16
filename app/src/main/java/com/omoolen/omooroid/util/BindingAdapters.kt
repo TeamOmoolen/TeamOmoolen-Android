@@ -28,6 +28,13 @@ object BindingAdapters {
         textView.text = price
     }
 
+    @BindingAdapter("setDiameter")
+    @JvmStatic
+    fun setDiameter(textView : TextView, num: Double) {
+        val price = "${num}mm"
+        textView.text = price
+    }
+
     @BindingAdapter("setPrice2")
     @JvmStatic
     fun setPrice2(textView : TextView, num: Int) {
@@ -109,6 +116,32 @@ object BindingAdapters {
 
         val rslt = "$dm / $rg(${piece}p)"
         textView.text = rslt
+    }
+
+    @BindingAdapter("setMinRange2", "setMaxRange2")
+    @JvmStatic
+    fun setMonth(textView: TextView, min : Int, max : Int) {
+        var rg1 : String
+
+        if(min < 7 || max < 7){
+            if(min == max) rg1 = "$min" + "Day"
+            else rg1 = "$min" + "~" + "$max"  + "Day"
+        } else if(min < 30 || max < 30 ){
+            val week  = min / 7
+            rg1 = "$week" + "Week"
+
+        } else {
+            if(min == max) {
+                val mth  = min / 30
+                rg1 = "$mth" + "Week"
+            } else {
+                val mth1  = min / 30
+                val mth2 = max / 30
+                rg1 = "$mth1" + "~" + "$mth2"  + "Month"
+            }
+        }
+
+        textView.text = "$rg1"
     }
 
 
