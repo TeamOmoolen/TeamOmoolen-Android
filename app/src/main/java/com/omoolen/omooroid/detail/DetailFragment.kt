@@ -37,7 +37,6 @@ class DetailFragment (private val itemId : String): Fragment() {
 
         setDetailAdapter()
         setDetailObserve()
-        setDetailIndicator()
 
         setDetailRecommendAdapter()
         setDetailRecommendObserve()
@@ -73,13 +72,6 @@ class DetailFragment (private val itemId : String): Fragment() {
         }
     }
 
-    private fun setDetailIndicator() {
-        TabLayoutMediator(
-            binding.tlDetailMainImage,
-            binding.vpDetailMainImage
-        ) { tab, position -> }.attach()
-    }
-
 
     // 디테일뷰 추천 리사이클러뷰
     private fun setDetailRecommendAdapter() {
@@ -97,7 +89,9 @@ class DetailFragment (private val itemId : String): Fragment() {
 
     // 디테일뷰 인기있는 신제품 리사이클러뷰
     private fun setDetailNewAdapter() {
-        binding.rvDetailNew.adapter = DetailPopularListAdapter()
+        binding.rvDetailNew.adapter = DetailNewListAdapter()
+        binding.vpDetailMainImage.setCurrentItem(1, true)
+        binding.detailDotsIndicator.setViewPager2(binding.vpDetailMainImage)
     }
 
     private fun setDetailNewObserve() {
