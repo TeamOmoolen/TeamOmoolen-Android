@@ -24,6 +24,8 @@ class DetailFragment (private val itemId : String): Fragment() {
 
     private val detailViewModel: DetailViewModel by activityViewModels()
 
+    private lateinit var detailRecommendAdapter : DetailRecommendListAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -76,6 +78,8 @@ class DetailFragment (private val itemId : String): Fragment() {
     // 디테일뷰 추천 리사이클러뷰
     private fun setDetailRecommendAdapter() {
         binding.rvDetailRecommend.adapter = DetailRecommendListAdapter()
+
+        detailRecommendAdapter = DetailRecommendListAdapter()
     }
 
     private fun setDetailRecommendObserve() {

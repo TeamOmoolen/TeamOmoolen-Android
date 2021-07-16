@@ -19,6 +19,7 @@ import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
 import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
 import com.omoolen.omooroid.home.fragments.one.event.LastestEventViewPagerAdapter
+import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySituation
 import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationByUser
 import com.omoolen.omooroid.home.fragments.one.newItem.NewListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.SeasonListAdapter
@@ -138,14 +139,23 @@ class OneHomeFragment : Fragment() {
     }
 
 
-    //상황별
+    //상황별 (ex. 운동할 때 끼기 좋은 렌즈)
     private fun setRecommend1Adapter(){
-        binding.rvHomeRecommend.adapter = SituationListAdapter()
-    }
+        val situationListAdapter = SituationListAdapter()
+        situationListAdapter.setItemClickListener(object : SituationListAdapter.OnItemClickListener{
+            override fun onClick(v:View, position:Int) {
+                val rbsitu : RecommendationBySituation = oneHomeViewModel.recommendationBySituationList.get(position)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("itemId", rbsitu.id)
+                startActivity(intent)
+            }
+        })
 
+        binding.rvHomeRecommend.adapter = situationListAdapter
+    }
     private fun setRecommend1Observe() {
-        oneHomeViewModel.recommendationBySituationList.observe(viewLifecycleOwner) { recommendList ->
-            with(binding.rvHomeRecommend.adapter as SituationListAdapter) {
+        oneHomeViewModel.recommendationBySituationList.observe(viewLifecycleOwner) {
+                recommendList -> with(binding.rvHomeRecommend.adapter as SituationListAdapter) {
                 setRecommend(recommendList)
             }
         }
