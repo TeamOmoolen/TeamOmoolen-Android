@@ -1,10 +1,10 @@
 package com.omoolen.omooroid.detail.detailApi
 
 data class Data(
-    val brand: String,
+    var brand: String,
     val changeCycleMaximum: Int,
-    val changeCycleMinimum: Int,
-    val color: String,
+    var changeCycleMinimum: Int,
+    var color: String,
     val diameter: Double,
     val function: String,
     val imageURL: List<String>,

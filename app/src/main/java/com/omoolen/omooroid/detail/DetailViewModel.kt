@@ -1,14 +1,65 @@
 package com.omoolen.omooroid.detail
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.omoolen.omooroid.R
+import com.omoolen.omooroid.detail.detailApi.Data
+import com.omoolen.omooroid.detail.detailApi.DetailData
+import com.omoolen.omooroid.detail.detailApi.Popular
+import com.omoolen.omooroid.detail.detailApi.Suggest
 import com.omoolen.omooroid.detail.popular.DetailNewInfo
 import com.omoolen.omooroid.detail.recommend.DetailRecommendInfo
+import com.omoolen.omooroid.search.data.Item
+import com.omoolen.omooroid.util.ListLiveData
+import com.omoolen.omooroid.util.api.RetrofitClient
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class DetailViewModel(application: Application) : AndroidViewModel(application) {
+    val popularList = ListLiveData<Popular>()
+    val suggestList = ListLiveData<Suggest>()
+
+    val detailList = ListLiveData<Item>()
+    val detail = MutableLiveData<Data>()
+//    var brand: String,
+//    val changeCycleMaximum: Int,
+//    val changeCycleMinimum: Int,
+//    val color: String,
+//    val diameter: Double,
+//    val function: String,
+//    val imageURL: List<String>,
+//    val material: String,
+//    val name: String,
+//    val otherColorList: List<String>,
+//    val popularList: List<Popular>,
+//    val price: Int,
+//    val suggestList: List<Suggest>
+    @SuppressLint("CheckResult")
+    fun getDetailData(id:String){
+    Log.d("SERVER_DETAIL","들어옴")
+        RetrofitClient.getApi.getDetailData(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({detailData ->
+                //detailList.clear()
+                val detail = Data(detailData.data.brand,detailData.data.changeCycleMaximum,detailData.data.changeCycleMinimum,
+                detailData.data.color,detailData.data.diameter,detailData.data.function,
+                detailData.data.imageURL,detailData.data.material,detailData.data.name,
+                detailData.data.otherColorList,detailData.data.popularList,detailData.data.price,detailData.data.suggestList)
+
+                Log.d("SERVER_DETAIL","$detail.color, $detail.brand, ${detail.changeCycleMinimum}, ${detail.changeCycleMinimum}")
+            },{e ->
+                Log.d("SERVER_DETAIL","에러")
+                println(e.toString())
+            })
+    Log.d("SERVER_DETAIL","끝")
+}
+
+
 
     private val _detailImageList = MutableLiveData<List<DetailInfo>>()
     val detailImageList: LiveData<List<DetailInfo>>

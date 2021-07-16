@@ -49,8 +49,8 @@ class DetailFragment : Fragment() {
         setDetailLensColorObserve()
 
 
-
-
+        //TODO : 상품 아이디값 넣기
+        detailViewModel.getDetailData("60efdf8e3e4ecf590a92403b")
         return binding.root
     }
 

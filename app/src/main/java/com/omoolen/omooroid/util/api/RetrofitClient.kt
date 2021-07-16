@@ -18,6 +18,7 @@ object RetrofitClient {
     val getApi = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(provideOkHttpClient(AppInterceptor()))
+        //.client(OkHttpClient())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create()).build()
         .create(RetrofitService::class.java)
