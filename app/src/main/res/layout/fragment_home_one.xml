@@ -137,7 +137,7 @@
                             app:layout_constraintHorizontal_chainStyle="spread_inside"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_location_selected" />
+                            app:srcCompat="@drawable/ic_home_category_color" />
 
                         <TextView
                             android:id="@+id/tv_home_cate_color"
@@ -165,7 +165,7 @@
                             app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_cosplay"
                             app:layout_constraintStart_toEndOf="@+id/iv_home_cate_color"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_location_selected" />
+                            app:srcCompat="@drawable/ic_home_category_transparent" />
 
                         <TextView
                             android:id="@+id/tv_home_cate_transparent"
@@ -193,7 +193,7 @@
                             app:layout_constraintEnd_toStartOf="@+id/iv_home_cate_new"
                             app:layout_constraintStart_toEndOf="@+id/iv_home_cate_transparent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_location_selected" />
+                            app:srcCompat="@drawable/ic_home_category_cosplay" />
 
                         <TextView
                             android:id="@+id/tv_home_cate_cosplay"

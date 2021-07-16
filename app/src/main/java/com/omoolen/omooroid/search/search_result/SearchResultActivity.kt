@@ -30,12 +30,6 @@ class SearchResultActivity : AppCompatActivity() {
 
         searchResultInit()
 
-
-
-//        searchResultViewModel.setSearchResultList()
-//        setSearchResultAdapter()
-//        setSearchResultObserve()
-//        searchrResultInit()
     }
 
     private fun searchResultInit() {
@@ -44,7 +38,7 @@ class SearchResultActivity : AppCompatActivity() {
 
         searchResultLayoutManager = object : GridLayoutManager(this,3){
             override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-                lp?.width = ((width - 20) / spanCount)
+                lp?.width = ((width - 60) / spanCount)
                 return true
             }
         }
@@ -54,18 +48,5 @@ class SearchResultActivity : AppCompatActivity() {
         binding.rvSearchResult.addItemDecoration(VerticalItemDecorator(30,this))
     }
 
-//    private fun searchResultInit() {
-//
-//    }
-//
-//    private fun setSearchResultAdapter() {
-//        binding.rvSearchResult.adapter = SearchResultListAdapter()
-//    }
-//
-//    // 어케 써야하지??
-//    private fun setSearchResultObserve() {
-//        searchResultViewModel.searchResultList.observe(this, Observer {
-//            SearchResultActivity()
-//        })
-//    }
+
 }

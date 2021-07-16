@@ -13,9 +13,9 @@ class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.Detai
 
     class DetailViewHolder(private val binding: ItemDetailMainImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(detailInfo: DetailInfo) {
-            binding.detailInfo = detailInfo
-        }
+            fun bind(detailInfo: DetailInfo) {
+                binding.detailInfo = detailInfo
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {

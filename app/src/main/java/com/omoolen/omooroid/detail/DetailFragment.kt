@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.detail
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,20 +9,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.databinding.FragmentDetailBinding
 import com.omoolen.omooroid.detail.popular.DetailNewListAdapter
 import com.omoolen.omooroid.detail.recommend.DetailRecommendListAdapter
 import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
+import com.omoolen.omooroid.util.VerticalItemDecoration
 
 class DetailFragment : Fragment() {
-    private val handler: Handler = Handler(Looper.getMainLooper())
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
-
-    private lateinit var viewPagerAdapter: DetailViewPagerAdapter
-
     private val detailViewModel: DetailViewModel by activityViewModels()
+    private lateinit var mContext: Context
+
+    private lateinit var detailNewLayoutManager: RecyclerView.LayoutManager
+    private lateinit var detailRecommendLayoutManager: RecyclerView.LayoutManager
+
+    val detailViewPagerAdapter = DetailViewPagerAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,90 +37,58 @@ class DetailFragment : Fragment() {
     ): View? {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-
-        detailViewModel.setDetailImageList()
-        setDetailAdapter()
-        setDetailObserve()
-        setDetailIndicator()
-
-        detailViewModel.setDetailRecommendList()
-        setDetailRecommendAdapter()
-        setDetailRecommendObserve()
-
-        detailViewModel.setDetailNewList()
-        setDetailNewAdapter()
-        setDetailNewObserve()
-
-        detailViewModel.setDetailLensColorList()
-        setDetailLensColorAdapter()
-        setDetailLensColorObserve()
-
+        mContext = requireContext()
 
 
 
         return binding.root
     }
 
-    // 디테일뷰 메인 이미지 탭
-    private fun setDetailAdapter() {
-        binding.vpDetailMainImage.adapter = DetailViewPagerAdapter()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        detailNewInit()
+        detailRecommendInit()
+        detailImageInit()
+
     }
 
-    private fun setDetailObserve() {
-        detailViewModel.detailImageList.observe(viewLifecycleOwner) { detailImageList ->
-            with(binding.vpDetailMainImage.adapter as DetailViewPagerAdapter) {
+    private fun detailImageInit() {
+        detailViewModel.setDetailImageList()
+        binding.vpDetailMainImage.adapter = detailViewPagerAdapter
+        binding.vpDetailMainImage.setCurrentItem(1, true)
+        binding.detailDotsIndicator.setViewPager2(binding.vpDetailMainImage)
+
+
+//        TabLayoutMediator(binding.tlDetailMainImage, binding.vpDetailMainImage) {tab, position ->}.attach()
+
+        detailViewModel.detailImageList.observe(viewLifecycleOwner){detailImageList ->
+            with(binding.vpDetailMainImage.adapter as DetailViewPagerAdapter){
                 setDetailImage(detailImageList)
             }
         }
+
     }
 
-    private fun setDetailIndicator() {
-        TabLayoutMediator(
-            binding.tlDetailMainImage,
-            binding.vpDetailMainImage
-        ) { tab, position -> }.attach()
+    private fun detailNewInit() {
+        binding.rvDetailNew.adapter = detailViewModel.setDetailNewListAdapter()
+        detailNewLayoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+        binding.rvDetailNew.layoutManager = detailNewLayoutManager
     }
 
-
-    // 디테일뷰 추천 리사이클러뷰
-    private fun setDetailRecommendAdapter() {
-        binding.rvDetailRecommend.adapter = DetailRecommendListAdapter()
-    }
-
-    private fun setDetailRecommendObserve() {
-        detailViewModel.detailRecommendList.observe(viewLifecycleOwner) { detailRecommendList ->
-            with(binding.rvDetailRecommend.adapter as DetailRecommendListAdapter) {
-                setDetailRecommend(detailRecommendList)
+    private fun detailRecommendInit() {
+        binding.rvDetailRecommend.adapter = detailViewModel.setDetailRecommendAdapter()
+        detailRecommendLayoutManager = GridLayoutManager(requireContext(), 2)
+        detailRecommendLayoutManager = object :GridLayoutManager(requireContext(),2){
+            override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
+                lp?.width = ((width - 52)/spanCount)
+                return true
             }
         }
-    }
-
-
-    // 디테일뷰 인기있는 신제품 리사이클러뷰
-    private fun setDetailNewAdapter() {
-        binding.rvDetailNew.adapter = DetailNewListAdapter()
-    }
-
-    private fun setDetailNewObserve() {
-        detailViewModel.detailNewList.observe(viewLifecycleOwner) { detailNewList ->
-            with(binding.rvDetailNew.adapter as DetailNewListAdapter) {
-                setDetailNew(detailNewList)
-            }
-        }
-    }
-
-    // 디테일뷰 메인 렌즈 컬러 리사이클러뷰
-    private fun setDetailLensColorAdapter() {
-        binding.rvDetailLensColor.adapter = DetailLensColorListAdapter()
-    }
-
-    private fun setDetailLensColorObserve(){
-        detailViewModel.detailLensColorList.observe(viewLifecycleOwner) { detailLensColorList ->
-            with(binding.rvDetailLensColor.adapter as DetailLensColorListAdapter) {
-                setColoring(detailLensColorList)
-            }
-
-        }
+        binding.rvDetailRecommend.setHasFixedSize(true)
+        binding.rvDetailRecommend.addItemDecoration(VerticalItemDecoration(40))
+        binding.rvDetailRecommend.layoutManager = detailRecommendLayoutManager
     }
 
 }

@@ -151,4 +151,6 @@ dependencies {
     //Rounded Image view
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
+    //Material View Pager Dots Indicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 }

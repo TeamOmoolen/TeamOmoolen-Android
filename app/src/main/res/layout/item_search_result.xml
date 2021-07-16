@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,8 +23,8 @@
             <ImageView
                 android:id="@+id/iv_search_result_main"
                 setSrc="@{SearchResultInfo.imgId1}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/rectangle_3410" />
@@ -57,13 +57,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:letterSpacing="-0.05"
+
                 android:includeFontPadding="false"
                 android:text="@{SearchResultInfo.name}"
-                android:textColor="@color/om_main_black"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:theme="@style/TextStyle16"
+                android:theme="@style/TextStyle33"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_search_result_brand"
                 tools:text="브라운 컬러렌즈" />
@@ -73,15 +70,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:letterSpacing="-0.05"
                 android:includeFontPadding="false"
                 android:text="@{SearchResultInfo.info}"
-                android:textColor="@color/om_third_gray"
-                android:textSize="12sp"
-                android:theme="@style/TextStyle17"
+                android:theme="@style/TextStyle20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_search_result_name"
-                tools:text="11.9mm / 1Day(10p)" />
+                tools:text="11.9mm/1Day(10p)" />
 
             <TextView
                 android:id="@+id/tv_search_result_price"
@@ -89,11 +83,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:letterSpacing="-0.05"
                 android:includeFontPadding="false"
-                android:textColor="@color/om_main_black"
-                android:textSize="16sp"
-                android:textStyle="bold"
+                style="@style/TextStyle34"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_search_result_info"
                 tools:text="18,000원" />

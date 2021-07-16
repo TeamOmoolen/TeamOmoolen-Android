@@ -9,7 +9,7 @@ import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
 
 class DetailNewListAdapter : RecyclerView.Adapter<DetailNewListAdapter.DetailNewViewHolder>() {
 
-    private var detailNewList = emptyList<DetailNewInfo>()
+    val detailNewList = mutableListOf<DetailNewInfo>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,6 +26,10 @@ class DetailNewListAdapter : RecyclerView.Adapter<DetailNewListAdapter.DetailNew
 
     override fun getItemCount(): Int = detailNewList.size
 
+    override fun onBindViewHolder(holder: DetailNewViewHolder, position: Int) {
+        holder.bind(detailNewList[position])
+    }
+
     class DetailNewViewHolder(
         private val binding: ItemDetailNewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -37,15 +41,5 @@ class DetailNewListAdapter : RecyclerView.Adapter<DetailNewListAdapter.DetailNew
             binding.rvDetailNewColor.adapter = listForColor
         }
     }
-
-    override fun onBindViewHolder(holder: DetailNewViewHolder, position: Int) {
-        holder.bind(detailNewList[position])
-    }
-
-    fun setDetailNew(detailNewList : List<DetailNewInfo>){
-        this.detailNewList = detailNewList
-        notifyDataSetChanged()
-    }
-
 
 }
