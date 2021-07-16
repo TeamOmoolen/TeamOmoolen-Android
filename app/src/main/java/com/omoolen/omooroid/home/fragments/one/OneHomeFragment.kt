@@ -19,8 +19,8 @@ import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
 import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
 import com.omoolen.omooroid.home.fragments.one.event.LastestEventViewPagerAdapter
-import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySituation
-import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationByUser
+import com.omoolen.omooroid.home.fragments.one.networkApi.*
+import com.omoolen.omooroid.home.fragments.one.newItem.NewInfo
 import com.omoolen.omooroid.home.fragments.one.newItem.NewListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.SeasonListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
@@ -139,18 +139,17 @@ class OneHomeFragment : Fragment() {
     }
 
 
-    //상황별 (ex. 운동할 때 끼기 좋은 렌즈)
+    //상황별 (운동할 때 끼기 좋은 렌즈)
     private fun setRecommend1Adapter(){
         val situationListAdapter = SituationListAdapter()
         situationListAdapter.setItemClickListener(object : SituationListAdapter.OnItemClickListener{
             override fun onClick(v:View, position:Int) {
-                val rbsitu : RecommendationBySituation = oneHomeViewModel.recommendationBySituationList.get(position)
+                val rbs : RecommendationBySituation = oneHomeViewModel.recommendationBySituationList.get(position)
                 val intent = Intent(requireContext(), DetailActivity::class.java)
-                intent.putExtra("itemId", rbsitu.id)
+                intent.putExtra("itemId", rbs.id)
                 startActivity(intent)
             }
         })
-
         binding.rvHomeRecommend.adapter = situationListAdapter
     }
     private fun setRecommend1Observe() {
@@ -161,15 +160,23 @@ class OneHomeFragment : Fragment() {
         }
     }
 
-    //계절별
+    //계절별 (여름에 끼기 좋은 렌즈)
     private fun setRecommend2Adapter(){
-        binding.rvHomeSeason.adapter = SeasonListAdapter()
+        val seasonListAdapter = SeasonListAdapter()
+        seasonListAdapter.setItemClickListener(object : SeasonListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val rbseason : RecommendationBySeason = oneHomeViewModel.recommendationBySeasonList.get(position)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("itemId", rbseason.id)
+                startActivity(intent)
+            }
+        })
+        binding.rvHomeSeason.adapter = seasonListAdapter
     }
-
     private fun setRecommend2Observe() {
-        oneHomeViewModel.recommendationBySeasonList.observe(viewLifecycleOwner) { tempList ->
-            with(binding.rvHomeSeason.adapter as SeasonListAdapter) {
-                setRecommend(tempList)
+        oneHomeViewModel.recommendationBySeasonList.observe(viewLifecycleOwner) {
+                recommendList -> with(binding.rvHomeSeason.adapter as SeasonListAdapter) {
+                setRecommend(recommendList)
             }
         }
     }
@@ -187,10 +194,22 @@ class OneHomeFragment : Fragment() {
         }
     }
 
-    private fun setNewAdapter(){
-        binding.rvHomeNew.adapter = NewListAdapter()
-    }
 
+    // NEW (요즘 뜨는 신상 렌즈)
+    private fun setNewAdapter(){
+        val newListAdapter = NewListAdapter()
+        newListAdapter.setItemClickListener(object : NewListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                // 여기 무슨 데이터 써야 하지??
+                val nlb1 : NewLensBrand1 = oneHomeViewModel.newlens1.get(position)
+                val intent = Intent(requireContext(),DetailActivity::class.java)
+                intent.putExtra("itemId", nlb1.id)
+                startActivity(intent)
+            }
+        })
+
+        binding.rvHomeNew.adapter = newListAdapter
+    }
     private fun setNewObserve() {
         oneHomeViewModel.newItemList.observe(viewLifecycleOwner) { newList ->
             with(binding.rvHomeNew.adapter as NewListAdapter) {

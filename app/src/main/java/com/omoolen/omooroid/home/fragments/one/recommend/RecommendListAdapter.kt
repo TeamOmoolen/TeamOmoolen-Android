@@ -7,6 +7,7 @@ import com.omoolen.omooroid.databinding.ItemOneRecommendBinding
 import com.omoolen.omooroid.home.fragments.one.LensColorListAdapter
 
 class RecommendListAdapter : RecyclerView.Adapter<RecommendListAdapter.RecommendViewHolder>() {
+
     private var recommendList = emptyList<RecommendInfo>()
 
     class RecommendViewHolder(
@@ -34,6 +35,7 @@ class RecommendListAdapter : RecyclerView.Adapter<RecommendListAdapter.Recommend
 
     override fun onBindViewHolder(holder: RecommendViewHolder, position: Int) {
         holder.bind(recommendList[position])
+
     }
 
     override fun getItemCount(): Int = recommendList.size
