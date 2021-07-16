@@ -324,7 +324,7 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
         <item name="android:lineSpacingMultiplier">1.43</item>
-        <item name="android:textColor">@color/om_third_gray</item>
+        <item name="android:textColor">@color/onboard_selector</item>
     </style>
 
     <style name="TextStyle68">
@@ -365,7 +365,7 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">-0.05</item>
-        <item name="android:textColor">@color/om_third_gray</item>
+        <item name="android:textColor">@color/onboard_selector</item>
     </style>
 
     <style name="TextStyle42">
@@ -628,7 +628,7 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">10sp</item>
         <item name="android:letterSpacing">-0.03</item>
-        <item name="android:textColor">@color/om_second_gray</item>
+        <item name="android:textColor">@color/onboard_selector</item>
     </style>
 
     <style name="TextStyle27">
