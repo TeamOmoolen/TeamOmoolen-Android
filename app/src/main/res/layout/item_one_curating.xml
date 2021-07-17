@@ -34,27 +34,31 @@
 
         <TextView
             android:id="@+id/tv_one_recommend_brand"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            tools:text="오렌즈"
+            tools:text="오렌즈sdfsdfsfsfsdsdsdfsdfsdf"
             android:includeFontPadding="false"
             android:text="@{curatingInfo.brand}"
             android:theme="@style/TextStyle15"
+            android:maxLines = "1"
+            android:ellipsize = "end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_one_recommend1" />
 
         <TextView
             android:id="@+id/tv_one_recommend_name"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:includeFontPadding="false"
             android:text="@{curatingInfo.name}"
             android:theme="@style/TextStyle16"
+            android:maxLines = "1"
+            android:ellipsize = "end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_brand"
-            tools:text="브라운 컬러렌즈" />
+            tools:text="브라운 컬러렌즈dgrdgrsssgrsgrdgrdg" />
 
         <TextView
             android:id="@+id/tv_one_recommend_info"

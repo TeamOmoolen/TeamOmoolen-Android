@@ -20,8 +20,8 @@ class TwoSearchViewModel() : ViewModel() {
 
     val filterSuccess = MutableLiveData<Boolean>()
     val filterResultList = ArrayList<Item>()
-    var filterTotalItem : Int = 0
-    var filterTotalPages : Int = 0
+    var filterTotalItem = MutableLiveData<Int>()
+    var filterTotalPages = MutableLiveData<Int>()
 
     fun getFilterSearch(
         page : Int, sort : String, order : String,
@@ -49,10 +49,11 @@ class TwoSearchViewModel() : ViewModel() {
                         it.id,it.imageList,it.name,it.otherColorList,it.pieces,it.price))
                 }
                 if (da != null) {
-                    filterTotalItem = da.totalCount
-                    filterTotalPages = da.totalPage
+                    filterTotalItem.value = da.totalCount
+                    filterTotalPages.value = da.totalPage
                 }
-                //filterSuccess.value = true
+                Log.d("SERVER_FILTER_SEARCH","$filterTotalItem , $filterTotalPages")
+                filterSuccess.value = true
             }
             override fun onFailure(call: Call<ResponseSearchData>, t: Throwable) {
                 TODO("Not yet implemented")

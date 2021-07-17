@@ -20,7 +20,7 @@ import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySeason
 import com.omoolen.omooroid.home.fragments.one.recommend.SeasonListAdapter
 import com.omoolen.omooroid.util.BindingAdapters
 
-class DetailFragment (private val itemId : String): Fragment(), DetailActivity.IOnBackPressed {
+class DetailFragment (private val itemId : String): Fragment() {
     private val handler: Handler = Handler(Looper.getMainLooper())
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
@@ -53,9 +53,6 @@ class DetailFragment (private val itemId : String): Fragment(), DetailActivity.I
         setDetailLensColorObserve()
 
 
-        binding.ivBack.setOnClickListener{
-            onBackPressed()
-        }
         //TODO : 상품 아이디값 넣기
         //detailViewModel.getDetailData("60efdf8e3e4ecf590a92403b")
         //detailViewModel.getDetailData(itemId)
@@ -63,9 +60,6 @@ class DetailFragment (private val itemId : String): Fragment(), DetailActivity.I
         return binding.root
     }
 
-    override fun onBackPressed(): Boolean {
-        return true
-    }
 
     override fun onStart() {
         super.onStart()

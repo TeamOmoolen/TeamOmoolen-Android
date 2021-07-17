@@ -31,14 +31,5 @@ class DetailActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    interface IOnBackPressed {
-        fun onBackPressed(): Boolean
-    }
-    override fun onBackPressed() {
-        val fragment =
-            this.supportFragmentManager.findFragmentById(R.id.fl_detail)
-        (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
-            super.onBackPressed()
-        }
-    }
+
 }
