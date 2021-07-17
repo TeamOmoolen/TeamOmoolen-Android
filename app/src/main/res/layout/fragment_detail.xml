@@ -478,12 +478,14 @@
                 android:id="@+id/fab_detail_review_write"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_reviewwrite_orange"
+                app:srcCompat="@drawable/ic_reviewwrite_orange"
                 android:backgroundTint="@color/om_main_orange"
                 android:layout_gravity="bottom|right"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 app:borderWidth="0dp"
+                app:elevation="10dp"
+                app:tint="@color/om_white"
                 />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
