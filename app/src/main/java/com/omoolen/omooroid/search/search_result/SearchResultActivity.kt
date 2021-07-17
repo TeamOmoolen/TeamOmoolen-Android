@@ -1,16 +1,17 @@
 package com.omoolen.omooroid.search.search_result
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.ActivitySearchResultBinding
 import com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment
 import com.omoolen.omooroid.search.SearchActivity
+import com.omoolen.omooroid.search.data.Item
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 class SearchResultActivity : AppCompatActivity() {
@@ -23,18 +24,36 @@ class SearchResultActivity : AppCompatActivity() {
     private lateinit var searchResultListAdapter: SearchResultListAdapter
     private lateinit var  searchResultLayoutManager: RecyclerView.LayoutManager
     private  var getKeyword : String? = null
+    private var mode : String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivitySearchResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        searchResultListAdapter = SearchResultListAdapter()
+        binding.rvSearchResult.adapter = searchResultListAdapter
 
+        mode = intent.getStringExtra("mode")
         getKeyword = intent.getStringExtra("keyword")
-        if(getKeyword == null)
-            getKeyword = "null"
-        Log.d("SearchResult", getKeyword!!)
+        if(mode == "keyword"){
+            if(getKeyword == null)
+                getKeyword = "null"
+            Log.d("SearchResult", getKeyword!!)
 
 
-        searchResultViewModel.getSearch(getKeyword!!)
+            searchResultViewModel.getSearch(getKeyword!!)
+        }
+        else if(mode == "filter"){
+            mode = intent.getStringExtra("mode")
+            Log.d("TWOSEARCH","들어옴")
+
+//            val filterList : ArrayList<Item> =
+//                intent.getSerializableExtra("filterList") as ArrayList<Item>
+//            Log.d("TWOSEARCH","들어옴")
+//
+//            searchResultListAdapter.setSearchResult(filterList)
+        }
+
         searchResultAdapterInit()
         setSearchResultListObserve()
 
@@ -70,6 +89,8 @@ class SearchResultActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
     private fun searchResultAdapterInit() {
         binding.rvSearchResult.adapter = SearchResultListAdapter() //

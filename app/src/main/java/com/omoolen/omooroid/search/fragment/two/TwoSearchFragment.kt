@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.search.fragment.two
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.R
@@ -22,6 +24,9 @@ import com.omoolen.omooroid.search.fragment.two.recycle.diameter.DiameterAdapter
 import com.omoolen.omooroid.search.fragment.two.recycle.diameter.DiameterInfo
 import com.omoolen.omooroid.search.fragment.two.recycle.period.PeriodAdapter
 import com.omoolen.omooroid.search.fragment.two.recycle.period.PeriodInfo
+import com.omoolen.omooroid.search.search_result.SearchResultActivity
+import com.omoolen.omooroid.search.search_result.SearchResultListAdapter
+import com.omoolen.omooroid.search.search_result.SearchResultViewModel
 import com.omoolen.omooroid.util.VerticalItemDecoration
 
 class TwoSearchFragment : Fragment() {
@@ -96,6 +101,8 @@ class TwoSearchFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         initAfter()
+        doFilter()
+        observeFilterList()
     }
 
     private fun init() {
@@ -136,6 +143,32 @@ class TwoSearchFragment : Fragment() {
             firstList[i] = true
         }
     }
+
+//    page : Int, sort : String, order : String,
+//    brandChoice: MutableList<String>,
+//    colorChoice: MutableList<String>,
+//    diameterChoice: MutableList<Int>,
+//    periodChoice: MutableList<Int>
+    private fun doFilter(){
+        binding.tvFilter.setOnClickListener{
+
+            viewModel.getFilterSearch(1,"price","asc",
+            brandChoice,colorChoice,diameterChoice,periodChoice)
+        }
+    }
+
+    private fun observeFilterList(){
+        viewModel.filterSuccess.observe(this) {
+            val intent = Intent(requireContext(), SearchResultActivity::class.java)
+            intent.putExtra("mode","filter")
+            val arr = ArrayList(viewModel.filterResultList)
+            intent.putExtra("filterList",arr)
+            startActivity(intent)
+
+        }
+    }
+
+
 
     //TODO : 전체선택 처리해서 CHIOICE 어떻게 넘길지 로직짜기
     private fun brandInit() {
@@ -552,7 +585,7 @@ class TwoSearchFragment : Fragment() {
             searchDatabase.setCycle(periodChoice)
             searchDatabase.show()
 
-            viewModel.getFilterSearch(brandChoice,colorChoice,diameterChoice,periodChoice)
+            viewModel.getFilterSearch(0,"price","asc",brandChoice,colorChoice,diameterChoice,periodChoice)
         }
 
 

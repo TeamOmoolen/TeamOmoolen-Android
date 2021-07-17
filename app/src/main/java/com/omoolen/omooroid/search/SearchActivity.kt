@@ -57,6 +57,7 @@ class SearchActivity : AppCompatActivity() {
             //et_search에 들어온 값 서버에 get 요청하기
             //viewModel.getSearch(binding.etSearch.text.toString())
             val intent = Intent(this, SearchResultActivity::class.java)
+            intent.putExtra("mode","keyword")
             intent.putExtra("keyword", binding.etSearch.text.toString())
             startActivity(intent)
 

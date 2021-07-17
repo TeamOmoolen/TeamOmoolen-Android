@@ -21,6 +21,15 @@ interface RetrofitService {
         @Query("keyword") keyword : String
     ) : Single<KeywordSearch>
 
+    //필터 검색
+    @POST("api/getFilteredList")
+    fun getFilterSearch(
+        @Body body: RequestSearchData,
+        @Query("page") page : Int,
+        @Query("sort") sort : String,
+        @Query("order") order : String
+    ) : Call<ResponseSearchData>
+
     //인기검색어
     @GET("api/searchWindow")
     fun getPopularData() : Call<ResponsePopularInfo>
@@ -35,11 +44,6 @@ interface RetrofitService {
     @GET("api/home")
     fun getHomeData() : Single<HomeData>
 
-    //필터 검색
-    @POST("api/getFilteredList")
-    fun getFilterSearch(
-        @Body body: RequestSearchData
-    ) : Call<ResponseSearchData>
 
     //제품 상세정보
     @GET("api/products/{id}")
