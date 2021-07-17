@@ -15,7 +15,7 @@ import com.omoolen.omooroid.detail.popular.DetailPopularListAdapter
 import com.omoolen.omooroid.detail.recommend.DetailRecommendListAdapter
 import com.omoolen.omooroid.util.BindingAdapters
 
-class DetailFragment (private val itemId : String): Fragment() {
+class DetailFragment (private val itemId : String): Fragment(), DetailActivity.IOnBackPressed {
     private val handler: Handler = Handler(Looper.getMainLooper())
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
@@ -49,6 +49,9 @@ class DetailFragment (private val itemId : String): Fragment() {
         setDetailLensColorObserve()
 
 
+        binding.ivBack.setOnClickListener{
+            onBackPressed()
+        }
         //TODO : 상품 아이디값 넣기
         //detailViewModel.getDetailData("60efdf8e3e4ecf590a92403b")
         //detailViewModel.getDetailData(itemId)
@@ -56,7 +59,24 @@ class DetailFragment (private val itemId : String): Fragment() {
         return binding.root
     }
 
-    private fun initDetail(){
+    override fun onBackPressed(): Boolean {
+        return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+
+
+        detailViewModel.detail.observe(viewLifecycleOwner){
+            binding.tvDetailBrand.text = detailViewModel.detail.value?.brand
+            binding.tvDetailName.text = detailViewModel.detail.value?.name
+            BindingAdapters.setDiameter(binding.tvDetailDiameterValue, detailViewModel.detail.value!!.diameter)
+            BindingAdapters.setMonth(binding.tvDetailPeriodValue, detailViewModel.detail.value!!.changeCycleMinimum,
+                detailViewModel.detail.value!!.changeCycleMaximum)
+            BindingAdapters.setPrice2(binding.tvDetailPrice, detailViewModel.detail.value!!.price)
+
+        }
 
     }
 

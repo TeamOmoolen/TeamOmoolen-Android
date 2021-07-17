@@ -4,13 +4,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.ActivitySearchResultBinding
+import com.omoolen.omooroid.detail.DetailActivity
+import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySituation
+import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
 import com.omoolen.omooroid.home.fragments.two.FindSortPriceFragment
 import com.omoolen.omooroid.search.SearchActivity
+import com.omoolen.omooroid.search.data.Item
 import com.omoolen.omooroid.util.VerticalItemDecorator
 
 class SearchResultActivity : AppCompatActivity() {
@@ -72,7 +77,17 @@ class SearchResultActivity : AppCompatActivity() {
     }
 
     private fun searchResultAdapterInit() {
-        binding.rvSearchResult.adapter = SearchResultListAdapter() //
+        val searchResultListAdapter = SearchResultListAdapter()
+        searchResultListAdapter.setItemClickListener(object: SearchResultListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val rbsi : Item = searchResultViewModel.searchResultList.get(position)
+                val intent = Intent(this@SearchResultActivity, DetailActivity::class.java)
+                intent.putExtra("itemId", rbsi.id)
+                startActivity(intent)
+            }
+        })
+
+        binding.rvSearchResult.adapter = searchResultListAdapter //
         searchResultLayoutManager = GridLayoutManager(this, 3)
 
         searchResultLayoutManager = object : GridLayoutManager(this, 3) {

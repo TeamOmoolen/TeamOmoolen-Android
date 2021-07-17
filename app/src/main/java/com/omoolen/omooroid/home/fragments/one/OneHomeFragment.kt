@@ -19,8 +19,11 @@ import com.omoolen.omooroid.home.HomeActivity
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingListAdapter
 import com.omoolen.omooroid.home.fragments.one.event.EventViewPagerAdapter
 import com.omoolen.omooroid.home.fragments.one.event.LastestEventViewPagerAdapter
+import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySeason
+import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySituation
 import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationByUser
 import com.omoolen.omooroid.home.fragments.one.newItem.NewListAdapter
+import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.SeasonListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
 import com.omoolen.omooroid.home.fragments.one.tip.TipListAdapter
@@ -140,9 +143,34 @@ class OneHomeFragment : Fragment() {
 
     //상황별
     private fun setRecommend1Adapter(){
-        binding.rvHomeRecommend.adapter = SituationListAdapter()
+        val situationListAdapter = SituationListAdapter()
+        situationListAdapter.setItemClickListener(object: SituationListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val rbsi :RecommendationBySituation = oneHomeViewModel.recommendationBySituationList.get(position)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("itemId", rbsi.id)
+                startActivity(intent)
+            }
+        })
+
+        binding.rvHomeRecommend.adapter = situationListAdapter
     }
 
+    override fun onStart() {
+        super.onStart()
+        oneHomeViewModel.situation.observe(viewLifecycleOwner) {
+            if(oneHomeViewModel.situation.value.equals("일상")) {
+                binding.tvHomeRecommend.text = oneHomeViewModel.situation.value + "에서 끼지 좋은 렌즈"
+            }
+            else {
+                binding.tvHomeRecommend.text  = oneHomeViewModel.situation.value + "할때 끼지 좋은 렌즈"
+            }
+        }
+        oneHomeViewModel.userName.observe(viewLifecycleOwner) {
+            binding.tvHomeCurating.text = oneHomeViewModel.userName.value + "님 이 렌즈 어떠세요?"
+        }
+
+    }
     private fun setRecommend1Observe() {
         oneHomeViewModel.recommendationBySituationList.observe(viewLifecycleOwner) { recommendList ->
             with(binding.rvHomeRecommend.adapter as SituationListAdapter) {
@@ -153,7 +181,17 @@ class OneHomeFragment : Fragment() {
 
     //계절별
     private fun setRecommend2Adapter(){
-        binding.rvHomeSeason.adapter = SeasonListAdapter()
+        val seasonListAdapter = SeasonListAdapter()
+        seasonListAdapter.setItemClickListener(object: SeasonListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val rbs :RecommendationBySeason = oneHomeViewModel.recommendationBySeasonList.get(position)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("itemId", rbs.id)
+                startActivity(intent)
+            }
+        })
+
+        binding.rvHomeSeason.adapter = seasonListAdapter
     }
 
     private fun setRecommend2Observe() {
