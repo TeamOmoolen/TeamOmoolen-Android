@@ -1,6 +1,7 @@
 package com.omoolen.omooroid.home.fragments.one.newItem
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.omoolen.omooroid.databinding.ItemOneNewBinding
@@ -38,4 +39,5 @@ class NewListAdapter : RecyclerView.Adapter<NewListAdapter.NewViewHolder>(){
         this.newList = newList
         notifyDataSetChanged()
     }
+
 }

@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.home.fragments.two.season
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,8 @@ import androidx.fragment.app.viewModels
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
 import com.omoolen.omooroid.databinding.FragmentHomeTwoSeasonBinding
+import com.omoolen.omooroid.detail.DetailActivity
+import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySituation
 import com.omoolen.omooroid.home.fragments.one.recommend.RecommendListAdapter
 import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
 import com.omoolen.omooroid.home.fragments.two.FindQuestionFragment
@@ -81,7 +84,17 @@ class TwoHomeSeasonFragment : Fragment() {
 
     }
     private fun setSeasonAdapter(){
-        binding.rvFindSeason.adapter = SituationListAdapter()
+        val situationListAdapter = SituationListAdapter()
+        situationListAdapter.setItemClickListener(object: SituationListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val rbsi : RecommendationBySituation = viewModel.forSeasonList.get(position)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("itemId", rbsi.id)
+                startActivity(intent)
+            }
+        })
+
+        binding.rvFindSeason.adapter = situationListAdapter
     }
 
     private fun setSeasonObserve() {
