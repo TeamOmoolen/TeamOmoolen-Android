@@ -84,6 +84,8 @@ class SearchResultActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+
     }
 
     private fun setSearchResultListObserve() {
@@ -91,6 +93,10 @@ class SearchResultActivity : AppCompatActivity() {
             searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
                 setSearchResult(searchResultList)
             }
+        }
+
+        searchResultViewModel.totalItem.observe(this){
+            binding.tvSearchResultTotalNumber.text = "총 $it 개의 상품"
         }
     }
 

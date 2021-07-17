@@ -22,7 +22,7 @@ class SearchResultViewModel(application: Application) : AndroidViewModel(applica
 
     private val _searchResultList = MutableLiveData<List<SearchResultInfo>>()
     val searchResultList = ListLiveData<Item>()
-    var totalItem : Int = 0
+    var totalItem = MutableLiveData<Int>()
     var mTotalPages : Int = 0
 
 
@@ -46,7 +46,7 @@ class SearchResultViewModel(application: Application) : AndroidViewModel(applica
                     )
                 }
                 mTotalPages = keyword.data.totalPage
-                totalItem = keyword.data.items.size
+                totalItem.value = keyword.data.items.size
 
                 Log.d("*COLOR_ITEM_SIZE", "$totalItem")
 
