@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp">
+        android:layout_marginStart="20dp">
 
         <ImageView
             android:id="@+id/iv_detail_new1"

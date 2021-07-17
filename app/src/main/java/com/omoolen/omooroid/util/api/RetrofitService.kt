@@ -2,6 +2,7 @@ package com.omoolen.omooroid.util.api
 
 import com.omoolen.omooroid.detail.detailApi.DetailData
 import com.omoolen.omooroid.home.fragments.one.networkApi.HomeData
+import com.omoolen.omooroid.home.fragments.two.api.SuggestFragmentData
 import com.omoolen.omooroid.home.homeApi.SuggestData
 import com.omoolen.omooroid.onboarding.api.RequestOnboardData
 import com.omoolen.omooroid.onboarding.api.ResponseOnboardData
@@ -10,7 +11,6 @@ import com.omoolen.omooroid.search.fragment.one.recycle.popular.ResponsePopularI
 import com.omoolen.omooroid.search.fragment.two.filterSearchApi.RequestSearchData
 import com.omoolen.omooroid.search.fragment.two.filterSearchApi.ResponseSearchData
 import io.reactivex.Single
-import okhttp3.internal.http.hasBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -54,9 +54,33 @@ interface RetrofitService {
     //발견 for you 클릭
     @GET("api/suggest/foryou")
     fun getForyou(
-        @Query("page") page : String,
+        @Query("page") page : Int,
         @Query("sort") sort : String,
         @Query("order") order : String
-    ) : Single<KeywordSearch>
+    ) : Single<SuggestFragmentData>
+
+    //발견 for you 클릭
+    @GET("api/suggest/situation")
+    fun getSituation(
+        @Query("page") page : Int,
+        @Query("sort") sort : String,
+        @Query("order") order : String
+    ) : Single<SuggestFragmentData>
+
+    //발견 for you 클릭
+    @GET("api/suggest/new")
+    fun getNew(
+        @Query("page") page : Int,
+        @Query("sort") sort : String,
+        @Query("order") order : String
+    ) : Single<SuggestFragmentData>
+
+    //발견 for you 클릭
+    @GET("api/suggest/season")
+    fun getSeason(
+        @Query("page") page : Int,
+        @Query("sort") sort : String,
+        @Query("order") order : String
+    ) : Single<SuggestFragmentData>
 
 }

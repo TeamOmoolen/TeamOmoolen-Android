@@ -155,4 +155,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
+    //Material View Pager Dots Indicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 }
