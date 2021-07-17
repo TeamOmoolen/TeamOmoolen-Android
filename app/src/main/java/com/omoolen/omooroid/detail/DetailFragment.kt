@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,8 +12,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.omoolen.omooroid.databinding.FragmentDetailBinding
+import com.omoolen.omooroid.detail.detailApi.Popular
+import com.omoolen.omooroid.detail.detailApi.Suggest
 import com.omoolen.omooroid.detail.popular.DetailPopularListAdapter
 import com.omoolen.omooroid.detail.recommend.DetailRecommendListAdapter
+import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySeason
+import com.omoolen.omooroid.home.fragments.one.recommend.SeasonListAdapter
 import com.omoolen.omooroid.util.BindingAdapters
 
 class DetailFragment (private val itemId : String): Fragment(), DetailActivity.IOnBackPressed {
@@ -74,6 +79,7 @@ class DetailFragment (private val itemId : String): Fragment(), DetailActivity.I
             BindingAdapters.setMonth(binding.tvDetailPeriodValue, detailViewModel.detail.value!!.changeCycleMinimum,
                 detailViewModel.detail.value!!.changeCycleMaximum)
             BindingAdapters.setPrice2(binding.tvDetailPrice, detailViewModel.detail.value!!.price)
+           BindingAdapters.setSrcFromUrl(binding.ivOneDetailLen, detailViewModel.detail.value!!.imageURL.get(0))
 
         }
 
@@ -95,7 +101,17 @@ class DetailFragment (private val itemId : String): Fragment(), DetailActivity.I
 
     // 디테일뷰 추천 리사이클러뷰
     private fun setDetailRecommendAdapter() {
-        binding.rvDetailRecommend.adapter = DetailRecommendListAdapter()
+        val detailRecommendListAdapter = DetailRecommendListAdapter()
+        detailRecommendListAdapter.setItemClickListener(object: DetailRecommendListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val rbs : Suggest = detailViewModel.suggestList.get(position)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("itemId", rbs.id)
+                startActivity(intent)
+            }
+        })
+
+        binding.rvDetailRecommend.adapter = detailRecommendListAdapter
     }
 
     private fun setDetailRecommendObserve() {
@@ -109,7 +125,17 @@ class DetailFragment (private val itemId : String): Fragment(), DetailActivity.I
 
     // 디테일뷰 인기있는 신제품 리사이클러뷰
     private fun setDetailNewAdapter() {
-        binding.rvDetailNew.adapter = DetailPopularListAdapter()
+        val detailPopularListAdapter = DetailPopularListAdapter()
+        detailPopularListAdapter.setItemClickListener(object: DetailPopularListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val rbs : Popular = detailViewModel.popularList.get(position)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("itemId", rbs.id)
+                startActivity(intent)
+            }
+        })
+
+        binding.rvDetailNew.adapter = detailPopularListAdapter
         binding.vpDetailMainImage.setCurrentItem(1, true)
         binding.detailDotsIndicator.setViewPager2(binding.vpDetailMainImage)
     }
