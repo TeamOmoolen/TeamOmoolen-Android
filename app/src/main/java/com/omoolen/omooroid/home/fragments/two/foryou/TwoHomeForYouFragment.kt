@@ -1,5 +1,6 @@
 package com.omoolen.omooroid.home.fragments.two.foryou
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.omoolen.omooroid.databinding.FragmentHomeTwoForyouBinding
+import com.omoolen.omooroid.detail.DetailActivity
 import com.omoolen.omooroid.home.fragments.one.networkApi.RecommendationBySituation
 import com.omoolen.omooroid.home.fragments.one.recommend.SituationListAdapter
 import com.omoolen.omooroid.home.fragments.two.FindQuestionFragment
@@ -80,7 +82,17 @@ class TwoHomeForYouFragment : Fragment() {
     }
 
     private fun setForYouAdapter(){
-        binding.rvFindForyou.adapter = SituationListAdapter()
+        val situationListAdapter = SituationListAdapter()
+        situationListAdapter.setItemClickListener(object: SituationListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                val rbsi :RecommendationBySituation = viewModel.forYouList.get(position)
+                val intent = Intent(requireContext(), DetailActivity::class.java)
+                intent.putExtra("itemId", rbsi.id)
+                startActivity(intent)
+            }
+        })
+
+        binding.rvFindForyou.adapter = situationListAdapter
     }
 
    private fun setForYouObserve(){
