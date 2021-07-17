@@ -1,5 +1,8 @@
 package com.omoolen.omooroid.search.data
 
+import java.io.Serializable
+
+
 data class Item(
     val brand: String,
     val changeCycleMaximum: Int,
@@ -11,4 +14,4 @@ data class Item(
     val otherColorList: List<String>,
     val pieces: Int,
     val price: Int
-)
+):Serializable

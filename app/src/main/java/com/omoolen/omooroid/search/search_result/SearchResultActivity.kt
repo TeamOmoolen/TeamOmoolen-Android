@@ -29,6 +29,8 @@ class SearchResultActivity : AppCompatActivity() {
     private lateinit var  searchResultLayoutManager: RecyclerView.LayoutManager
     private  var getKeyword : String? = null
     private var mode : String? = null
+    var flag : Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +38,12 @@ class SearchResultActivity : AppCompatActivity() {
         setContentView(binding.root)
         searchResultListAdapter = SearchResultListAdapter()
         binding.rvSearchResult.adapter = searchResultListAdapter
+        var totalCount : String = ""
 
         mode = intent.getStringExtra("mode")
         getKeyword = intent.getStringExtra("keyword")
+
+        lateinit var filterList : ArrayList<Item>
         if(mode == "keyword"){
             if(getKeyword == null)
                 getKeyword = "null"
@@ -46,20 +51,31 @@ class SearchResultActivity : AppCompatActivity() {
 
 
             searchResultViewModel.getSearch(getKeyword!!)
+            searchResultAdapterInit()
         }
         else if(mode == "filter"){
             mode = intent.getStringExtra("mode")
             Log.d("TWOSEARCH","들어옴")
 
-//            val filterList : ArrayList<Item> =
-//                intent.getSerializableExtra("filterList") as ArrayList<Item>
-//            Log.d("TWOSEARCH","들어옴")
-//
-//            searchResultListAdapter.setSearchResult(filterList)
+            filterList =
+                intent.getSerializableExtra("filterList") as ArrayList<Item>
+            Log.d("TWOSEARCH","들어옴")
+            totalCount = intent.getStringExtra("totalItem").toString()
+            Log.d("TWOSEARCH_TOTALCOUNT",totalCount.toString())
+
+
+            searchResultListAdapter.setSearchResult(filterList)
+            flag = true
         }
 
         searchResultAdapterInit()
-        setSearchResultListObserve()
+
+        if(flag == true){
+            setSearchResultListObserve2(filterList, totalCount)
+        } else {
+            setSearchResultListObserve()
+        }
+
 
         binding.clSearchResultSort.setOnClickListener {
             val findSortPriceFragment = FindSortPriceFragment()
@@ -98,6 +114,17 @@ class SearchResultActivity : AppCompatActivity() {
         searchResultViewModel.totalItem.observe(this){
             binding.tvSearchResultTotalNumber.text = "총 $it 개의 상품"
         }
+
+    }
+
+    private fun setSearchResultListObserve2(filter : ArrayList<Item>,totalCount:String) {
+        searchResultViewModel.searchResultList.observe(this){
+                searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
+            setSearchResult(filter)
+        }
+        }
+        binding.tvSearchResultTotalNumber.text = "총 $totalCount 개의 상품"
+
     }
 
 
@@ -127,5 +154,6 @@ class SearchResultActivity : AppCompatActivity() {
 
         binding.rvSearchResult.addItemDecoration(VerticalItemDecorator(30, this))
     }
+
 
 }

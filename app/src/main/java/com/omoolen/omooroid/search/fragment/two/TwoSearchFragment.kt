@@ -163,6 +163,8 @@ class TwoSearchFragment : Fragment() {
             intent.putExtra("mode","filter")
             val arr = ArrayList(viewModel.filterResultList)
             intent.putExtra("filterList",arr)
+            intent.putExtra("totalItem",viewModel.filterTotalItem.value.toString())
+            Log.d("####",viewModel.filterTotalItem.value.toString())
             startActivity(intent)
 
         }
