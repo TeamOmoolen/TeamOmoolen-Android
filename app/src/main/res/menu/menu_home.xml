@@ -15,10 +15,10 @@
         android:title="이벤트" />
     <item
         android:id="@+id/tipFragment"
-        android:icon="@drawable/location_menu_icon"
+        android:icon="@drawable/tip_menu_icon"
         android:title="꿀팁" />
     <item
         android:id="@+id/mypageFragment"
-        android:icon="@drawable/setting_menu_icon"
+        android:icon="@drawable/home_mypage_icon"
         android:title="마이페이지" />
 </menu>

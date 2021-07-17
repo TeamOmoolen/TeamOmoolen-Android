@@ -18,11 +18,13 @@ import retrofit2.Response
 class TwoSearchViewModel() : ViewModel() {
     val _diameterChoice = MutableLiveData<Int>()
 
-    val filterSearchList = ListLiveData<Item>()
-    val totalCount = MutableLiveData<Int>()
-    val totalPage = MutableLiveData<Int>()
+    val filterSuccess = MutableLiveData<Boolean>()
+    val filterResultList = ArrayList<Item>()
+    var filterTotalItem : Int = 0
+    var filterTotalPages : Int = 0
 
     fun getFilterSearch(
+        page : Int, sort : String, order : String,
         brandChoice: MutableList<String>,
         colorChoice: MutableList<String>,
         diameterChoice: MutableList<Int>,
@@ -31,7 +33,7 @@ class TwoSearchViewModel() : ViewModel() {
         val requestSearchData = setRequestSearchData(brandChoice, colorChoice, diameterChoice, periodChoice)
         Log.d("SERVER_FILTER_SEARCH","포스트 시작")
         val call: Call<ResponseSearchData> =
-            RetrofitClient.getApi.getFilterSearch(requestSearchData)
+            RetrofitClient.getApi.getFilterSearch(requestSearchData,page,sort,order)
         call.enqueue(object : Callback<ResponseSearchData> {
             override fun onResponse(
                 call: Call<ResponseSearchData>,
@@ -40,21 +42,17 @@ class TwoSearchViewModel() : ViewModel() {
                 Log.d("SERVER_FILTER_SEARCH",response.isSuccessful.toString())
                 Log.d("SERVER_FILTER_SEARCH",response.body()?.status.toString())
                 Log.d("SERVER_FILTER_SEARCH",response.body()?.message.toString())
-                filterSearchList.clear()
+                filterResultList.clear()
                 val da = response.body()?.data
                 da?.items?.forEach {
-                    filterSearchList.add(Item(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,it.diameter,
+                    filterResultList.add(Item(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,it.diameter,
                         it.id,it.imageList,it.name,it.otherColorList,it.pieces,it.price))
                 }
                 if (da != null) {
-                    totalCount.value = da.totalCount
-                    totalCount.value = da.totalPage
+                    filterTotalItem = da.totalCount
+                    filterTotalPages = da.totalPage
                 }
-
-                //로그
-                for(s in 0 until filterSearchList.size()){
-                    filterSearchList[s].show()
-                }
+                //filterSuccess.value = true
             }
             override fun onFailure(call: Call<ResponseSearchData>, t: Throwable) {
                 TODO("Not yet implemented")

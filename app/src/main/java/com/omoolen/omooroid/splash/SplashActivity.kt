@@ -4,11 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.omoolen.omooroid.R
 import com.omoolen.omooroid.home.HomeActivity
+import com.omoolen.omooroid.home.fragments.one.OneHomeFragment
 import com.omoolen.omooroid.login_signup.LoginActivity
 import com.omoolen.omooroid.util.SharedPreferenceToken
 import java.util.*
-import kotlin.concurrent.schedule
 
 
 class SplashActivity : AppCompatActivity() {
@@ -16,9 +17,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //token 값 검사
 
-        Timer().schedule(1000){
+        //Timer().schedule(1000){
             if(hasToken()){
                 Log.d("*******SPLASH", hasToken().toString())
+//                val fragment1 = OneHomeFragment()
+//                supportFragmentManager.beginTransaction().add(R.id.nav_host_home, fragment1).commit()
+
                 val intent = Intent(applicationContext, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -29,7 +33,7 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        }
+        //}
     }
 
     //로그인상태 검사

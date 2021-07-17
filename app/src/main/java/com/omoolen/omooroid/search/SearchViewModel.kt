@@ -90,10 +90,6 @@ class SearchViewModel() : ViewModel() {
                 totalCount.value = keyword.data.totalCount
                 Log.d("RETROFIT_KEYWORD","$totalPages , $totalCount")
 
-                //로그
-                for(s in 0 until searchList.size()){
-                    searchList[s].show()
-                }
             },{e ->
                 println(e.toString())
             })
