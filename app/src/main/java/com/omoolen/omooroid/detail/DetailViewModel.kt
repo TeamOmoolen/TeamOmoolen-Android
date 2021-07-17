@@ -50,7 +50,9 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
 
                 popularList.addAll(detailData.data.popularList)
                 suggestList.addAll(detailData.data.suggestList)
-                detailImgList.addAll(detailData.data.imageURL)
+                detailImgList.add(detailData.data.imageURL.get(1))
+                detailImgList.add(detailData.data.imageURL.get(2))
+                detailImgList.add(detailData.data.imageURL.get(1))
                 colorDetailList.addAll(detailData.data.otherColorList)
             },{e ->
                 Log.d("SERVER_DETAIL","에러")
