@@ -38,9 +38,10 @@ class RecentAdapter() : RecyclerView.Adapter<RecentAdapter.MyViewHolder>() {
                 Log.d("recentAdapter","ivcloseClick")
                 itemClickListener.deleteRecentOnClick(this.ivClose,position)
             }
-            tvSearchName.setOnClickListener {
+            clSearch.setOnClickListener {
                 Log.d("recentAdapter","searchNameCLick")
                 //TODO : 상세페이지로 이동
+                itemClickListener.searchOnClick(this.clSearch,position)
             }
         }
     }

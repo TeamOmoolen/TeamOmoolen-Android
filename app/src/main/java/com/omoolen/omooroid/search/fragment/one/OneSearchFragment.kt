@@ -1,6 +1,7 @@
 package com.omoolen.omooroid.search.fragment.one
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.omoolen.omooroid.search.SearchViewModel
 import com.omoolen.omooroid.search.fragment.one.recycle.popular.PopularAdapter
 import com.omoolen.omooroid.search.fragment.one.recycle.popular.PopularInfo
 import com.omoolen.omooroid.search.fragment.one.recycle.recent.RecentAdapter
+import com.omoolen.omooroid.search.search_result.SearchResultActivity
 
 class OneSearchFragment : Fragment() {
     private var _binding: FragmentSearchOneBinding? = null
@@ -57,6 +59,8 @@ class OneSearchFragment : Fragment() {
         binding.tvDeleteAll.setOnClickListener {
             viewModel.deleteRecentAll()
         }
+
+
     }
 
     private var first: Int = 0
@@ -101,6 +105,11 @@ class OneSearchFragment : Fragment() {
             override fun searchOnClick(v: View, position: Int) {
                 //TODO : 상세페이지로 이동
                 //oneSearchViewModel.intentToDetail()
+                Log.d("SEARCH","상세페이지로 이동"+recentAdapter.recentList[position].name)
+                val intent = Intent(requireContext(), SearchResultActivity::class.java)
+                intent.putExtra("mode","keyword")
+                intent.putExtra("keyword",recentAdapter.recentList[position].name)
+                startActivity(intent)
             }
         })
         return recentAdapter
@@ -132,7 +141,12 @@ class OneSearchFragment : Fragment() {
             )
         )
         popularAdapter.setItemClickListener(object : PopularAdapter.OnItemClickListener {
-            override fun onClick(v: View, position: Int) {
+            override fun onClick(v: View, position:Int){
+                Log.d("SEARCH","상세페이지로 이동"+popularAdapter.popularList[position].name)
+                val intent = Intent(requireContext(), SearchResultActivity::class.java)
+                intent.putExtra("mode","keyword")
+                intent.putExtra("keyword",popularAdapter.popularList[position].name)
+                startActivity(intent)
             }
         })
         binding.rvPopular.adapter = popularAdapter
