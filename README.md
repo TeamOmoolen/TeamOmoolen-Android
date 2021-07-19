@@ -1,14 +1,12 @@
-# 오늘은 무슨 렌즈? - Om👀len
-<img src="https://user-images.githubusercontent.com/49470328/125881901-5c857059-403a-4ba3-8d14-bacf11ba8f0b.png" width="300px"/>   
+<br>
 
+# <img src="https://user-images.githubusercontent.com/49470328/125881901-5c857059-403a-4ba3-8d14-bacf11ba8f0b.png" width="100px"/> 오늘은 무슨 렌즈? - Om👀len
+
+![image](https://user-images.githubusercontent.com/70841402/126086808-f16f1aa6-bea0-4217-8570-2b12acee730a.png)
 
 <br>
 
-<br>
-
-<br>
-
-### 콘택트렌즈 사용자를 위한 맞춤 렌즈 추천 및 오프라인 픽업 예약 서비스
+## 콘택트렌즈 사용자를 위한 맞춤 렌즈 추천 및 오프라인 픽업 예약 서비스
 
 👀 국내 모든 렌즈 정보, 리뷰 부터 의료 커뮤니티와 오프라인 픽업 예약 까지! "오늘 무슨 렌즈끼지?" 고민될 땐, 오무렌! 👀
 
@@ -22,8 +20,8 @@
 
 <br>
 
-### 👋 Specification   
-------
+## 👋 Specification   
+
 <table class="tg">
 <tbody>
   <tr>
@@ -70,107 +68,113 @@
 
 <br>
 
-### 📦 Package Structure
-------
+## 📦 Package Structure
+
 ```bash
-omoolen
-└─omooroid
-├─databinding
-├─detail
-│  ├─popular
-│  └─recommend
-├─home
-│  └─fragments
-│      ├─five
-│      ├─four
-│      ├─one
-│      │  ├─curating
-│      │  ├─event
-│      │  ├─networkApi
-│      │  ├─newItem
-│      │  ├─recommend
-│      │  └─tip
-│      ├─three
-│      └─two
-│          ├─foryou
-│          ├─newItem
-│          ├─season
-│          └─situation
-├─login_signup
-│  └─login
-│      └─loginApi
-├─onboarding
-│  └─fragments
-│      ├─four
-│      │  ├─brand
-│      │  └─when
-│      ├─one
-│      │  └─recycle
-│      │      ├─age
-│      │      └─gender
-│      ├─three
-│      │  └─recycle
-│      │      ├─effect
-│      │      └─period
-│      └─two
-│          └─recycle
-│              ├─color
-│              └─what
-├─search
-│  ├─data
-│  ├─fragment
-│  │  ├─one
-│  │  │  └─recycle
-│  │  │      ├─popular
-│  │  │      └─recent
-│  │  └─two
-│  │      ├─api
-│  │      └─recycle
-│  │          ├─brand
-│  │          ├─color
-│  │          ├─diameter
-│  │          └─period
-│  └─search_result
-├─splash
-└─util
-├─api
-└─firebase
+📦omoolen
+    └─om👀roid
+        ├─📂detail
+        │  ├─📂detailApi
+        │  ├─📂popular
+        │  └─📂recommend
+        ├─📂home
+        │  ├─📂fragments
+        │  │  ├─📂five
+        │  │  ├─📂four
+        │  │  ├─📂one
+        │  │  │  ├─📂curating
+        │  │  │  ├─📂event
+        │  │  │  ├─📂networkApi
+        │  │  │  ├─📂newItem
+        │  │  │  ├─📂recommend
+        │  │  │  └─📂tip
+        │  │  ├─📂three
+        │  │  └─📂two
+        │  │      ├─📂api
+        │  │      ├─📂foryou
+        │  │      ├─📂newItem
+        │  │      ├─📂season
+        │  │      └─📂situation
+        │  └─📂homeApi
+        ├─📂login_signup
+        │  └─📂login
+        │      └─📂loginApi
+        ├─📂onboarding
+        │  ├─📂api
+        │  └─📂fragments
+        │      ├─📂four
+        │      │  ├─📂brand
+        │      │  └─📂when
+        │      ├─📂one
+        │      │  └─📂recycle
+        │      │      ├─📂age
+        │      │      └─📂gender
+        │      ├─📂three
+        │      │  └─📂recycle
+        │      │      ├─📂effect
+        │      │      └─📂period
+        │      └─📂two
+        │          └─📂recycle
+        │              ├─📂color
+        │              └─📂what
+        ├─📂search
+        │  ├─📂data
+        │  ├─📂fragment
+        │  │  ├─📂one
+        │  │  │  └─📂recycle
+        │  │  │      ├─📂popular
+        │  │  │      └─📂recent
+        │  │  └─📂two
+        │  │      ├─📂filterSearchApi
+        │  │      └─📂recycle
+        │  │          ├─📂brand
+        │  │          ├─📂color
+        │  │          ├─📂diameter
+        │  │          └─📂period
+        │  └─📂search_result
+        ├─📂splash
+        └─📂util
+            ├─📂api
+            └─📂firebase
 ``` 
 
 <br>
 
-### 🔍  Main Function
-------
+<br>
 
-1. Kakaotalk Login
+<br>
+
+## 🔍  Main Function
+
+
+### **1. Kakaotalk Login**
   - 카카오톡을 이용하여 소셜 로그인을 합니다.
     <details>
     <summary>여기를 눌러주세요</summary>
     <div markdown="1">       
+      
+      ✔ 구현 방법        
+      ---
+      
+      ◾ Kakaotalk Login
+      
 
-    😎숨겨진 내용😎
+      ✔ 구현 코드
+      ---
       
-      ## 구현 방법
-      🍝 Login 
+      ◾ Login  
       
-      ## 구현 코드
-      🍝 Login
+      🧾 UserClient.kt
+            
+      ```kotlin
+      
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
+      
+      ```
       <br>
-        ❤ UserClient.kt
-      <br>
-      
-        ```kotlin
-      
-          object UserClient {
-          private const val BASE_URL = "http://ec2-15-165-235-44.ap-northeast-2.compute.amazonaws.com/"
-
-          val getApi = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .client(OkHttpClient())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            .create(UserService::class.java)}```
-      
 
     </div>
     </details>
@@ -180,8 +184,60 @@ omoolen
     <details>
     <summary>여기를 눌러주세요</summary>
     <div markdown="1">       
+      
+      ✔ 구현 방법        
+      ---
+      
+      ◾ Onboarding
+      
 
-    😎숨겨진 내용😎
+      ✔ 구현 코드
+      ---
+      
+      ◾ Onboarding  
+      
+      🧾 OnboardActivity.kt
+            
+      ```kotlin
+      
+        class OnboardActivity : AppCompatActivity(){
+      private lateinit var navController: NavController
+      private val fragmentOnboardOne by lazy { OneOnboardFragment() }
+      private val fragmentOnboardTwo by lazy { TwoOnboardFragment() }
+      private val fragmentOnboardThree by lazy { ThreeOnboardFragment() }
+      private val fragmentOnboardFour by lazy { FourOnboardFragment() }
+
+      override fun onCreate(savedInstanceState: Bundle?) {
+          super.onCreate(savedInstanceState)
+          setContentView(R.layout.activity_onboard)
+          initNavController()
+          //changeFragment(fragmentOnboardOne)
+
+          //back 버튼 누를 경우
+          val back : ImageView = findViewById(R.id.iv_back)
+          back.setOnClickListener{
+              onBackPressed()
+          }
+      }
+
+      private fun initNavController() {
+          val navHostFragment =
+              supportFragmentManager.findFragmentById(R.id.host_nav_fragment_onboard) as NavHostFragment
+          navController = navHostFragment.navController
+      }
+
+      private fun changeFragment(fragment: Fragment) {
+          Log.d("fragmentChanged", fragment.toString())
+          supportFragmentManager
+              .beginTransaction()
+              .replace(R.id.host_nav_fragment_onboard, fragment)
+              .commit()
+        }
+    }
+      
+      ```
+      
+      <br>
 
     </div>
     </details>
@@ -191,10 +247,30 @@ omoolen
     <details>
     <summary>여기를 눌러주세요</summary>
     <div markdown="1">       
+      
+      ✔ 구현 방법        
+      ---
+      
+      ◾ Kakaotalk Login
+      
 
-    😎숨겨진 내용😎
-      구현한 내용 : recyclerView와 viewPager2를 이용 _ 각 정보를 데이터바인딩을 통해 표시해줌. 
-                    상단바에 검색창을 고정하기 위해 collapsingToolbarLayout 이용.
+      ✔ 구현 코드
+      ---
+      
+      ◾ Login  
+      
+      🧾 UserClient.kt
+            
+      ```kotlin
+      
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
+      
+      ```
+      <br>
+
     </div>
     </details>
     
@@ -204,8 +280,29 @@ omoolen
     <details>
     <summary>여기를 눌러주세요</summary>
     <div markdown="1">       
+      
+      ✔ 구현 방법        
+      ---
+      
+      ◾ Kakaotalk Login
+      
 
-    😎숨겨진 내용😎
+      ✔ 구현 코드
+      ---
+      
+      ◾ Login  
+      
+      🧾 UserClient.kt
+            
+      ```kotlin
+      
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
+      
+      ```
+      <br>
 
     </div>
     </details>
@@ -215,30 +312,115 @@ omoolen
     <details>
     <summary>여기를 눌러주세요</summary>
     <div markdown="1">       
+      
+      ✔ 구현 방법        
+      ---
+      
+      ◾ Kakaotalk Login
+      
 
-    😎숨겨진 내용😎
-         구현한 내용 : 화면 스와이프가 되는 탭 레이아웃과 각 주제의 탭 별로 리사이클러뷰로 큐레이션 아이템 정보를 보여줌.
+      ✔ 구현 코드
+      ---
+      
+      ◾ Login  
+      
+      🧾 UserClient.kt
+            
+      ```kotlin
+      
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
+      
+      ```
+      <br>
+
     </div>
-    </details>  
+    </details>
     
 6. 상품 상세
   - 상품의 상세 정보를 제공합니다.
     <details>
     <summary>여기를 눌러주세요</summary>
     <div markdown="1">       
-
-    😎숨겨진 내용😎
+      
+      ✔ 구현 방법        
+      ---
+      
+      ◾ ViewPager2
+        
+        - 이미지 스와이프 전환을 위해 ViewPager2를 사용
+      
+      ◾ DotsIndicator
+        
+        - TabLayout의 Indicator custom
+      
+      
+      ✔ 구현 코드
+      ---
+      
+      ◾ ViewPager2
+        - 이미지 스와이프 전환을 위해 ViewPager2를 사용
+      
+      🧾 UserClient.kt
+            
+      ```kotlin
+      
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
+      
+      ```
+      <br>
+      
+      ◾ DotsIndicator
+        - TabLayout의 Indicator custom
+      
+      🧾 UserClient.kt
+            
+      ```kotlin
+      
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
+      
+      ```
+      <br>
 
     </div>
-    </details>  
+    </details> 
     
 7. 검색 상세
   - 검색 결과를 제공합니다.
     <details>
     <summary>여기를 눌러주세요</summary>
     <div markdown="1">       
+      
+      ✔ 구현 방법        
+      ---
+      
+      ◾ Kakaotalk Login
+      
 
-    😎숨겨진 내용😎
+      ✔ 구현 코드
+      ---
+      
+      ◾ Login  
+      
+      🧾 UserClient.kt
+            
+      ```kotlin
+      
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
+      
+      ```
+      <br>
 
     </div>
     </details>
