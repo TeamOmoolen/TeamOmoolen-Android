@@ -147,6 +147,49 @@
 ## 🔍  Main Function
 
 
+<table>
+  <tr>
+    <td><img width="300" src=""></td>
+    <td><img width="300" src=""></td>
+    <td><img width="300" src=""></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Splash</b></td>
+    <td align="center"><b>카카오톡 로그인</b></td>
+    <td align="center"><b>온보딩1</b></td>
+  </tr>
+  <tr>
+    <td><img width="300" src=""></td>
+    <td><img width="300" src=""></td>
+    <td><img width="300" src=""></td>
+  </tr>
+  <tr>
+    <td align="center"><b>온보딩2</b></td>
+    <td align="center"><b>온보딩3</b></td>
+    <td align="center"><b>온보딩4</b></td>
+  </tr>
+  <tr>
+    <td><img width="300" src=""></td>
+    <td><img width="300" src=""></td>
+    <td><img width="300" src=""></td>
+  </tr>
+  <tr>
+    <td align="center"><b>홈</b></td>
+    <td align="center"><b>발견</b></td>
+    <td align="center"><b>제품 상세</b></td>
+  </tr>
+  <tr>
+   <td><img width="300" src=""></td>
+   <td><img width="300" src=""></td>
+   <td><img width="300" src=""></td>
+  </tr>
+  <tr>
+    <td align="center"><b>최근 검색</b></td>
+    <td align="center"><b>필터 검색</b></td>
+  </tr>
+</table>
+<br><br>
+
 ### **1. Kakaotalk Login**
   - 카카오톡을 이용하여 소셜 로그인을 합니다.
     <details>
