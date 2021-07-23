@@ -149,39 +149,43 @@
 
 <table>
   <tr>
-    <td><img width="300" src=""></td>
-    <td><img width="300" src=""></td>
-    <td><img width="300" src=""></td>
+    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744328-731c89f5-5298-443c-8483-6c044ce69017.gif"></td>
+    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126743469-2a88990e-101e-430c-a03d-b5996ecf8d94.gif"></td>
   </tr>
   <tr>
     <td align="center"><b>Splash</b></td>
     <td align="center"><b>카카오톡 로그인</b></td>
-    <td align="center"><b>온보딩1</b></td>
+    
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744442-9d0afd4a-6d6d-4819-a2ef-a205e4439f9b.gif"></td>
+    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744448-913d9716-2b92-48ed-b26d-2abe3965b7b8.gif"></td>
+    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744388-2fb5d1f6-bf6c-4081-adff-0226aa925293.gif"></td>
   </tr>
   <tr>
-    <td><img width="300" src=""></td>
-    <td><img width="300" src=""></td>
-    <td><img width="300" src=""></td>
-  </tr>
-  <tr>
-    <td align="center"><b>온보딩2</b></td>
+    <td align="center"><b>온보딩1,2</b></td>
     <td align="center"><b>온보딩3</b></td>
     <td align="center"><b>온보딩4</b></td>
   </tr>
+</table>
+<table>
   <tr>
     <td><img width="300" src=""></td>
     <td><img width="300" src=""></td>
-    <td><img width="300" src=""></td>
+    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126745744-e1678a22-eb7a-4fd9-8f04-4e2971166601.mp4"></td>
   </tr>
   <tr>
     <td align="center"><b>홈</b></td>
     <td align="center"><b>발견</b></td>
     <td align="center"><b>제품 상세</b></td>
   </tr>
+</table>
+<table>
   <tr>
-   <td><img width="300" src=""></td>
-   <td><img width="300" src=""></td>
-   <td><img width="300" src=""></td>
+   <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126745083-5f2178cc-34f6-437d-b4d2-73c46b7ff763.gif"></td>
+   <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744812-551cc494-49a7-4d8f-b6e6-c4ff15a76527.gif"></td>
   </tr>
   <tr>
     <td align="center"><b>최근 검색</b></td>
