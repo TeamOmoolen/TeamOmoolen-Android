@@ -20,8 +20,8 @@
 
 <table>
   <tr>
-    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744328-731c89f5-5298-443c-8483-6c044ce69017.gif"></td>
-    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126743469-2a88990e-101e-430c-a03d-b5996ecf8d94.gif"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126744328-731c89f5-5298-443c-8483-6c044ce69017.gif"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126743469-2a88990e-101e-430c-a03d-b5996ecf8d94.gif"></td>
   </tr>
   <tr>
     <td align="center"><b>Splash</b></td>
@@ -31,9 +31,9 @@
 </table>
 <table>
   <tr>
-    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744442-9d0afd4a-6d6d-4819-a2ef-a205e4439f9b.gif"></td>
-    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744448-913d9716-2b92-48ed-b26d-2abe3965b7b8.gif"></td>
-    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744388-2fb5d1f6-bf6c-4081-adff-0226aa925293.gif"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126744388-2fb5d1f6-bf6c-4081-adff-0226aa925293.gif"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126755649-e8ae3014-38b0-41a4-af0c-962a5dde20f4.gif"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126744448-913d9716-2b92-48ed-b26d-2abe3965b7b8.gif"></td>
   </tr>
   <tr>
     <td align="center"><b>온보딩1,2</b></td>
@@ -43,9 +43,9 @@
 </table>
 <table>
   <tr>
-    <td><img width="300" src=""></td>
-    <td><img width="300" src=""></td>
-    <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126745744-e1678a22-eb7a-4fd9-8f04-4e2971166601.mp4"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126754638-4a1f319a-5015-42da-9c69-7f56442b9ee3.gif"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126754914-b23c4ed9-b866-4cbf-9287-6f9e35c8c249.gif"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126755103-43987851-5979-447e-bf70-de286016a310.gif"></td>
   </tr>
   <tr>
     <td align="center"><b>홈</b></td>
@@ -55,8 +55,8 @@
 </table>
 <table>
   <tr>
-   <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126745083-5f2178cc-34f6-437d-b4d2-73c46b7ff763.gif"></td>
-   <td><img width="300" src="https://user-images.githubusercontent.com/49470328/126744812-551cc494-49a7-4d8f-b6e6-c4ff15a76527.gif"></td>
+   <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126755324-45dce107-fba5-4b64-9024-12058533ff47.gif"></td>
+   <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126744812-551cc494-49a7-4d8f-b6e6-c4ff15a76527.gif"></td>
   </tr>
   <tr>
     <td align="center"><b>최근 검색</b></td>
@@ -67,11 +67,11 @@
 
 
 
-
+## 💬 기능 상세
 ### **1. Kakaotalk Login**
   - 카카오톡을 이용하여 소셜 로그인을 합니다.
     <details>
-    <summary>Show Details</summary>
+    <summary>✨Show Details✨</summary>
     <div markdown="1">       
       
       ✔ 구현 방법        
@@ -190,7 +190,7 @@
 ### **2. Onboarding**
   - 사용자 맞춤 큐레이션을 제공하기 위해 온보딩 과정을 수행합니다.
     <details>
-    <summary>Show Details</summary>
+    <summary>✨Show Details✨</summary>
     <div markdown="1">       
       
       ✔ 구현 방법        
@@ -291,7 +291,7 @@
 ### **3. Home**
   - 사용자 맞춤 큐레이션, 이벤트, 상식 등을 간략히 모아볼 수 있습니다. 
     <details>
-    <summary>Show Details</summary>
+    <summary>✨Show Details✨</summary>
     <div markdown="1">       
       
       ✔ 구현 방법        
@@ -305,7 +305,7 @@
 ### **4. 발견**
   - 사용자 맞춤 큐레이션을 한눈에 모아볼 수 있습니다.
     <details>
-    <summary>Show Details</summary>
+    <summary>✨Show Details✨</summary>
     <div markdown="1">       
       
       ✔ 구현 방법        
@@ -337,7 +337,7 @@
 ### **5. 상품 상세**
   - 상품의 상세 정보를 제공합니다.
     <details>
-    <summary>Show Details</summary>
+    <summary>✨Show Details✨</summary>
     <div markdown="1">       
       
       ✔ 구현 방법        
@@ -391,7 +391,7 @@
 ### **6. 검색 상세**
   - 검색 결과를 제공합니다.
     <details>
-    <summary>Show Details</summary>
+    <summary>✨Show Details✨</summary>
     <div markdown="1">       
       
       ✔ 구현 방법        
@@ -424,7 +424,7 @@
   - 키워드를 이용하여 검색을 수행합니다.
   - 브랜드, 컬러, 직경, 주기를 이용하여 필터 검색을 수행합니다.
     <details>
-    <summary>Show Details</summary>
+    <summary>✨Show Details✨</summary>
     <div markdown="1">       
       
       ✔ 구현 방법        
