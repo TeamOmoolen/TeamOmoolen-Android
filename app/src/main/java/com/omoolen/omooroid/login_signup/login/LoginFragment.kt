@@ -66,10 +66,10 @@ class LoginFragment : Fragment() {
     fun kakaologin() {
         binding.btnKakaoLogin.setOnClickListener {
             //찐 카카오톡 로그인
-            //viewModel.newKakao(requireContext())
+            viewModel.newKakao(requireContext())
 
             //apk를 위한 가짜 카카오톡 로그인
-            viewModel.fakeLogin()
+            //viewModel.fakeLogin()
         }
     }
 

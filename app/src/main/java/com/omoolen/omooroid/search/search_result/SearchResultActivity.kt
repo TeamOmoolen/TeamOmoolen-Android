@@ -68,13 +68,14 @@ class SearchResultActivity : AppCompatActivity() {
             flag = true
         }
 
-        searchResultAdapterInit()
+
 
         if(flag == true){
             setSearchResultListObserve2(filterList, totalCount)
         } else {
             setSearchResultListObserve()
         }
+        searchResultAdapterInit()
 
 
         binding.clSearchResultSort.setOnClickListener {
@@ -117,12 +118,13 @@ class SearchResultActivity : AppCompatActivity() {
 
     }
 
-    private fun setSearchResultListObserve2(filter : ArrayList<Item>,totalCount:String) {
+    private fun setSearchResultListObserve2(filter : ArrayList<Item>, totalCount:String) {
         searchResultViewModel.searchResultList.observe(this){
                 searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
             setSearchResult(filter)
         }
         }
+        Log.d("###SEARCH_COUNT",totalCount)
         binding.tvSearchResultTotalNumber.text = "총 $totalCount 개의 상품"
 
     }
@@ -130,17 +132,17 @@ class SearchResultActivity : AppCompatActivity() {
 
 
     private fun searchResultAdapterInit() {
-        val searchResultListAdapter = SearchResultListAdapter()
+
         searchResultListAdapter.setItemClickListener(object: SearchResultListAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
-                val rbsi : Item = searchResultViewModel.searchResultList.get(position)
+                val rbsi : Item = searchResultListAdapter.searchResultList.get(position)
                 val intent = Intent(this@SearchResultActivity, DetailActivity::class.java)
                 intent.putExtra("itemId", rbsi.id)
                 startActivity(intent)
             }
         })
 
-        binding.rvSearchResult.adapter = searchResultListAdapter //
+        //binding.rvSearchResult.adapter = searchResultListAdapter //
         searchResultLayoutManager = GridLayoutManager(this, 3)
 
         searchResultLayoutManager = object : GridLayoutManager(this, 3) {

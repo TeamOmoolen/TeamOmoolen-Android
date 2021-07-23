@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="recommendInfo"
+            type="com.omoolen.omooroid.home.fragments.two.api.Item" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:clipToPadding="false"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_one_recommend1"
+                setSrcFromUrl="@{recommendInfo.imageList[1]}"
+                android:layout_width="164dp"
+                android:layout_height="164dp"
+                android:scaleType="fitXY"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/rectangle_3474" />
+
+            <ImageView
+                android:id="@+id/iv_one_recommend2"
+                setSrcFromUrl="@{recommendInfo.imageList[0]}"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_one_recommend1"
+                app:layout_constraintEnd_toEndOf="@+id/iv_one_recommend1"
+                tools:src="@drawable/img_color_a" />
+
+            <TextView
+                android:id="@+id/tv_one_recommend_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:includeFontPadding="false"
+                android:text="@{recommendInfo.brand}"
+                android:theme="@style/TextStyle15"
+                app:layout_constraintStart_toStartOf="@+id/iv_one_recommend1"
+                app:layout_constraintTop_toBottomOf="@+id/iv_one_recommend1"
+                tools:text="오렌즈" />
+
+            <TextView
+                android:id="@+id/tv_one_recommend_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
+                android:text="@{recommendInfo.name}"
+                android:textColor="@color/om_main_black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:theme="@style/TextStyle16"
+                app:layout_constraintStart_toStartOf="@+id/tv_one_recommend_brand"
+                app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_brand"
+                tools:text="브라운 컬러렌즈" />
+
+            <TextView
+                android:id="@+id/tv_one_recommend_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
+                setMinRange="@{recommendInfo.changeCycleMinimum}"
+                setMaxRange="@{recommendInfo.changeCycleMaximum}"
+                setDiameter="@{recommendInfo.diameter}"
+                setPiece="@{recommendInfo.pieces}"
+                android:textColor="@color/om_third_gray"
+                android:textSize="11sp"
+                android:theme="@style/TextStyle17"
+                app:layout_constraintStart_toStartOf="@+id/tv_one_recommend_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_name"
+                tools:text="11.9mm / 1Day(10p)" />
+
+            <TextView
+                android:id="@+id/tv_one_recommend_price"
+                setPrice2 ="@{recommendInfo.price}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.05"
+                android:textColor="@color/om_main_black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_one_recommend_info"
+                app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_info"
+                tools:text="18,000원" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_one_recommend_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="@+id/tv_one_recommend_price"
+                app:layout_constraintTop_toBottomOf="@+id/tv_one_recommend_price"
+                tools:listitem="@layout/item_one_lens_color" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

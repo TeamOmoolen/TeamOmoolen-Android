@@ -10,7 +10,7 @@ import com.omoolen.omooroid.search.data.Item
 
 class SearchResultListAdapter:RecyclerView.Adapter<SearchResultListAdapter.SearchResultViewHolder>() {
 
-    private var searchResultList = emptyList<Item>()
+    var searchResultList = emptyList<Item>()
 
     class SearchResultViewHolder(
         private val binding:ItemSearchResultBinding
