@@ -26,7 +26,7 @@
   <tr>
     <td align="center"><b>Splash</b></td>
     <td align="center"><b>카카오톡 로그인</b></td>
-    
+
   </tr>
 </table>
 <table>
@@ -73,12 +73,12 @@
     <details>
     <summary>✨Show Details✨</summary>
     <div markdown="1">       
-      
+    
       ✔ 구현 방법        
       ---
-      
+    
       ◾ Kakaotalk Login
-      
+    
       🧾 LoginViewModel.kt
       1. 단말 로그인 상태 확인      
       ```kotlin
@@ -109,7 +109,7 @@
         }
     }
       
-      ```   
+      ```
        2. 카카오톡 설치 여부 확인 후 로그인 창으로 이동  
       ```kotlin   
       
@@ -124,7 +124,7 @@
                     getKakaoInfo()
                 }
             }
-
+    
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
                 Log.e(LOGINVIEWMODEL, "카카오톡으로")
                 UserApiClient.instance.loginWithKakaoTalk(context, callback = callback)
@@ -132,10 +132,10 @@
                 Log.e(LOGINVIEWMODEL, "홈페이지로")
                 UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
             }
-
+    
         }    
       ```
-      
+    
       3. 사용자 정보 요청
       ```kotlin   
       
@@ -158,7 +158,7 @@
               }
           }
       }
-
+    
       ```
       4. 서버에 사용자 정보 전송 및 자동 로그인 위한 sharedpreference 설정을 진행합니다. 
          (splash화면에서 로그인 내역이 존재하면 바로 homeActivity로, 아니면 loginActivity로 intent)
@@ -186,21 +186,21 @@
 
     </div>
     </details>
-  
+
 ### **2. Onboarding**
   - 사용자 맞춤 큐레이션을 제공하기 위해 온보딩 과정을 수행합니다.
     <details>
     <summary>✨Show Details✨</summary>
     <div markdown="1">       
-      
+    
       ✔ 구현 방법        
       ---
-      
+    
       ◾ Onboarding
-      
+    
       🧾 OnboardDatabase.kt
       - onboardData라는 객체를 singletone으로 생성하여 4개의 fragment에서 한 객체를 공유하도록 하였습니다.   
-      (각 화면에서 얻은 정보들을 한 객체에 넣어 서버 전달)
+        (각 화면에서 얻은 정보들을 한 객체에 넣어 서버 전달)
       ```kotlin
       class OnboardDatabase {
       //싱글톤 객체 생성
@@ -213,16 +213,16 @@
       //...
       }
       ```
-      
+    
       ◾ 각 fragment에서 recyclerView를 이용하여 버튼을 구성하였습니다.
       - RecyclerView SingleChoice.  
-      : 각 recyclerView의 adapter에 single choice를 위한 Interface를 정의한 후 fragment에서 해당하는 setOnClickListener를 달아 사용합니다.
-      
+        : 각 recyclerView의 adapter에 single choice를 위한 Interface를 정의한 후 fragment에서 해당하는 setOnClickListener를 달아 사용합니다.
+    
       🧾 AgeAdapter.kt
       ```kotlin
       class AgeAdapter : RecyclerView.Adapter<AgeAdapter.MyViewHolder>() {
     val ageList = mutableListOf<AgeInfo>()
-
+    
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -234,9 +234,9 @@
         )
         return MyViewHolder(binding)
     }
-
+    
     override fun getItemCount(): Int = ageList.size
-
+    
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.onBind(ageList[position])
         holder.itemView.setOnClickListener {
@@ -253,7 +253,7 @@
     }
     // (4) setItemClickListener로 설정한 함수 실행
     private lateinit var itemClickListener : OnItemClickListener
-
+    
     class MyViewHolder(
         private val binding: ItemOnboardTextBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -263,7 +263,7 @@
     }
     }
       ```
-      
+    
       🧾 OneOnboardFragment.kt
       ```kotlin
         private fun singleChoice() {
@@ -282,82 +282,512 @@
             }
         })
       ```
-      
+    
       <br>
 
     </div>
     </details>
     
 ### **3. Home**
+
+
   - 사용자 맞춤 큐레이션, 이벤트, 상식 등을 간략히 모아볼 수 있습니다. 
     <details>
     <summary>✨Show Details✨</summary>
     <div markdown="1">       
-      
+
       ✔ 구현 방법        
       ---
+
+      ◾ Home 화면 
+
+    * 저장되어있는 사용자의 토큰을 이용해 viewModel에서 서버 통신, 사용자가 입력한 정보에 대한 맞춤 정보를 담은 렌즈 데이터를 각각 RecommendationBySeason, RecommendationBySituation, RecommendationByUser, Giudes, DeadlineEvent, LastestEvent, NewLens라는 데이터 객체로 받아, 이를 RecyclerView로 구성해 보여주었습니다. 
+
+    * 이때 viewModel에서 통신해 받은 데이터의 경우, fragment에서 observe를 통해 관찰하고 있다가, 데이터에 변화가 생길 경우 이를 알려주어 업데이트를 진행합니다. 
+
+    * 위의 렌즈 데이터 객체들 중에서 otherColors라는 색깔 배열을 받는 객체의 경우, 중첩  recyclerView로 표현. _ 이는 외부 RecyclerView_ Adapter의 ViewHolder에서 bind 시 내부 RecyclerView의 Adapter를 설정함으로서 구현.
+
       
-      ◾ 큐레이션,이벤트,상식 등의 정보들을 recyclerView를 이용하여 구성하였습니다.
-      
+
+    🧾 CuratingListAdapter.kt
+
+    ```kotlin
+    class CuratingListAdapter:RecyclerView.Adapter<CuratingListAdapter.CuratingViewHolder>() {
+    
+        private var curateList = emptyList<RecommendationByUser>()
+    
+        class CuratingViewHolder(
+            private val binding : ItemOneCuratingBinding
+        ): RecyclerView.ViewHolder(binding.root){
+            fun bind(curatingInfo: RecommendationByUser){
+                binding.curatingInfo = curatingInfo
+    
+                //자식 RecyclerView Adapter 설정
+                val listForColor = LensColorListAdapter()
+                listForColor.setColoring(curatingInfo.otherColorList as List<String>)
+                binding.rvOneCuratingColor.adapter = listForColor
+    
+            }
+        }
+    
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CuratingViewHolder {
+            val binding = ItemOneCuratingBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+    
+            return CuratingViewHolder(binding)
+        }
+    
+        override fun onBindViewHolder(holder: CuratingViewHolder, position: Int) {
+            holder.bind(curateList[position])
+            holder.itemView.setOnClickListener {
+                itemClickListener.onClick(it, position)
+            }
+        }
+    
+        override fun getItemCount(): Int = curateList.size
+    
+        fun setCurating(curateList : List<RecommendationByUser>){
+            this.curateList = curateList
+            notifyDataSetChanged()
+        }
+    
+        // (2) 리스너 인터페이스
+        interface OnItemClickListener {
+            fun onClick(v: View, position: Int)
+        }
+        // (3) 외부에서 클릭 시 이벤트 설정
+        fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+            this.itemClickListener = onItemClickListener
+        }
+        // (4) setItemClickListener로 설정한 함수 실행
+        private lateinit var itemClickListener : OnItemClickListener
+    
+    }
+    
+    ```
+
+    * OneHomeFragment에서 각 요소 클릭 시 ...
+
+    * RecommendationBySeason, RecommendationBySituation, RecommendationByUser 의 경우, RecyclerView의 item 클릭 시 해당 렌즈의 상세 페이지로 이동.
+       _ 렌즈의 상품 id를 넘겨줌.
+    * 각 RecyclerView 위에 있는 '더보기>' 클릭 시 발견의 관련 탭으로 이동.
+      _ 계절 관련 아이템 추천의 더보기를 클릭 시 발견 탭의 4번째 탭인 계절 탭으로 이동.
+    * 상단의 검색바 클릭 시 검색 페이지로 이동.
+
+    🧾 OneHomeFragment.kt
+
+    ```kotlin
+    class OneHomeFragment : Fragment() {
+        private val handler: Handler = Handler(Looper.getMainLooper())
+        private var _binding: FragmentHomeOneBinding? = null
+        private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
+    
+        private val oneHomeViewModel: OneHomeViewModel by activityViewModels()
+        private lateinit var situLayoutManager : RecyclerView.LayoutManager
+        private lateinit var seasonLayoutManager : RecyclerView.LayoutManager
+    
+        override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            _binding = FragmentHomeOneBinding.inflate(inflater, container, false)
+            binding.lifecycleOwner = viewLifecycleOwner
+    
+            initLayout()
+            setClickListener()
+    
+            oneHomeViewModel.getHome()
+    
+            setCuratingAdapter()
+            setCuratingObserve()
+    
+            setRecommend1Adapter()
+            setRecommend1Observe()
+    
+            setRecommend2Adapter()
+            setRecommend2Observe()
+    
+            setEventAdapter()
+            setEventObserve()
+            setEventIndicator()
+    
+            setAdAdapter()
+            setAdObserve()
+            setAdIndicator()
+    
+            setTipAdapter()
+            setTipObserve()
+    
+            setNewAdapter()
+            setNewObserve()
+    
+    
+            return binding.root
+        }
+    
+         override fun onStart() {
+            super.onStart()
+            oneHomeViewModel.situation.observe(viewLifecycleOwner) {
+                if(oneHomeViewModel.situation.value.equals("일상")) {
+                    binding.tvHomeRecommend.text = oneHomeViewModel.situation.value + "에서 끼지 좋은 렌즈"
+                }
+                else {
+                    binding.tvHomeRecommend.text  = oneHomeViewModel.situation.value + "할때 끼지 좋은 렌즈"
+                }
+            }
+            oneHomeViewModel.userName.observe(viewLifecycleOwner) {
+                binding.tvHomeCurating.text = oneHomeViewModel.userName.value + "님 이 렌즈 어떠세요?"
+            }
+    
+        }
+        
+        //RecyclerView 아이템 사이 마진 지정 관련 코드 생략...
+        
+        private fun setCuratingAdapter(){
+            val curatingListAdapter = CuratingListAdapter()
+            curatingListAdapter.setItemClickListener(object: CuratingListAdapter.OnItemClickListener{
+                override fun onClick(v: View, position: Int) {
+                    val rbu :RecommendationByUser = oneHomeViewModel.recommendationByUserList.get(position)
+                    val intent = Intent(requireContext(), DetailActivity::class.java)
+                    intent.putExtra("itemId", rbu.id)
+                    startActivity(intent)
+                }
+            })
+    
+            binding.rvHomeCurating.adapter = curatingListAdapter
+        }
+        private fun setCuratingObserve(){
+            oneHomeViewModel.recommendationByUserList.observe(viewLifecycleOwner){
+                curatingList -> with(binding.rvHomeCurating.adapter as CuratingListAdapter){
+                    setCurating(curatingList)
+                }
+            }
+        }
+    
+        private fun setEventAdapter(){
+            binding.vpHomeEvent.adapter = EventViewPagerAdapter()
+        }
+    
+        private fun setEventObserve(){
+            oneHomeViewModel.deadlineEventList.observe(viewLifecycleOwner){ eventList ->
+                with(binding.vpHomeEvent.adapter as EventViewPagerAdapter){
+                    setEvent(eventList)
+                }
+            }
+        }
+        private fun setEventIndicator() {
+            TabLayoutMediator(binding.tabHomeEvent, binding.vpHomeEvent) { tab, position -> }.attach()
+        }
+        
+        //이 외 5개의 데이터 객체에 대한 RecyclerView의 Adapter와 Observe 코드 생략. 
+    
+        private fun setClickListener(){
+    
+            binding.tvOneSearch.setOnClickListener {
+                val intent = Intent(context, SearchActivity::class.java)
+                startActivity(intent)
+            }
+    
+            binding.clHomeCuratingMore.setOnClickListener{
+    
+                activity?.supportFragmentManager
+                    ?.beginTransaction()
+                    ?.replace(R.id.nav_host_home, TwoHomeFragment()
+                        .apply {
+                            arguments = Bundle().apply {
+                                putInt("setIdx", 1)
+                            }
+                        }, "home->foryou")
+                    ?.commit()
+    
+                (activity as HomeActivity).setBottomChecked(1)
+            }
+    
+            binding.clHomeRecommendMore.setOnClickListener{
+    
+                activity?.supportFragmentManager
+                    ?.beginTransaction()
+                    ?.replace(R.id.nav_host_home, TwoHomeFragment().apply {
+                        arguments = Bundle().apply {
+                            putInt("setIdx", 2)
+                        }
+                    },"home->situ")
+                    ?.commit()
+    
+                (activity as HomeActivity).setBottomChecked(1)
+            }
+    
+    
+            binding.clHomeSeasonMore.setOnClickListener{
+    
+                activity?.supportFragmentManager
+                    ?.beginTransaction()
+                    ?.replace(R.id.nav_host_home, TwoHomeFragment().apply {
+                        arguments = Bundle().apply {
+                            putInt("setIdx", 4)
+                        }
+                    }, "home->saeson")
+                    ?.commit();
+    
+                (activity as HomeActivity).setBottomChecked(1)
+    
+            }
+    
+            binding.clHomeNewMore.setOnClickListener {
+    
+                activity?.supportFragmentManager
+                    ?.beginTransaction()
+                    ?.replace(R.id.nav_host_home, TwoHomeFragment().apply {
+                        arguments = Bundle().apply {
+                            putInt("setIdx", 3)
+                        }
+                    }, "home->saeson")
+                    ?.commit();
+    
+                (activity as HomeActivity).setBottomChecked(1)
+    
+            }
+    
+    
+        }
+    
+    }
+    ```
+
     </div>
     </details>
-      
 ### **4. 발견**
   - 사용자 맞춤 큐레이션을 한눈에 모아볼 수 있습니다.
     <details>
     <summary>✨Show Details✨</summary>
     <div markdown="1">       
-      
+
       ✔ 구현 방법        
       ---
-      
-      ◾ Kakaotalk Login
-      
+
+      ◾ 기본적인 구현 방식은 Home에서 RecyclerView를 이용하여 구현한 것과 크게 차이는 없습니다. 사용자 토큰을 사용하여 _ 서버에서 데이터를 받아올 경우, 해당 데이터를 각 탭에서 테마에 맞게 RecyclerView를 이용하여 정보를 보여줍니다. 색깔을 중첩 recyclerView를 이용하였고, 각 아이템을 클릭 시 상세 페이지로 이동합니다.  검색바를 클릭 시 검색 페이지로 이동합니다.
+
+    * 차이점 : 발견 fragment 위에 다시 4개의 fragment를 tabLayout과 viewPager2를 이용한 탭이 올라가짐. 이를 통해 발견 탭에서는 다시 상세 4개의 탭이 보여지며, 이를 스와이프를 통해 이동할 수 있음. 
+    * 각 상세 탭은 For you, 계절, 상황, 신제품 정보를 onBoarding 과정에서 입력한 정보를 기반으로 보여줍니다. 또한, 각 탭에는 특정 아이콘 클릭 시 해당 탭의 정보를 알려주는 다이얼로그와, 정렬 관련 다이얼로그가 있습니다. ( 정렬의 경우, 다이얼로그만 보여지고, 실제로 정렬이 되는 부분은 미구현됨. )
+    * 발견 탭의 로그 클릭 시 홈으로 이동.
+
 
       ✔ 구현 코드
       ---
-      
-      ◾ Login  
-      
-      🧾 UserClient.kt
-            
+
+      ◾ 
+
+      🧾 TwoHomeFragment.kt
       ```kotlin
+      class TwoHomeFragment : Fragment() {
+          private var _binding: FragmentHomeTwoBinding? = null
+          private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
       
-      data class KakaoUser(
-            var oauthKey: String,
-            var name: String
-        )
+          private val homeViewModel: TwoHomeViewModel by viewModels() //위임초기화
+          private lateinit var mContext: Context
       
+          private  var idx : Int? = null
+          override fun onCreateView(
+              inflater: LayoutInflater,
+              container: ViewGroup?,
+              savedInstanceState: Bundle?
+          ): View? {
+              _binding = FragmentHomeTwoBinding.inflate(inflater, container, false)
+              binding.lifecycleOwner = viewLifecycleOwner
+              mContext = requireContext()
+              setClickListener()
+      
+      
+              homeViewModel.getSuggestData()
+      
+              return binding.root
+          }
+      
+      
+          override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+              super.onViewCreated(view, savedInstanceState)
+          }
+      
+          //ViewPager2와 tabLayout Init
+          override fun onActivityCreated(savedInstanceState: Bundle?) {
+              super.onActivityCreated(savedInstanceState)
+      
+              val pagerAdapter = PagerFragmentStateAdapter(requireActivity())
+              pagerAdapter.addFragment(TwoHomeForYouFragment())
+              pagerAdapter.addFragment(TwoHomeSituFragment())
+              pagerAdapter.addFragment(TwoHomeNewFragment())
+              pagerAdapter.addFragment(TwoHomeSeasonFragment())
+      
+              binding.vpHomeTwo.adapter = pagerAdapter
+      
+              binding.vpHomeTwo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                  override fun onPageSelected(position: Int) {
+                      super.onPageSelected(position)
+                  }
+              })
+      
+              TabLayoutMediator(binding.findTabLayout, binding.vpHomeTwo) { tab, position ->
+                      when (position) {
+                          0 -> { tab.text = homeViewModel.tabItem1}
+                          1 -> { tab.text = homeViewModel.tabItem2}
+                          2 -> { tab.text = homeViewModel.tabItem3}
+                          3 -> { tab.text = homeViewModel.tabItem4}
+                      }
+              }.attach()
+      
+      
+              idx = arguments?.getInt("setIdx")
+              if(idx != null) {
+                  val tabLayout = binding.findTabLayout
+                  val tab = tabLayout.getTabAt(idx!! - 1)
+                  tab!!.select()
+      
+                  pagerAdapter.createFragment(idx!! - 1)
+              }
+          }
+      
+          private fun setClickListener() {
+      
+              binding.tvTwoSearch.setOnClickListener {
+                  val intent = Intent(context, SearchActivity::class.java)
+                  startActivity(intent)
+              }
+              
+              binding.ivTwoLogo.setOnClickListener{
+                  activity?.supportFragmentManager
+                      ?.beginTransaction()
+                      ?.replace(
+                          R.id.nav_host_home, OneHomeFragment(), "home->foryou")
+                      ?.commit()
+      
+                  (activity as HomeActivity).setBottomChecked(0)
+              }
+          }
+      
+      }
       ```
-      <br>
+    ​    🧾 PagerFragmentAdapter.kt _ viewPager할 fragment를 지정.
+
+    ```kotlin
+    class PagerFragmentStateAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
+    
+        var fragments : ArrayList<Fragment> = ArrayList()
+    
+        override fun getItemCount(): Int {
+            return fragments.size
+        }
+    
+        override fun createFragment(position: Int): Fragment {
+            return fragments[position]
+        }
+    
+        fun addFragment(fragment: Fragment) {
+            fragments.add(fragment)
+            notifyItemInserted(fragments.size-1)
+        }
+    
+        fun removeFragment() {
+            fragments.removeLast()
+            notifyItemRemoved(fragments.size)
+        }
+    
+    }
+    ```
+
+    🧾 TwoHomeForYouFragment.kt
+
+    ```kotlin
+    class TwoHomeForYouFragment : Fragment() {
+    
+        companion object {
+            fun newInstance() = TwoHomeForYouFragment()
+        }
+    
+        private var _binding: FragmentHomeTwoForyouBinding? = null
+        private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
+    
+        private val viewModel: TwoHomeViewModel by activityViewModels()
+        private val fragmentViewModel: TwoHomeForYouViewModel by viewModels()
+    
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            _binding = FragmentHomeTwoForyouBinding.inflate(inflater, container, false)
+            binding.lifecycleOwner = viewLifecycleOwner
+    
+            //데이터 setting
+            viewModel.getSuggestData()
+            setForYouAdapter()
+            setForYouObserve()
+    
+    
+            //정렬 클릭 시
+            binding.ivForYouSort.setOnClickListener{
+                val findSortPriceFragment = FindSortPriceFragment()
+    
+                findSortPriceFragment.setButtonClickListener(object: FindSortPriceFragment.OnButtonClickListener {
+                    override fun onLowPriceClicked() {
+                        //여기서 정렬
+                        Log.d("click", "low price")
+                        fragmentViewModel.getForyou(1,"price","asc")
+                    }
+    
+                    override fun onHighPriceClicked() {
+                        // 여기서 정렬
+                        Log.d("click", "high price")
+                        fragmentViewModel.getForyou(1,"price","desc")
+                    }
+                })
+                findSortPriceFragment.show(childFragmentManager, "CustomDialog")
+            }
+    
+            binding.ivFindQuestion1.setOnClickListener{
+                val findQuestionFragment = FindQuestionFragment(1)
+                findQuestionFragment.show(childFragmentManager, "CustomDialog2")
+    
+            }
+    
+            return binding.root
+        }
+        //... 아래는 홈의 OneHomeFragment.kt와 유사.
+    }
+    ```
+
+    <br>
 
     </div>
     </details>    
-    
+
 ### **5. 상품 상세**
   - 상품의 상세 정보를 제공합니다.
     <details>
     <summary>✨Show Details✨</summary>
     <div markdown="1">       
-      
+    
       ✔ 구현 방법        
       ---
-      
+    
       ◾ ViewPager2
         
         - 이미지 스와이프 전환을 위해 ViewPager2를 사용
-      
+    
       ◾ DotsIndicator
         
         - TabLayout의 Indicator custom
+    
       
-      
+    
       ✔ 구현 코드
       ---
-      
+    
       ◾ ViewPager2
         - 이미지 스와이프 전환을 위해 ViewPager2를 사용
-      
+    
       🧾 UserClient.kt
             
       ```kotlin
@@ -369,10 +799,10 @@
       
       ```
       <br>
-      
+    
       ◾ DotsIndicator
         - TabLayout의 Indicator custom
-      
+    
       🧾 UserClient.kt
             
       ```kotlin
@@ -384,7 +814,7 @@
       
       ```
       <br>
-
+    
     </div>
     </details> 
     
@@ -393,18 +823,18 @@
     <details>
     <summary>✨Show Details✨</summary>
     <div markdown="1">       
-      
+    
       ✔ 구현 방법        
       ---
-      
+    
       ◾ Kakaotalk Login
-      
+    
 
       ✔ 구현 코드
       ---
-      
+    
       ◾ Login  
-      
+    
       🧾 UserClient.kt
             
       ```kotlin
@@ -426,23 +856,23 @@
     <details>
     <summary>✨Show Details✨</summary>
     <div markdown="1">       
-      
+    
       ✔ 구현 방법        
       ---
-      
+    
       ◾ 키워드 검색의 경우 부모 activity에서 입력받은 키워드를 자식 fragment에서 처리해야 합니다.   
       따라서 fragment들에서 activity의 viewModel을 공유하여 사용하기 위해 아래와 같이 뷰모델을 정의합니다.    
       🧾 OneSearchFragment.kt
       ```kotlin
       private val viewModel: SearchViewModel by activityViewModels()
       ```
-      
+    
       ◾ 최근 검색어 추가를 위해 sharedPreference를 사용합니다.   
       (현 코드의 경우 mutableList를 sharedPreference에 넣는 오류를 범하고 있습니다. 이는 고쳐져야 할 코드 패턴입니다.)   
       🧾 SharedPreferences.kt
       ```kotlin
           object SharedPreferences {
-
+    
         fun setStringArrayPref(context: Context, key: String, values: MutableList<RecentInfo>) {
             val prefs = context.getSharedPreferences("setting",Context.MODE_PRIVATE)
             val editor = prefs.edit()
@@ -457,7 +887,7 @@
             }
             editor.apply()
         }
-
+    
         fun getStringArrayPref(context: Context, key: String): ArrayList<String>? {
             val prefs = context.getSharedPreferences("setting",Context.MODE_PRIVATE)
             val json = prefs.getString(key, null)
@@ -484,7 +914,7 @@
       fun updateRecent(context:Context, recentSearch: MutableList<RecentInfo>, recentAdapter: RecentAdapter) {
         //sharedPreference
         SharedPreferences.setStringArrayPref(context,"RECENT_KEY",recentSearch)
-
+    
         recentAdapter.recentList.clear()
         recentAdapter.recentList.addAll(recentSearch)
         recentAdapter.notifyDataSetChanged()
@@ -504,10 +934,10 @@
       
       ```
       <br>
-
+    
     </div>
     </details>
-      
+
 <br>
 
 ## 👋 Specification   
@@ -547,8 +977,8 @@
     <td><b>Continuous Integration</b></td>
 <td>Slack - Git auto notification</td>
 </tr>
-  
-  
+
+
 </tbody>
 </table>
 
@@ -626,7 +1056,7 @@
         └─📂util
             ├─📂api
             └─📂firebase
-``` 
+```
 
 <br>
 
@@ -640,7 +1070,7 @@
 <tbody>
 <tbody>
         <td><a href="https://github.com/Jionee">유지원</a></td>
-        <td><a href="https://github.com/mdb1217">이유정</a></td>
+        <td><a href="https://github.com/You-jeong136">이유정</a></td>
         <td><a href="https://github.com/sgh002400">차지수</a></td>
     </tr>
     <tr>
@@ -655,3 +1085,4 @@
     </tr>
 </tbody>
 </table>
+
