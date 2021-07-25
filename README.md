@@ -1071,7 +1071,7 @@
 <tbody>
         <td><a href="https://github.com/Jionee">유지원</a></td>
         <td><a href="https://github.com/You-jeong136">이유정</a></td>
-        <td><a href="https://github.com/sgh002400">차지수</a></td>
+        <td><a href="https://github.com/cjsjizzu">차지수</a></td>
     </tr>
     <tr>
         <td><img src="https://user-images.githubusercontent.com/49470328/125880657-6597e7d9-3861-4c3a-a3fa-035065b68d70.jpeg" width="300px"/></td>
