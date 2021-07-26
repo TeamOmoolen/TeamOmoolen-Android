@@ -786,16 +786,64 @@
       ---
     
       ◾ ViewPager2
-        - 이미지 스와이프 전환을 위해 ViewPager2를 사용
     
-      🧾 UserClient.kt
+      🧾 DetailViewPagerAdapter.kt
             
       ```kotlin
       
-      data class KakaoUser(
-            var oauthKey: String,
-            var name: String
-        )
+            class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.DetailViewHolder>() {
+
+          private var detailImageList = emptyList<String>()
+
+          class DetailViewHolder(private val binding: ItemDetailMainImageBinding) :
+              RecyclerView.ViewHolder(binding.root) {
+              fun bind(detailInfo: String) {
+                  binding.detailInfo = detailInfo
+              }
+          }
+
+          override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
+              val layoutInflater = LayoutInflater.from(parent.context)
+              val binding: ItemDetailMainImageBinding = DataBindingUtil.inflate(
+                  layoutInflater, R.layout.item_detail_main_image, parent, false
+              )
+              return DetailViewHolder(binding)
+          }
+
+          override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
+              holder.bind(detailImageList[position])
+          }
+
+          override fun getItemCount(): Int = detailImageList.size
+
+          fun setDetailImage(detailImageList: List<String>) {
+              this.detailImageList = detailImageList
+              notifyDataSetChanged()
+          }
+
+
+      }
+      
+      ```
+      <br>
+      
+      🧾 DetailFragment.kt
+            
+      ```kotlin
+      
+      private lateinit var viewPagerAdapter: DetailViewPagerAdapter
+      
+      private fun setDetailAdapter() {
+        binding.vpDetailMainImage.adapter = DetailViewPagerAdapter()
+      }
+
+      private fun setDetailObserve() {
+          detailViewModel.detailImgList.observe(viewLifecycleOwner) { detailImageList ->
+              with(binding.vpDetailMainImage.adapter as DetailViewPagerAdapter) {
+                  setDetailImage(detailImageList)
+              }
+          }
+      }
       
       ```
       <br>
@@ -803,14 +851,57 @@
       ◾ DotsIndicator
         - TabLayout의 Indicator custom
     
-      🧾 UserClient.kt
+      🧾 DetailFragment.kt
             
       ```kotlin
+        ...
       
-      data class KakaoUser(
-            var oauthKey: String,
-            var name: String
-        )
+        binding.rvDetailNew.adapter = detailPopularListAdapter
+        binding.vpDetailMainImage.setCurrentItem(1, true)
+        binding.detailDotsIndicator.setViewPager2(binding.vpDetailMainImage)
+        
+        ...
+      
+      ```
+      <br>
+      
+      
+      🧾 DetailFragment.kt
+            
+      ```kotlin
+        ...
+      
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                            android:id="@+id/detail_dots_indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            app:dotsColor="@color/om_fifth_gray"
+                            app:dotsCornerRadius="3dp"
+                            app:dotsSize="6dp"
+                            app:dotsSpacing="3dp"
+                            app:dotsWidthFactor="5"
+                            app:selectedDotColor="@color/om_main_orange"
+                            app:progressMode="false"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginBottom="12dp" />
+        
+        ...
+      
+      ```
+      <br>
+      
+      🧾 build.gradle
+            
+      ```kotlin
+        ...
+      
+        //Material View Pager Dots Indicator
+        implementation 'com.tbuonomo:dotsindicator:4.2'
+        
+        ...
       
       ```
       <br>
@@ -832,17 +923,259 @@
 
       ✔ 구현 코드
       ---
-    
-      ◾ Login  
-    
-      🧾 UserClient.kt
+       
+      🧾 SearchResultActivity.kt
             
       ```kotlin
       
-      data class KakaoUser(
-            var oauthKey: String,
-            var name: String
-        )
+            class SearchResultActivity : AppCompatActivity() {
+
+          private var _binding: ActivitySearchResultBinding? = null
+          private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
+
+          private val searchResultViewModel : SearchResultViewModel by viewModels()
+
+          private lateinit var searchResultListAdapter: SearchResultListAdapter
+          private lateinit var  searchResultLayoutManager: RecyclerView.LayoutManager
+          private  var getKeyword : String? = null
+          private var mode : String? = null
+          var flag : Boolean = false
+
+
+          override fun onCreate(savedInstanceState: Bundle?) {
+              super.onCreate(savedInstanceState)
+              _binding = ActivitySearchResultBinding.inflate(layoutInflater)
+              setContentView(binding.root)
+              searchResultListAdapter = SearchResultListAdapter()
+              binding.rvSearchResult.adapter = searchResultListAdapter
+              var totalCount : String = ""
+
+              mode = intent.getStringExtra("mode")
+              getKeyword = intent.getStringExtra("keyword")
+
+              lateinit var filterList : ArrayList<Item>
+              if(mode == "keyword"){
+                  if(getKeyword == null)
+                      getKeyword = "null"
+                  Log.d("SearchResult", getKeyword!!)
+
+
+                  searchResultViewModel.getSearch(getKeyword!!)
+                  searchResultAdapterInit()
+              }
+              else if(mode == "filter"){
+                  mode = intent.getStringExtra("mode")
+                  Log.d("TWOSEARCH","들어옴")
+
+                  filterList =
+                      intent.getSerializableExtra("filterList") as ArrayList<Item>
+                  Log.d("TWOSEARCH","들어옴")
+                  totalCount = intent.getStringExtra("totalItem").toString()
+                  Log.d("TWOSEARCH_TOTALCOUNT",totalCount.toString())
+
+
+                  searchResultListAdapter.setSearchResult(filterList)
+                  flag = true
+              }
+
+
+
+              if(flag == true){
+                  setSearchResultListObserve2(filterList, totalCount)
+              } else {
+                  setSearchResultListObserve()
+              }
+              searchResultAdapterInit()
+
+
+              binding.clSearchResultSort.setOnClickListener {
+                  val findSortPriceFragment = FindSortPriceFragment()
+
+                  findSortPriceFragment.setButtonClickListener(object : FindSortPriceFragment.OnButtonClickListener{
+                      override fun onLowPriceClicked() {
+                          //여기서 정렬
+                          Log.d("click", "low price")
+                      }
+
+                      override fun onHighPriceClicked() {
+                          // 여기서 정렬
+                          Log.d("click", "high price")
+                      }
+                  })
+                  findSortPriceFragment.show(supportFragmentManager, "CustomDialog3")
+              }
+
+              binding.clSearchResultTop.setOnClickListener{
+                  val intent = Intent(this, SearchActivity::class.java)
+                  intent.putExtra("keyboard", "ok")
+                  startActivity(intent)
+                  finish()
+              }
+
+
+          }
+
+          private fun setSearchResultListObserve() {
+              searchResultViewModel.searchResultList.observe(this){
+                  searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
+                      setSearchResult(searchResultList)
+                  }
+              }
+
+              searchResultViewModel.totalItem.observe(this){
+                  binding.tvSearchResultTotalNumber.text = "총 $it 개의 상품"
+              }
+
+          }
+
+          private fun setSearchResultListObserve2(filter : ArrayList<Item>, totalCount:String) {
+              searchResultViewModel.searchResultList.observe(this){
+                      searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
+                  setSearchResult(filter)
+              }
+              }
+              Log.d("###SEARCH_COUNT",totalCount)
+              binding.tvSearchResultTotalNumber.text = "총 $totalCount 개의 상품"
+
+          }
+
+
+
+          private fun searchResultAdapterInit() {
+
+              searchResultListAdapter.setItemClickListener(object: SearchResultListAdapter.OnItemClickListener{
+                  override fun onClick(v: View, position: Int) {
+                      val rbsi : Item = searchResultListAdapter.searchResultList.get(position)
+                      val intent = Intent(this@SearchResultActivity, DetailActivity::class.java)
+                      intent.putExtra("itemId", rbsi.id)
+                      startActivity(intent)
+                  }
+              })
+
+              //binding.rvSearchResult.adapter = searchResultListAdapter //
+              searchResultLayoutManager = GridLayoutManager(this, 3)
+
+              searchResultLayoutManager = object : GridLayoutManager(this, 3) {
+                  override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
+                      lp?.width = ((width - 20) / spanCount)
+                      return true
+                  }
+              }
+              binding.rvSearchResult.setHasFixedSize(true)
+              binding.rvSearchResult.layoutManager = searchResultLayoutManager
+
+              binding.rvSearchResult.addItemDecoration(VerticalItemDecorator(30, this))
+          }
+
+
+      }
+      
+      ```
+      <br>
+      
+      🧾 SearchResultListAdapter.kt
+            
+      ```kotlin
+      
+            class SearchResultListAdapter:RecyclerView.Adapter<SearchResultListAdapter.SearchResultViewHolder>() {
+
+          var searchResultList = emptyList<Item>()
+
+          class SearchResultViewHolder(
+              private val binding:ItemSearchResultBinding
+          ):RecyclerView.ViewHolder(binding.root){
+              fun bind(searchResultInfo: Item){
+                  binding.searchResultInfo = searchResultInfo
+
+                  val listForColor = LensColorListAdapter()
+                  listForColor.setColoring(searchResultInfo.otherColorList)
+
+                  binding.rvOneRecommendColor.adapter = listForColor
+              }
+          }
+
+          override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultViewHolder {
+              val binding = ItemSearchResultBinding.inflate(
+                  LayoutInflater.from(parent.context),
+                  parent,
+                  false
+              )
+
+              return SearchResultViewHolder(binding)
+          }
+
+          override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
+              holder.bind(searchResultList[position])
+              holder.itemView.setOnClickListener {
+                  itemClickListener.onClick(it, position)
+              }
+          }
+
+          override fun getItemCount(): Int = searchResultList.size
+
+          fun setSearchResult(resultList: MutableList<Item>){
+              this.searchResultList = resultList
+              notifyDataSetChanged()
+          }
+
+          // (2) 리스너 인터페이스
+          interface OnItemClickListener {
+              fun onClick(v: View, position: Int)
+          }
+          // (3) 외부에서 클릭 시 이벤트 설정
+          fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+              this.itemClickListener = onItemClickListener
+          }
+          // (4) setItemClickListener로 설정한 함수 실행
+          private lateinit var itemClickListener : OnItemClickListener
+
+      }
+      
+      ```
+      <br>
+      
+      🧾 SearchResultViewModel.kt
+            
+      ```kotlin
+      
+          class SearchResultViewModel(application: Application) : AndroidViewModel(application) {
+
+        private val _searchResultList = MutableLiveData<List<SearchResultInfo>>()
+        val searchResultList = ListLiveData<Item>()
+        var totalItem = MutableLiveData<Int>()
+        var mTotalPages : Int = 0
+
+
+
+        //@SuppressLint("CheckResult")
+        fun getSearch(keyword: String) {
+            Log.d("RETROFIT","시작")
+            RetrofitClient.getApi.getData(keyword = keyword)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({keyword ->
+                    searchResultList.clear()
+                    Log.d("RETROFIT_ENTER", keyword.data.totalPage.toString())
+                    //Log.d("RETROFIT_ENTER",keyword.data.items[0].brand)
+
+                    keyword.data.items.forEach{
+                        searchResultList.add(
+                            Item(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,
+                            it.diameter,it.id,it.imageList,it.name,
+                            it.otherColorList,it.pieces,it.price)
+                        )
+                    }
+                    mTotalPages = keyword.data.totalPage
+                    totalItem.value = keyword.data.items.size
+
+                    Log.d("*COLOR_ITEM_SIZE", "$totalItem")
+
+                },{e ->
+                    println(e.toString())
+                })
+            Log.d("RETROFIT","끝")
+        }
+          }
       
       ```
       <br>
