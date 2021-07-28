@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -184,6 +186,7 @@ class OneHomeFragment : Fragment() {
         val seasonListAdapter = SeasonListAdapter()
         seasonListAdapter.setItemClickListener(object: SeasonListAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
+                Log.d("SEASON_ITEM_VP", "${v.id}/${position}")
                 val rbs :RecommendationBySeason = oneHomeViewModel.recommendationBySeasonList.get(position)
                 val intent = Intent(requireContext(), DetailActivity::class.java)
                 intent.putExtra("itemId", rbs.id)
@@ -216,7 +219,14 @@ class OneHomeFragment : Fragment() {
     }
 
     private fun setNewAdapter(){
-        binding.rvHomeNew.adapter = NewListAdapter()
+        val newListAdapter = NewListAdapter()
+        newListAdapter.setItemClickListener(object : NewListAdapter.OnItemClickListener{
+            @Override
+            override fun onClick(v: View, position: Int) {
+                Log.d("NEW_ITEM_VP", "${v.id}/${position}")
+            }
+        })
+        binding.rvHomeNew.adapter = newListAdapter
     }
 
     private fun setNewObserve() {

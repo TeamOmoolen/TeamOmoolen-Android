@@ -19,79 +19,88 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/iv_one_new"
-                setSrcFromUrl="@{newInfo.newItems.get(0).imageList[1]}"
-                android:layout_width="320dp"
-                android:layout_height="318dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_one_new_item0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/group_7409" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/iv_one_new_gradient"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_one_new"
-                app:layout_constraintEnd_toEndOf="@+id/iv_one_new"
-                app:layout_constraintStart_toStartOf="@+id/iv_one_new"
-                app:srcCompat="@drawable/home_new_gradient" />
+                <ImageView
+                    android:id="@+id/iv_one_new"
+                    setSrcFromUrl="@{newInfo.newItems.get(0).imageList[1]}"
+                    android:layout_width="320dp"
+                    android:layout_height="318dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/group_7409" />
 
-            <ImageView
-                android:id="@+id/iv_one_new_circle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="13dp"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_one_new"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_rectangle_3615" />
+                <ImageView
+                    android:id="@+id/iv_one_new_gradient"
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_one_new"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_one_new"
+                    app:layout_constraintStart_toStartOf="@+id/iv_one_new"
+                    app:srcCompat="@drawable/home_new_gradient" />
 
-            <ImageView
-                android:id="@+id/iv_one_new_logo"
-                setSrcFromUrl="@{newInfo.newItems.get(0).imageList[0]}"
-                android:layout_width="42dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="7dp"
-                android:layout_marginBottom="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_one_new_circle"
-                app:layout_constraintStart_toStartOf="@+id/iv_one_new_circle"
-                app:srcCompat="@drawable/img_lensme_logo" />
+                <ImageView
+                    android:id="@+id/iv_one_new_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_one_new"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_rectangle_3615" />
 
-            <TextView
-                android:id="@+id/tv_one_new_brand_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginBottom="2dp"
-                android:text="@{newInfo.newItems.get(0).brand}"
-                android:includeFontPadding="false"
-                android:theme="@style/TextStyle22"
-                app:layout_constraintBottom_toTopOf="@+id/tv_one_new_name"
-                app:layout_constraintStart_toEndOf="@+id/iv_one_new_circle"
-                tools:text="브랜드명" />
+                <ImageView
+                    android:id="@+id/iv_one_new_logo"
+                    setSrcFromUrl="@{newInfo.newItems.get(0).imageList[0]}"
+                    android:layout_width="42dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginBottom="14dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_one_new_circle"
+                    app:layout_constraintStart_toStartOf="@+id/iv_one_new_circle"
+                    app:srcCompat="@drawable/img_lensme_logo" />
 
-            <TextView
-                android:id="@+id/tv_one_new_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginBottom="20dp"
-                android:text="@{newInfo.newItems.get(0).name}"
-                android:theme="@style/TextStyle23"
-                android:includeFontPadding="false"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_one_new"
-                app:layout_constraintStart_toEndOf="@+id/iv_one_new_circle"
-                tools:text="제품 상세 정보 이름" />
+                <TextView
+                    android:id="@+id/tv_one_new_brand_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginBottom="2dp"
+                    android:includeFontPadding="false"
+                    android:text="@{newInfo.newItems.get(0).brand}"
+                    android:theme="@style/TextStyle22"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_one_new_name"
+                    app:layout_constraintStart_toEndOf="@+id/iv_one_new_circle"
+                    tools:text="브랜드명" />
+
+                <TextView
+                    android:id="@+id/tv_one_new_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginBottom="20dp"
+                    android:includeFontPadding="false"
+                    android:text="@{newInfo.newItems.get(0).name}"
+                    android:theme="@style/TextStyle23"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_one_new"
+                    app:layout_constraintStart_toEndOf="@+id/iv_one_new_circle"
+                    tools:text="제품 상세 정보 이름" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="@+id/iv_one_new"
-                app:layout_constraintStart_toStartOf="@+id/iv_one_new"
-                app:layout_constraintTop_toBottomOf="@+id/iv_one_new">
+                app:layout_constraintEnd_toEndOf="@+id/cl_one_new_item0"
+                app:layout_constraintStart_toStartOf="@+id/cl_one_new_item0"
+                app:layout_constraintTop_toBottomOf="@+id/cl_one_new_item0">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_one_new_item1"
