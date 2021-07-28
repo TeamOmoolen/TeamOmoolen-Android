@@ -918,26 +918,19 @@
       ✔ 구현 방법        
       ---
     
-      ◾ Kakaotalk Login
-    
-
-      ✔ 구현 코드
-      ---
+      ◾ 검색창에 키워드를 입력해서 검색하면, 검색 결과로 해당 키워드를 포함하고 있는 제품들을 보여줍니다.
+      
+      ◾ 브랜드, 컬러, 직경, 주기를 선택하여 필터 검색 버튼을 누르면, 검색 결과로 필터된 제품들을 보여줍니다.
+      
        
       🧾 SearchResultActivity.kt
             
       ```kotlin
       
-            class SearchResultActivity : AppCompatActivity() {
+          class SearchResultActivity : AppCompatActivity() {
 
-          private var _binding: ActivitySearchResultBinding? = null
-          private val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화되지 않았습니다.")
+          ...
 
-          private val searchResultViewModel : SearchResultViewModel by viewModels()
-
-          private lateinit var searchResultListAdapter: SearchResultListAdapter
-          private lateinit var  searchResultLayoutManager: RecyclerView.LayoutManager
-          private  var getKeyword : String? = null
           private var mode : String? = null
           var flag : Boolean = false
 
@@ -978,100 +971,98 @@
                   flag = true
               }
 
-
-
               if(flag == true){
                   setSearchResultListObserve2(filterList, totalCount)
               } else {
                   setSearchResultListObserve()
               }
               searchResultAdapterInit()
-
-
-              binding.clSearchResultSort.setOnClickListener {
-                  val findSortPriceFragment = FindSortPriceFragment()
-
-                  findSortPriceFragment.setButtonClickListener(object : FindSortPriceFragment.OnButtonClickListener{
-                      override fun onLowPriceClicked() {
-                          //여기서 정렬
-                          Log.d("click", "low price")
-                      }
-
-                      override fun onHighPriceClicked() {
-                          // 여기서 정렬
-                          Log.d("click", "high price")
-                      }
-                  })
-                  findSortPriceFragment.show(supportFragmentManager, "CustomDialog3")
-              }
-
-              binding.clSearchResultTop.setOnClickListener{
-                  val intent = Intent(this, SearchActivity::class.java)
-                  intent.putExtra("keyboard", "ok")
-                  startActivity(intent)
-                  finish()
-              }
-
-
-          }
-
-          private fun setSearchResultListObserve() {
-              searchResultViewModel.searchResultList.observe(this){
-                  searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
-                      setSearchResult(searchResultList)
-                  }
-              }
-
-              searchResultViewModel.totalItem.observe(this){
-                  binding.tvSearchResultTotalNumber.text = "총 $it 개의 상품"
-              }
-
-          }
-
-          private fun setSearchResultListObserve2(filter : ArrayList<Item>, totalCount:String) {
-              searchResultViewModel.searchResultList.observe(this){
-                      searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
-                  setSearchResult(filter)
-              }
-              }
-              Log.d("###SEARCH_COUNT",totalCount)
-              binding.tvSearchResultTotalNumber.text = "총 $totalCount 개의 상품"
-
-          }
-
-
-
-          private fun searchResultAdapterInit() {
-
-              searchResultListAdapter.setItemClickListener(object: SearchResultListAdapter.OnItemClickListener{
-                  override fun onClick(v: View, position: Int) {
-                      val rbsi : Item = searchResultListAdapter.searchResultList.get(position)
-                      val intent = Intent(this@SearchResultActivity, DetailActivity::class.java)
-                      intent.putExtra("itemId", rbsi.id)
-                      startActivity(intent)
-                  }
-              })
-
-              //binding.rvSearchResult.adapter = searchResultListAdapter //
-              searchResultLayoutManager = GridLayoutManager(this, 3)
-
-              searchResultLayoutManager = object : GridLayoutManager(this, 3) {
-                  override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean {
-                      lp?.width = ((width - 20) / spanCount)
-                      return true
-                  }
-              }
-              binding.rvSearchResult.setHasFixedSize(true)
-              binding.rvSearchResult.layoutManager = searchResultLayoutManager
-
-              binding.rvSearchResult.addItemDecoration(VerticalItemDecorator(30, this))
-          }
-
-
-      }
+      
+              ...
       
       ```
       <br>
+      
+      ◾ 총 몇 개의 제품이 검색됐는지 나타내줍니다.
+      
+      🧾 SearchResultActivity.kt
+            
+      ```kotlin
+      
+          class SearchResultActivity : AppCompatActivity() {
+
+          ...
+
+          private fun setSearchResultListObserve() {
+        searchResultViewModel.searchResultList.observe(this){
+            searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
+                setSearchResult(searchResultList)
+            }
+        }
+
+        searchResultViewModel.totalItem.observe(this){
+            binding.tvSearchResultTotalNumber.text = "총 $it 개의 상품"
+        }
+
+    }
+
+    private fun setSearchResultListObserve2(filter : ArrayList<Item>, totalCount:String) {
+        searchResultViewModel.searchResultList.observe(this){
+                searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
+            setSearchResult(filter)
+        }
+        }
+        Log.d("###SEARCH_COUNT",totalCount)
+        binding.tvSearchResultTotalNumber.text = "총 $totalCount 개의 상품"
+
+    }
+      
+              ...
+      
+      ```
+      <br>
+      
+      
+      ◾ 정렬 버튼을 눌러 가격 높은순, 가격 낮은순으로 정렬할 수 있습니다.
+      
+      🧾 SearchResultActivity.kt
+            
+      ```kotlin
+      
+          class SearchResultActivity : AppCompatActivity() {
+
+          ...
+
+          binding.clSearchResultSort.setOnClickListener {
+            val findSortPriceFragment = FindSortPriceFragment()
+
+            findSortPriceFragment.setButtonClickListener(object : FindSortPriceFragment.OnButtonClickListener{
+                override fun onLowPriceClicked() {
+                    //여기서 정렬
+                    Log.d("click", "low price")
+                }
+
+                override fun onHighPriceClicked() {
+                    // 여기서 정렬
+                    Log.d("click", "high price")
+                }
+            })
+            findSortPriceFragment.show(supportFragmentManager, "CustomDialog3")
+        }
+
+        binding.clSearchResultTop.setOnClickListener{
+            val intent = Intent(this, SearchActivity::class.java)
+            intent.putExtra("keyboard", "ok")
+            startActivity(intent)
+            finish()
+        }
+      
+              ...
+      
+      ```
+      <br>
+      
+      
       
       🧾 SearchResultListAdapter.kt
             
