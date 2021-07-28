@@ -70,11 +70,28 @@ class TwoHomeFragment : Fragment() {
         })
 
         TabLayoutMediator(binding.findTabLayout, binding.vpHomeTwo) { tab, position ->
+
                 when (position) {
-                    0 -> { tab.text = homeViewModel.tabItem1}
-                    1 -> { tab.text = homeViewModel.tabItem2}
-                    2 -> { tab.text = homeViewModel.tabItem3}
-                    3 -> { tab.text = homeViewModel.tabItem4}
+                    0 -> {
+                        homeViewModel.tabItem2.observe(viewLifecycleOwner) {
+                            tab.text = homeViewModel.tabItem1
+                        }
+                    }
+                    1 -> {
+                        homeViewModel.tabItem2.observe(viewLifecycleOwner){
+                            tab.text = homeViewModel.tabItem2.value
+                        }
+                    }
+                    2 -> {
+                        homeViewModel.tabItem2.observe(viewLifecycleOwner) {
+                            tab.text = homeViewModel.tabItem3
+                        }
+                    }
+                    3 -> {
+                        homeViewModel.tabItem4.observe(viewLifecycleOwner){
+                            tab.text = homeViewModel.tabItem4.value
+                        }
+                    }
                 }
         }.attach()
 

@@ -21,10 +21,14 @@ class TwoHomeViewModel(application: Application) : AndroidViewModel(application)
     //@SuppressLint("StaticFieldLeak")
     private val mContext = getApplication<Application>().applicationContext
 
-    var tabItem1 : String = "for you"
-    var tabItem2 : String = "운동할 때"
+    val tabItem1 : String = "for you"
+    private val _tabItem2 = MutableLiveData<String>()
+    val tabItem2: LiveData<String>
+        get() = _tabItem2
     var tabItem3 : String = "신제품"
-    var tabItem4 : String = "여름에 예쁜"
+    private val _tabItem4 = MutableLiveData<String>()
+    val tabItem4: LiveData<String>
+        get() = _tabItem4
 
     lateinit var suggestData : Data
     val forYouList = ListLiveData<RecommendationBySituation>()
@@ -49,9 +53,16 @@ class TwoHomeViewModel(application: Application) : AndroidViewModel(application)
                     suggest.data.suggestForNew,suggest.data.suggestForSeason,suggest.data.suggestForSituation,
                     suggest.data.suggestForYou)
 
-
-                tabItem2 = suggestData.situation
-                tabItem4 =suggestData.season
+                if(suggestData.situation.equals("일상")){
+                    _tabItem2.value = suggestData.situation + "에서"
+                } else {
+                    _tabItem2.value = suggestData.situation + "할 때"
+                }
+                if(suggestData.season.equals("summer")){
+                    _tabItem4.value =  "여름에 예쁜"
+                } else {
+                    _tabItem4.value =  "겨울에 예쁜"
+                }
 
                 forYouList.addAll(suggestData.suggestForYou as List<RecommendationBySituation>)
                 forSituationList.addAll(suggestData.suggestForSituation as List<RecommendationBySituation>)
