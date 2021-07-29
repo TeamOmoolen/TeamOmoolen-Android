@@ -60,6 +60,8 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
                 recommendationBySeasonList.clear()
                 recommendationBySituationList.clear()
                 recommendationByUserList.clear()
+                guideLists.clear()
+                newItemList.clear()
 
                 home.data.deadlineEvent.forEach{
                     deadlineEventList.add(DeadlineEvent(it.id,it.image))
