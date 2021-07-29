@@ -106,9 +106,13 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
                     recommendationByUserList.add(RecommendationByUser(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,
                         it.diameter,it.id,it.imageList,it.name,it.otherColorList,it.pieces,it.price))
                 }
-                season.value =  home.data.season
-                situation.value = home.data.situation
-                userName.value = home.data.username
+
+                if(season.value == null)
+                    season.value =  home.data.season
+                if(situation.value == null)
+                    situation.value = home.data.situation
+                if(userName.value == null)
+                    userName.value = home.data.username
 
                 home.data.newLens.newLensBrand1.forEach{
                     newlens1.add(NewLensBrand1(it.brand,it.id,it.imageList,it.name,it.price))
@@ -131,8 +135,12 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
                 //Log찍기
                 for(g in guide1)
                     Log.d("*********GUIDE","$g")
-                for(n in 0 until newlens1.size)
+                for(n in 0 until newlens1.size){
                     Log.d("**********NEW1",newlens1[n].name)
+
+                    for(e in 0 until newlens1[n].imageList.size)
+                        Log.d("**********NEW1IMAGE",newlens1[n].imageList[e].toString())
+                }
                 for(n in 0 until newlens2.size)
                     Log.d("**********NEW2",newlens2[n].name)
                 for(n in 0 until newlens3.size)

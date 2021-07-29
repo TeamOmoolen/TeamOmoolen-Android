@@ -39,7 +39,6 @@ class TwoHomeForYouFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         //데이터 setting
-        viewModel.getSuggestData()
         setForYouAdapter()
         setForYouObserve()
 

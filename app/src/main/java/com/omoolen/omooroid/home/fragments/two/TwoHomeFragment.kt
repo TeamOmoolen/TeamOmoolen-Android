@@ -63,12 +63,6 @@ class TwoHomeFragment : Fragment() {
 
         binding.vpHomeTwo.adapter = pagerAdapter
 
-        binding.vpHomeTwo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-            }
-        })
-
         TabLayoutMediator(binding.findTabLayout, binding.vpHomeTwo) { tab, position ->
 
                 when (position) {
@@ -97,13 +91,15 @@ class TwoHomeFragment : Fragment() {
 
 
         idx = arguments?.getInt("setIdx")
+        Log.d("**********TAB_IDX", idx.toString())
         if(idx != null) {
             val tabLayout = binding.findTabLayout
             val tab = tabLayout.getTabAt(idx!! - 1)
             tab!!.select()
-
-            pagerAdapter.createFragment(idx!! - 1)
+            binding.vpHomeTwo.setCurrentItem(idx!! - 1, false)
         }
+
+
     }
 
     private fun setClickListener() {

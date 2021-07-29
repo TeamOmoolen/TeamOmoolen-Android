@@ -53,15 +53,19 @@ class TwoHomeViewModel(application: Application) : AndroidViewModel(application)
                     suggest.data.suggestForNew,suggest.data.suggestForSeason,suggest.data.suggestForSituation,
                     suggest.data.suggestForYou)
 
-                if(suggestData.situation.equals("일상")){
-                    _tabItem2.value = suggestData.situation + "에서"
-                } else {
-                    _tabItem2.value = suggestData.situation + "할 때"
+                if(_tabItem2.value == null) {
+                    if (suggestData.situation.equals("일상")) {
+                        _tabItem2.value = suggestData.situation + "에서"
+                    } else {
+                        _tabItem2.value = suggestData.situation + "할 때"
+                    }
                 }
-                if(suggestData.season.equals("summer")){
-                    _tabItem4.value =  "여름에 예쁜"
-                } else {
-                    _tabItem4.value =  "겨울에 예쁜"
+                if(_tabItem4.value == null) {
+                    if (suggestData.season.equals("summer")) {
+                        _tabItem4.value = "여름에 예쁜"
+                    } else {
+                        _tabItem4.value = "겨울에 예쁜"
+                    }
                 }
 
                 forYouList.addAll(suggestData.suggestForYou as List<RecommendationBySituation>)
