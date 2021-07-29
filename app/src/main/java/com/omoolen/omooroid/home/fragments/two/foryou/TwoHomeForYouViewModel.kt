@@ -18,9 +18,11 @@ class TwoHomeForYouViewModel : ViewModel() {
     private val _forYouList = MutableLiveData<List<RecommendInfo>>()
     val foryouList: LiveData<List<RecommendInfo>>
         get() = _forYouList
-
+/*
     val itemList = ListLiveData<Item>()
     val totalPage = MutableLiveData<Int>()
+
+    //TwoHomeViewModel에서 통신하는 거로 위치 옮겨봄.
 
     //@SuppressLint("CheckResult")
     fun getForyou(page:Int,sort:String,order:String) {
@@ -46,6 +48,8 @@ class TwoHomeForYouViewModel : ViewModel() {
             })
         Log.d("RETROFIT","끝")
     }
+
+ */
 
 
     fun setForYouList() {
@@ -87,12 +91,5 @@ class TwoHomeForYouViewModel : ViewModel() {
                     "#597838", "#9249f6")
             )
         )
-    }
-}
-class PriceComparator {
-    companion object : Comparator<RecommendInfo> {
-        override fun compare(p0: RecommendInfo?, p1: RecommendInfo?): Int {
-            return p0!!.price.compareTo(p1!!.price)
-        }
     }
 }

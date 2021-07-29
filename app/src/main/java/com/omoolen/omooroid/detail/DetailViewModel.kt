@@ -4,13 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.omoolen.omooroid.R
 import com.omoolen.omooroid.detail.detailApi.*
-import com.omoolen.omooroid.detail.popular.DetailNewInfo
-import com.omoolen.omooroid.detail.recommend.DetailRecommendInfo
-import com.omoolen.omooroid.search.data.Item
 import com.omoolen.omooroid.util.ListLiveData
 import com.omoolen.omooroid.util.api.RetrofitClient
 import io.reactivex.android.schedulers.AndroidSchedulers

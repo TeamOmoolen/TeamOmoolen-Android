@@ -6,7 +6,6 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingInfo
 import com.omoolen.omooroid.home.fragments.one.event.EventInfo
@@ -19,9 +18,6 @@ import com.omoolen.omooroid.util.ListLiveData
 import com.omoolen.omooroid.util.api.RetrofitClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
 class OneHomeViewModel(application: Application) : AndroidViewModel(application) {
     val deadlineEventList = ListLiveData<DeadlineEvent>()

@@ -56,13 +56,13 @@ class TwoHomeSituFragment : Fragment() {
                 override fun onLowPriceClicked() {
                     //여기서 정렬
                     Log.d("click", "low price")
-                    fragmentViewModel.getSituation(1,"price","asc")
+                    viewModel.getSituation(1,"price","asc")
                 }
 
                 override fun onHighPriceClicked() {
                     // 여기서 정렬
                     Log.d("click", "high price")
-                    fragmentViewModel.getSituation(1,"price","desc")
+                    viewModel.getSituation(1,"price","desc")
                 }
             })
             findSortPriceFragment.show(childFragmentManager, "CustomDialog")
