@@ -10,6 +10,9 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.omoolen.omooroid.R
 import java.text.NumberFormat
 import java.util.*
@@ -153,6 +156,35 @@ object BindingAdapters {
             .centerCrop()
             .into(imageView)
     }
+
+    @BindingAdapter("setSrcFromUrl2")
+    @JvmStatic
+    fun setSrcFromUrl2(imageView: ImageView, url: String) {
+        Glide.with(imageView.context)
+            .load(url)
+            .centerInside()
+            .into(imageView)
+    }
+
+    @BindingAdapter("setRound10SrcFromUrl")
+    @JvmStatic
+    fun setRound10SrcFromUrl(imageView: ImageView, url: String) {
+        Glide.with(imageView.context)
+            .load(url)
+            .transform(CenterCrop(), RoundedCorners(13))
+            .into(imageView)
+    }
+
+    @BindingAdapter("setCircleSrcFromUrl")
+    @JvmStatic
+    fun setCircleSrcFromUrl(imageView: ImageView, url: String) {
+        Glide.with(imageView.context)
+            .load(url)
+            .transform(CircleCrop())
+            .into(imageView)
+    }
+
+
 
     @BindingAdapter("setItemCnt")
     @JvmStatic

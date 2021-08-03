@@ -26,9 +26,9 @@
   <tr>
     <td align="center"><b>Splash</b></td>
     <td align="center"><b>카카오톡 로그인</b></td>
-
   </tr>
 </table>
+
 <table>
   <tr>
     <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126744388-2fb5d1f6-bf6c-4081-adff-0226aa925293.gif"></td>
@@ -43,8 +43,8 @@
 </table>
 <table>
   <tr>
-    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126754638-4a1f319a-5015-42da-9c69-7f56442b9ee3.gif"></td>
-    <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126754914-b23c4ed9-b866-4cbf-9287-6f9e35c8c249.gif"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/59916029/127950277-2101f987-b28c-4d6e-98f1-7a5a9f0c3f5d.gif"></td>
+    <td><img width="200" src="https://user-images.githubusercontent.com/59916029/127950265-92fbdd86-c1ee-47ef-a1a7-48546edf4b2f.gif"></td>
     <td><img width="200" src="https://user-images.githubusercontent.com/49470328/126755103-43987851-5979-447e-bf70-de286016a310.gif"></td>
   </tr>
   <tr>
@@ -63,6 +63,7 @@
     <td align="center"><b>필터 검색</b></td>
   </tr>
 </table>
+
 <br><br>
 
 
@@ -326,6 +327,7 @@
                 val listForColor = LensColorListAdapter()
                 listForColor.setColoring(curatingInfo.otherColorList as List<String>)
                 binding.rvOneCuratingColor.adapter = listForColor
+                //신제품 _ recycler view의 경우는 여기서 클릭 리스너 설정
     
             }
         }
@@ -368,17 +370,17 @@
     }
     
     ```
-
+    
     * OneHomeFragment에서 각 요소 클릭 시 ...
-
+    
     * RecommendationBySeason, RecommendationBySituation, RecommendationByUser 의 경우, RecyclerView의 item 클릭 시 해당 렌즈의 상세 페이지로 이동.
        _ 렌즈의 상품 id를 넘겨줌.
     * 각 RecyclerView 위에 있는 '더보기>' 클릭 시 발견의 관련 탭으로 이동.
       _ 계절 관련 아이템 추천의 더보기를 클릭 시 발견 탭의 4번째 탭인 계절 탭으로 이동.
     * 상단의 검색바 클릭 시 검색 페이지로 이동.
-
+    
     🧾 OneHomeFragment.kt
-
+    
     ```kotlin
     class OneHomeFragment : Fragment() {
         private val handler: Handler = Handler(Looper.getMainLooper())
@@ -557,7 +559,7 @@
     
     }
     ```
-
+    
     </div>
     </details>
 ### **4. 발견**
@@ -572,15 +574,15 @@
       ◾ 기본적인 구현 방식은 Home에서 RecyclerView를 이용하여 구현한 것과 크게 차이는 없습니다. 사용자 토큰을 사용하여 _ 서버에서 데이터를 받아올 경우, 해당 데이터를 각 탭에서 테마에 맞게 RecyclerView를 이용하여 정보를 보여줍니다. 색깔을 중첩 recyclerView를 이용하였고, 각 아이템을 클릭 시 상세 페이지로 이동합니다.  검색바를 클릭 시 검색 페이지로 이동합니다.
 
     * 차이점 : 발견 fragment 위에 다시 4개의 fragment를 tabLayout과 viewPager2를 이용한 탭이 올라가짐. 이를 통해 발견 탭에서는 다시 상세 4개의 탭이 보여지며, 이를 스와이프를 통해 이동할 수 있음. 
-    * 각 상세 탭은 For you, 계절, 상황, 신제품 정보를 onBoarding 과정에서 입력한 정보를 기반으로 보여줍니다. 또한, 각 탭에는 특정 아이콘 클릭 시 해당 탭의 정보를 알려주는 다이얼로그와, 정렬 관련 다이얼로그가 있습니다. ( 정렬의 경우, 다이얼로그만 보여지고, 실제로 정렬이 되는 부분은 미구현됨. )
+    * 각 상세 탭은 For you, 계절, 상황, 신제품 정보를 onBoarding 과정에서 입력한 정보를 기반으로 보여줍니다. 또한, 각 탭에는 특정 아이콘 클릭 시 해당 탭의 정보를 알려주는 다이얼로그와, 정렬 관련 다이얼로그가 있습니다. _ 정렬 클릭 시 가격을 기준으로 정렬됨. (viewmodel에서 recyclerview에 적용되는 데이터를 다시 서버통신 받고, 이를 observe가 관찰하다 적용)
     * 발견 탭의 로그 클릭 시 홈으로 이동.
 
 
       ✔ 구현 코드
       ---
-
+    
       ◾ 
-
+    
       🧾 TwoHomeFragment.kt
       ```kotlin
       class TwoHomeFragment : Fragment() {
@@ -600,14 +602,17 @@
               binding.lifecycleOwner = viewLifecycleOwner
               mContext = requireContext()
               setClickListener()
-      
-      
+
+
+​      
+
               homeViewModel.getSuggestData()
       
               return binding.root
           }
-      
-      
+
+
+​      
           override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
               super.onViewCreated(view, savedInstanceState)
           }
@@ -632,21 +637,37 @@
       
               TabLayoutMediator(binding.findTabLayout, binding.vpHomeTwo) { tab, position ->
                       when (position) {
-                          0 -> { tab.text = homeViewModel.tabItem1}
-                          1 -> { tab.text = homeViewModel.tabItem2}
-                          2 -> { tab.text = homeViewModel.tabItem3}
-                          3 -> { tab.text = homeViewModel.tabItem4}
-                      }
+                           0 -> {
+                            homeViewModel.tabItem2.observe(viewLifecycleOwner) {
+                                tab.text = homeViewModel.tabItem1
+                            }
+                        }
+                        1 -> {
+                            homeViewModel.tabItem2.observe(viewLifecycleOwner){
+                                tab.text = homeViewModel.tabItem2.value
+                            }
+                        }
+                        2 -> {
+                            homeViewModel.tabItem2.observe(viewLifecycleOwner) {
+                                tab.text = homeViewModel.tabItem3
+                            }
+                        }
+                        3 -> {
+                            homeViewModel.tabItem4.observe(viewLifecycleOwner){
+                                tab.text = homeViewModel.tabItem4.value
+                            }
+                        }
               }.attach()
-      
-      
+
+
+​      
               idx = arguments?.getInt("setIdx")
               if(idx != null) {
                   val tabLayout = binding.findTabLayout
                   val tab = tabLayout.getTabAt(idx!! - 1)
                   tab!!.select()
       
-                  pagerAdapter.createFragment(idx!! - 1)
+                   binding.vpHomeTwo.setCurrentItem(idx!! - 1, false)
               }
           }
       
@@ -671,7 +692,7 @@
       }
       ```
     ​    🧾 PagerFragmentAdapter.kt _ viewPager할 fragment를 지정.
-
+    
     ```kotlin
     class PagerFragmentStateAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
     
@@ -697,9 +718,9 @@
     
     }
     ```
-
+    
     🧾 TwoHomeForYouFragment.kt
-
+    
     ```kotlin
     class TwoHomeForYouFragment : Fragment() {
     
@@ -721,11 +742,11 @@
             binding.lifecycleOwner = viewLifecycleOwner
     
             //데이터 setting
-            viewModel.getSuggestData()
             setForYouAdapter()
             setForYouObserve()
-    
-    
+
+
+​    
             //정렬 클릭 시
             binding.ivForYouSort.setOnClickListener{
                 val findSortPriceFragment = FindSortPriceFragment()
@@ -734,13 +755,13 @@
                     override fun onLowPriceClicked() {
                         //여기서 정렬
                         Log.d("click", "low price")
-                        fragmentViewModel.getForyou(1,"price","asc")
+                        viewModel.getForyou(1,"price","asc")
                     }
     
                     override fun onHighPriceClicked() {
                         // 여기서 정렬
                         Log.d("click", "high price")
-                        fragmentViewModel.getForyou(1,"price","desc")
+                         viewModel.getForyou(1,"price","desc")
                     }
                 })
                 findSortPriceFragment.show(childFragmentManager, "CustomDialog")
@@ -757,9 +778,9 @@
         //... 아래는 홈의 OneHomeFragment.kt와 유사.
     }
     ```
-
+    
     <br>
-
+    
     </div>
     </details>    
 
@@ -782,68 +803,21 @@
     
       
     
+    
       ✔ 구현 코드
       ---
     
       ◾ ViewPager2
+        - 이미지 스와이프 전환을 위해 ViewPager2를 사용
     
-      🧾 DetailViewPagerAdapter.kt
+      🧾 UserClient.kt
             
       ```kotlin
       
-            class DetailViewPagerAdapter : RecyclerView.Adapter<DetailViewPagerAdapter.DetailViewHolder>() {
-
-          private var detailImageList = emptyList<String>()
-
-          class DetailViewHolder(private val binding: ItemDetailMainImageBinding) :
-              RecyclerView.ViewHolder(binding.root) {
-              fun bind(detailInfo: String) {
-                  binding.detailInfo = detailInfo
-              }
-          }
-
-          override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
-              val layoutInflater = LayoutInflater.from(parent.context)
-              val binding: ItemDetailMainImageBinding = DataBindingUtil.inflate(
-                  layoutInflater, R.layout.item_detail_main_image, parent, false
-              )
-              return DetailViewHolder(binding)
-          }
-
-          override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
-              holder.bind(detailImageList[position])
-          }
-
-          override fun getItemCount(): Int = detailImageList.size
-
-          fun setDetailImage(detailImageList: List<String>) {
-              this.detailImageList = detailImageList
-              notifyDataSetChanged()
-          }
-
-
-      }
-      
-      ```
-      <br>
-      
-      🧾 DetailFragment.kt
-            
-      ```kotlin
-      
-      private lateinit var viewPagerAdapter: DetailViewPagerAdapter
-      
-      private fun setDetailAdapter() {
-        binding.vpDetailMainImage.adapter = DetailViewPagerAdapter()
-      }
-
-      private fun setDetailObserve() {
-          detailViewModel.detailImgList.observe(viewLifecycleOwner) { detailImageList ->
-              with(binding.vpDetailMainImage.adapter as DetailViewPagerAdapter) {
-                  setDetailImage(detailImageList)
-              }
-          }
-      }
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
       
       ```
       <br>
@@ -851,57 +825,14 @@
       ◾ DotsIndicator
         - TabLayout의 Indicator custom
     
-      🧾 DetailFragment.kt
+      🧾 UserClient.kt
             
       ```kotlin
-        ...
       
-        binding.rvDetailNew.adapter = detailPopularListAdapter
-        binding.vpDetailMainImage.setCurrentItem(1, true)
-        binding.detailDotsIndicator.setViewPager2(binding.vpDetailMainImage)
-        
-        ...
-      
-      ```
-      <br>
-      
-      
-      🧾 DetailFragment.kt
-            
-      ```kotlin
-        ...
-      
-        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                            android:id="@+id/detail_dots_indicator"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            app:dotsColor="@color/om_fifth_gray"
-                            app:dotsCornerRadius="3dp"
-                            app:dotsSize="6dp"
-                            app:dotsSpacing="3dp"
-                            app:dotsWidthFactor="5"
-                            app:selectedDotColor="@color/om_main_orange"
-                            app:progressMode="false"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginBottom="12dp" />
-        
-        ...
-      
-      ```
-      <br>
-      
-      🧾 build.gradle
-            
-      ```kotlin
-        ...
-      
-        //Material View Pager Dots Indicator
-        implementation 'com.tbuonomo:dotsindicator:4.2'
-        
-        ...
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
       
       ```
       <br>
@@ -918,253 +849,22 @@
       ✔ 구현 방법        
       ---
     
-      ◾ 검색창에 키워드를 입력해서 검색한 keyword mode와 브랜드, 컬러, 직경, 주기를 선택하여 필터 검색한 filter mode로 나누어 검색합니다.
-      
-       
-      🧾 SearchResultActivity.kt
+      ◾ Kakaotalk Login
+    
+
+      ✔ 구현 코드
+      ---
+    
+      ◾ Login  
+    
+      🧾 UserClient.kt
             
       ```kotlin
       
-          class SearchResultActivity : AppCompatActivity() {
-
-          ...
-
-          private var mode : String? = null
-          var flag : Boolean = false
-
-
-          override fun onCreate(savedInstanceState: Bundle?) {
-              super.onCreate(savedInstanceState)
-              _binding = ActivitySearchResultBinding.inflate(layoutInflater)
-              setContentView(binding.root)
-              searchResultListAdapter = SearchResultListAdapter()
-              binding.rvSearchResult.adapter = searchResultListAdapter
-              var totalCount : String = ""
-
-              mode = intent.getStringExtra("mode")
-              getKeyword = intent.getStringExtra("keyword")
-
-              lateinit var filterList : ArrayList<Item>
-              if(mode == "keyword"){
-                  if(getKeyword == null)
-                      getKeyword = "null"
-                  Log.d("SearchResult", getKeyword!!)
-
-
-                  searchResultViewModel.getSearch(getKeyword!!)
-                  searchResultAdapterInit()
-              }
-              else if(mode == "filter"){
-                  mode = intent.getStringExtra("mode")
-                  Log.d("TWOSEARCH","들어옴")
-
-                  filterList =
-                      intent.getSerializableExtra("filterList") as ArrayList<Item>
-                  Log.d("TWOSEARCH","들어옴")
-                  totalCount = intent.getStringExtra("totalItem").toString()
-                  Log.d("TWOSEARCH_TOTALCOUNT",totalCount.toString())
-
-
-                  searchResultListAdapter.setSearchResult(filterList)
-                  flag = true
-              }
-
-              if(flag == true){
-                  setSearchResultListObserve2(filterList, totalCount)
-              } else {
-                  setSearchResultListObserve()
-              }
-              searchResultAdapterInit()
-      
-              ...
-      
-      ```
-      <br>
-      
-      ◾ 총 몇 개의 제품이 검색됐는지 나타내줍니다.
-      
-      🧾 SearchResultActivity.kt
-            
-      ```kotlin
-      
-          class SearchResultActivity : AppCompatActivity() {
-
-          ...
-
-          private fun setSearchResultListObserve() {
-        searchResultViewModel.searchResultList.observe(this){
-            searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
-                setSearchResult(searchResultList)
-            }
-        }
-
-        searchResultViewModel.totalItem.observe(this){
-            binding.tvSearchResultTotalNumber.text = "총 $it 개의 상품"
-        }
-
-    }
-
-    private fun setSearchResultListObserve2(filter : ArrayList<Item>, totalCount:String) {
-        searchResultViewModel.searchResultList.observe(this){
-                searchResultList -> with(binding.rvSearchResult.adapter as SearchResultListAdapter){
-            setSearchResult(filter)
-        }
-        }
-        Log.d("###SEARCH_COUNT",totalCount)
-        binding.tvSearchResultTotalNumber.text = "총 $totalCount 개의 상품"
-
-    }
-      
-              ...
-      
-      ```
-      <br>
-      
-      
-      ◾ 정렬 버튼을 눌러 가격 높은순, 가격 낮은순으로 정렬할 수 있습니다.
-      
-      🧾 SearchResultActivity.kt
-            
-      ```kotlin
-      
-          class SearchResultActivity : AppCompatActivity() {
-
-          ...
-
-          binding.clSearchResultSort.setOnClickListener {
-            val findSortPriceFragment = FindSortPriceFragment()
-
-            findSortPriceFragment.setButtonClickListener(object : FindSortPriceFragment.OnButtonClickListener{
-                override fun onLowPriceClicked() {
-                    //여기서 정렬
-                    Log.d("click", "low price")
-                }
-
-                override fun onHighPriceClicked() {
-                    // 여기서 정렬
-                    Log.d("click", "high price")
-                }
-            })
-            findSortPriceFragment.show(supportFragmentManager, "CustomDialog3")
-        }
-
-        binding.clSearchResultTop.setOnClickListener{
-            val intent = Intent(this, SearchActivity::class.java)
-            intent.putExtra("keyboard", "ok")
-            startActivity(intent)
-            finish()
-        }
-      
-              ...
-      
-      ```
-      <br>
-      
-      
-      
-      🧾 SearchResultListAdapter.kt
-            
-      ```kotlin
-      
-            class SearchResultListAdapter:RecyclerView.Adapter<SearchResultListAdapter.SearchResultViewHolder>() {
-
-          var searchResultList = emptyList<Item>()
-
-          class SearchResultViewHolder(
-              private val binding:ItemSearchResultBinding
-          ):RecyclerView.ViewHolder(binding.root){
-              fun bind(searchResultInfo: Item){
-                  binding.searchResultInfo = searchResultInfo
-
-                  val listForColor = LensColorListAdapter()
-                  listForColor.setColoring(searchResultInfo.otherColorList)
-
-                  binding.rvOneRecommendColor.adapter = listForColor
-              }
-          }
-
-          override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultViewHolder {
-              val binding = ItemSearchResultBinding.inflate(
-                  LayoutInflater.from(parent.context),
-                  parent,
-                  false
-              )
-
-              return SearchResultViewHolder(binding)
-          }
-
-          override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
-              holder.bind(searchResultList[position])
-              holder.itemView.setOnClickListener {
-                  itemClickListener.onClick(it, position)
-              }
-          }
-
-          override fun getItemCount(): Int = searchResultList.size
-
-          fun setSearchResult(resultList: MutableList<Item>){
-              this.searchResultList = resultList
-              notifyDataSetChanged()
-          }
-
-          // (2) 리스너 인터페이스
-          interface OnItemClickListener {
-              fun onClick(v: View, position: Int)
-          }
-          // (3) 외부에서 클릭 시 이벤트 설정
-          fun setItemClickListener(onItemClickListener: OnItemClickListener) {
-              this.itemClickListener = onItemClickListener
-          }
-          // (4) setItemClickListener로 설정한 함수 실행
-          private lateinit var itemClickListener : OnItemClickListener
-
-      }
-      
-      ```
-      <br>
-      
-      🧾 SearchResultViewModel.kt
-            
-      ```kotlin
-      
-          class SearchResultViewModel(application: Application) : AndroidViewModel(application) {
-
-        private val _searchResultList = MutableLiveData<List<SearchResultInfo>>()
-        val searchResultList = ListLiveData<Item>()
-        var totalItem = MutableLiveData<Int>()
-        var mTotalPages : Int = 0
-
-
-
-        //@SuppressLint("CheckResult")
-        fun getSearch(keyword: String) {
-            Log.d("RETROFIT","시작")
-            RetrofitClient.getApi.getData(keyword = keyword)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({keyword ->
-                    searchResultList.clear()
-                    Log.d("RETROFIT_ENTER", keyword.data.totalPage.toString())
-                    //Log.d("RETROFIT_ENTER",keyword.data.items[0].brand)
-
-                    keyword.data.items.forEach{
-                        searchResultList.add(
-                            Item(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,
-                            it.diameter,it.id,it.imageList,it.name,
-                            it.otherColorList,it.pieces,it.price)
-                        )
-                    }
-                    mTotalPages = keyword.data.totalPage
-                    totalItem.value = keyword.data.items.size
-
-                    Log.d("*COLOR_ITEM_SIZE", "$totalItem")
-
-                },{e ->
-                    println(e.toString())
-                })
-            Log.d("RETROFIT","끝")
-        }
-          }
+      data class KakaoUser(
+            var oauthKey: String,
+            var name: String
+        )
       
       ```
       <br>
@@ -1393,7 +1093,7 @@
 <tbody>
         <td><a href="https://github.com/Jionee">유지원</a></td>
         <td><a href="https://github.com/You-jeong136">이유정</a></td>
-        <td><a href="https://github.com/cjsjizzu">차지수</a></td>
+        <td><a href="https://github.com/sgh002400">차지수</a></td>
     </tr>
     <tr>
         <td><img src="https://user-images.githubusercontent.com/49470328/125880657-6597e7d9-3861-4c3a-a3fa-035065b68d70.jpeg" width="300px"/></td>
@@ -1407,4 +1107,3 @@
     </tr>
 </tbody>
 </table>
-

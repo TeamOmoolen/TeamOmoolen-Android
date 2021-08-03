@@ -24,7 +24,7 @@
 
             <ImageView
                 android:id="@+id/iv_one_recommend1"
-                setSrcFromUrl="@{recommendInfo.imageList[1]}"
+                setRound10SrcFromUrl="@{recommendInfo.imageList[1]}"
                 android:layout_width="164dp"
                 android:layout_height="164dp"
                 android:scaleType="fitXY"
@@ -36,7 +36,7 @@
 
             <ImageView
                 android:id="@+id/iv_one_recommend2"
-                setSrcFromUrl="@{recommendInfo.imageList[0]}"
+                setCircleSrcFromUrl="@{recommendInfo.imageList[0]}"
                 android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_marginEnd="10dp"

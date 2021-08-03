@@ -54,13 +54,13 @@ class TwoHomeNewFragment : Fragment() {
                 override fun onLowPriceClicked() {
                     //여기서 정렬
                     Log.d("click", "low price")
-                    fragmentViewModel.getNews(1,"price","asc")
+                    viewModel.getNews(1,"price","asc")
                 }
 
                 override fun onHighPriceClicked() {
                     // 여기서 정렬
                     Log.d("click", "high price")
-                    fragmentViewModel.getNews(1,"price","desc")
+                   viewModel.getNews(1,"price","desc")
 
                 }
             })

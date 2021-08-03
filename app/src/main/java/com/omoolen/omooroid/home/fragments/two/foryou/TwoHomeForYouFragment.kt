@@ -39,7 +39,6 @@ class TwoHomeForYouFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         //데이터 setting
-        viewModel.getSuggestData()
         setForYouAdapter()
         setForYouObserve()
 
@@ -52,13 +51,13 @@ class TwoHomeForYouFragment : Fragment() {
                 override fun onLowPriceClicked() {
                     //여기서 정렬
                     Log.d("click", "low price")
-                    fragmentViewModel.getForyou(1,"price","asc")
+                    viewModel.getForyou(1,"price","asc")
                 }
 
                 override fun onHighPriceClicked() {
                     // 여기서 정렬
                     Log.d("click", "high price")
-                    fragmentViewModel.getForyou(1,"price","desc")
+                    viewModel.getForyou(1,"price","desc")
                 }
             })
             findSortPriceFragment.show(childFragmentManager, "CustomDialog")
@@ -69,6 +68,7 @@ class TwoHomeForYouFragment : Fragment() {
             findQuestionFragment.show(childFragmentManager, "CustomDialog2")
 
         }
+
 
         return binding.root
     }
@@ -100,6 +100,12 @@ class TwoHomeForYouFragment : Fragment() {
                recommendList -> with(binding.rvFindForyou.adapter as SituationListAdapter) {
                     setRecommend(recommendList)
              }
+       }
+
+       viewModel.forYouList.observe(viewLifecycleOwner){
+               recommendList -> with(binding.rvFindForyou.adapter as SituationListAdapter) {
+                setRecommend(recommendList)
+            }
        }
    }
 

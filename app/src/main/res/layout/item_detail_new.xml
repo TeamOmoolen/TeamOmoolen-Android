@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/iv_detail_new1"
-            setSrcFromUrl="@{detailNewInfo.imageList[1]}"
+            setCircleSrcFromUrl="@{detailNewInfo.imageList[1]}"
             android:layout_width="138dp"
             android:layout_height="138dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
 
         <ImageView
             android:id="@+id/iv_detail_new2"
-            setSrcFromUrl="@{detailNewInfo.imageList[0]}"
+            setCircleSrcFromUrl="@{detailNewInfo.imageList[0]}"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_detail_new1"

@@ -16,7 +16,7 @@ class TwoHomeNewViewModel : ViewModel() {
     private val _newList = MutableLiveData<List<RecommendInfo>>()
     val newList: LiveData<List<RecommendInfo>>
         get() = _newList
-
+/*
     val itemList = ListLiveData<Item>()
     val totalPage = MutableLiveData<Int>()
 
@@ -46,7 +46,7 @@ class TwoHomeNewViewModel : ViewModel() {
             })
         Log.d("RETROFIT","끝")
     }
-
+*/
     fun setNewList() {
         _newList.value = mutableListOf(
             RecommendInfo(1,

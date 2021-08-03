@@ -73,7 +73,7 @@ class DetailFragment (private val itemId : String): Fragment() {
             BindingAdapters.setMonth(binding.tvDetailPeriodValue, detailViewModel.detail.value!!.changeCycleMinimum,
                 detailViewModel.detail.value!!.changeCycleMaximum)
             BindingAdapters.setPrice2(binding.tvDetailPrice, detailViewModel.detail.value!!.price)
-           BindingAdapters.setSrcFromUrl(binding.ivOneDetailLen, detailViewModel.detail.value!!.imageURL.get(0))
+            BindingAdapters.setCircleSrcFromUrl(binding.ivOneDetailLen, detailViewModel.detail.value!!.imageURL.get(0))
 
         }
 

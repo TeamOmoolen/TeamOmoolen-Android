@@ -16,7 +16,7 @@ class TwoHomeSituViewModel : ViewModel() {
     private val _situList = MutableLiveData<List<RecommendInfo>>()
     val situList: LiveData<List<RecommendInfo>>
         get() = _situList
-
+/*
     val itemList = ListLiveData<Item>()
     val totalPage = MutableLiveData<Int>()
 
@@ -46,7 +46,7 @@ class TwoHomeSituViewModel : ViewModel() {
             })
         Log.d("RETROFIT","끝")
     }
-
+*/
     fun setSituList() {
         _situList.value = mutableListOf(
             RecommendInfo(1,

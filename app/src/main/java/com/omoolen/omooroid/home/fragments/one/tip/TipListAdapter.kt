@@ -26,8 +26,6 @@ class TipListAdapter : RecyclerView.Adapter<TipListAdapter.TipViewHolder>() {
         fun bind(tipInfo: GuideList1){
             binding.tipInfo = tipInfo
             binding.tipBack =  tipBackList.get(position)
-
-
         }
     }
 

@@ -55,14 +55,14 @@ class TwoHomeSeasonFragment : Fragment() {
                 override fun onLowPriceClicked() {
                     //여기서 정렬
                     Log.d("click", "low price")
-                    fragmentViewModel.getSeason(1,"price","asc")
+                    viewModel.getSeason(1,"price","asc")
 
                 }
 
                 override fun onHighPriceClicked() {
                     // 여기서 정렬
                     Log.d("click", "high price")
-                    fragmentViewModel.getSeason(1,"price","desc")
+                    viewModel.getSeason(1,"price","desc")
 
                 }
             })

@@ -6,7 +6,6 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.omoolen.omooroid.R
 import com.omoolen.omooroid.home.fragments.one.curating.CuratingInfo
 import com.omoolen.omooroid.home.fragments.one.event.EventInfo
@@ -19,9 +18,6 @@ import com.omoolen.omooroid.util.ListLiveData
 import com.omoolen.omooroid.util.api.RetrofitClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
 class OneHomeViewModel(application: Application) : AndroidViewModel(application) {
     val deadlineEventList = ListLiveData<DeadlineEvent>()
@@ -64,6 +60,8 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
                 recommendationBySeasonList.clear()
                 recommendationBySituationList.clear()
                 recommendationByUserList.clear()
+                guideLists.clear()
+                newItemList.clear()
 
                 home.data.deadlineEvent.forEach{
                     deadlineEventList.add(DeadlineEvent(it.id,it.image))
@@ -106,9 +104,13 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
                     recommendationByUserList.add(RecommendationByUser(it.brand,it.changeCycleMaximum,it.changeCycleMinimum,
                         it.diameter,it.id,it.imageList,it.name,it.otherColorList,it.pieces,it.price))
                 }
-                season.value =  home.data.season
-                situation.value = home.data.situation
-                userName.value = home.data.username
+
+                if(season.value == null)
+                    season.value =  home.data.season
+                if(situation.value == null)
+                    situation.value = home.data.situation
+                if(userName.value == null)
+                    userName.value = home.data.username
 
                 home.data.newLens.newLensBrand1.forEach{
                     newlens1.add(NewLensBrand1(it.brand,it.id,it.imageList,it.name,it.price))
@@ -131,8 +133,12 @@ class OneHomeViewModel(application: Application) : AndroidViewModel(application)
                 //Log찍기
                 for(g in guide1)
                     Log.d("*********GUIDE","$g")
-                for(n in 0 until newlens1.size)
+                for(n in 0 until newlens1.size){
                     Log.d("**********NEW1",newlens1[n].name)
+
+                    for(e in 0 until newlens1[n].imageList.size)
+                        Log.d("**********NEW1IMAGE",newlens1[n].imageList[e].toString())
+                }
                 for(n in 0 until newlens2.size)
                     Log.d("**********NEW2",newlens2[n].name)
                 for(n in 0 until newlens3.size)

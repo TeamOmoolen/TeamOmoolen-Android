@@ -16,7 +16,7 @@ class TwoHomeSeasonViewModel : ViewModel() {
     private val _seasonList = MutableLiveData<List<RecommendInfo>>()
     val seasonList: LiveData<List<RecommendInfo>>
         get() = _seasonList
-
+/*
     val itemList = ListLiveData<Item>()
     val totalPage = MutableLiveData<Int>()
 
@@ -46,7 +46,7 @@ class TwoHomeSeasonViewModel : ViewModel() {
             })
         Log.d("RETROFIT","끝")
     }
-
+*/
     fun setSeasonList() {
         _seasonList.value = mutableListOf(
             RecommendInfo(1,

@@ -63,30 +63,43 @@ class TwoHomeFragment : Fragment() {
 
         binding.vpHomeTwo.adapter = pagerAdapter
 
-        binding.vpHomeTwo.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-            }
-        })
-
         TabLayoutMediator(binding.findTabLayout, binding.vpHomeTwo) { tab, position ->
+
                 when (position) {
-                    0 -> { tab.text = homeViewModel.tabItem1}
-                    1 -> { tab.text = homeViewModel.tabItem2}
-                    2 -> { tab.text = homeViewModel.tabItem3}
-                    3 -> { tab.text = homeViewModel.tabItem4}
+                    0 -> {
+                        homeViewModel.tabItem2.observe(viewLifecycleOwner) {
+                            tab.text = homeViewModel.tabItem1
+                        }
+                    }
+                    1 -> {
+                        homeViewModel.tabItem2.observe(viewLifecycleOwner){
+                            tab.text = homeViewModel.tabItem2.value
+                        }
+                    }
+                    2 -> {
+                        homeViewModel.tabItem2.observe(viewLifecycleOwner) {
+                            tab.text = homeViewModel.tabItem3
+                        }
+                    }
+                    3 -> {
+                        homeViewModel.tabItem4.observe(viewLifecycleOwner){
+                            tab.text = homeViewModel.tabItem4.value
+                        }
+                    }
                 }
         }.attach()
 
 
         idx = arguments?.getInt("setIdx")
+        Log.d("**********TAB_IDX", idx.toString())
         if(idx != null) {
             val tabLayout = binding.findTabLayout
             val tab = tabLayout.getTabAt(idx!! - 1)
             tab!!.select()
-
-            pagerAdapter.createFragment(idx!! - 1)
+            binding.vpHomeTwo.setCurrentItem(idx!! - 1, false)
         }
+
+
     }
 
     private fun setClickListener() {

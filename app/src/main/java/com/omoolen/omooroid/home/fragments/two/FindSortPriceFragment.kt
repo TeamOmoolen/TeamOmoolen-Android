@@ -6,9 +6,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.omoolen.omooroid.R
 import com.omoolen.omooroid.databinding.FragmentFindSortPriceBinding
 
 class FindSortPriceFragment : DialogFragment() {
@@ -22,48 +24,6 @@ class FindSortPriceFragment : DialogFragment() {
                               savedInstanceState: Bundle?) : View {
         _binding = FragmentFindSortPriceBinding.inflate(
             inflater, container, false)
-/*
-        binding.tvDialogFindSortHigh.setOnTouchListener{ v : View, event: MotionEvent ->
-            when(event.action){
-                MotionEvent.ACTION_DOWN -> {
-                    binding.tvDialogFindSortHigh.setTextColor(resources.getColor(R.color.om_main_orange))
-                    v.performClick()
-                    false
-                }
-                MotionEvent.ACTION_UP -> {
-                    binding.tvDialogFindSortHigh.setTextColor(resources.getColor(R.color.om_third_gray))
-                    v.performClick()
-                    true
-                }
-                else -> {
-                    binding.tvDialogFindSortHigh.setTextColor(resources.getColor(R.color.om_third_gray))
-                    v.performClick()
-                    true
-                }
-            }
-        }
-
-        binding.tvDialogFindSortLow.setOnTouchListener{ v : View, event: MotionEvent ->
-            when(event.action){
-                MotionEvent.ACTION_DOWN -> {
-                    binding.tvDialogFindSortLow.setTextColor(resources.getColor(R.color.om_main_orange))
-                    v.performClick()
-                    false
-                }
-                MotionEvent.ACTION_UP -> {
-                    binding.tvDialogFindSortLow.setTextColor(resources.getColor(R.color.om_third_gray))
-                    v.performClick()
-                    true
-                }
-                else -> {
-                    binding.tvDialogFindSortLow.setTextColor(resources.getColor(R.color.om_third_gray))
-                    v.performClick()
-                    true
-                }
-            }
-        }
-*/
-
 
         binding.tvDialogFindSortHigh.setOnClickListener{
             buttonClickListener.onHighPriceClicked()

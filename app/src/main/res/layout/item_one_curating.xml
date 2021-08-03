@@ -20,7 +20,7 @@
             android:layout_height="138dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            setSrcFromUrl="@{curatingInfo.imageList[1]}"
+            setCircleSrcFromUrl="@{curatingInfo.imageList[1]}"
             tools:src="@drawable/img_ellipse_1842" />
 
         <ImageView
@@ -29,7 +29,7 @@
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_one_recommend1"
             app:layout_constraintEnd_toEndOf="@+id/iv_one_recommend1"
-            setSrcFromUrl="@{curatingInfo.imageList[0]}"
+            setCircleSrcFromUrl="@{curatingInfo.imageList[0]}"
             tools:src="@drawable/img_color_a" />
 
         <TextView
