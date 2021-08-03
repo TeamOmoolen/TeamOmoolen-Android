@@ -326,6 +326,7 @@
                 val listForColor = LensColorListAdapter()
                 listForColor.setColoring(curatingInfo.otherColorList as List<String>)
                 binding.rvOneCuratingColor.adapter = listForColor
+                //신제품 _ recycler view의 경우는 여기서 클릭 리스너 설정
     
             }
         }
@@ -368,17 +369,17 @@
     }
     
     ```
-
+    
     * OneHomeFragment에서 각 요소 클릭 시 ...
-
+    
     * RecommendationBySeason, RecommendationBySituation, RecommendationByUser 의 경우, RecyclerView의 item 클릭 시 해당 렌즈의 상세 페이지로 이동.
        _ 렌즈의 상품 id를 넘겨줌.
     * 각 RecyclerView 위에 있는 '더보기>' 클릭 시 발견의 관련 탭으로 이동.
       _ 계절 관련 아이템 추천의 더보기를 클릭 시 발견 탭의 4번째 탭인 계절 탭으로 이동.
     * 상단의 검색바 클릭 시 검색 페이지로 이동.
-
+    
     🧾 OneHomeFragment.kt
-
+    
     ```kotlin
     class OneHomeFragment : Fragment() {
         private val handler: Handler = Handler(Looper.getMainLooper())
@@ -557,7 +558,7 @@
     
     }
     ```
-
+    
     </div>
     </details>
 ### **4. 발견**
@@ -572,15 +573,15 @@
       ◾ 기본적인 구현 방식은 Home에서 RecyclerView를 이용하여 구현한 것과 크게 차이는 없습니다. 사용자 토큰을 사용하여 _ 서버에서 데이터를 받아올 경우, 해당 데이터를 각 탭에서 테마에 맞게 RecyclerView를 이용하여 정보를 보여줍니다. 색깔을 중첩 recyclerView를 이용하였고, 각 아이템을 클릭 시 상세 페이지로 이동합니다.  검색바를 클릭 시 검색 페이지로 이동합니다.
 
     * 차이점 : 발견 fragment 위에 다시 4개의 fragment를 tabLayout과 viewPager2를 이용한 탭이 올라가짐. 이를 통해 발견 탭에서는 다시 상세 4개의 탭이 보여지며, 이를 스와이프를 통해 이동할 수 있음. 
-    * 각 상세 탭은 For you, 계절, 상황, 신제품 정보를 onBoarding 과정에서 입력한 정보를 기반으로 보여줍니다. 또한, 각 탭에는 특정 아이콘 클릭 시 해당 탭의 정보를 알려주는 다이얼로그와, 정렬 관련 다이얼로그가 있습니다. ( 정렬의 경우, 다이얼로그만 보여지고, 실제로 정렬이 되는 부분은 미구현됨. )
+    * 각 상세 탭은 For you, 계절, 상황, 신제품 정보를 onBoarding 과정에서 입력한 정보를 기반으로 보여줍니다. 또한, 각 탭에는 특정 아이콘 클릭 시 해당 탭의 정보를 알려주는 다이얼로그와, 정렬 관련 다이얼로그가 있습니다. _ 정렬 클릭 시 가격을 기준으로 정렬됨. (viewmodel에서 recyclerview에 적용되는 데이터를 다시 서버통신 받고, 이를 observe가 관찰하다 적용)
     * 발견 탭의 로그 클릭 시 홈으로 이동.
 
 
       ✔ 구현 코드
       ---
-
+    
       ◾ 
-
+    
       🧾 TwoHomeFragment.kt
       ```kotlin
       class TwoHomeFragment : Fragment() {
@@ -600,14 +601,17 @@
               binding.lifecycleOwner = viewLifecycleOwner
               mContext = requireContext()
               setClickListener()
-      
-      
+
+
+​      
+
               homeViewModel.getSuggestData()
       
               return binding.root
           }
-      
-      
+
+
+​      
           override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
               super.onViewCreated(view, savedInstanceState)
           }
@@ -632,21 +636,37 @@
       
               TabLayoutMediator(binding.findTabLayout, binding.vpHomeTwo) { tab, position ->
                       when (position) {
-                          0 -> { tab.text = homeViewModel.tabItem1}
-                          1 -> { tab.text = homeViewModel.tabItem2}
-                          2 -> { tab.text = homeViewModel.tabItem3}
-                          3 -> { tab.text = homeViewModel.tabItem4}
-                      }
+                           0 -> {
+                            homeViewModel.tabItem2.observe(viewLifecycleOwner) {
+                                tab.text = homeViewModel.tabItem1
+                            }
+                        }
+                        1 -> {
+                            homeViewModel.tabItem2.observe(viewLifecycleOwner){
+                                tab.text = homeViewModel.tabItem2.value
+                            }
+                        }
+                        2 -> {
+                            homeViewModel.tabItem2.observe(viewLifecycleOwner) {
+                                tab.text = homeViewModel.tabItem3
+                            }
+                        }
+                        3 -> {
+                            homeViewModel.tabItem4.observe(viewLifecycleOwner){
+                                tab.text = homeViewModel.tabItem4.value
+                            }
+                        }
               }.attach()
-      
-      
+
+
+​      
               idx = arguments?.getInt("setIdx")
               if(idx != null) {
                   val tabLayout = binding.findTabLayout
                   val tab = tabLayout.getTabAt(idx!! - 1)
                   tab!!.select()
       
-                  pagerAdapter.createFragment(idx!! - 1)
+                   binding.vpHomeTwo.setCurrentItem(idx!! - 1, false)
               }
           }
       
@@ -671,7 +691,7 @@
       }
       ```
     ​    🧾 PagerFragmentAdapter.kt _ viewPager할 fragment를 지정.
-
+    
     ```kotlin
     class PagerFragmentStateAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
     
@@ -697,9 +717,9 @@
     
     }
     ```
-
+    
     🧾 TwoHomeForYouFragment.kt
-
+    
     ```kotlin
     class TwoHomeForYouFragment : Fragment() {
     
@@ -721,11 +741,11 @@
             binding.lifecycleOwner = viewLifecycleOwner
     
             //데이터 setting
-            viewModel.getSuggestData()
             setForYouAdapter()
             setForYouObserve()
-    
-    
+
+
+​    
             //정렬 클릭 시
             binding.ivForYouSort.setOnClickListener{
                 val findSortPriceFragment = FindSortPriceFragment()
@@ -734,13 +754,13 @@
                     override fun onLowPriceClicked() {
                         //여기서 정렬
                         Log.d("click", "low price")
-                        fragmentViewModel.getForyou(1,"price","asc")
+                        viewModel.getForyou(1,"price","asc")
                     }
     
                     override fun onHighPriceClicked() {
                         // 여기서 정렬
                         Log.d("click", "high price")
-                        fragmentViewModel.getForyou(1,"price","desc")
+                         viewModel.getForyou(1,"price","desc")
                     }
                 })
                 findSortPriceFragment.show(childFragmentManager, "CustomDialog")
@@ -757,9 +777,9 @@
         //... 아래는 홈의 OneHomeFragment.kt와 유사.
     }
     ```
-
+    
     <br>
-
+    
     </div>
     </details>    
 
@@ -781,6 +801,7 @@
         - TabLayout의 Indicator custom
     
       
+    
     
       ✔ 구현 코드
       ---
@@ -1085,4 +1106,3 @@
     </tr>
 </tbody>
 </table>
-

@@ -69,6 +69,7 @@ class TwoHomeForYouFragment : Fragment() {
 
         }
 
+
         return binding.root
     }
 
